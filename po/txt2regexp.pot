@@ -1,0 +1,130 @@
+#: ../txt2regexp.sh:67
+msgid "start to match"
+msgstr ""
+#: ../txt2regexp.sh:67
+msgid "on the line beginning"
+msgstr ""
+#: ../txt2regexp.sh:68
+msgid "in any part of the line"
+msgstr ""
+#: ../txt2regexp.sh:70
+msgid "followed by"
+msgstr ""
+#: ../txt2regexp.sh:70
+msgid "numbers only"
+msgstr ""
+#: ../txt2regexp.sh:70
+msgid "letters only"
+msgstr ""
+#: ../txt2regexp.sh:71
+msgid "letters and numbers"
+msgstr ""
+#: ../txt2regexp.sh:71
+msgid "any character"
+msgstr ""
+#: ../txt2regexp.sh:72
+msgid "a specific character"
+msgstr ""
+#: ../txt2regexp.sh:72
+msgid "an allowed characters list"
+msgstr ""
+#: ../txt2regexp.sh:73
+msgid "a forbidden characters list"
+msgstr ""
+#: ../txt2regexp.sh:73
+msgid "a literal string"
+msgstr ""
+#: ../txt2regexp.sh:74
+msgid "anything"
+msgstr ""
+#: ../txt2regexp.sh:76
+msgid "type of the letters"
+msgstr ""
+#: ../txt2regexp.sh:76
+msgid "uppercase only"
+msgstr ""
+#: ../txt2regexp.sh:77
+msgid "lowercase only"
+msgstr ""
+#: ../txt2regexp.sh:77
+msgid "upper and lowercase"
+msgstr ""
+#: ../txt2regexp.sh:79
+msgid "how many times (repetition)"
+msgstr ""
+#: ../txt2regexp.sh:79
+msgid "one"
+msgstr ""
+#: ../txt2regexp.sh:80
+msgid "zero or one (optional)"
+msgstr ""
+#: ../txt2regexp.sh:80
+msgid "zero or more"
+msgstr ""
+#: ../txt2regexp.sh:81
+msgid "one or more"
+msgstr ""
+#: ../txt2regexp.sh:81
+msgid "exactly N"
+msgstr ""
+#: ../txt2regexp.sh:81
+msgid "up to N"
+msgstr ""
+#: ../txt2regexp.sh:82
+msgid "at least N"
+msgstr ""
+#: ../txt2regexp.sh:84
+msgid "details"
+msgstr ""
+#: ../txt2regexp.sh:84
+msgid "grouping"
+msgstr ""
+#: ../txt2regexp.sh:84
+msgid "alternatives"
+msgstr ""
+#: ../txt2regexp.sh:85
+msgid "escape normal"
+msgstr ""
+#: ../txt2regexp.sh:85
+msgid "escape list []"
+msgstr ""
+#: ../txt2regexp.sh:168
+msgid ""
+"error:\n"
+"  your screen has %s lines and should have at least %s to this\n"
+"  program fit on it. increase the number of lines or select\n"
+"  less programs to show the RegExp.\\n\\n"
+msgstr ""
+#: ../txt2regexp.sh:195
+msgid "quit"
+msgstr ""
+#: ../txt2regexp.sh:196
+msgid "reset"
+msgstr ""
+#: ../txt2regexp.sh:197
+msgid "color"
+msgstr ""
+#: ../txt2regexp.sh:199
+msgid "progs"
+msgstr ""
+#: ../txt2regexp.sh:203
+msgid "%s unknown  %s not supported"
+msgstr ""
+#: ../txt2regexp.sh:207
+msgid "exit"
+msgstr ""
+#: ../txt2regexp.sh:208
+msgid "press the letters to (un)select the programs"
+msgstr ""
+#: ../txt2regexp.sh:235
+msgid "which one?"
+msgstr ""
+#: ../txt2regexp.sh:242
+msgid "which?"
+msgstr ""
+#: ../txt2regexp.sh:371
+msgid "choose"
+msgstr ""
+#: ../txt2regexp.sh:418
+msgid "time(s)"
+msgstr ""
