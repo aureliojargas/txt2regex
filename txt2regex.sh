@@ -1,14 +1,12 @@
 #!/bin/bash
 # txt2regex.sh - Regular Expressions "wizard", all in bash2 builtins
-# http://txt2regex.sourceforge.net
 #
-# please, read the README file.
+# Homepage: http://txt2regex.sf.net
+# Author  : Aurelio Marinho Jargas (verde@aurelio.net)
+# License : GPL
+# Requires: bash >= 2.04
 #
-# - it's GPL. use at your own risk. don't kill koalas.
-# - A T T E N T I O N: only works in bash >= 2.04
-# - programs versions tested (see README file)
-#    ./test-suite.sh|sed '/^\o033/!d;s/^/#\t/')
-#    ./txt2regex --showmeta | sed '/^ *$/d;s/^[^)]*[()\\]* //;s/^/#\t/'
+# Please, read the README file.
 #
 # $STATUS:
 #   0  begining of the regex
@@ -19,12 +17,12 @@
 #   4  choosing session programs
 #   9  end of the regex
 #
-# 20001019 <verde@verde666.org> ** 1st version
+# 20001019 ** 1st version
 # 20001026 ++ lots of changes and tests
 # 20001028 ++ improvements, public release
 # 20001107 ++ bash version check (thanks eliphas)
 # 20001113 ++ php support, Progs command
-# 20010223 ++ i18n, --all, fmeat announce (oh no!)
+# 20010223 ++ i18n, --all, freshmeat announce (oh no!)
 # 20010223 v0.1
 # 20010420 ++ id.po, \lfunction_name, s/regexp/regex/ig
 # 20010423 ++ --nocolor, --history, Usage(), doNextHist{,Args}()
@@ -65,16 +63,19 @@
 #          ++ history now works with Choice() menus
 #          ++ history appears when quiting
 # 20010905 v0.6
-# ** program's 1 year birthday!
+# 20011019 ** program's 1 year birthday!
 # 20020225 ++ "really quit?" message, ++ --version
 # 20020304 <> --history just shows final RE on STDOUT
 #          ++ --make, --prog, printError()
 #          ++ groups are now quantifiable
 #          ++ ready_(date[123], hour[123], number[123])
 # 20020304 v0.7
+# 20021019 ** program's 2 year birthday!
+# 20031019 ** program's 3 year birthday!
+# 20040928 <> bash version test (works in 3.x and newer)
 #
 
-# TODO? use getopts (--long not supported), \<borders\>
+# TODO \<borders\>
 # TODO empty | check like ^| or (|)
 # TODO ready_email (see guia_er)
 # TODO negated POSIX|special combination (Choice hack)
@@ -89,7 +90,7 @@ VERSION=0
 
 # we _need_ bash>=2.04
 case "$BASH_VERSION" in
-  2.0[4-9]*|2.[1-9]*):;;
+  2.0[4-9]*|2.[1-9]*|[3-9].*):;;
   *)echo "bash version >=2.04 required, but you have $BASH_VERSION"; exit 1;;
 esac
 
@@ -108,8 +109,8 @@ OPTIONS (they are default OFF):
   --showmeta            prints a complete metachar table for all programs
   --showinfo <program>  prints regex info about the program
 
-  --history <value>     prints to STDOUT a RegEx from a history data
-  --make <target>       prints a ready RegEx for a common pattern
+  --history <value>     prints to STDOUT a regex from a history data
+  --make <target>       prints a ready regex for a common pattern
   --prog <p1,p2,...>    choose which programs to use (separated by commas)
 
   --version             prints the program version and quit
@@ -134,25 +135,25 @@ progs=(perl php postgres python sed vim)
 
 
 ### IMPORTANT DATA ###
-allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql perl php postgres procmail python sed tcl vbscript vi vim)
-allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
+allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql ooo perl php postgres procmail python sed tcl vbscript vi vim)
+allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'OpenOffice.org 1.1.0' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
 ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4' \
             'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999')
 ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3' \
             'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999')
-ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3'\
+ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3' \
             'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999')
-ready_hour=('2652165¤:2¤2¤:¤:2¤2'\
+ready_hour=('2652165¤:2¤2¤:¤:2¤2' \
             'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99')
-ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2'\
+ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2' \
             'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59')
-ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2'\
+ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2' \
             'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59')
-ready_number=('24264¤-+¤:2'\
+ready_number=('24264¤-+¤:2' \
             'number LEVEL 1: integer, positive and negative')
-ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2'\
+ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2' \
             'number LEVEL 2: level 1 plus optional float point')
-ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'\
+ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2' \
             'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90')
 #date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}            
 #hour3  : perl: ([01][0-9]|2[0123]):[012345][0-9]
@@ -291,6 +292,7 @@ S2_javascript=('' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_vbscript=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_gawk=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_mysql=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_ooo=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_procmail=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_mawk=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_awk=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
@@ -324,6 +326,7 @@ ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
 ax_grep=(      ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
 ax_vim=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
 ax_egrep=(     ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' ',' 'P' ',' )
+ax_ooo=(       ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' ',' ',' ',' )
 ax_php=(       ''   '|'   '(' ')'   '\'  '\.*[,{,(,|+?^$' ',' 'P' '\t')
 ax_python=(    ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
 ax_lex=(       ''   '|'   '(' ')'   '\'  '\.*[ { ( |+?  ' ' ' ' ' ' ' )

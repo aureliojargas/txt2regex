@@ -9,6 +9,9 @@ txt2regex TODO:
   - undo last step (Bence Fejervari @ .hu)
   - std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
   - interface to feed the programs with the RegEx (Chris Piechowicz @ .au)
-
+  - on the fly regex test (zentara @ .com)
+  - add other versions of the same program (julioB @ .edu)
+  - easy way for people contribute on program's regexes rules (julioB @ .edu)
+  - escape special chars when **applying** the regex (julioB @ .edu)
 
 technical TODO: grep TODO txt2regex

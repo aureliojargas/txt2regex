@@ -1,422 +1,226 @@
-.TH "txt2regex" 1 2002-03-04 "aurelio@verde666.org"
+.TH "TXT2REGEX" 1 "September, 28th - 2004" ""
+
+.SH NAME
 .P
-   a Regular Expression "wizard", all written with bash2 builtins
+txt2regex \- a Regular Expression Wizard, written with bash2 builtins
 
-^txt2regex$ is a Regular Expression "wizard", all written with bash2
-builtins, that converts human sentences to RegExs. with a simple
-interface, you just answer to questions and build your own RegEx for a
-large variety of programs, like awk, emacs, grep, perl, php, procmail,
-python, sed and vim. there are more than 20 supported programs.
-it's bash so download and run, no compilation needed.
-
-
-
-
-
-.SH WHY?
-
-
-.nf
-* to try to make simple RegExs less painful for the beginners
-* to have a reliable source for RegExs differences between programs
-* to have coding fun &:)
+.SH SYNOPSIS
 .P
-.fi
-
-.SH WHY BASH2?
-
-basically, for me to learn the new bash2 concepts as arrays, i18n and
-advanced variable expansion. they rule!
-
-
-
-
-
-.SH INSTALL AND RUN
-
-after expand the tarball, do you can simply run the program directly.
-but if do you want it on your system, or in other language besides
-english, use make.
-
-.SS Summary
-
-.nf
-* just english: untar and run
-* with i18n: untar, make install and run
-.P
-.fi
-
-.SS untar
-.nf
-  tar xvzf txt2regex-VERSION.tgz
-  cd txt2regex-VERSION
-.fi
-
-
-.SS run
-
-.nf
-  ./txt2regex.sh
-.fi
-
-
-.SS make install
-
-if you're root and wants to install it on the system, with i18n:
-
-.nf
-  make install
-  /usr/bin/txt2regex
-.fi
-
-or, if do you want to use it on locally, on the txt2regex dir, with
-i18n:
-
-.nf
-  make install BINDIR=. LOCALEDIR=po
-   ./txt2regex
-.fi
-
-if you want to install it on another location, redefine BINDIR,
-LOCALEDIR and DESTDIR variables.
-
-
-
-
-
-.SH HOW TO USE IT?
-
-first of all, do accept the truth:
-
-.nf
-* \fBonly works in bash >= 2.04\fP
-* \fBonly works in bash >= 2.04\fP
-* \fBonly works in bash >= 2.04\fP
-.P
-.fi
-
-just run it and see the it's face.
-the interface is pretty easy to understand, but in short, it's:
-
-.nf
-  +---------------------------------------+
-  | -> top menu                           |
-  | -> group menu                         |
-  |                                       |
-  | -> RegExs of the programs selected    |
-  |    ...                                |
-  |    ...                                |
-  |                                       |
-  | -> history                            |
-  | -> your prompt                        |
-  |                                       |
-  | -> the question                       |
-  | -> the answers                        |
-  |    ...                                |
-  |    ...                                |
-  +---------------------------------------+
-.fi
-
-so, using the numeric pad on the keyboard (there, on the right side),
-press the numbers to choose the answers (turn NumLock on!) and just
-see the RegExs being made.
-
-as the top menu says, press . to quit and 0 (zero) to reset the
-RegEx. the * key toggles color ON/OFF and / add/remove programs
-on the RegEx part. just it.
-
-the group menu is contextual, it appears on the 2nd line when needed.
-
-so, in short:
-
-.nf
-* read the question
-* choose the answer
-* press the number
-* fun!
-.P
-.fi
-
-
-
-
-
-.SH COMMAND LINE
-
-there's a few command line options, see the \-\-help:
-
-.nf
-  +--------------------------------------------------------------------+
-  |                                                                    |
-  | usage: txt2regex [--nocolor|--whitebg|--all]                       |
-  |        txt2regex --showmeta|--showinfo <program>                   |
-  |        txt2regex [--all|--prog <p1,p2>] --make <target>            |
-  |        txt2regex --history <value>                                 |
-  |                                                                    |
-  | OPTIONS (they are default OFF):                                    |
-  |                                                                    |
-  |  --all                 works with all registered programs          |
-  |  --nocolor             self-explanatory                            |
-  |  --whitebg             colors adjusted to white background         |
-  |                        terminals                                   |
-  |  --showmeta            prints a complete metachar table for all    |
-  |                        programs                                    |
-  |  --showinfo <program>  prints regex info about the program         |
-  |                                                                    |
-  |  --history <value>     prints to STDOUT a RegEx from a history data|
-  |  --make <target>       prints a ready RegEx for a common pattern   |
-  |  --prog <p1,p2,...>    choose which programs to use                |
-  |                                                                    |
-  |                                                                    |
-  |  for more details about the options, read the README file.         |
-  |                                                                    |
-  +--------------------------------------------------------------------+
-.fi
-
-and as we're on the README file, here are the details:
-
-
-.nf
-* \fB\-\-all\fP is cool but requires lots of lines (~35)
-* \fB\-\-nocolor\fP is strong, so it kills \-\-whitebg
-* \fB\-\-whitebg\fP is a requirement of X users, and as i don't use X, tell me
-    if anything is wrong
-* \fB\-\-showmeta\fP rules, try it
-* \fB\-\-showinfo\fP has a reverse video nice output, if you don't like it, do
-    use it with \-\-nocolor
-* \fB\-\-history\fP is getting useful, stay tunned
-* \fB\-\-prog\fP is nice to specify your favorite programs
-* \fB\-\-make\fP is a remedy for headaches
-.P
-.fi
-
-and now what you've waiting for, the examples:
-
-* just calling it
-.nf
-  txt2regex
-.fi
-
-
-* calling the program on a white terminal
-.nf
-  xterm -fg black -bg white
-  txt2regex --whitebg
-.fi
-
-
-* getting information
-.nf
-  txt2regex --showmeta
-.fi
-
-
-* getting specific information
-.nf
-  txt2regex --showinfo sed
-.fi
-
-
-* calling it for specific programs
-.nf
-  txt2regex --prog vim,sed,grep,python
-.fi
-
-
-* applying a history data
-.nf
-  txt2regex --history '16421¤:01¤:'
-.fi
-
-
-* getting ready RegExes!
-.nf
-  txt2regex --make hour
-  txt2regex --make number3 --prog perl
-  txt2regex --make date2 --all
-.fi
-
-
-
-
-
-
-.SH INFO ABOUT THE INFO ON IT
-
-all RegExes and rules the program knows about were extensively tested
-by hand or by the test\-suite program. when the program can't be
-reached or executed on my machine, the rules were taken:
-
-
-.nf
-* from the program documentation
-* or missing it, from the "mastering regular expressions" o'reilly book
-* or missing it, from internet documents (oh no!)
-.P
-.fi
-
-programs that were tested here:
-
-.nf
-* ed: GNU ed version 0.2
-* mawk: mawk 1.3.3 Nov 1996
-* gawk: GNU Awk 3.0.6
-* grep: grep (GNU grep) 2.4.2
-* egrep: egrep (GNU grep) 2.4.2
-* find: GNU find version 4.1
-* javascript: netscape\-4.77
-* mysql: Ver 11.13 Distrib 3.23.36
-* perl: v5.6.0 built for i386\-linux
-* php: 4.0.6
-* postgres: psql (PostgreSQL) 7.1.2
-* procmail: procmail v3.15.1 2001/01/08
-* python: Python 2.1
-* sed: GNU sed version 3.02.80
-* tcl: 8.3
-* vi: Nvi 1.79 (10/23/96)
-* vim: VIM \- Vi IMproved 5.8 (2001 May 31)
-.P
-.fi
-
-
-
-
-
-.SH IF YOU REALLY LIKE IT
-
-use it and tell your friends.
-
-yes, it's GPL.
-
-
-
-
-
-.SH BUGS, IMPROVEMENTS AND CONTRIBUTIONS
-
-they're VERY welcome! send to the author (e\-mail below).
-
-a cool (and easy/fast to do) contribution is a translation of the
-program messages to your own language. get the po/txt2regex.pot file
-and translate it. in doubt, ask.
-
-
-
-
-
-.SH TRANSLATIONS MAINTAINERS
-
-"i feel like i could... like i could... TAKE OVER THE WORLD"
-
-.nf
-  en             english           the author
-  pt_BR    brazilian portuguese    the author
-  id_ID     bahasa indonesian      Muhamad Faizal
-  pl_PL          polish            Chris Piechowicz
-  de_DE          german            Jan Parthey
-  ja            japanese           Hajime Dei
-.fi
-
-
-
-
-
-.SH FAQ
-
-
-.nf
-* Q: my screen has more than 25 lines, i'm serious!
-* Q: why it only uses 80 columns if my screen has more?
-* Q: i've changed the xterm window size, why it didn't notice that?
-* A: the program do use the bash environment variables $LINES and
-     $COLUMNS to get the actual screen size. those \fBMUST\fP be exported
-     variables, or you'll be stucked at the default 80x25 size. try:
-.P
-.nf
-          /bin/bash -c 'echo $COLUMNS $LINES'
-.fi
+\fBtxt2regex\fR
 
 .P
-     if you don't get the screen size, do:
+\fBtxt2regex\fR \-\-nocolor|\-\-whitebg
+
 .P
+\fBtxt2regex\fR \-\-all|\-\-prog <p1,p2,...,pN>
+
+.P
+\fBtxt2regex\fR \-\-showmeta|\-\-showinfo <program>
+
+.P
+\fBtxt2regex\fR \-\-make <target>
+
+.P
+\fBtxt2regex\fR \-\-history <value>
+
+.SH DESCRIPTION
+.P
+\fBtxt2regex\fR is a Regular Expression "wizard", all written with bash2
+builtins, that converts human sentences to regexes.
+
+.P
+With a simple interactive interface, you just answer to questions and
+build your own regex for a large variety of programs, like awk, emacs,
+grep, perl, php, procmail, python, sed and vim. There are more than 20
+supported programs.
+
+.P
+It's bash so download and run, no compilation needed.
+
+.P
+Please visit the program homepage at
+\fIhttp://txt2regex.sf.net\fR.
+
+.SH OPTIONS
+.TP
+\fB\-\-all\fR
+works with all registered programs
+
+.TP
+\fB\-\-help\fR
+prints the help message and quit
+
+.TP
+\fB\-\-history <value>\fR
+prints to STDOUT a regex from a history data
+
+.TP
+\fB\-\-make <target>\fR
+prints a ready regex for a common pattern
+
+.TP
+\fB\-\-nocolor\fR
+self\-explanatory
+
+.TP
+\fB\-\-prog <p1,p2,...>\fR
+choose which programs to use (separated by commas)
+
+.TP
+\fB\-\-showinfo <program>\fR
+prints regex info about the program
+
+.TP
+\fB\-\-showmeta\fR
+prints a complete metachar table for all programs
+
+.TP
+\fB\-\-version\fR
+prints the program version and quit
+
+.TP
+\fB\-\-whitebg\fR
+colors adjusted to white background terminals
+
+.P
+By default, all options are turned OFF. Just call it with no options
+to launch the default interactive interface.
+
+.SH DETAILS
+.P
+\fB\-\-all\fR is cool but requires lots of lines (~35)
+
+.P
+\fB\-\-nocolor\fR is strong, so it kills \-\-whitebg
+
+.P
+\fB\-\-showmeta\fR rules, try it
+
+.P
+\fB\-\-showinfo\fR uses reverse video output, \-\-nocolor turns it off
+
+.P
+\fB\-\-history\fR is getting useful, stay tunned
+
+.P
+\fB\-\-make\fR is a remedy for headaches
+
+.P
+\fB\-\-prog\fR is nice to use your favorite programs, mix it with \-\-make and \-\-history
+
+.SH EXAMPLES
+.TP
+Calling the program on the default interactive interface
 .nf
-          echo export COLUMNS LINES >> ~/.bash_profile
+  $ txt2regex
 .fi
 
+
+.TP
+Calling the program on a white terminal
+.nf
+  $ xterm -fg black -bg white ; txt2regex --whitebg
+.fi
+
+
+.TP
+Getting information
+.nf
+  $ txt2regex --showmeta
+.fi
+
+
+.TP
+Getting specific information
+.nf
+  $ txt2regex --showinfo sed
+.fi
+
+
+.TP
+Calling it for specific programs
+.nf
+  $ txt2regex --prog vim,sed,grep,python
+.fi
+
+
+.TP
+Applying a history data
+.nf
+  $ txt2regex --history '16421¤:01¤:'
+.fi
+
+
+.TP
+Getting ready regexes!
+.nf
+  $ txt2regex --make hour
+  $ txt2regex --make number3 --prog perl
+  $ txt2regex --make date2 --all
+.fi
+
+
+.SH INTERFACE
 .P
-.fi
-
+The program interface is simple and easy to use. This is its contents:
 
 .nf
-* Q: why my bash version is not recognized correctly?
-* Q: here bash \-\-version is >=2.04. why the program gets other?
-* A: to find your bash version, the program uses the $BASH_VERSION
-     environment variable that is available in all bash versions.
-.P
-     if some alien has possessed your machine and your environment
-     don't have this variable, try to set it by hand. check with
-.P
-.nf
-          echo $BASH_VERSION
-.fi
-
-.P
-     if this variable is ok, but bash \-\-version returns other
-     version, check if your bash is really /bin/bash:
-.P
-.nf
-          which bash
-.fi
-
-.P
-     if it's not /bin/bash, you \fBMUST\fP change the first line
-     of the script to your bash's right path. suppose you have the
-     bash binary in your $HOME because the system's bash is old,
-     just change the first line of the program to:
-.P
-.nf
-          #!/home/YOU/bin/bash
-.fi
-
-.P
-     or if you cannot change the program file, call it with bash:
-.P
-.nf
-          bash ./txt2regex
-.fi
-
-.P
-     sux, but worx.
-.P
+         +---------------------------------------+
+         | -> Top menu                           |
+         | -> Group menu                         |
+         |                                       |
+         | -> Regexes of the programs selected   |
+         |    ...                                |
+         |    ...                                |
+         |                                       |
+         | -> History                            |
+         | -> Your prompt                        |
+         |                                       |
+         | -> The question                       |
+         | -> The answers                        |
+         |    ...                                |
+         |    ...                                |
+         +---------------------------------------+
 .fi
 
 
-.nf
-* Q: what is that <TAB> that appears when i choose TAB on the special
-     combination menu?
-* A: inside lists [], the <TAB> string is a visual representation of
-     a literal TAB character, for programs wich doesn't support [\t].
 .P
-.fi
+All the basic commands can be used on the numeric pad on the keyboard,
+but remember to turn ON the NumLock key.
+
+.TS
+center, tab(^); cl.
+ \fBCommand\fR^\fBDescription\fR
+ \fB.\fR^Quit the program (with confirmation)
+ \fB0\fR^Reset the Regular Expression
+ \fB1\-9\fR^Answers the questions
+ \fB*\fR^Toggles color ON/OFF
+ \fB/\fR^Add/remove programs on/from the list
+ \fB|\fR^Insert an alternation (where allowed)
+ \fB(\fR^Open a new group (where allowed)
+ \fB)\fR^Close the opened group (if any)
+.TE
 
 
+.SH BUGS
+.P
+Bug reports and contributions are VERY welcome!
+Please send them to the author.
+
+.SH AUTHOR
+.P
+Written and maintained by Aurelio Marinho Jargas <verde@aurelio.net>
+
+.SH COPYRIGHT
+.P
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+
+.P
+This is free software; see the source for copying conditions. There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.
 
 
-
-.SH ABOUT THE AUTHOR
-
-who cares?
-
-
-
-
-
-.nf
-  --
-  AUTHOR: aurélio marinho jargas <aurelio@verde666.org>
-  DEBUT: 20010223
-  URL: http://txt2regex.sourceforge.net
-.fi
-
-.\" man code generated by txt2tags 0.4 (http://txt2tags.sourceforge.net)
+.\" man code generated by txt2tags 2.0 (http://txt2tags.sf.net)
+.\" cmdline: txt2tags -t man manpage.t2t
 
