@@ -15,8 +15,9 @@
 #   1  defining regex
 #   12 choosing subregex
 #   2  defining quantifier
-#   3  end of the regex
+#   3  really quit?
 #   4  choosing session programs
+#   9  end of the regex
 #
 # 20001019 <verde@verde666.org> ** 1st version
 # 20001026 ++ lots of changes and tests
@@ -60,40 +61,31 @@
 #          ++ Z status to handle 0,menu,0 situation
 #          <> s/eval/${!var}/
 # 20010903 <> Choice: fixed outrange answers
-#          ++ trapping ^c do clearEnd, ++ new prog: mysql 
+#          ++ trapping ^c do clearEnd, ++ new prog: mysql
 #          ++ history now works with Choice() menus
 #          ++ history appears when quiting
-
-# TODO s/for/$!{var*}/
-# TODO use getopts
-# TODO empty | check like ^| or (|)
-
-# TODO borders?
-# TODO negated POSIX|special combination (Choice hack)
-# TODO on --history, just show the final RE at once?
-# TODO history: not Clear before
-# TODO add mysql, expr, oawk, nawk, MKS awk, flex
-# ---- (user's requests) ----
-# TODO undo last step (Bence Fejervari @ .hu)
-# TODO std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
-# TODO interface to feed the programs with the RegEx (Chris Piechowicz @ .au)
-# ---- (~/.txt2regexrc) ----
-# - remember programs, last histories, name REs
-# ---- (non-interative mode) ----
-# TODO ready-to-use common regexes (email, date, ip, etc)
-# hour: [012][0-9]:[0-5][0-9] -=- 00:00 -> 29:59
-#       [0-9]{2}:[0-9]{2}     -=- 00:00 -> 99:99
-# date mm/dd/yyyy: [01][0-9]/[0-3][0-9]/[12][0-9]{3} -=- 00/00/1000 -> 19/39/2999
-#                  [0-9]{2}/[0-9]{2}/[0-9]{4}        -=- 00/00/0000 -> 99/99/9999
-# email: [A-Za-z0-9_.-]+@[A-Za-z0-9_.]+
-#        [^@ ]+@[^@ ]+
-# rg: [0-9]\.[0-9]{3}\.[0-9]{3}-[0-9]
+# 20010905 v0.6
+# ** program's 1 year birthday!
+# 20020225 ++ "really quit?" message, ++ --version
+# 20020304 <> --history just shows final RE on STDOUT
+#          ++ --make, --prog, printError()
+#          ++ groups are now quantifiable
+#          ++ ready_(date[123], hour[123], number[123])
+# 20020304 v0.7
 #
+
+# TODO? use getopts (--long not supported), \<borders\>
+# TODO empty | check like ^| or (|)
+# TODO ready_email (see guia_er)
+# TODO negated POSIX|special combination (Choice hack)
+# TODO add expr, oawk, nawk, MKS awk, flex
+# TODO ~/.txt2regexrc: remember programs, last histories, name REs
 # TODO LATER how to capture blanks on Get* (via menu)?
 # TODO LATER user defined ranges on lists (prompt, validation)
 
 TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
+VERSION=0
 
 # we _need_ bash>=2.04
 case "$BASH_VERSION" in
@@ -105,6 +97,7 @@ Usage(){
   echo $"\
 usage: txt2regex [--nocolor|--whitebg|--all]
        txt2regex --showmeta|--showinfo <program>
+       txt2regex [--all|--prog <p1,p2>] --make <target>
        txt2regex --history <value>
 
 OPTIONS (they are default OFF):
@@ -114,19 +107,62 @@ OPTIONS (they are default OFF):
   --whitebg             colors adjusted to white background terminals
   --showmeta            prints a complete metachar table for all programs
   --showinfo <program>  prints regex info about the program
+
   --history <value>     prints to STDOUT a RegEx from a history data
+  --make <target>       prints a ready RegEx for a common pattern
+  --prog <p1,p2,...>    choose which programs to use (separated by commas)
+
+  --version             prints the program version and quit
+  --help                prints the help message and quit
 
 for more details about the options, read the README file."
   exit 1
 }
 
+printError(){ echo -e "\nERROR: $*\n"; exit 1 ; }
+
 # the defaults
 f_i=1
 f_color=1
 f_whitebg=0
-f_allprogs=0
 GRP1=0 ; GRP2=0
 
+
+# take out from here programs you don't want to know about
+# or to minimize the lines printed on the screen
+progs=(perl php postgres python sed vim)
+
+
+### IMPORTANT DATA ###
+allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql perl php postgres procmail python sed tcl vbscript vi vim)
+allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
+ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4' \
+            'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999')
+ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3' \
+            'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999')
+ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3'\
+            'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999')
+ready_hour=('2652165¤:2¤2¤:¤:2¤2'\
+            'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99')
+ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2'\
+            'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59')
+ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2'\
+            'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59')
+ready_number=('24264¤-+¤:2'\
+            'number LEVEL 1: integer, positive and negative')
+ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2'\
+            'number LEVEL 2: level 1 plus optional float point')
+ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'\
+            'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90')
+#date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}            
+#hour3  : perl: ([01][0-9]|2[0123]):[012345][0-9]
+#number3: perl: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
+### -- ###
+
+getItemIndex(){                                   # array tool
+  local i=0 item="$1"; shift; while [ "$1" ]; do
+  [ "$1" == "$item" ] && { echo $i; return; }; i=$((i+1)); shift; done
+}
 
 # parsing options
 while [ $# -gt 0 ]
@@ -134,12 +170,32 @@ do case "$1" in
     --history) [ "$2" ] || Usage; history="$2"; shift; f_i=0 ; f_color=0
                hists="0${history%%¤*}" ; histargs="¤${history#*¤}"
                [ "${hists#0}" == "${histargs#¤}" ] && unset histargs ;;
+       --make) shift; f_i=0 ; f_color=0 ; arg="${1%1}" # final 1 is optional
+               # sanity check
+               valid=${!ready_*} ; valid=" ${valid//ready_/} "
+               [ "$valid" == "${valid#* $arg }" ] && \
+               printError "--make: '$1':" $"invalid argument" \
+                          '\n' $"valid names are:" "$valid"
+               # data setting
+               hist="ready_$arg[0]" ; hist=${!hist}
+                txt="ready_$arg[1]" ;  txt=${!txt}
+               hists="0${hist%%¤*}" ; histargs="¤${hist#*¤}"
+               echo -e "\n### $txt\n" ;;
+       --prog) [ "$2" ] || Usage ; shift
+               # sanity check
+               for p in ${1//,/ }; do                    # comma separated list
+                 index=`getItemIndex "$p" "${allprogs[@]}"` # is valid?
+                 [ "$index" ] || printError "--prog: '$p':" $"invalid argument"
+               done
+               eval "progs=(${1//,/ })" ;;
     --nocolor) f_color=0 ;;
     --whitebg) f_whitebg=1 ;;
    --showmeta) f_showmeta=1 ;;
    --showinfo) [ "$2" ] || Usage; infoprog="$2"; shift; f_showinfo=1 ;;
-        --all) f_allprogs=1 ;;
-            *) Usage;;
+        --all) progs=(${allprogs[@]}) ;;
+    --version) echo "txt2regex v$VERSION" ; exit 0 ;;
+       --help) Usage;; 
+            *) echo "'$1':" $"invalid option" ; Usage;;
    esac
    shift
 done
@@ -147,15 +203,7 @@ done
 set -o noglob
 
 
-# take out from here programs you don't want to know about
-# or to minimize the lines printed on the screen
-progs=(perl php postgres python sed vim)
-
 # the RegEx show
-allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql perl php postgres procmail python sed tcl vbscript vi vim)
-[ "$f_allprogs" == 1 ] && progs=(${allprogs[@]})
-allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
-
 
 #NOTE texts on vars because i18n inside arrays is not possible (sux)
 zz0=$"start to match"
@@ -187,7 +235,7 @@ zz6=$"up to N"
 zz7=$"at least N"
 S2_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
 
-# COMBO 
+# COMBO
 zz0=$"uppercase letters"
 zz1=$"lowercase letters"
 zz2=$"numbers"
@@ -215,7 +263,7 @@ zz1=$"reset"
 zz2=$"color"
 zz3=$"programs"
 zz9='^txt2regex$'
-tit1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "" "" "" "" "" "$zz9") 
+tit1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "" "" "" "" "" "$zz9")
 tit1_cmd=('.' '0' '*' '/' '' '' '' '' '' '')
 
 # title (line 2-3)
@@ -223,7 +271,7 @@ zz0=$"or"
 zz1=$"open group"
 zz2=$"close group"
 zz9=$"not supported"
-tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9") 
+tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9")
 tit2_cmd=('|' '(' ')' '' '' '' '' '' '' '!!')
 unset ${!zz*}
 
@@ -325,11 +373,6 @@ sek(){
   [ $a -gt $z ] && { H='>'; s='--'; }; for ((i=$a;i$H=$z;i$s)); do echo $i; done
 }
 
-getItemIndex(){
-  local i=0 item="$1"; shift; while [ "$1" ]; do
-  [ "$1" == "$item" ] && { echo $i; return; }; i=$((i+1)); shift; done
-}
-
 getLargestItem(){
   local mjr; while [ "$1" ]; do
   [ ${#1} -gt ${#mjr} ] && mjr="$1"; shift; done; echo $mjr
@@ -370,7 +413,7 @@ ShowInfo(){
   metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
   metas="$metas$(getMeta ax_$prog 3)"                       #)
   metas=". [] [^] * `echo $metas`"
-    
+
   # populating cool i18n arrays
   t1=$"program" t2=$"metas" t3=$"esc meta" t4=$"need esc" t5=$"\t in []" t6=$"[:POSIX:]"
   data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
@@ -402,9 +445,9 @@ ScreenSize(){
   # the defaults case not exported
   : ${LINES:=25}
   : ${COLUMNS:=80}
-  
+
   #TODO automatic check when selecting programs
-  [ $LINES -lt "$y_max" ] && { printf $"error:
+  [ "$f_i" == 1 -a $LINES -lt "$y_max" ] && { printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
   less programs to show the RegEx.\n\n" "$LINES" "$y_max"
@@ -416,17 +459,17 @@ ScreenSize(){
 _eol=`echo -ne "\033[0K"`  # clear trash until EOL
 
 # the cool control chars functions
-gotoxy(){   echo -ne "\033[$2;$1H"; }
-clearEnd(){ echo -ne "\033[0J"; }
-clearN(){   echo -ne "\033[$1X"; }
-Clear(){    echo -ne "\033c"; }
-# ideas: tab between, $cR on cmd, yellow-white-yellow 
+gotoxy(){   [ "$f_i" == 1 ] && echo -ne "\033[$2;$1H"; }
+clearEnd(){ [ "$f_i" == 1 ] && echo -ne "\033[0J"; }
+clearN(){   [ "$f_i" == 1 ] && echo -ne "\033[$1X"; }
+Clear(){    [ "$f_i" == 1 ] && echo -ne "\033c"; }
+# ideas: tab between, $cR on cmd, yellow-white-yellow
 printTitleCmd(){ printf "[$cI%s$cN]%s  " "$1" "$2"; }
 
 TopTitle(){ gotoxy 1 1
   local i j showme txt color
   [ "$f_i" != 1 ] && return
-  
+
   # 1st line: aplication commands
   for ((i=0 ;i<10;i++)); do
     showme=0
@@ -436,11 +479,11 @@ TopTitle(){ gotoxy 1 1
          2) [ "$f_color" == 1 ] && showme=1 ;;
          3) [ $STATUS -eq 0 ]   && showme=1 ;;
          9) gotoxy $((COLUMNS-${#txt})) 1; echo "$txt";;
-     esac 
+     esac
      if [ $showme -eq 1 ]; then printTitleCmd "$cmd" "$txt"
      else clearN $((${#txt}+3)); fi
   done
-  
+
   # 2nd line: grouping and or
   if [ $STATUS -eq 0 ]; then echo -n $_eol
   else
@@ -453,19 +496,19 @@ TopTitle(){ gotoxy 1 1
       done
     else  # delete commands only
       clearN $((${#tit2_txt[0]}+5+${#tit2_txt[1]}+5+${#tit2_txt[2]}+5))
-    fi  
-    
+    fi
+
     # open groups
-    gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2;
+    gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2
     color="$cP"; [ "$GRP1" -eq "$GRP2" ] && color="$cB"
     for ((j=0 ;j<$GRP1;j++)); do echo -n "$color($cN"; done
     [ $GRP1 -gt 0 ] && echo -n $GRP1
     for ((j=0 ;j<$GRP2;j++)); do echo -n "$color)$cN"; done
   fi
-  
+
   # 3rd line: legend
   txt=${tit2_txt[9]}; cmd=${tit2_cmd[9]}
-  gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3;
+  gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
   printf "$cB%s$cN %s" "$cmd" "$txt"
 }
 
@@ -489,21 +532,22 @@ doMenu(){
 
 Menu(){
   local ok=0 name="$1"
-  while [ $ok -eq 0 ]; do 
+  while [ $ok -eq 0 ]; do
     doMenu "$name"
     case "$REPLY" in
     [1-9]) [ "$REPLY" -gt "$menu_n" ] && continue
            ok=1 ; REPLIES="$REPLIES$REPLY";;
-        .) ok=1 ; STATUS=3 ;;
+        .) ok=1 ; LASTSTATUS=$STATUS; STATUS=3 ;;
         0) ok=1 ; STATUS=Z ;;
        \*) ColorOnOff; TopTitle;;
  [\(\)\|]) [ "$STATUS" -ne 1 ] && continue
            [ "$REPLY" == ')' ] &&
              [ $GRP1 -gt 0 -a $GRP1 -eq $GRP2 -o $GRP1 -eq 0 ] && continue
+           [ "$REPLY" == ')' ] && STATUS=2
            ok=1 ; REPLIES="$REPLIES$REPLY";;
         /) ok=1 ; STATUS=4 ;;
     esac
-  done  
+  done
   [ "${STATUS/[Z34]/}" ] || continue             # 0,3,4: escape status
 }
 
@@ -521,7 +565,7 @@ doNextHistArg(){
 getChar(){ gotoxy $x_prompt2 $y_prompt
   if [ "$f_i" == 1 ]
   then echo -n "${cP}"; echo -n $"which one?"; echo -n " $cN"
-       read -n 1 -r USERINPUT; uin="$USERINPUT";
+       read -n 1 -r USERINPUT; uin="$USERINPUT"
   else doNextHistArg; uin=$histarg
   fi
   uins="$uins¤$uin"
@@ -571,7 +615,7 @@ getNumber(){ gotoxy $x_prompt2 $y_prompt
 
 getPosix(){
   local rpl psx=''; unset SUBHUMAN
-  if [ "$f_i" == 1 ]; then Choice --reset "${posix_txt[@]}"; else ChoiceAuto; fi 
+  if [ "$f_i" == 1 ]; then Choice --reset "${posix_txt[@]}"; else ChoiceAuto; fi
   for rpl in $CHOICEREPLY; do
     psx="$psx[:${posix_re[$rpl]}:]"; SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
   done
@@ -583,7 +627,7 @@ getPosix(){
 
 getCombo(){
   local rpl cmb=''; unset SUBHUMAN
-  if [ "$f_i" == 1 ]; then Choice --reset "${combo_txt[@]}"; else ChoiceAuto; fi 
+  if [ "$f_i" == 1 ]; then Choice --reset "${combo_txt[@]}"; else ChoiceAuto; fi
   for rpl in $CHOICEREPLY; do
     cmb="$cmb${combo_re[$rpl]}"; SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
   done
@@ -616,7 +660,7 @@ getHasPosix(){
 escChar(){ # escape userinput chars as .,*,[ and friends
   local c x x2 z i esc ui="$uin"
   esc="ax_${progs[$1]}[4]"; esc=${!esc}          # get escape char
-  x="ax_${progs[$1]}[5]"; x=${!x}                # list of escapable chars 
+  x="ax_${progs[$1]}[5]"; x=${!x}                # list of escapable chars
   x="${x//[, ]/}"                                # , and space are trash
   [ "${ui/[\\\\$x]/}" != "$ui" ] && {            # test for speed up
     for ((i=0 ;i<${#ui};i++))                    # for each user char
@@ -648,10 +692,12 @@ Reset(){ gotoxy $x_regex $y_regex
 
   # global maxprogname
   maxprogname=`getLargestItem "${progs[@]}"`     # global var
-  for p in ${progs[*]}; do printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"; done
+  for p in ${progs[*]}; do
+  [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"; done
 }
 
-showRegEx(){ gotoxy $x_regex $y_regex
+showRegEx(){
+  gotoxy $x_regex $y_regex
   local i save="$uin"
   for ((i=0 ;i<${#progs[@]};i++))                # for each program
   do [ "$F_ESCCHAR"     == 1 ] && escChar     $i
@@ -664,6 +710,7 @@ showRegEx(){ gotoxy $x_regex $y_regex
        S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
        S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
      esac
+     [ "$f_i" == 1 ] && \
      printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
      uin="$save"
   done
@@ -782,7 +829,7 @@ trap "clearEnd; echo; exit" SIGINT
 
 while : ; do
 case ${STATUS:=0} in
-0|Z)STATUS=${STATUS/Z/0};
+0|Z)STATUS=${STATUS/Z/0}
     Reset; TopTitle
     Menu S0_txt
     HUMAN="$S0_txt ${S0_txt[$REPLY]}"
@@ -810,7 +857,7 @@ case ${STATUS:=0} in
           9) STATUS=1 ;;
       esac
       showRegEx S1
-    fi  
+    fi
     ;;
 12) [ "$REPLY" -eq 6  ] && STATUS=2 && getCombo
     [ "$REPLY" -eq 7  ] && STATUS=2 && getPosix
@@ -827,15 +874,10 @@ case ${STATUS:=0} in
     showRegEx S2
     STATUS=1
     ;;
- 3) gotoxy $x_hist $y_hist; clearEnd
-    if [ "$f_i" == 1 ]; then
-      noregex_txt=$"no RegEx"
-      printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
-      echo -e "${HUMAN:-$noregex_txt}.\n"
-    else
-      gotoxy 0 $y_prompt
-    fi
-    exit 0
+ 3) [ "$f_i" != 1 ] && { STATUS=9 ; continue ; }
+    warning=$"Really quit?"
+    read -n 1 -p "..$cB $warning [.] $cN"
+    STATUS=$LASTSTATUS; [ "$REPLY" == '.' ] && STATUS=9
     ;;
  4) statActiveProgs
     Choice "${allprogs[@]}"
@@ -843,6 +885,18 @@ case ${STATUS:=0} in
     for rpl in $CHOICEREPLY; do progs[$i]=${allprogs[$rpl]}; i=$((i+1)); done
     ScreenSize; Clear
     STATUS=0
+    ;;
+ 9) gotoxy $x_hist $y_hist; clearEnd
+    if [ "$f_i" == 1 ]; then
+      noregex_txt=$"no RegEx"
+      printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
+      echo -e "${HUMAN:-$noregex_txt}.\n"
+    else
+      for ((i=0 ;i<${#progs[@]};i++))                # for each program
+      do printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+      done ; echo
+    fi
+    exit 0
     ;;
  *) echo "Error: STATUS = '$STATUS'"
     exit 1

@@ -1,0 +1,21 @@
+                          README - Japanese
+                          -----------------
+
+The ^txt2regex$ program uses the a4 hexadecimal char (¤) as its
+internal field delimiter and as history itens delimiter.
+
+But as the same 0xa4 char is also used as a part of Japanese chars,
+when running original ^txt2regex$ on the Japanese capable terminal,
+you have meaningless Japanese char on the screen.
+
+To avoid this, just change the ¤ char to the ":+:" sequence. This can
+be done with a your favorite vi/sed/perl/ed oneliner, i.e.:
+
+  perl -pi -e 's/\xa4/:+:/g' txt2regex
+
+I'm still searching for a good internal delimiter that fits to
+japanese and english users as well. If you know it, tell me!
+
+
+Thanks for IIOKA Shinji and Hajime Dei from ASCII's Linux magazine
+(http://www.ascii.co.jp/linux/linuxmag) for this information.

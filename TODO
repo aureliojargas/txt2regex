@@ -1,9 +1,9 @@
 txt2regex TODO:
 
+  - more ready-to-use regexes! (ip, email, url)
   - describe some nice features as [][\^-]
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
-  - ready-to-use common regexes (email, date, ip, etc)
   - support for ~/.txt2regexrc and env vars
 
   - undo last step (Bence Fejervari @ .hu)

@@ -3,31 +3,41 @@ the hottest news from txt2regex world
 
 ...and now the apocalipse is comming...
 
+
+20020304: v0.7 released
+20020304: new option --make to get ready-to-use regexes
+20020304: new option --prog to choose which programs to use
+20020215: it was reviewed by the unixreview.com site
+20020110: it's now part of the Debian Linux distribution
+20011015: translated to japanese
+20011015: it was reviewed by the japanese ASCII Linux Magazine
+20011008: it's now part of the Conectiva Linux distribution
+20011001: it's now part of the Free BSD Linux distribution
 --------------------------------------------------------------------------
-20010904: translated to german
-20010904: v0.6 released
+20010905: v0.6 released
+20010905: translated to german
 --------------------------------------------------------------------------
-20010828: new option --showmeta to show all metachars for all programs
-20010828: new option --showinfo to show regex information about a program
 20010828: v0.5 released
+20010828: new option --showinfo to show regex information about a program
+20010828: new option --showmeta to show all metachars for all programs
 --------------------------------------------------------------------------
-20010802: postgres, javascript, vbscript and procmail are now supported
-20010802: procmail-re-test: a cool cmdline procmail regex test
-20010802: the regex test-suite is now on the tarball
 20010802: v0.4 released
+20010802: the regex test-suite is now on the tarball
+20010802: procmail-re-test: a cool cmdline procmail regex test
+20010802: postgres, javascript, vbscript and procmail are now supported
 --------------------------------------------------------------------------
-20010626: now it is really a 100% bash builtins script
 20010626: v0.3.1 released
+20010626: now it is really a 100% bash builtins script
 --------------------------------------------------------------------------
-20010613: translated to polish
-20010613: $HOME is now sourceforge.net
 20010613: v0.3 released
+20010613: $HOME is now sourceforge.net
+20010613: translated to polish
 --------------------------------------------------------------------------
+20010424: v0.2 released
 20010424: translated to indonesian (bahasa)
 20010424: name has changed to txt2regex
-20010424: v0.2 released
 --------------------------------------------------------------------------
-200104??: it was reviewed by Linux Format magazine www.linuxformat.co.uk
+200104??: it was reviewed by the Linux Format magazine
 20010223: freshmeat'ed
 20010223: v0.1 released (as txt2regexp)
 --------------------------------------------------------------------------
