@@ -7,8 +7,8 @@
 ^txt2regex$ is a Regular Expression "wizard", all written with bash2
 builtins, that converts human sentences to RegExs. with a simple
 interface, you just answer to questions and build your own RegEx for a
-large variety of programs, like awk, ed, emacs, grep, perl, php,
-python, sed, tcl and vim. there are 18 supported programs now.
+large variety of programs, like awk, emacs, grep, perl, php, procmail,
+python, sed and vim. there are more than 20 supported programs.
 it's bash so download and run, no compilation needed.
 
 ----------------------------------------------------------------------
@@ -63,7 +63,7 @@ LOCATEDIR and DESTDIR variables.
 gotcha:
 the program do use the bash environment variable $LINES to get the
 number of lines available, it *MUST* to be an exported variable, or
-you'll be stucked at the default 24 lines limit. 
+you'll be stucked at the default 24 lines limit.
 
 try the command: /bin/bash -c 'echo $LINES'
 
@@ -169,14 +169,19 @@ of course, all info tested by hand, to be *really* reliable.
 
 versions tested:
   ed: GNU ed version 0.2
+  mawk: mawk 1.3.3 Nov 1996
+  gawk: GNU Awk 3.0.6
+  grep: grep (GNU grep) 2.4.2
   egrep: egrep (GNU grep) 2.4.2
   find: GNU find version 4.1
-  gawk: GNU Awk 3.0.4
-  grep: grep (GNU grep) 2.4.2
-  mawk: mawk 1.2
+  javascript: netscape-4.77
+  perl: v5.6.0 built for i386-linux
+  php: 4.0.6
+  postgres: psql (PostgreSQL) 7.1.2
+  procmail: procmail v3.15.1 2001/01/08
   sed: GNU sed version 3.02.80
-  vim: VIM - Vi IMproved 5.7
-  php: 3.0.18 and 4.0.3pl1
+  tcl: 8.3
+  vim: VIM - Vi IMproved 5.8 (2001 May 31)
 
 gotcha:
   inside lists [], the "<TAB>" string represents a literal TAB, for

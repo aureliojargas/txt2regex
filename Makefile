@@ -1,10 +1,12 @@
 NAME = txt2regex
-VERSION	= 0.3.1
+VERSION	= 0.4
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
-FILES = Makefile README NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools
+TESTDIR = test-suite
+
+FILES = Makefile README NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR)
 
 
 DESTDIR = 
@@ -14,7 +16,7 @@ LOCALEDIR = $(DESTDIR)/usr/share/locale
 TARGET=all
 
 clean:
-	rm -f {,po/}messages po/*.{mo,old,tmp,bk} $(NAME)
+	rm -f {,po/}messages po/*.{mo,old,tmp,bk} test-suite/javascript.html $(NAME)
 	find po -mindepth 1 -type d -exec rm -rf {} \;
 
 check-po-dir: 
@@ -76,8 +78,9 @@ tgz: clean #check-po
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR)
 
+# just once: COPYRIGHT tools linuxformat.png old
 upload:
-	scp -r $(FILES) index.html $(DISTDIR).tgz old linuxformat.png \
+	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools//g'` index.html $(DISTDIR).tgz \
 	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs
     
 install: mo

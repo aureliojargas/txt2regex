@@ -1,0 +1,338 @@
+------------------------
+] .{ .} ( ) .| + ? \] \{ \} \( \) \| \+ \? .^ .\^ $. \$. [\] [\\] ^[[:print:]] \t [\t]
+------------------------
+ed: GNU ed version 0.2
+------------------------
+mawk: mawk 1.3.3 Nov 1996
+]            _$[]{}()|+?^\	_
+.{           _$[]{}()|+?^\	_
+.}           _$[]{}()|+?^\	_
+(            mawk: line 1: regular expression compile failed (missing ')')
+)            mawk: line 1: regular expression compile failed (missing '(')
+.|           mawk: line 1: regular expression compile failed (missing operand)
++            mawk: line 1: regular expression compile failed (missing operand)
+?            mawk: line 1: regular expression compile failed (missing operand)
+\]           _$[]{}()|+?^\	_
+\{           _$[]{}()|+?^\	_
+\}           _$[]{}()|+?^\	_
+\(           _$[]{}()|+?^\	_
+\)           _$[]{}()|+?^\	_
+\|           _$[]{}()|+?^\	_
+\+           _$[]{}()|+?^\	_
+\?           _$[]{}()|+?^\	_
+.^           
+.\^          _$[]{}()|+?^\	_
+$.           
+\$.          _$[]{}()|+?^\	_
+[\]          mawk: line 1: regular expression compile failed (bad class -- [], [^] or [)
+[\\]         _$[]{}()|+?^\	_
+^[[:print:]] 
+\t           _$[]{}()|+?^\	_
+[\t]         _$[]{}()|+?^	_
+------------------------
+gawk: GNU Awk 3.0.6
+]            _$[·{}()|+?^\	_
+.{           _$[·}()|+?^\	_
+.}           _$[]·()|+?^\	_
+(            gawk: cmd. line:1: fatal: Unmatched ( or \(: /(/
+)            _$[]{}(·|+?^\	_
+.|           ···············
++            _$[]{}()|·?^\	_
+?            _$[]{}()|+·^\	_
+\]           _$[·{}()|+?^\	_
+\{           _$[]·}()|+?^\	_
+\}           _$[]{·()|+?^\	_
+\(           _$[]{}·)|+?^\	_
+\)           _$[]{}(·|+?^\	_
+\|           _$[]{}()·+?^\	_
+\+           _$[]{}()|·?^\	_
+\?           _$[]{}()|+·^\	_
+.^           _$[]{}()|+?^\	_
+.\^          _$[]{}()|+·\	_
+$.           _$[]{}()|+?^\	_
+\$.          _·]{}()|+?^\	_
+[\]          gawk: cmd. line:1: {print gensub(/[\]/, "·", "g")}
+gawk: cmd. line:1:                ^ unterminated regexp
+[\\]         _$[]{}()|+?^·	_
+^[[:print:]] ·$[]{}()|+?^\	_
+\t           _$[]{}()|+?^\·_
+[\t]         _$[]{}()|+?^\·_
+------------------------
+grep: grep (GNU grep) 2.4.2
+]            _$[]{}()|+?^\	_
+.{           _$[]{}()|+?^\	_
+.}           _$[]{}()|+?^\	_
+(            _$[]{}()|+?^\	_
+)            _$[]{}()|+?^\	_
+.|           _$[]{}()|+?^\	_
++            _$[]{}()|+?^\	_
+?            _$[]{}()|+?^\	_
+\]           _$[]{}()|+?^\	_
+\{           _$[]{}()|+?^\	_
+\}           _$[]{}()|+?^\	_
+\(           grep: Unmatched ( or \(
+\)           grep: Unmatched ) or \)
+\|           _$[]{}()|+?^\	_
+\+           _$[]{}()|+?^\	_
+\?           _$[]{}()|+?^\	_
+.^           _$[]{}()|+?^\	_
+.\^          _$[]{}()|+?^\	_
+$.           _$[]{}()|+?^\	_
+\$.          _$[]{}()|+?^\	_
+[\]          _$[]{}()|+?^\	_
+[\\]         _$[]{}()|+?^\	_
+^[[:print:]] _$[]{}()|+?^\	_
+\t           
+[\t]         
+------------------------
+egrep: egrep (GNU grep) 2.4.2
+]            _$[]{}()|+?^\	_
+.{           _$[]{}()|+?^\	_
+.}           _$[]{}()|+?^\	_
+(            egrep: Unmatched ( or \(
+)            egrep: Unmatched ) or \)
+.|           _$[]{}()|+?^\	_
++            _$[]{}()|+?^\	_
+?            _$[]{}()|+?^\	_
+\]           _$[]{}()|+?^\	_
+\{           _$[]{}()|+?^\	_
+\}           _$[]{}()|+?^\	_
+\(           _$[]{}()|+?^\	_
+\)           _$[]{}()|+?^\	_
+\|           _$[]{}()|+?^\	_
+\+           _$[]{}()|+?^\	_
+\?           _$[]{}()|+?^\	_
+.^           
+.\^          _$[]{}()|+?^\	_
+$.           
+\$.          _$[]{}()|+?^\	_
+[\]          _$[]{}()|+?^\	_
+[\\]         _$[]{}()|+?^\	_
+^[[:print:]] _$[]{}()|+?^\	_
+\t           
+[\t]         
+------------------------
+find: GNU find version 4.1
+]            ./_$[]{}()|+?^\	_
+.{           ./_$[]{}()|+?^\	_
+.}           ./_$[]{}()|+?^\	_
+(            ./_$[]{}()|+?^\	_
+)            ./_$[]{}()|+?^\	_
+.|           ./_$[]{}()|+?^\	_
++            .
+?            .
+\]           ./_$[]{}()|+?^\	_
+\{           ./_$[]{}()|+?^\	_
+\}           ./_$[]{}()|+?^\	_
+\(           find: Unmatched ( or \(
+\)           find: Unmatched ) or \)
+\|           .
+\+           ./_$[]{}()|+?^\	_
+\?           ./_$[]{}()|+?^\	_
+.^           ./_$[]{}()|+?^\	_
+.\^          ./_$[]{}()|+?^\	_
+$.           ./_$[]{}()|+?^\	_
+\$.          ./_$[]{}()|+?^\	_
+[\]          ./_$[]{}()|+?^\	_
+[\\]         ./_$[]{}()|+?^\	_
+^[[:print:]] 
+\t           ./result
+[\t]         ./result
+------------------------
+javascript: netscape-4.77
+<pre><font size=8><script>var er = "_$[]{}()|+?^\\	_";
+document.write(']	'+er.replace(']','<b>®</b>')+"<br>");
+document.write('.{	'+"ERROR"+"<br>");
+document.write('.}	'+er.replace('.}','<b>®</b>')+"<br>");
+document.write('(	'+"ERROR"+"<br>");
+document.write(')	'+er.replace(')','<b>®</b>')+"<br>");
+document.write('.|	'+er.replace('.|','<b>®</b>')+"<br>");
+document.write('+	'+er.replace('+','<b>®</b>')+"<br>");
+document.write('?	'+er.replace('?','<b>®</b>')+"<br>");
+document.write('\\]	'+er.replace('\\]','<b>®</b>')+"<br>");
+document.write('\\{	'+er.replace('\\{','<b>®</b>')+"<br>");
+document.write('\\}	'+er.replace('\\}','<b>®</b>')+"<br>");
+document.write('\\(	'+er.replace('\\(','<b>®</b>')+"<br>");
+document.write('\\)	'+er.replace('\\)','<b>®</b>')+"<br>");
+document.write('\\|	'+er.replace('\\|','<b>®</b>')+"<br>");
+document.write('\\+	'+er.replace('\\+','<b>®</b>')+"<br>");
+document.write('\\?	'+er.replace('\\?','<b>®</b>')+"<br>");
+document.write('.^	'+er.replace('.^','<b>®</b>')+"<br>");
+document.write('.\\^	'+er.replace('.\\^','<b>®</b>')+"<br>");
+document.write('$.	'+er.replace('$.','<b>®</b>')+"<br>");
+document.write('\\$.	'+er.replace('\\$.','<b>®</b>')+"<br>");
+document.write('[\\]	'+"ERROR"+"<br>");
+document.write('[\\\\.]	'+er.replace('[\\\\.]','<b>®</b>')+"<br>");
+document.write('^[[:print:]]	'+er.replace('^[[:print:]]','<b>®</b>')+"<br>");
+document.write('\\t	'+er.replace('\\t','<b>®</b>')+"<br>");
+document.write('[\\t]	'+er.replace('[\\t]','<b>®</b>')+"<br>");
+</script></pre>
+------------------------
+perl: v5.6.0 built for i386-linux
+]            _$[·{}()|+?^\	_
+.{           _$[·}()|+?^\	_
+.}           _$[]·()|+?^\	_
+(            /(/: unmatched () in regexp at -e line 1.
+)            /)/: unmatched () in regexp at -e line 1.
+.|           ················
++            /+/: ?+*{} follows nothing in regexp at -e line 1.
+?            /?/: ?+*{} follows nothing in regexp at -e line 1.
+\]           _$[·{}()|+?^\	_
+\{           _$[]·}()|+?^\	_
+\}           _$[]{·()|+?^\	_
+\(           _$[]{}·)|+?^\	_
+\)           _$[]{}(·|+?^\	_
+\|           _$[]{}()·+?^\	_
+\+           _$[]{}()|·?^\	_
+\?           _$[]{}()|+·^\	_
+.^           _$[]{}()|+?^\	_
+.\^          _$[]{}()|+·\	_
+$.           _$[]{}()|+?^\	_
+\$.          _·]{}()|+?^\	_
+[\]          /[\]/: unmatched [] in regexp at -e line 1.
+[\\]         _$[]{}()|+?^·	_
+^[[:print:]] ·$[]{}()|+?^\	_
+\t           _$[]{}()|+?^\·_
+[\t]         _$[]{}()|+?^\·_
+------------------------
+php: 4.0.6
+]            _$[·{}()|+?^\	_
+.{           
+Warning:  Unmatched \{ in - on line 1
+.}           _$[]·()|+?^\	_
+(            
+Warning:  Unmatched ( or \( in - on line 1
+)            _$[]{}(·|+?^\	_
+.|           ················
++            
+Warning:  Invalid preceding regular expression in - on line 1
+?            
+Warning:  Invalid preceding regular expression in - on line 1
+\]           _$[·{}()|+?^\	_
+\{           _$[]·}()|+?^\	_
+\}           _$[]{·()|+?^\	_
+\(           _$[]{}·)|+?^\	_
+\)           _$[]{}(·|+?^\	_
+\|           _$[]{}()·+?^\	_
+\+           _$[]{}()|·?^\	_
+\?           _$[]{}()|+·^\	_
+.^           
+.\^          _$[]{}()|+·\	_
+$.           
+\$.          _·]{}()|+?^\	_
+[\]          _$[]{}()|+?^·	_
+[\\]         _$[]{}()|+?^·	_
+^[[:print:]] ·$[]{}()|+?^\	_
+\t           
+[\t]         _$[]{}()|+?^·	_
+------------------------
+postgres: psql (PostgreSQL) 7.1.2
+]            _$[]{}()|+?^\	_
+.{           _$[]{}()|+?^\	_
+.}           _$[]{}()|+?^\	_
+(            ERROR:  Invalid regular expression: parentheses ( ) not balanced
+)            _$[]{}()|+?^\	_
+.|           ERROR:  Invalid regular expression: empty expression or subexpression
++            ERROR:  Invalid regular expression: ?, *, or + operand invalid
+?            ERROR:  Invalid regular expression: ?, *, or + operand invalid
+\\]          _$[]{}()|+?^\	_
+\\{          _$[]{}()|+?^\	_
+\\}          _$[]{}()|+?^\	_
+\\(          _$[]{}()|+?^\	_
+\\)          _$[]{}()|+?^\	_
+\\|          _$[]{}()|+?^\	_
+\\+          _$[]{}()|+?^\	_
+\\?          _$[]{}()|+?^\	_
+.^           (0 rows)
+.\\^         _$[]{}()|+?^\	_
+$.           (0 rows)
+\\$.         _$[]{}()|+?^\	_
+[\]          ERROR:  Invalid regular expression: brackets [ ] not balanced
+[\\]         _$[]{}()|+?^\	_
+^[[:print:]] _$[]{}()|+?^\	_
+\t           _$[]{}()|+?^\	_
+[\t]         _$[]{}()|+?^\	_
+------------------------
+sed: GNU sed version 3.02.80
+]            _$[·{}()|+?^	_
+.{           _$[·}()|+?^	_
+.}           _$[]·()|+?^	_
+(            _$[]{}·)|+?^	_
+)            _$[]{}(·|+?^	_
+.|           _$[]{}(·+?^	_
++            _$[]{}()|·?^	_
+?            _$[]{}()|+·^	_
+\]           _$[·{}()|+?^	_
+\{           _$[]·}()|+?^	_
+\}           _$[]{·()|+?^	_
+\(           sed: -e expressão #1, caractere 9: Unmatched ( or \(
+\)           sed: -e expressão #1, caractere 9: Unmatched ) or \)
+\|           ·_·$·[·]·{·}·(·)·|·+·?·^·	·_·
+\+           _$[]{}()|·?^	_
+\?           _$[]{}()|+·^	_
+.^           _$[]{}()|+·	_
+.\^          _$[]{}()|+·	_
+$.           _·]{}()|+?^	_
+\$.          _·]{}()|+?^	_
+[\]          
+[\\]         
+^[[:print:]] ·$[]{}()|+?^	_
+\t           _$[]{}()|+?^·_
+[\t]         _$[]{}()|+?^·_
+------------------------
+tcl: 8.3
+]            _${}()|+?^	_
+.{           missing close-brace
+.}           extra characters after close-brace
+(            couldn't compile regular expression pattern: parentheses () not balanced
+)            couldn't compile regular expression pattern: parentheses () not balanced
+.|           ············
++            couldn't compile regular expression pattern: quantifier operand invalid
+?            couldn't compile regular expression pattern: quantifier operand invalid
+\]           _${}()|+?^	_
+\{           _$·}()|+?^	_
+\}           _${·()|+?^	_
+\(           _${}·)|+?^	_
+\)           _${}(·|+?^	_
+\|           _${}()·+?^	_
+\+           _${}()|·?^	_
+\?           _${}()|+·^	_
+.^           _${}()|+?^	_
+.\^          _${}()|+·	_
+$.           _${}()|+?^	_
+\$.          _·}()|+?^	_
+[\]          couldn't compile regular expression pattern: brackets [] not balanced
+[\\]         _${}()|+?^	_
+^[[:print:]] _${}()|+?^	_
+\t           _${}()|+?^·_
+[\t]         _${}()|+?^·_
+------------------------
+vim: VIM - Vi IMproved 5.8 (2001 May 31)
+------------------------
+procmail: procmail v3.15.1 2001/01/08
+]            Match
+.{           Match
+.}           Match
+(            Invalid regexp "("
+)            Invalid regexp ")"
+.|           Match
++            Match
+?            No match
+\]           Match
+\{           Match
+\}           Match
+\(           Invalid regexp "("
+\)           Invalid regexp ")"
+\|           Match
+\+           Match
+\?           Match
+.^           Match
+.\^          Match
+$.           Match
+\$.          Match
+[\]          No match
+[\\]         No match
+^[[:print:]] No match
+\t           No match
+[\t]         No match
+------------------------

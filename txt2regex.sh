@@ -8,16 +8,21 @@
 # - A T T E N T I O N: only works in bash >= 2.04
 # - all REs for the S2_PROG arrays was taken from the PROG man page
 #   or missing it, from the 'mastering regular expressions' book
-# - programs versions tested
-#     ed: GNU ed version 0.2
-#     egrep: egrep (GNU grep) 2.4.2
-#     find: GNU find version 4.1
-#     gawk: GNU Awk 3.0.4
-#     grep: grep (GNU grep) 2.4.2
-#     mawk: mawk 1.2
-#     sed: GNU sed version 3.02.80
-#     vim: VIM - Vi IMproved 5.7
-#     php: 3.0.18 and 4.0.3pl1
+# - programs versions tested (./test-suite.sh|sed '/^\o033/!d;s/^/#\t/')
+#       ed: GNU ed version 0.2
+#       mawk: mawk 1.3.3 Nov 1996
+#       gawk: GNU Awk 3.0.6
+#       grep: grep (GNU grep) 2.4.2
+#       egrep: egrep (GNU grep) 2.4.2
+#       find: GNU find version 4.1
+#       javascript: netscape-4.77
+#       perl: v5.6.0 built for i386-linux
+#       php: 4.0.6
+#       postgres: psql (PostgreSQL) 7.1.2
+#       procmail: procmail v3.15.1 2001/01/08
+#       sed: GNU sed version 3.02.80
+#       tcl: 8.3
+#       vim: VIM - Vi IMproved 5.8 (2001 May 31)
 #
 # $STATUS:
 #   0  begining of the regex
@@ -28,29 +33,34 @@
 #   4  choosing session programs
 #
 # 20001019 <verde@verde666.org> ** 1st version
-# 20001026 <verde@...> ++ lots of changes and tests
-# 20001028 <verde@...> ++ improvements, public release
-# 20001107 <verde@...> ++ bash version check (thanks eliphas)
-# 20001113 <verde@...> ++ php support, Progs command
-# 20010223 <verde@...> ++ i18n, --all, fmeat announce (oh no!)
+# 20001026 ++ lots of changes and tests
+# 20001028 ++ improvements, public release
+# 20001107 ++ bash version check (thanks eliphas)
+# 20001113 ++ php support, Progs command
+# 20010223 ++ i18n, --all, fmeat announce (oh no!)
 # 20010223 v0.1
-# 20010420 <verde@...> ++ id.po, \lfunction_name, s/regexp/regex/ig
-# 20010423 <verde@...> ++ --nocolor, --history, Usage(), doNextHist{,Args}()
-#                      ++ flags: interative, color, allprogs
-#                      ++ .oO(¤user parameters history)
+# 20010420 ++ id.po, \lfunction_name, s/regexp/regex/ig
+# 20010423 ++ --nocolor, --history, Usage(), doNextHist{,Args}()
+#          ++ flags: interative, color, allprogs
+#          ++ .oO(¤user parameters history)
 # 20010424 v0.2
-# 20010606 <verde@...> ++ option --whitebg
-#                      -- grep from $progs to fit on 24 lines by default
-# 20010608 <verde@...> -- clear command (not bash), ++ Clear()
-#                      -- stty command (not bash), ++ $LINES
-#                      -- *Progs*(), ++ Choice(), ChoiceRefresh()
-#                      ++ POSIX character classes [[:abc:]]
-#                      ++ special combinations inside []
-#                      ++ $HUMAN improved with getString, getNumber, Choice
-#                      ++ detailed --help, sorceforge'd
+# 20010606 ++ option --whitebg
+#          -- grep from $progs to fit on 24 lines by default
+# 20010608 -- clear command (not bash), ++ Clear()
+#          -- stty command (not bash), ++ $LINES
+#          -- *Progs*(), ++ Choice(), ChoiceRefresh()
+#          ++ POSIX character classes [[:abc:]]
+#          ++ special combinations inside []
+#          ++ $HUMAN improved with getString, getNumber, Choice
+#          ++ detailed --help, sorceforge'd
 # 20010613 v0.3
-# 20010620 <verde@...> -- seq command (not bash), ++ sek()
+# 20010620 -- seq command (not bash), ++ sek()
 # 20010613 v0.3.1
+# 20010731 ++ Reset: "RegEx prog  :" with automatically length
+#          ++ new progs: postgres, javascript, vbscript, procmail
+#          ++ ax_prog: new item: escape char - escape is ok now
+#          ++ improved meta knowledge on perl, tcl and gawk
+# 20010802 v0.4
 #
 # TODO negated POSIX|special combination (Choice hack)
 # TODO on --history, just show the final RE at once?
@@ -128,7 +138,7 @@ done
 progs=(emacs gawk perl php python sed vim)
 
 # the RegEx show
-allprogs=(awk ed egrep emacs expect find gawk grep lex lisp mawk perl php python sed tcl vi vim)
+allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk perl php postgres procmail python sed tcl vbscript vi vim)
 [ "$f_allprogs" == 1 ] && progs=(${allprogs[@]})
 
 # texts on var because i18n inside arrays is not possible
@@ -187,24 +197,28 @@ POSIX=('alpha' 'lower' 'upper' 'digit' 'alnum' 'xdigit' 'blank' 'graph')
 COMBO=('A-Z' 'a-z' '0-9' '_' ' ' '@')
 S0_re=('' '^' '')
 S1_re=('' '.' '' '' '' '' '' '' '' '.*')
-S2_sed=(   '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_ed=(    '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_grep=(  '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_vim=(   '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
-S2_egrep=( '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_php=(   '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_python=('' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_lex=(   '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_perl=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_gawk=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_mawk=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_awk=(   '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_find=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_emacs=( '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_lisp=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_tcl=(   '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_expect=('' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_vi=(    '' '' '\?' '*' '\+'  '__'    '__'      '__'   )
+S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
+S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
+S2_grep=(      '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
+S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
+S2_egrep=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_php=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_python=(    '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_lex=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_perl=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_postgres=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_javascript=('' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_vbscript=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_gawk=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_procmail=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_mawk=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_awk=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_find=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_emacs=(     '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_lisp=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_tcl=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_expect=(    '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_vi=(        '' '' '\?' '*' '\+'  '__'    '__'      '__'   )
 #63# cause on table 6-1 it seems that the vi part is wrong
 
 ### mastering regular expressions:
@@ -219,31 +233,37 @@ S2_vi=(    '' '' '\?' '*' '\+'  '__'    '__'      '__'   )
 # php 4.0.3pl1 docs (POSIX 1003.2 extended regular expressions)
 
 
+
 # tst: \/_$[]{}()|+?^_/p , [gm]awk=egrep, lisp=emacs
 # [[:abc:]]: Invalid character class name
-#details,grouping,alternatives,escape normal,escape inside [],[:POSIX:],TAB inside []
+#details,grouping,alternatives,escape meta,escape normal,escape inside [],[:POSIX:],TAB inside []
 #                              \.*[]{}()|+?^$   ,=tested  space=pending
-ax_ed=(    ''  '\(,\)'   '\|' '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_vim=(   ''  '\(,\)'   '\|' '\.*[,,,,,,,,,,' '\' 'P' '\t')
-ax_sed=(   ''  '\(,\)'   '\|' '\.*[,,,,,,,,,,' ',' 'P' '\t')
-ax_grep=(  ''  '\(,\)'   '\|' '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_find=(  ''  '\(,\)'   '\|' '\.*[,,,,,,+?,,' ',' ',' ',')
-ax_egrep=( ''   '(,)'     '|' '\.*[,{,()|+?^$' ',' 'P' ',')
-ax_php=(   ''   '(,)'     '|' '\.*[,{,(,|+?^$' ',' 'P' '\t')
-ax_python=(''   '(,)'     '|' '\.*[,{,()|+?^$' '\' ',' '\t')
-ax_lex=(   ''   '(,)'     '|' '\.*[ { ( |+?  ' ' ' ' ' ' ')
-ax_perl=(  ''   '(,)'     '|' '\.*[ { ( |+?  ' '\' ' ' '\t')
-ax_gawk=(  ''   '(,)'     '|' '\.*[,,,(,|+?^$' '\' 'P' '\t')
-ax_mawk=(  ''   '(,)'     '|' '\.*[,,,()|+?^$' '\' ',' '\t')
-ax_awk=(   ''   '(,)'     '|' '\.*[   (,|+?  ' '\' ',' '\t')
-ax_emacs=( ''  '\(,\)'   '\|' '\.*[      +?  ' ',' ',' ',')
-ax_lisp=(  '' '\\(,\\)' '\\|' '\.*[      +?  ' ',' ',' ',')
-ax_tcl=(   ''   '(,)'     '|' '\.*[   ( |+?  ' ',' ' ' ' ')
-ax_expect=(''   '(,)'     '|' '\.*[   ( |+?  ' ' ' ' ' ' ')
-ax_vi=(    ''  '\(,\)'   '!!' '\.*[          ' ' ' ' ' ' ')
+ax_ed=(        ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
+ax_vim=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
+ax_sed=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
+ax_grep=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
+ax_find=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,+?,,' ',' ',' ',')
+ax_egrep=(     ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' ',' 'P' ',')
+ax_procmail=(  ''   '(,)'     '|' '\'  '\.*[,,,()|+?,,' ',' ',' ',')
+ax_php=(       ''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' ',' 'P' '\t')
+ax_python=(    ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
+ax_lex=(       ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' ' ' ' ' ' ')
+ax_perl=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
+ax_gawk=(      ''   '(,)'     '|' '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_postgres=(  ''   '(,)'     '|' '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_javascript=(''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' '\' ',' '\t')
+ax_vbscript=(  ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' '\' ' ' '\t')
+ax_mawk=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
+ax_awk=(       ''   '(,)'     '|' '\'  '\.*[   (,|+?  ' '\' ',' '\t')
+ax_emacs=(     ''  '\(,\)'   '\|' '\'  '\.*[      +?  ' ',' ',' ',')
+ax_lisp=(      '' '\\(,\\)' '\\|' '\\' '\.*[      +?  ' ',' ',' ',')
+ax_tcl=(       ''   '(,)'     '|' '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
+ax_expect=(    ''   '(,)'     '|' '\'  '\.*[   ( |+?  ' ' ' ' ' ' ')
+ax_vi=(        ''  '\(,\)'   '!!' '\'  '\.*[          ' ' ' ' ' ' ')
 #194# emacs: a backslash ... it is completely unspecial
 #78#  emacs: it uses \s for special "syntax classes"
 #189# tcl: withing a class, a backslash is completely unspecial
+# man procmailrc: does not support named character classes.
 
 ScreenSize(){
 # screen size/positioning issues
@@ -429,25 +449,26 @@ getREady(){
   uin=''
 }
 
-# convert [@] -> [\t] or [<TAB>] based on ax_*[6] value
+# convert [@] -> [\t] or [<TAB>] based on ax_*[7] value
 # TODO expand this to all "gettable" fields: @
 getListTab(){
-  local x; eval x=\"\${ax_${progs[$i]}[6]}\"
+  local x; eval x=\"\${ax_${progs[$1]}[7]}\"
   [ "$x" == ',' -o "$x" == ' ' ] && x='<TAB>'
   uin="${uin/@/$x}"
 }
 
 getHasPosix(){
-  local x; eval x=\"\${ax_${progs[$i]}[5]}\"
+  local x; eval x=\"\${ax_${progs[$1]}[6]}\"
   # let's just unsupport the tested ones
   [ "$x" == ',' ] && uin='!!'
 }
 
 escChar(){ # escape userinput chars as .,*,[ and friends
   local c x x2 z i ui esc
-  esc='\'; [ "$1" == 'lisp' ] && esc='\\'   # double escape for lisp
+  eval esc=\"\${ax_${progs[$1]}[3]}\"       # get escape char
   ui="$uin"
-  eval x=\"\${ax_$1[3]}\" ; x="${x//[, ]/}" # list of escapable chars
+  eval x=\"\${ax_${progs[$1]}[4]}\"         # list of escapable chars
+  x="${x//[, ]/}"                           # , and space are trash
   [ "${ui/[\\\\$x]/}" != "$ui" ] && {       # test for speed up
     for i in `sek 0 $((${#ui}-1))`          # for each user char
     do c="${ui:$i:1}"
@@ -465,29 +486,36 @@ escChar(){ # escape userinput chars as .,*,[ and friends
 }
 
 escCharList(){
-  local x esc='\' ; eval x=\"\${ax_$1[4]}\"
+  local x esc ; eval x=\"\${ax_${progs[$1]}[5]}\"
+  eval esc=\"\${ax_${progs[$1]}[3]}\"           # get escape char
   [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}" # escaping escape
 }
 
 Reset(){ gotoxy $x_regex $y_regex
   unset REPLIES uins HUMAN Regex[*]
-  for p in ${progs[*]}; do printf " RegEx %-6s: $_eol\n" "$p"; done
+  local p
+
+  # subroutine to calculate the maximun progs name length - global pnamesize
+  local i a z=0 ; for i in `sek 0 $((${#progs[@]}-1))`
+  do a=${#progs[$i]}; [ $a -gt $z ] && z=$a ; done; pnamesize=$z
+
+  for p in ${progs[*]}; do printf " RegEx %-${pnamesize}s: $_eol\n" "$p"; done
 }
 
 showRegEx(){ gotoxy $x_regex $y_regex
   local i save="$uin"
   for i in `sek 0 $((${#progs[*]}-1))`      # for each program
-  do [ "$F_ESCCHAR"     == 1 ] && escChar     ${progs[$i]}
-     [ "$F_ESCCHARLIST" == 1 ] && escCharList ${progs[$i]}
-     [ "$F_GETTAB"      == 1 ] && getListTab  ${progs[$i]}
-     [ "$F_POSIX"       == 1 ] && getHasPosix ${progs[$i]}
+  do [ "$F_ESCCHAR"     == 1 ] && escChar     $i
+     [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
+     [ "$F_GETTAB"      == 1 ] && getListTab  $i
+     [ "$F_POSIX"       == 1 ] && getHasPosix $i 
 
      case "$1" in                           # check status
        S2) eval Regex[$i]="\${Regex[$i]}\${S2_${progs[$i]}[$REPLY]/@/$uin}";;
        S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
        S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
      esac
-     printf " RegEx %-6s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+     printf " RegEx %-${pnamesize}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
      uin="$save"
   done
   unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
