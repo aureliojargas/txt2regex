@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.5
+VERSION	= 0.6
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -80,7 +80,7 @@ tgz: clean #check-po
 
 # just once: COPYRIGHT tools linuxformat.png old screenshot.png
 upload:
-	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools//g'` index.html $(DISTDIR).tgz \
+	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools\|test-suite//g'` index.html $(DISTDIR).tgz \
 	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs
     
 install: mo

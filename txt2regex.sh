@@ -6,25 +6,9 @@
 #
 # - it's GPL. use at your own risk. don't kill koalas.
 # - A T T E N T I O N: only works in bash >= 2.04
-# - all REs for the S2_PROG arrays was taken from the PROG man page
-#   or missing it, from the 'mastering regular expressions' book
-# - programs versions tested (./test-suite.sh|sed '/^\o033/!d;s/^/#\t/')
-#       ed: GNU ed version 0.2
-#       mawk: mawk 1.3.3 Nov 1996
-#       gawk: GNU Awk 3.0.6
-#       grep: grep (GNU grep) 2.4.2
-#       egrep: egrep (GNU grep) 2.4.2
-#       find: GNU find version 4.1
-#       javascript: netscape-4.77
-#       perl: v5.6.0 built for i386-linux
-#       php: 4.0.6
-#       postgres: psql (PostgreSQL) 7.1.2
-#       procmail: procmail v3.15.1 2001/01/08
-#       python: Python 2.1
-#       sed: GNU sed version 3.02.80
-#       tcl: 8.3
-#       vi: Nvi 1.79 (10/23/96)
-#       vim: VIM - Vi IMproved 5.8 (2001 May 31)
+# - programs versions tested (see README file)
+#    ./test-suite.sh|sed '/^\o033/!d;s/^/#\t/')
+#    ./txt2regex --showmeta | sed '/^ *$/d;s/^[^)]*[()\\]* //;s/^/#\t/'
 #
 # $STATUS:
 #   0  begining of the regex
@@ -69,9 +53,25 @@
 #          <> Clear(): using \033c, ALL: using for((;;)) ksh syntax
 #          <> vi == Nvi
 # 20010828 v0.5
-#
+# 20010831 ++ group & or support- cool!, clearN()
+#          ++ nice groups balance check -> ((2)), use $COLUMNS
+#          <> TopTitle(): BLOAT, 3 lines, smart, arrays
+#          <> Menu(): s/stupid recursion/while/
+#          ++ Z status to handle 0,menu,0 situation
+#          <> s/eval/${!var}/
+# 20010903 <> Choice: fixed outrange answers
+#          ++ trapping ^c do clearEnd, ++ new prog: mysql 
+#          ++ history now works with Choice() menus
+#          ++ history appears when quiting
+
+# TODO s/for/$!{var*}/
+# TODO use getopts
+# TODO empty | check like ^| or (|)
+
+# TODO borders?
 # TODO negated POSIX|special combination (Choice hack)
 # TODO on --history, just show the final RE at once?
+# TODO history: not Clear before
 # TODO add mysql, expr, oawk, nawk, MKS awk, flex
 # ---- (user's requests) ----
 # TODO undo last step (Bence Fejervari @ .hu)
@@ -125,6 +125,7 @@ f_i=1
 f_color=1
 f_whitebg=0
 f_allprogs=0
+GRP1=0 ; GRP2=0
 
 
 # parsing options
@@ -143,73 +144,91 @@ do case "$1" in
    shift
 done
 
+set -o noglob
+
 
 # take out from here programs you don't want to know about
 # or to minimize the lines printed on the screen
-progs=(emacs gawk perl php python sed vim)
+progs=(perl php postgres python sed vim)
 
 # the RegEx show
-allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk perl php postgres procmail python sed tcl vbscript vi vim)
+allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql perl php postgres procmail python sed tcl vbscript vi vim)
 [ "$f_allprogs" == 1 ] && progs=(${allprogs[@]})
-allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
+allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
 
 
-# texts on var because i18n inside arrays is not possible
-S0_TXT0=$"start to match"; S0_TXT1=$"on the line beginning"
-S0_TXT2=$"in any part of the line"
+#NOTE texts on vars because i18n inside arrays is not possible (sux)
+zz0=$"start to match"
+zz1=$"on the line beginning"
+zz2=$"in any part of the line"
+S0_txt=("$zz0" "$zz1" "$zz2")
+S0_re=('' '^' '')
 
-S1_TXT0=$"followed by"; S1_TXT1=$"any character"
-S1_TXT2=$"a specific character"; S1_TXT3=$"a literal string"
-S1_TXT4=$"an allowed characters list"; S1_TXT5=$"a forbidden characters list"
-S1_TXT6=$"a special combination"; S1_TXT7=$"a POSIX combination (locale aware)"
-S1_TXT8=$"a ready RegEx (not implemented)"; S1_TXT9=$"anything"
+zz0=$"followed by"
+zz1=$"any character"
+zz2=$"a specific character"
+zz3=$"a literal string"
+zz4=$"an allowed characters list"
+zz5=$"a forbidden characters list"
+zz6=$"a special combination"
+zz7=$"a POSIX combination (locale aware)"
+zz8=$"a ready RegEx (not implemented)"
+zz9=$"anything"
+S1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7" "$zz8" "$zz9")
+S1_re=('' '.' '' '' '' '' '' '' '' '.*')
 
-S12_TXT0=$"type of the letters"; S12_TXT1=$"uppercase only"
-S12_TXT2=$"lowercase only"; S12_TXT3=$"upper and lowercase"
+zz0=$"how many times (repetition)"
+zz1=$"one"
+zz2=$"zero or one (optional)"
+zz3=$"zero or more"
+zz4=$"one or more"
+zz5=$"exactly N"
+zz6=$"up to N"
+zz7=$"at least N"
+S2_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
 
-S2_TXT0=$"how many times (repetition)"; S2_TXT1=$"one"
-S2_TXT2=$"zero or one (optional)"; S2_TXT3=$"zero or more"
-S2_TXT4=$"one or more"; S2_TXT5=$"exactly N"; S2_TXT6=$"up to N"
-S2_TXT7=$"at least N"
-
-COMBO_TXT0=$"uppercase letters"
-COMBO_TXT1=$"lowercase letters"
-COMBO_TXT2=$"numbers"
-COMBO_TXT3=$"underscore"
-COMBO_TXT4=$"space"
-COMBO_TXT5=$"TAB"
+# COMBO 
+zz0=$"uppercase letters"
+zz1=$"lowercase letters"
+zz2=$"numbers"
+zz3=$"underscore"
+zz4=$"space"
+zz5=$"TAB"
+combo_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5")
+combo_re=('A-Z' 'a-z' '0-9' '_' ' ' '@')
 
 #TODO put all posix components?
-POSIX_TXT0=$"letters"
-POSIX_TXT1=$"lowercase letters"
-POSIX_TXT2=$"uppercase letters"
-POSIX_TXT3=$"numbers"
-POSIX_TXT4=$"letters and numbers"
-POSIX_TXT5=$"hexadecimal numbers"
-POSIX_TXT6=$"whitespaces (space and TAB)"
-POSIX_TXT7=$"graphic chars (not-whitespace)"
+zz0=$"letters"
+zz1=$"lowercase letters"
+zz2=$"uppercase letters"
+zz3=$"numbers"
+zz4=$"letters and numbers"
+zz5=$"hexadecimal numbers"
+zz6=$"whitespaces (space and TAB)"
+zz7=$"graphic chars (not-whitespace)"
+posix_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
+posix_re=('alpha' 'lower' 'upper' 'digit' 'alnum' 'xdigit' 'blank' 'graph')
+
+# title (line 1)
+zz0=$"quit"
+zz1=$"reset"
+zz2=$"color"
+zz3=$"programs"
+zz9='^txt2regex$'
+tit1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "" "" "" "" "" "$zz9") 
+tit1_cmd=('.' '0' '*' '/' '' '' '' '' '' '')
+
+# title (line 2-3)
+zz0=$"or"
+zz1=$"open group"
+zz2=$"close group"
+zz9=$"not supported"
+tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9") 
+tit2_cmd=('|' '(' ')' '' '' '' '' '' '' '!!')
+unset ${!zz*}
 
 
-# defining text arrays
-combo_txt=("$COMBO_TXT0" "$COMBO_TXT1" "$COMBO_TXT2" "$COMBO_TXT3"\
-           "$COMBO_TXT4" "$COMBO_TXT5")
-posix_txt=("$POSIX_TXT0" "$POSIX_TXT1" "$POSIX_TXT2" "$POSIX_TXT3"\
-           "$POSIX_TXT4" "$POSIX_TXT5" "$POSIX_TXT6" "$POSIX_TXT7")
- S0_txt=("$S0_TXT0" "$S0_TXT1" "$S0_TXT2")
- S1_txt=("$S1_TXT0" "$S1_TXT1" "$S1_TXT2" "$S1_TXT3" "$S1_TXT4" "$S1_TXT5"\
-         "$S1_TXT6" "$S1_TXT7" "$S1_TXT8" "$S1_TXT9")
- S2_txt=("$S2_TXT0" "$S2_TXT1" "$S2_TXT2" "$S2_TXT3" "$S2_TXT4" "$S2_TXT5"\
-         "$S2_TXT6" "$S2_TXT7")
- ax_txt=("$AX_TXT0" "$AX_TXT1" "$AX_TXT2" "$AX_TXT4" "$AX_TXT5")
-S12_txt=("$S12_TXT0" "$S12_TXT1" "$S12_TXT2" "$S12_TXT3")
-
-set -o noglob
-
-# here's all the RegExs arrays
-POSIX=('alpha' 'lower' 'upper' 'digit' 'alnum' 'xdigit' 'blank' 'graph')
-COMBO=('A-Z' 'a-z' '0-9' '_' ' ' '@')
-S0_re=('' '^' '')
-S1_re=('' '.' '' '' '' '' '' '' '' '.*')
+# here's all the quantifiers
 S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_grep=(      '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
@@ -223,6 +242,7 @@ S2_postgres=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_javascript=('' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_vbscript=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_gawk=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
+S2_mysql=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_procmail=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_mawk=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_awk=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
@@ -251,28 +271,29 @@ S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
 #details,grouping,alternatives,escape meta,escape normal,escape inside [],[:POSIX:],TAB inside []
 #                              \.*[]{}()|+?^$   ,=tested  space=pending
 
-ax_sed=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
-ax_ed=(        ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_grep=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_vim=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
-ax_egrep=(     ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' ',' 'P' ',')
-ax_php=(       ''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' ',' 'P' '\t')
-ax_python=(    ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
-ax_lex=(       ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' ' ' ' ' ' ')
-ax_perl=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
-ax_postgres=(  ''   '(,)'     '|' '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
-ax_javascript=(''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' '\' ',' '\t')
-ax_vbscript=(  ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' '\' ' ' '\t')
-ax_gawk=(      ''   '(,)'     '|' '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
-ax_procmail=(  ''   '(,)'     '|' '\'  '\.*[,,,()|+?,,' ',' ',' ',')
-ax_mawk=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
-ax_awk=(       ''   '(,)'     '|' '\'  '\.*[   (,|+?  ' '\' ',' '\t')
-ax_find=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,+?,,' ',' ',' ',')
-ax_emacs=(     ''  '\(,\)'   '\|' '\'  '\.*[      +?  ' ',' ',' ',')
-ax_lisp=(      '' '\\(,\\)' '\\|' '\\' '\.*[      +?  ' ',' ',' ',')
-ax_tcl=(       ''   '(,)'     '|' '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
-ax_expect=(    ''   '(,)'     '|' '\'  '\.*[   ( |+?  ' ' ' ' ' ' ')
-ax_vi=(        ''  '\(,\)'   '!!' '\'  '\.*[          ' ',' 'P' ',')
+ax_sed=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
+ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
+ax_grep=(      ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
+ax_vim=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
+ax_egrep=(     ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' ',' 'P' ',' )
+ax_php=(       ''   '|'   '(' ')'   '\'  '\.*[,{,(,|+?^$' ',' 'P' '\t')
+ax_python=(    ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
+ax_lex=(       ''   '|'   '(' ')'   '\'  '\.*[ { ( |+?  ' ' ' ' ' ' ' )
+ax_perl=(      ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
+ax_postgres=(  ''   '|'   '(' ')'   '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_javascript=(''   '|'   '(' ')'   '\'  '\.*[,{,(,|+?^$' '\' ',' '\t')
+ax_vbscript=(  ''   '|'   '(' ')'   '\'  '\.*[ { ( |+?  ' '\' ' ' '\t')
+ax_gawk=(      ''   '|'   '(' ')'   '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_mysql=(     ''   '|'   '(' ')'   '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_procmail=(  ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?,,' ',' ',' ',' )
+ax_mawk=(      ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
+ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[   (,|+?  ' '\' ',' '\t')
+ax_find=(      ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,+?,,' ',' ',' ',' )
+ax_emacs=(     ''  '\|'  '\(' '\)'  '\'  '\.*[      +?  ' ',' ',' ',' )
+ax_lisp=(      '' '\\|' '\\(' '\\)' '\\' '\.*[      +?  ' ',' ',' ',' )
+ax_tcl=(       ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
+ax_expect=(    ''   '|'   '(' ')'   '\'  '\.*[   ( |+?  ' ' ' ' ' ' ' )
+ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
 #194# emacs: a backslash ... it is completely unspecial
 #78#  emacs: it uses \s for special "syntax classes"
 #189# tcl: withing a class, a backslash is completely unspecial
@@ -315,16 +336,19 @@ getLargestItem(){
 }
 
 getMeta(){
-  local m var=$1 i=$2; m=`eval echo \\${$var[$i]//[@!,_]/}`
+  local m="$1[$2]"; m=${!m}; m=${m//[@!,_]/}
   echo "${m//\\\\{[01]*}"  # needed for vi
 }
 
 ShowMeta(){
-  local i j prog progsize=`getLargestItem "${allprogs[@]}"`
+  local i j g1 g2 prog progsize=`getLargestItem "${allprogs[@]}"`
   for ((i=0 ;i<${#allprogs[@]};i++)); do
     prog=${allprogs[$i]}; printf "\n%${#progsize}s" "$prog"
     for j in 4 2 5; do printf "%8s" `getMeta S2_$prog $j`; done
-    for j in 2 1  ; do printf "%8s" `getMeta ax_$prog $j`; done
+    printf "%8s" `getMeta ax_$prog 1`   # or
+    g1=`getMeta ax_$prog 2`; g2=`getMeta ax_$prog 3`
+    printf "%8s" "$g1$g2"               # group
+#    printf " $prog: ${allversions[$i]}" #DBG
   done
   printf "\n\n%s\n\n" $"NOTE: . [] [^] and * are the same on all programs."
 }
@@ -337,15 +361,16 @@ ShowInfo(){
   # getting data
   index=`getItemIndex "$prog" "${allprogs[@]}"`
   ver="${allversions[$index]}"
-  escmeta=`getMeta ax_$prog 3`
-  needesc=`getMeta ax_$prog 4`
+  escmeta=`getMeta ax_$prog 4`
+  needesc=`getMeta ax_$prog 5`
   [ "$needesc" ] || { printf "%s: '%s'\n" $"unknown program" "$prog"; return; }
-  [ "`getMeta ax_$prog 6`" == 'P'  ] && posix=$"YES"
-  [ "`getMeta ax_$prog 7`" == '\t' ] && tabinlist=$"YES"
+  [ "`getMeta ax_$prog 7`" == 'P'  ] && posix=$"YES"
+  [ "`getMeta ax_$prog 8`" == '\t' ] && tabinlist=$"YES"
   metas=$(      for j in 4 2 5; do getMeta S2_$prog $j; done)
-  metas="$metas $(for j in 2 1; do getMeta ax_$prog $j; done)"
+  metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
+  metas="$metas$(getMeta ax_$prog 3)"                       #)
   metas=". [] [^] * `echo $metas`"
-
+    
   # populating cool i18n arrays
   t1=$"program" t2=$"metas" t3=$"esc meta" t4=$"need esc" t5=$"\t in []" t6=$"[:POSIX:]"
   data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
@@ -367,13 +392,19 @@ ShowInfo(){
 
 ScreenSize(){
 # screen size/positioning issues
-  x_regex=1  ; y_regex=3
+  x_regex=1  ; y_regex=4
   x_hist=3   ; y_hist=$((y_regex+${#progs[*]}+1))
   x_prompt=3 ; y_prompt=$((y_regex+${#progs[*]}+2))
   x_menu=3   ; y_menu=$((y_prompt+2))
   x_prompt2=15
   y_max=$((y_menu+${#S1_txt[*]}))
-  [ "${LINES:=24}" -lt "$y_max" ] && { printf $"error:
+
+  # the defaults case not exported
+  : ${LINES:=25}
+  : ${COLUMNS:=80}
+  
+  #TODO automatic check when selecting programs
+  [ $LINES -lt "$y_max" ] && { printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
   less programs to show the RegEx.\n\n" "$LINES" "$y_max"
@@ -385,28 +416,62 @@ ScreenSize(){
 _eol=`echo -ne "\033[0K"`  # clear trash until EOL
 
 # the cool control chars functions
-gotoxy(){   echo -ne "\033[$2;$1H" ;}
+gotoxy(){   echo -ne "\033[$2;$1H"; }
 clearEnd(){ echo -ne "\033[0J"; }
+clearN(){   echo -ne "\033[$1X"; }
 Clear(){    echo -ne "\033c"; }
-#Clear(){ gotoxy 1 1; clearEnd; }
+# ideas: tab between, $cR on cmd, yellow-white-yellow 
+printTitleCmd(){ printf "[$cI%s$cN]%s  " "$1" "$2"; }
 
 TopTitle(){ gotoxy 1 1
+  local i j showme txt color
   [ "$f_i" != 1 ] && return
-  echo -n  "${cI}[.]${cN}"; echo -n $"quit"
-  echo -n " ${cI}[0]${cN}"; echo -n $"reset"
-  [ "$f_color" == 1 ] &&
-    echo -n " ${cI}[*]${cN}"; echo -n $"color"
-  if [ $STATUS -eq 0 ]
-  then echo -n " ${cI}[/]${cN}"; echo -n $"progs"
-  else echo '            '
+  
+  # 1st line: aplication commands
+  for ((i=0 ;i<10;i++)); do
+    showme=0
+    txt=${tit1_txt[$i]}; cmd=${tit1_cmd[$i]}
+    case $i in
+      [01]) showme=1 ;;
+         2) [ "$f_color" == 1 ] && showme=1 ;;
+         3) [ $STATUS -eq 0 ]   && showme=1 ;;
+         9) gotoxy $((COLUMNS-${#txt})) 1; echo "$txt";;
+     esac 
+     if [ $showme -eq 1 ]; then printTitleCmd "$cmd" "$txt"
+     else clearN $((${#txt}+3)); fi
+  done
+  
+  # 2nd line: grouping and or
+  if [ $STATUS -eq 0 ]; then echo -n $_eol
+  else
+    if [ $STATUS -eq 1 ]; then
+      for i in 0 1 2; do
+        txt=${tit2_txt[$i]}; cmd=${tit2_cmd[$i]}
+        showme=1 ; [ $i -eq 2 -a $GRP1 -eq $GRP2 ] && showme=0
+        if [ $showme -eq 1 ]; then printTitleCmd "$cmd" "$txt"
+        else clearN $((${#txt}+3)); fi
+      done
+    else  # delete commands only
+      clearN $((${#tit2_txt[0]}+5+${#tit2_txt[1]}+5+${#tit2_txt[2]}+5))
+    fi  
+    
+    # open groups
+    gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2;
+    color="$cP"; [ "$GRP1" -eq "$GRP2" ] && color="$cB"
+    for ((j=0 ;j<$GRP1;j++)); do echo -n "$color($cN"; done
+    [ $GRP1 -gt 0 ] && echo -n $GRP1
+    for ((j=0 ;j<$GRP2;j++)); do echo -n "$color)$cN"; done
   fi
-  gotoxy 55 ;
-  #printf "%s %s  %s %s" "${cB}__$cN" $"unknown" "$cB!!$cN" $"not supported"
-  printf "%s %s" "$cB!!$cN" $"not supported"
+  
+  # 3rd line: legend
+  txt=${tit2_txt[9]}; cmd=${tit2_cmd[9]}
+  gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3;
+  printf "$cB%s$cN %s" "$cmd" "$txt"
 }
 
 doMenu(){
-  eval Menui=(\"\${$1[@]}\"); menu_n=$((${#Menui[*]}-1))  # ini
+  local -a Menui
+  eval Menui=(\"\${$1[@]}\"); menu_n=$((${#Menui[*]}-1))    # ini
 
   if [ "$f_i" == 1 ]; then
     gotoxy $x_hist $y_hist
@@ -423,21 +488,29 @@ doMenu(){
 }
 
 Menu(){
-  doMenu "$1"
-  case "$REPLY" in
-    [1-9])if [ "$REPLY" -gt "$menu_n" ]
-          then Menu "$1" ; else REPLIES="$REPLIES$REPLY"; fi;;
-        .)STATUS=3 ;; 0)STATUS=0 ;; \*)ColorOnOff; TopTitle; Menu "$1";;
-        /)STATUS=4 ;;
-        *)Menu "$1";;
-  esac
-  [ "${STATUS/[034]/}" ] || continue             # 0,3,4: escape status
+  local ok=0 name="$1"
+  while [ $ok -eq 0 ]; do 
+    doMenu "$name"
+    case "$REPLY" in
+    [1-9]) [ "$REPLY" -gt "$menu_n" ] && continue
+           ok=1 ; REPLIES="$REPLIES$REPLY";;
+        .) ok=1 ; STATUS=3 ;;
+        0) ok=1 ; STATUS=Z ;;
+       \*) ColorOnOff; TopTitle;;
+ [\(\)\|]) [ "$STATUS" -ne 1 ] && continue
+           [ "$REPLY" == ')' ] &&
+             [ $GRP1 -gt 0 -a $GRP1 -eq $GRP2 -o $GRP1 -eq 0 ] && continue
+           ok=1 ; REPLIES="$REPLIES$REPLY";;
+        /) ok=1 ; STATUS=4 ;;
+    esac
+  done  
+  [ "${STATUS/[Z34]/}" ] || continue             # 0,3,4: escape status
 }
 
 doNextHist(){
   hists=${hists#?}                               # deleting previous item
   hist=${hists:0:1}
-  [ "$hist" ] || hist='.'
+  : ${hist:=.}                                   # if last, quit
 }
 
 doNextHistArg(){
@@ -498,25 +571,27 @@ getNumber(){ gotoxy $x_prompt2 $y_prompt
 
 getPosix(){
   local rpl psx=''; unset SUBHUMAN
-  Choice --reset "${posix_txt[@]}"
+  if [ "$f_i" == 1 ]; then Choice --reset "${posix_txt[@]}"; else ChoiceAuto; fi 
   for rpl in $CHOICEREPLY; do
-    psx="$psx[:${POSIX[$rpl]}:]"; SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
+    psx="$psx[:${posix_re[$rpl]}:]"; SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
   done
   SUBHUMAN=${SUBHUMAN#, }
   F_POSIX=1
   uin="[$psx]"
+  uins="$uins¤:${CHOICEREPLY// /}"
 }
 
 getCombo(){
   local rpl cmb=''; unset SUBHUMAN
-  Choice --reset "${combo_txt[@]}"
+  if [ "$f_i" == 1 ]; then Choice --reset "${combo_txt[@]}"; else ChoiceAuto; fi 
   for rpl in $CHOICEREPLY; do
-    cmb="$cmb${COMBO[$rpl]}"; SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
+    cmb="$cmb${combo_re[$rpl]}"; SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
   done
   #TODO change this to if [ "$rpl" -eq 5 ]
   [ "$cmb" != "${cmb/@/}" ] && F_GETTAB=1
   SUBHUMAN=${SUBHUMAN#, }
   uin="[$cmb]"; [ "$1" == 'negated' ] && uin="[^$cmb]"
+  uins="$uins¤:${CHOICEREPLY// /}"
 }
 
 #TODO all
@@ -525,25 +600,23 @@ getREady(){
   uin=''
 }
 
-# convert [@] -> [\t] or [<TAB>] based on ax_*[7] value
+# convert [@] -> [\t] or [<TAB>] based on ax_*[8] value
 # TODO expand this to all "gettable" fields: @
 getListTab(){
-  local x; eval x=\"\${ax_${progs[$1]}[7]}\"
+  local x="ax_${progs[$1]}[8]"; x=${!x}
   [ "$x" == ',' -o "$x" == ' ' ] && x='<TAB>'
   uin="${uin/@/$x}"
 }
 
 getHasPosix(){
-  local x; eval x=\"\${ax_${progs[$1]}[6]}\"
   # let's just unsupport the tested ones
-  [ "$x" == ',' ] && uin='!!'
+  local x="ax_${progs[$1]}[7]"; [ "${!x}" == ',' ] && uin='!!'
 }
 
 escChar(){ # escape userinput chars as .,*,[ and friends
-  local c x x2 z i ui esc
-  eval esc=\"\${ax_${progs[$1]}[3]}\"            # get escape char
-  ui="$uin"
-  eval x=\"\${ax_${progs[$1]}[4]}\"              # list of escapable chars
+  local c x x2 z i esc ui="$uin"
+  esc="ax_${progs[$1]}[4]"; esc=${!esc}          # get escape char
+  x="ax_${progs[$1]}[5]"; x=${!x}                # list of escapable chars 
   x="${x//[, ]/}"                                # , and space are trash
   [ "${ui/[\\\\$x]/}" != "$ui" ] && {            # test for speed up
     for ((i=0 ;i<${#ui};i++))                    # for each user char
@@ -562,13 +635,15 @@ escChar(){ # escape userinput chars as .,*,[ and friends
 }
 
 escCharList(){
-  local x esc ; eval x=\"\${ax_${progs[$1]}[5]}\"
-  eval esc=\"\${ax_${progs[$1]}[3]}\"            # get escape char
+  local esc x
+    x="ax_${progs[$1]}[6]";   x=${!x}            # need escape on []
+  esc="ax_${progs[$1]}[4]"; esc=${!esc}          # escape char
   [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"  # escaping escape
 }
 
 Reset(){ gotoxy $x_regex $y_regex
   unset REPLIES uins HUMAN Regex[*]
+  GRP1=0 ; GRP2=0
   local p
 
   # global maxprogname
@@ -585,7 +660,7 @@ showRegEx(){ gotoxy $x_regex $y_regex
      [ "$F_POSIX"       == 1 ] && getHasPosix $i
 
      case "$1" in                                # check status
-       S2) eval Regex[$i]="\${Regex[$i]}\${S2_${progs[$i]}[$REPLY]/@/$uin}";;
+    ax|S2) eval Regex[$i]="\${Regex[$i]}\${$1_${progs[$i]}[$REPLY]/@/$uin}";;
        S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
        S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
      esac
@@ -630,9 +705,8 @@ Choice(){
     printf "too much itens (>%d)" "${#alpha[*]}"; exit 1; }
 
   # the header
-  Clear
-  echo -n "${cI}[.]${cN}"; echo -n $"exit" ; echo -n ' | '
-  echo $"press the letters to (un)select the items"
+  Clear ; printTitleCmd '.' $"exit"
+  printf "| %s" $"press the letters to (un)select the items"
 
   # we will need 2 columns?
   cols=1 ; [ "$numopts" -gt 10 ] && cols=2
@@ -668,6 +742,7 @@ Choice(){
           fi
         done
         # showing the change
+        [ "${opts[alf]}" ] || continue
         ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
         ;;
       .)
@@ -681,6 +756,11 @@ Choice(){
   done
 }
 
+# non-interative, just return the answers
+ChoiceAuto(){
+  local i z; unset CHOICEREPLY; doNextHistArg; z=${histarg#:} # marker
+  for ((i=0 ;i<${#z};i++)); do CHOICEREPLY="$CHOICEREPLY ${z:$i:1}"; done
+}
 
 # fills the stat array with the actual active programs ON
 statActiveProgs(){
@@ -698,28 +778,39 @@ statActiveProgs(){
 STATUS=0           # default status
 Clear; ScreenSize  # screen things
 ColorOnOff         # turning color ON
+trap "clearEnd; echo; exit" SIGINT
 
 while : ; do
 case ${STATUS:=0} in
- 0) Reset; TopTitle; STATUS=1
+0|Z)STATUS=${STATUS/Z/0};
+    Reset; TopTitle
     Menu S0_txt
     HUMAN="$S0_txt ${S0_txt[$REPLY]}"
     showRegEx S0
     STATUS=1
     ;;
- 1) TopTitle
-    Menu S1_txt
-    HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]/ (*)/}"
-    case "$REPLY" in
-        1) STATUS=2 ;;
-        2) STATUS=2  ; getChar;;
-        3) STATUS=1  ; getString; HUMAN="$HUMAN {$uin}";;
-        4) STATUS=2  ; getCharList;;
-        5) STATUS=2  ; getCharList negated;;
-    [678]) STATUS=12 ; continue;;
-        9) STATUS=1 ;;
-    esac
-    showRegEx S1
+ 1) TopTitle ; Menu S1_txt
+    if [ "${REPLY/[1-9]/}" ]; then
+      HUMAN="$HUMAN $REPLY"
+      if   [ "$REPLY" == '|' ]; then REPLY=1
+      elif [ "$REPLY" == '(' ]; then REPLY=2 ; GRP1=$((GRP1+1))
+      elif [ "$REPLY" == ')' ]; then REPLY=3 ; GRP2=$((GRP2+1))
+      else echo -e "\n\nERROR: unknowm reply type '$REPLY'"; exit 1
+      fi
+      showRegEx ax
+    else
+      HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]/ (*)/}"
+      case "$REPLY" in
+          1) STATUS=2 ;;
+          2) STATUS=2  ; getChar;;
+          3) STATUS=1  ; getString; HUMAN="$HUMAN {$uin}";;
+          4) STATUS=2  ; getCharList;;
+          5) STATUS=2  ; getCharList negated;;
+      [678]) STATUS=12 ; continue;;
+          9) STATUS=1 ;;
+      esac
+      showRegEx S1
+    fi  
     ;;
 12) [ "$REPLY" -eq 6  ] && STATUS=2 && getCombo
     [ "$REPLY" -eq 7  ] && STATUS=2 && getPosix
@@ -728,7 +819,7 @@ case ${STATUS:=0} in
     HUMAN="$HUMAN {$SUBHUMAN}"
     showRegEx S1
     ;;
- 2) Menu S2_txt
+ 2) TopTitle ; Menu S2_txt
     rep_middle=$"repeated"
     rep_txt="${S2_txt[$REPLY]}"; rep_txtend=$"times"
     [ "$REPLY" -ge 5 ] && getNumber && rep_txt=${rep_txt/N/$uin}
@@ -736,11 +827,13 @@ case ${STATUS:=0} in
     showRegEx S2
     STATUS=1
     ;;
- 3) echo -ne "\033[0G"
-    noregex_txt=$"no RegEx"
-    if [ "$f_i" == 1 ]
-    then clearEnd; echo -e "\n${HUMAN:-$noregex_txt}.\n"
-    else gotoxy 0 $y_prompt
+ 3) gotoxy $x_hist $y_hist; clearEnd
+    if [ "$f_i" == 1 ]; then
+      noregex_txt=$"no RegEx"
+      printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
+      echo -e "${HUMAN:-$noregex_txt}.\n"
+    else
+      gotoxy 0 $y_prompt
     fi
     exit 0
     ;;
