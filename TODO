@@ -1,15 +1,14 @@
 txt2regex TODO:
 
-  - a friendly --help output
-  - support to POSIX character classes [[:abc:]]
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
   - add more programs
   - ready-to-use common regexes (email, date, ip, etc)
   - support for ~/.txt2regexrc and env vars
-  
+
   - undo last step (Bence Fejervari @ .hu)
   - std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
+  - interface to feed the programs with the RegEx (Chris Piechowicz @ .au)
 
 
-tecnical TODO: grep TODO txt2regex.sh
+technical TODO: grep TODO txt2regex
