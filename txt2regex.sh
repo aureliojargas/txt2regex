@@ -27,7 +27,7 @@
 #   3  end of the regex
 #   4  choosing session programs
 #
-# 20001019 <verde@conectiva.com.br> ** 1st version
+# 20001019 <verde@verde666.org> ** 1st version
 # 20001026 <verde@...> ++ lots of changes and tests
 # 20001028 <verde@...> ++ improvements, public release
 # 20001107 <verde@...> ++ bash version check (thanks eliphas)
@@ -49,6 +49,8 @@
 #                      ++ $HUMAN improved with getString, getNumber, Choice
 #                      ++ detailed --help, sorceforge'd
 # 20010613 v0.3
+# 20010620 <verde@...> -- seq command (not bash), ++ sek()
+# 20010613 v0.3.1
 #
 # TODO negated POSIX|special combination (Choice hack)
 # TODO on --history, just show the final RE at once?
@@ -267,6 +269,13 @@ gotoxy(){ echo -ne "\033[$2;$1H" ;}
 clearEnd(){ echo -ne "\033[0J"; }
 Clear(){ gotoxy 1 1; clearEnd; }
 
+
+sek(){
+  local H='<' s='++' a=1 z=$1; [ "$2" ] && { a=$1; z=$2; }
+  [ $a -gt $z ] && { H='>'; s='--'; }; for ((i=$a;i$H=$z;i$s)); do echo $i; done
+}
+
+
 ColorOnOff(){
   # the colors: Normal, Prompt, Bold, Important
   [ "$f_color" != 1 ] && return
@@ -307,7 +316,7 @@ doMenu(){
     gotoxy $x_hist $y_hist
     echo "   $cP.oO($cN$REPLIES$cP)$cN$cP($cN$uins$cP)$cN$_eol"   # history
     gotoxy $x_menu $y_menu ; echo "$cI${Menui[0]}:$cN$_eol" # title
-    for i in `seq $menu_n`                                  # itens
+    for i in `sek $menu_n`                                  # itens
     do echo "  $cB$i$cN) ${Menui[$i]}$_eol"; i=$((i+1)); done
     clearEnd                                                # prompt
     gotoxy $x_prompt $y_prompt ; echo -ne "$cP[1-$menu_n]:$cN $_eol"
@@ -440,7 +449,7 @@ escChar(){ # escape userinput chars as .,*,[ and friends
   ui="$uin"
   eval x=\"\${ax_$1[3]}\" ; x="${x//[, ]/}" # list of escapable chars
   [ "${ui/[\\\\$x]/}" != "$ui" ] && {       # test for speed up
-    for i in `seq 0 $((${#ui}-1))`          # for each user char
+    for i in `sek 0 $((${#ui}-1))`          # for each user char
     do c="${ui:$i:1}"
        case "$c" in                         # special bash chars
          [?*#%])x2="${x/[$c]/}";;
@@ -467,7 +476,7 @@ Reset(){ gotoxy $x_regex $y_regex
 
 showRegEx(){ gotoxy $x_regex $y_regex
   local i save="$uin"
-  for i in `seq 0 $((${#progs[*]}-1))`      # for each program
+  for i in `sek 0 $((${#progs[*]}-1))`      # for each program
   do [ "$F_ESCCHAR"     == 1 ] && escChar     ${progs[$i]}
      [ "$F_ESCCHARLIST" == 1 ] && escCharList ${progs[$i]}
      [ "$F_GETTAB"      == 1 ] && getListTab  ${progs[$i]}
@@ -529,14 +538,14 @@ Choice(){
   # and how much lines? (remember: odd number of items, requires one more line)
   lines=$((numopts/cols)) ; [ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
 
-  # filling the options screen's position array (+3 = header:2, seq:1)
-  for line in `seq 0 $((lines-1))`; do
+  # filling the options screen's position array (+3 = header:2, sek:1)
+  for line in `sek 0 $((lines-1))`; do
     optxy[$line]="$((line+3));1"                                # column 1
     [ "$cols" == 2 ] && optxy[$((line+lines))]="$((line+3));40" # column 2
   done
 
   # showing initial status for all options
-  for op in `seq 0 $((numopts-1))`
+  for op in `sek 0 $((numopts-1))`
   do ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
   done
 
@@ -548,7 +557,7 @@ Choice(){
     case "$CHOICEREPLY" in
       [a-z])
         # inverting the option status
-        for alf in `seq 0 $((numopts-1))`; do
+        for alf in `sek 0 $((numopts-1))`; do
           if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]; then
             if [ "${stat[$alf]}" == '+' ]
             then stat[$alf]='-'
@@ -562,7 +571,7 @@ Choice(){
         ;;
       .)
         # getting the user choices and exiting
-        unset CHOICEREPLY; for rpl in `seq 0 $((numopts-1))`; do
+        unset CHOICEREPLY; for rpl in `sek 0 $((numopts-1))`; do
           [ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
         done
         break
@@ -575,7 +584,7 @@ Choice(){
 # fills the stat array with the actual active programs ON
 statActiveProgs(){
   local p i=0 ps=" ${progs[*]} "
-  for i in `seq 0 $((${#allprogs[*]}-1))`; do  # for each program
+  for i in `sek 0 $((${#allprogs[*]}-1))`; do  # for each program
     p="${allprogs[$i]}"; stat[$i]='-';         # default OFF
     [ "${ps/ $p /}" != "$ps" ] && stat[$i]='+' # case found, turn ON
   done
