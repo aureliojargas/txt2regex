@@ -1,19 +1,18 @@
-                          ^ txt2regexp.sh $
+                          ^ txt2regex.sh $
 
    a Regular Expression "wizard", all written with bash2 builtins
 
-^txt2regexp.sh$ is a Regular Expression "wizard", all written with
-bash2 builtins, that converts human sentences to RegExps. with a
-simple interface, you just answer to questions and build your own
-RegExp for a large variety of programs, like awk, ed, emacs, grep,
-perl, php, python, sed, tcl and vim. there are 18 supported programs
-now.
+^txt2regex$ is a Regular Expression "wizard", all written with bash2
+builtins, that converts human sentences to RegExs. with a simple
+interface, you just answer to questions and build your own RegEx for a
+large variety of programs, like awk, ed, emacs, grep, perl, php,
+python, sed, tcl and vim. there are 18 supported programs now.
 
 ----------------------------------------------------------------------
 
 WHY?
-- to try to make simple RegExps less painful for the beginners
-- to have a reliable source for RegExps differences between programs
+- to try to make simple RegExs less painful for the beginners
+- to have a reliable source for RegExs differences between programs
 - to have coding fun &:)
 
 
@@ -27,7 +26,7 @@ INSTALL AND RUN
 
 after expand the tarball, do you can simply run the program directly.
 but if do you want it on your system, or in other language besides
-english (only portuguese translation available now), use `make`.
+english (portuguese & indonesian translations available), use `make`.
 
 summary:
 just english -> untar and run
@@ -35,23 +34,23 @@ with i18n    -> untar, make install and run
 
 
 untar:
-    tar xvzf txt2regexp-0.1.tgz
-    cd txt2regexp-0.1
+    tar xvzf txt2regex-0.2.tgz
+    cd txt2regex-0.2
 
 run:
-    ./txt2regexp.sh
+    ./txt2regex.sh
 
 make install:
   if you're root and wants to install it on the system, with i18n:
 
     make install
-    /usr/bin/txt2regexp
+    /usr/bin/txt2regex
 
-  or, if do you want to use it on locally, on the txt2regexp dir, with
+  or, if do you want to use it on locally, on the txt2regex dir, with
   i18n:
 
-	make install BINDIR=. LOCALEDIR=po
-    ./txt2regexp
+    make install BINDIR=. LOCALEDIR=po
+    ./txt2regex
 
 
 if you want to install it on another location, redefine BINDIR,
@@ -73,7 +72,7 @@ the interface is pretty easy to understand, but in short, it's:
     +---------------------------------------+
     | -> top menu                 -> legend |
     |                                       |
-    | -> RegExps of the programs selected   |
+    | -> RegExs of the programs selected    |
     |    ...                                |
     |    ...                                |
     |                                       |
@@ -88,25 +87,48 @@ the interface is pretty easy to understand, but in short, it's:
 
 so, using the numeric pad on the keyboard (there, on the right side),
 press the numbers to choose the answers (turn NumLock on!) and just
-see the RegExps being made.
+see the RegExs being made.
 
 as the top menu says, press `.` to quit and `0` (zero) to reset the
-RegExp. the `*` key toggles color ON/OFF and `/` add/remove programs
-on the RegExp part. just it.
+RegEx. the `*` key toggles color ON/OFF and `/` add/remove programs
+on the RegEx part. just it.
 
 so, read the question (in yellow), choose the answer, and press its
 number.
+             _______________________________________
+
+  COMMAND LINE
+
+there's a few command line options
+
+
+usage: txt2regex [--history <value>] [--nocolor|--all]
+
+
+  --all       works with all registered programs
+  --nocolor   self-explanatory
+  --history   prints on STDOUT a RegEx from a history data
+              (no interative, implicit --nocolor)
+
+a history data are those things inside the "clouds"
+.oO(...)(...), being .oO(history)(¤user_input1¤userinput2¤...)
+
+example:
+
+    txt2regex --all --history 2155115¤2¤:¤2
+
+to obtain a (very) simple ER to match hour on the hh:mm format.
+not very usefull now, but it will.
 
 ----------------------------------------------------------------------
 
 INFO ABOUT THE INFO ON IT
 
-all RegExps and rules the program knows about were taken
+all RegExs and rules the program knows about were taken
 - from the programs man pages
-- or missing it, from the "mastering regular expressions" o'relly book
+- or missing it, from the "mastering regular expressions" o'reilly book
 - or missing it, from internet documents (oh no!)
 - or missing it, guessing and testing...
-
 
 of course, all info tested by hand, to the *really* reliable..
 
@@ -131,9 +153,13 @@ yes, it's GPL.
 
 ----------------------------------------------------------------------
 
-BUGS AND IMPROVEMENTS
+BUGS, IMPROVEMENTS AND CONTRIBUTIONS
 
 they're VERY welcome! send to the author (e-mail below).
+
+a cool (and easy/fast to do) contribution is a translation of the
+program messages to your own language. get the po/pt_BR.po file as an
+example and translate it. in doubt, ask.
 
 ----------------------------------------------------------------------
 
@@ -145,4 +171,4 @@ who cares?
 --
 AUTHOR: aurélio marinho jargas <verde@conectiva.com.br>
 DEBUT: 20010223
-URL: http://conectiva.com.br/~aurelio/programas/bash/txt2regexp
+URL: http://conectiva.com.br/~aurelio/programas/bash/txt2regex

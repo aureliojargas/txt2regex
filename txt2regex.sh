@@ -1,6 +1,6 @@
 #!/bin/bash
-# txt2regexp.sh - Regular Expressions "wizard", all in bash2 builtins
-# http://conectiva.com.br/~aurelio/programas/bash/txt2regexp
+# txt2regex.sh - Regular Expressions "wizard", all in bash2 builtins
+# http://conectiva.com.br/~aurelio/programas/bash/txt2regex
 #
 # it's GPL. use at your own risk. don't kill koalas.
 #
@@ -21,30 +21,49 @@
 # php: 3.0.18 and 4.0.3pl1
 #
 # $STATUS:
-#   0 begining of the regexp
-#   1 defining regexp
+#   0 begining of the regex
+#   1 defining regex
 #   12 defining type of letters
 #   2 defining quantifier
-#   3 end of the regexp
+#   3 end of the regex
 #   4 defining session programs
 #
-# 20001019 <aurelio@conectiva.com.br> ** 1st version
-# 20001026 <aurelio@conectiva.com.br> ++ lots of changes and tests
-# 20001028 <aurelio@conectiva.com.br> ++ improvements, public release
-# 20001107 <aurelio@conectiva.com.br> ++ bash version check (thanks eliphas)
-# 20001113 <aurelio@conectiva.com.br> ++ php support, Progs command
-# 20010223 <aurelio@conectiva.com.br> ++ i18n, --all, fmeat announce (oh no!)
-# v0.1
+# 20001019 <verde@conectiva.com.br> ** 1st version
+# 20001026 <verde@...> ++ lots of changes and tests
+# 20001028 <verde@...> ++ improvements, public release
+# 20001107 <verde@...> ++ bash version check (thanks eliphas)
+# 20001113 <verde@...> ++ php support, Progs command
+# 20010223 <verde@...> ++ i18n, --all, fmeat announce (oh no!)
+# 20010223 v0.1
+# 20010420 <verde@...> ++ id.po, \lfunction_name, s/regexp/regex/ig
+# 20010423 <verde@...> ++ --nocolor, --history, Usage(), doNextHist{,Args}()
+#                      ++ flags: interative, color, allprogs
+#                      ++ .oO(¤user parameters history)
+# 20010424 v0.2
 #
-# TODO capture blanks on Get* (via menu)
+# TODO detailed --help (see README file)
+# TODO on --history, just show the final RE at once?
+# TODO how to capture blanks on Get* (via menu)?
+# TODO use character classes [[:abc:]]
+# TODO user defined ranges (prompt, validation)
 # TODO create [] mixing letters/numbers/blanks
-# TODO EscChar - delimiters too? like / (sed, *awk)
-# TODO expr, oawk, nawk, MKS awk, flex
-# TODO s/vi/n&/
+# TODO add expr, oawk, nawk, MKS awk, flex
+# TODO s/vi/n&/ - can't reach real vi
+# TODO vim with NO magic (quote bram)
 # TODO use new 'for' ksh syntax
-# TODO ~/.txt2regexprc - keep programs, last REs/histories
+# (user's requests)
+# TODO undo last step (Bence Fejervari @ .hu)
+# TODO std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
+# (below, non-interative modes)
+# TODO ready-to-use common regexes (email, date, ip, etc)
+# (~/.txt2regexrc)
+# - remember programs, last histories, name REs
+# - l10n configuration (A-Z or [:upper:])
+#
+# hour: [0-9]{2}:[0-9]{2}
+# rg: [0-9]\.[0-9]{3}\.[0-9]{3}-[0-9]
 
-TEXTDOMAIN=txt2regexp
+TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
 
 # we _need_ bash>=2.04
@@ -53,15 +72,35 @@ case "$BASH_VERSION" in
   *)echo "bash version >=2.04 required, but you have $BASH_VERSION"; exit 1;;
 esac
 
+Usage(){ echo $"usage: txt2regex [--history <value>] [--nocolor|--all]"; exit 1; }
+
+# the defaults
+f_i=1
+f_color=1
+f_allprogs=0
+
+
+# parsing options
+while [ $# -gt 0 ]
+do case "$1" in
+    --history) [ "$2" ] || Usage; history="$2"; shift; f_i=0 ; f_color=0
+               hists="0${history%%¤*}" ; histargs="¤${history#*¤}"
+               [ "${hists#0}" == "${histargs#¤}" ] && unset histargs ;;
+    --nocolor) f_color=0 ;;           
+        --all) f_allprogs=1 ;;
+            *) Usage;;
+   esac
+   shift
+done
+
 
 # take out from here programs you don't want to know about
 # or to minimize the lines printed on the screen
 progs=(emacs gawk grep perl php python sed vim)
 
-# the RegExp show
+# the RegEx show
 allprogs=(awk ed egrep emacs expect find gawk grep lex lisp mawk perl php python sed tcl vi vim)
-[ "$1" == '--all' ] &&
-  progs=(${allprogs[@]})
+[ "$f_allprogs" == 1 ] && progs=(${allprogs[@]})
 
 # texts on var because i18n inside arrays is not possible
 S0_TXT0=$"start to match"; S0_TXT1=$"on the line beginning"
@@ -96,7 +135,7 @@ S12_txt=("$S12_TXT0" "$S12_TXT1" "$S12_TXT2" "$S12_TXT3")
 set -o noglob
 
 alpha=(a b c d e f g h i j k l m n o p q r s t u v w x y)
-# here's all the RegExps arrays
+# here's all the RegExs arrays
 S0_re=('' '^' '')
 S1_re=( '' '[0-9]' '' '0-9' '.' '' '' '' '' '.*')
 S12_re=( '' 'A-Z' 'a-z' 'A-Za-z')
@@ -158,9 +197,9 @@ ax_vi=(    ''  '\(,\)'   '!!' '\.*[          ' ' ')
 
 ScreenSize(){
 # screen size/positioning issues
-  x_regexp=1 ; y_regexp=3
-  x_hist=3   ; y_hist=$((y_regexp+${#progs[*]}+1))
-  x_prompt=3 ; y_prompt=$((y_regexp+${#progs[*]}+2))
+  x_regex=1  ; y_regex=3
+  x_hist=3   ; y_hist=$((y_regex+${#progs[*]}+1))
+  x_prompt=3 ; y_prompt=$((y_regex+${#progs[*]}+2))
   x_menu=3   ; y_menu=$((y_prompt+2))
   x_prompt2=15
   y_max=$((y_menu+${#S1_txt[*]}))
@@ -168,7 +207,7 @@ ScreenSize(){
   [ "${screensize% *}" -lt "$y_max" ] && { printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
-  less programs to show the RegExp.\n\n" "${screensize% *}" "$y_max"
+  less programs to show the RegEx.\n\n" "${screensize% *}" "$y_max"
   exit 1
   }
 }
@@ -178,9 +217,10 @@ _eol=`echo -ne "\033[0K"`  # clear trash until EOL
 
 # the cool functions
 gotoxy(){ echo -ne "\033[$2;$1H" ;}
-ClearEnd(){ echo -ne "\033[0J"; }
+clearEnd(){ echo -ne "\033[0J"; }
 
 ColorOnOff(){
+  [ "$f_color" != 1 ] && return
   if [ "$cN" ]
   then unset cN cR cY cW
   else cN=`echo -ne "\033[m"`      # normal
@@ -192,9 +232,11 @@ ColorOnOff(){
 }
 
 TopTitle(){ gotoxy 1 1 
+  [ "$f_i" != 1 ] && return
   echo -n  "${cY}[.]${cN}"; echo -n $"quit"  
   echo -n " ${cY}[0]${cN}"; echo -n $"reset"
-  echo -n " ${cY}[*]${cN}"; echo -n $"color"
+  [ "$f_color" == 1 ] &&
+    echo -n " ${cY}[*]${cN}"; echo -n $"color"
   if [ $STATUS -eq 0 ]
   then echo -n " ${cY}[/]${cN}"; echo -n $"progs"
   else echo '            '
@@ -208,19 +250,25 @@ ProgsTitle(){ gotoxy 1 1
   echo $"press the letters to (un)select the programs"
 }
 
-DoMenu(){
+doMenu(){
   eval Menui=(\"\${$1[@]}\"); menu_n=$((${#Menui[*]}-1))  # ini
-  gotoxy $x_hist $y_hist ; echo "   $cR.oO($cN$REPLIES$cR)$cN$_eol"   # history
-  gotoxy $x_menu $y_menu ; echo "$cY${Menui[0]}:$cN$_eol" # title
-  for i in `seq $menu_n`                                  # itens
-  do echo "  $cW$i$cN) ${Menui[$i]}$_eol"; i=$((i+1)); done
-  ClearEnd                                                # prompt
-  gotoxy $x_prompt $y_prompt ; echo -ne "$cR[1-$menu_n]:$cN $_eol"
-  read -n 1
+  
+  if [ "$f_i" == 1 ]; then 
+    gotoxy $x_hist $y_hist
+    echo "   $cR.oO($cN$REPLIES$cR)$cN$cR($cN$uins$cR)$cN$_eol"   # history
+    gotoxy $x_menu $y_menu ; echo "$cY${Menui[0]}:$cN$_eol" # title
+    for i in `seq $menu_n`                                  # itens
+    do echo "  $cW$i$cN) ${Menui[$i]}$_eol"; i=$((i+1)); done
+    clearEnd                                                # prompt
+    gotoxy $x_prompt $y_prompt ; echo -ne "$cR[1-$menu_n]:$cN $_eol"
+    read -n 1
+  else
+    doNextHist; REPLY=$hist
+  fi
 }
 
 Menu(){
-  DoMenu "$1"
+  doMenu "$1"
   case "$REPLY" in
     [1-9])if [ "$REPLY" -gt "$menu_n" ]
           then Menu "$1" ; else REPLIES="$REPLIES$REPLY"; fi;;
@@ -231,16 +279,36 @@ Menu(){
   [ "${STATUS/[034]/}" ] || continue         # 0,3,4: escape status
 }
 
-GetChar(){ gotoxy $x_prompt2 $y_prompt
-  echo -n "${cR}"; echo -n $"which one?"; echo -n " $cN"
-  read -n 1 -r USERINPUT; uin="$USERINPUT"; F_ESCCHAR=1
+doNextHist(){
+  hists=${hists#?}            #deleting previous item
+  hist=${hists:0:1}
+  [ "$hist" ] || hist='.'
+}
+
+doNextHistArg(){
+  histargs=${histargs#*¤}
+  histarg=${histargs%%¤*}
+}
+
+getChar(){ gotoxy $x_prompt2 $y_prompt
+  if [ "$f_i" == 1 ]
+  then echo -n "${cR}"; echo -n $"which one?"; echo -n " $cN"
+       read -n 1 -r USERINPUT; uin="$USERINPUT";
+  else doNextHistArg; uin=$histarg
+  fi
+  uins="$uins¤$uin"
+  F_ESCCHAR=1
 }
 
 
 #TODO 1st of all, take out repeated chars
-GetCharList(){ gotoxy $x_prompt2 $y_prompt
-  echo -n "${cR}"; echo -n $"which?"; echo -n " $cN"
-  read -r USERINPUT; uin="$USERINPUT"
+getCharList(){ gotoxy $x_prompt2 $y_prompt
+  if [ "$f_i" == 1 ]
+  then echo -n "${cR}"; echo -n $"which?"; echo -n " $cN"
+       read -r USERINPUT; uin="$USERINPUT"
+  else doNextHistArg; uin=$histarg
+  fi
+  uins="$uins¤$uin"
   # putting not special chars in not special places: [][^-]
   [ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
   [ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
@@ -251,16 +319,26 @@ GetCharList(){ gotoxy $x_prompt2 $y_prompt
   F_ESCCHARLIST=1
 }
 
-GetString(){ gotoxy $x_prompt2 $y_prompt
-  echo -ne "${cR}txt:$cN " ; read -r USERINPUT ; uin="$USERINPUT"
+getString(){ gotoxy $x_prompt2 $y_prompt
+  if [ "$f_i" == 1 ]
+  then echo -ne "${cR}txt:$cN " ; read -r USERINPUT ; uin="$USERINPUT"
+  else doNextHistArg; uin=$histarg
+  fi
+  uins="$uins¤$uin"
   F_ESCCHAR=1
 }
 
-GetNumber(){ gotoxy $x_prompt2 $y_prompt
-  echo -ne "${cR}N=$cN$_eol" ; read USERINPUT
-  uin="${USERINPUT//[^0-9]/}"               # extracting !numbers
+getNumber(){ gotoxy $x_prompt2 $y_prompt
+  if [ "$f_i" == 1 ]
+  then echo -ne "${cR}N=$cN$_eol" ; read USERINPUT ; uin="$USERINPUT"
+  else doNextHistArg; uin=$histarg
+  fi
+  uin="${uin//[^0-9]/}"                     # extracting !numbers
   [ "${uin/666/x}" == 'x' ] && { gotoxy 36 1 ; echo "$cR]:|$cN" ; } # ee
-  [ "$uin" ] || GetNumber                   # there _must_ be a number
+  if [ "$uin" ]
+  then uins="$uins¤$uin"
+  else getNumber                            # there _must_ be a number
+  fi
 }
 
 EscChar(){ # escape userinput chars as .,*,[ and friends
@@ -289,29 +367,29 @@ EscCharList(){
   [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}" # escaping escape
 }
 
-Reset(){ gotoxy $x_regexp $y_regexp
-  unset REPLIES HUMAN Regexp[*]
-  for p in ${progs[*]}; do printf " RegExp %-6s: $_eol\n" "$p"; done
+Reset(){ gotoxy $x_regex $y_regex
+  unset REPLIES uins HUMAN Regex[*]
+  for p in ${progs[*]}; do printf " RegEx %-6s: $_eol\n" "$p"; done
 }
 
-ShowRegExp(){ gotoxy $x_regexp $y_regexp
+showRegEx(){ gotoxy $x_regex $y_regex
   local i save="$uin"
   for i in `seq 0 $((${#progs[*]}-1))`      # for each program
-  do [ "$F_ESCCHAR"     == '1' ] && EscChar     ${progs[$i]}
-     [ "$F_ESCCHARLIST" == '1' ] && EscCharList ${progs[$i]}
+  do [ "$F_ESCCHAR"     == 1 ] && EscChar     ${progs[$i]}
+     [ "$F_ESCCHARLIST" == 1 ] && EscCharList ${progs[$i]}
      case "$1" in                           # check status
-       S2) eval Regexp[$i]="\${Regexp[$i]}\${S2_${progs[$i]}[$REPLY]/@/$uin}";;
-       S0) Regexp[$i]="${Regexp[$i]}${S0_re[$REPLY]}";;
-       S1) Regexp[$i]="${Regexp[$i]}${uin:-${S1_re[$REPLY]}}";;
-      S12) Regexp[$i]="${Regexp[$i]}$TMP_RE";;
+       S2) eval Regex[$i]="\${Regex[$i]}\${S2_${progs[$i]}[$REPLY]/@/$uin}";;
+       S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
+       S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
+      S12) Regex[$i]="${Regex[$i]}$TMP_RE";;
      esac
-     printf " RegExp %-6s: %s\n" "${progs[$i]}" "${Regexp[$i]}"
+     printf " RegEx %-6s: %s\n" "${progs[$i]}" "${Regex[$i]}"
      uin="$save"
   done
   unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST
 }
 
-SyncActiveProgs(){
+syncActiveProgs(){
   local p i=0 ps=" ${progs[*]} "
 
   for i in `seq 0 $((${#allprogs[*]}-1))`   # for each program
@@ -320,7 +398,7 @@ SyncActiveProgs(){
   done
 }
 
-SyncNewProgs(){
+syncNewProgs(){
   local i i2=0
   
   unset progs[*]
@@ -345,7 +423,7 @@ done
 }
 
 
-ShowProgs(){ gotoxy 1 3
+showProgs(){ gotoxy 1 3
   local i i2 n tot=${#allprogs[*]} 
   n=$((tot/2)) 
   [ "$((tot%2))" -eq 1 ] && n=$((n+1)) 
@@ -370,9 +448,9 @@ ShowProgs(){ gotoxy 1 3
   echo ; printf $"choose"; echo -n ": $_eol" ; read -n 1
 
   case "$REPLY" in
-   [a-y]) ProgsOnOff $REPLY; ShowProgs;;
-       .) SyncNewProgs;;
-	   *) ShowProgs;;
+   [a-y]) ProgsOnOff $REPLY; showProgs;;
+       .) syncNewProgs;;
+	   *) showProgs;;
   esac  
 }
 
@@ -389,7 +467,7 @@ case ${STATUS:=0} in
     STATUS=1
     Menu S0_txt
     HUMAN="$S0_txt ${S0_txt[$REPLY]}"
-    ShowRegExp S0
+    showRegEx S0
     STATUS=1
     ;;
  1) TopTitle
@@ -398,35 +476,39 @@ case ${STATUS:=0} in
     HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]}"
     [ "$REPLY" -eq 2 ] && STATUS=12 && continue
     [ "$REPLY" -eq 3 ] && STATUS=12 && continue
-    [ "$REPLY" -eq 5 ] && GetChar
-    [ "$REPLY" -eq 6 ] && GetCharList
-    [ "$REPLY" -eq 7 ] && GetCharList negated
+    [ "$REPLY" -eq 5 ] && getChar
+    [ "$REPLY" -eq 6 ] && getCharList
+    [ "$REPLY" -eq 7 ] && getCharList negated
     STATUS=2
-    [ "$REPLY" -eq 8 ] && GetString && STATUS=1
+    [ "$REPLY" -eq 8 ] && getString && STATUS=1
     [ "$REPLY" -eq 9 ] && STATUS=1
-    ShowRegExp S1
+    showRegEx S1
     ;;
 12) Menu S12_txt
     TMP_RE="[$TMP_RE${S12_re[$REPLY]}]"
-    ShowRegExp S12
+    showRegEx S12
     STATUS=2
     ;;
  2) Menu S2_txt
-    [ "$REPLY" -ge 5 ] && GetNumber
+    [ "$REPLY" -ge 5 ] && getNumber
     repetition_txt=$"time(s)"
     HUMAN="$HUMAN, ${S2_txt[$REPLY]} $repetition_txt"
-    ShowRegExp S2
+    showRegEx S2
     STATUS=1
     ;;
- 3) echo -ne "\033[0G" ; ClearEnd
-    echo -e "\n  ${HUMAN:-no RegExp}.\n"
+ 3) echo -ne "\033[0G"
+    noregex_txt=$"no RegEx"
+    if [ "$f_i" == 1 ]
+    then clearEnd; echo -e "\n  ${HUMAN:-$noregex_txt}.\n"
+    else gotoxy 0 $y_prompt
+    fi
     exit 0
     ;;
  4) 
-    SyncActiveProgs
-	gotoxy 1 1 ; ClearEnd
+    syncActiveProgs
+	gotoxy 1 1 ; clearEnd
 	ProgsTitle
-    ShowProgs
+    showProgs
 	ScreenSize
 	clear
     STATUS=0

@@ -1,9 +1,10 @@
-NAME = txt2regexp
-VERSION	= 0.1
+NAME = txt2regex
+VERSION	= 0.2
 
+SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
-FILES = Makefile README COPYRIGHT TODO $(NAME).sh $(PODIR)
+FILES = Makefile README Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR)
 
 
 DESTDIR = 
@@ -14,7 +15,7 @@ TARGET=all
 
 clean:
 	rm -f po/messages po/*.{mo,old,tmp} $(NAME)
-	rm -rf po/pt_BR
+	find po -mindepth 1 -type d -exec rm -rf {} \;
 
 check-po-dir: 
 	@if [ ! -d $(PODIR) ]; then \
@@ -24,7 +25,7 @@ check-po-dir:
 
 pot: check-po-dir
 	cd $(PODIR) && \
-	bash --dump-po-strings ../$(NAME).sh > $(NAME).pot
+	bash --dump-po-strings ../$(SHSKEL) > $(NAME).pot
 
 # all the later sed festival to strip po-header discarded by bash
 # --dump-po-strings...
@@ -57,9 +58,9 @@ check-po: check-po-dir
 		msgfmt -vv $$pot || exit 1; \
 	done
 
-update-po: pot po mo check-po
+update-po: pot po mo
 
-tgz: clean
+tgz: clean check-po
 	mkdir $(DISTDIR) && \
 	cp -a $(FILES) $(DISTDIR) && \
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
@@ -73,6 +74,6 @@ install: mo
 		[ -d $$modir ] || mkdir -p $$modir; \
 		install -m644 $(PODIR)/$$pot $$modir/$(NAME).mo; \
 	done; \
-	sed 's,^\(TEXTDOMAINDIR=\).*,\1$(LOCALEDIR),' $(NAME).sh > $(BINDIR)/$(NAME) && \
+	sed 's,^\(TEXTDOMAINDIR=\).*,\1$(LOCALEDIR),' $(SHSKEL) > $(BINDIR)/$(NAME) && \
 	chmod +x $(BINDIR)/$(NAME) && \
 	echo "program '$(NAME)' installed. just run $(BINDIR)/$(NAME)"
