@@ -1,7 +1,6 @@
 txt2regex TODO:
 
   - support (grouping|and|alternation)
-  - FM screenshot
   - describe some nice features as [][\^-]
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]

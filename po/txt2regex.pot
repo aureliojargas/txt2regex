@@ -1,178 +1,217 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: txt2regex 0.3.1\n"
-"POT-Creation-Date: 2001-08-01 14:51 BRT\n"
+"Project-Id-Version: txt2regex 0.5\n"
+"POT-Creation-Date: 2001-08-28 10:59 BRT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-#: ../txt2regex-0.3.1.sh:98
+#: ../txt2regex-0.5.sh:104
 msgid ""
-"usage: txt2regex [--history <value>] [--nocolor|--whitebg|--all]\n"
+"usage: txt2regex [--nocolor|--whitebg|--all]\n"
+"       txt2regex --showmeta|--showinfo <program>\n"
+"       txt2regex --history <value>\n"
 "\n"
 "OPTIONS (they are default OFF):\n"
 "\n"
-"  --all              works with all registered programs\n"
-"  --nocolor          self-explanatory\n"
-"  --whitebg          colors adjusted to white background terminals\n"
-"  --history <value>  prints to STDOUT a RegEx from a history data\n"
+"  --all                 works with all registered programs\n"
+"  --nocolor             self-explanatory\n"
+"  --whitebg             colors adjusted to white background terminals\n"
+"  --showmeta            prints a complete metachar table for all programs\n"
+"  --showinfo <program>  prints regex info about the program\n"
+"  --history <value>     prints to STDOUT a RegEx from a history data\n"
 "\n"
 "for more details about the options, read the README file."
 msgstr ""
-#: ../txt2regex-0.3.1.sh:143
+#: ../txt2regex-0.5.sh:157
 msgid "start to match"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:143
+#: ../txt2regex-0.5.sh:157
 msgid "on the line beginning"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:144
+#: ../txt2regex-0.5.sh:158
 msgid "in any part of the line"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:146
+#: ../txt2regex-0.5.sh:160
 msgid "followed by"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:146
+#: ../txt2regex-0.5.sh:160
 msgid "any character"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:147
+#: ../txt2regex-0.5.sh:161
 msgid "a specific character"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:147
+#: ../txt2regex-0.5.sh:161
 msgid "a literal string"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:148
+#: ../txt2regex-0.5.sh:162
 msgid "an allowed characters list"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:148
+#: ../txt2regex-0.5.sh:162
 msgid "a forbidden characters list"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:149
+#: ../txt2regex-0.5.sh:163
 msgid "a special combination"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:149
+#: ../txt2regex-0.5.sh:163
 msgid "a POSIX combination (locale aware)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:150
+#: ../txt2regex-0.5.sh:164
 msgid "a ready RegEx (not implemented)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:150
+#: ../txt2regex-0.5.sh:164
 msgid "anything"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:152
+#: ../txt2regex-0.5.sh:166
 msgid "type of the letters"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:152
+#: ../txt2regex-0.5.sh:166
 msgid "uppercase only"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:153
+#: ../txt2regex-0.5.sh:167
 msgid "lowercase only"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:153
+#: ../txt2regex-0.5.sh:167
 msgid "upper and lowercase"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:155
+#: ../txt2regex-0.5.sh:169
 msgid "how many times (repetition)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:155
+#: ../txt2regex-0.5.sh:169
 msgid "one"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:156
+#: ../txt2regex-0.5.sh:170
 msgid "zero or one (optional)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:156
+#: ../txt2regex-0.5.sh:170
 msgid "zero or more"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:157
+#: ../txt2regex-0.5.sh:171
 msgid "one or more"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:157
+#: ../txt2regex-0.5.sh:171
 msgid "exactly N"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:157
+#: ../txt2regex-0.5.sh:171
 msgid "up to N"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:158
+#: ../txt2regex-0.5.sh:172
 msgid "at least N"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:160
+#: ../txt2regex-0.5.sh:174
 msgid "uppercase letters"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:161
+#: ../txt2regex-0.5.sh:175
 msgid "lowercase letters"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:162
+#: ../txt2regex-0.5.sh:176
 msgid "numbers"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:163
+#: ../txt2regex-0.5.sh:177
 msgid "underscore"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:164
+#: ../txt2regex-0.5.sh:178
 msgid "space"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:165
+#: ../txt2regex-0.5.sh:179
 msgid "TAB"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:168
+#: ../txt2regex-0.5.sh:182
 msgid "letters"
 msgstr ""
-##duplicated##: ../txt2regex-0.3.1.sh:169
-##duplicated##: ../txt2regex-0.3.1.sh:170
-##duplicated##: ../txt2regex-0.3.1.sh:171
-#: ../txt2regex-0.3.1.sh:172
+##duplicated##: ../txt2regex-0.5.sh:183
+##duplicated##: ../txt2regex-0.5.sh:184
+##duplicated##: ../txt2regex-0.5.sh:185
+#: ../txt2regex-0.5.sh:186
 msgid "letters and numbers"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:173
+#: ../txt2regex-0.5.sh:187
 msgid "hexadecimal numbers"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:174
+#: ../txt2regex-0.5.sh:188
 msgid "whitespaces (space and TAB)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:175
+#: ../txt2regex-0.5.sh:189
 msgid "graphic chars (not-whitespace)"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:270
+#: ../txt2regex-0.5.sh:328
+msgid "NOTE: . [] [^] and * are the same on all programs."
+msgstr ""
+#: ../txt2regex-0.5.sh:332
+msgid "NO"
+msgstr ""
+##duplicated##: ../txt2regex-0.5.sh:332
+#: ../txt2regex-0.5.sh:341
+msgid "unknown program"
+msgstr ""
+#: ../txt2regex-0.5.sh:342
+msgid "YES"
+msgstr ""
+##duplicated##: ../txt2regex-0.5.sh:343
+#: ../txt2regex-0.5.sh:349
+msgid "program"
+msgstr ""
+#: ../txt2regex-0.5.sh:349
+msgid "metas"
+msgstr ""
+#: ../txt2regex-0.5.sh:349
+msgid "esc meta"
+msgstr ""
+#: ../txt2regex-0.5.sh:349
+msgid "need esc"
+msgstr ""
+#: ../txt2regex-0.5.sh:349
+msgid "\\t in []"
+msgstr ""
+#: ../txt2regex-0.5.sh:349
+msgid "[:POSIX:]"
+msgstr ""
+#: ../txt2regex-0.5.sh:375
 msgid ""
 "error:\n"
 "  your screen has %s lines and should have at least %s to this\n"
 "  program fit on it. increase the number of lines or select\n"
 "  less programs to show the RegEx.\\n\\n"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:314
+#: ../txt2regex-0.5.sh:394
 msgid "quit"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:315
+#: ../txt2regex-0.5.sh:395
 msgid "reset"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:317
+#: ../txt2regex-0.5.sh:397
 msgid "color"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:319
+#: ../txt2regex-0.5.sh:399
 msgid "progs"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:323
-msgid "%s unknown  %s not supported"
+#: ../txt2regex-0.5.sh:403
+msgid "unknown"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:368
+#: ../txt2regex-0.5.sh:403
+msgid "not supported"
+msgstr ""
+#: ../txt2regex-0.5.sh:448
 msgid "which one?"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:380
+#: ../txt2regex-0.5.sh:460
 msgid "which?"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:554
+#: ../txt2regex-0.5.sh:632
 msgid "exit"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:555
+#: ../txt2regex-0.5.sh:633
 msgid "press the letters to (un)select the items"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:653
+#: ../txt2regex-0.5.sh:731
 msgid "repeated"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:654
+#: ../txt2regex-0.5.sh:732
 msgid "times"
 msgstr ""
-#: ../txt2regex-0.3.1.sh:661
+#: ../txt2regex-0.5.sh:739
 msgid "no RegEx"
 msgstr ""

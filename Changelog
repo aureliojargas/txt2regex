@@ -1,6 +1,9 @@
 txt2regex changelog
 -------------------
 
+20010828 v0.5:
+  - new command line options: --showmeta, --showinfo
+  
 20010802 v0.4:
   - updated polish translations
   - added postgres, javascript, vbscript and procmail support

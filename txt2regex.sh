@@ -20,8 +20,10 @@
 #       php: 4.0.6
 #       postgres: psql (PostgreSQL) 7.1.2
 #       procmail: procmail v3.15.1 2001/01/08
+#       python: Python 2.1
 #       sed: GNU sed version 3.02.80
 #       tcl: 8.3
+#       vi: Nvi 1.79 (10/23/96)
 #       vim: VIM - Vi IMproved 5.8 (2001 May 31)
 #
 # $STATUS:
@@ -61,13 +63,16 @@
 #          ++ ax_prog: new item: escape char - escape is ok now
 #          ++ improved meta knowledge on perl, tcl and gawk
 # 20010802 v0.4
+# 20010821 ++ ShowMeta(), new option: --showmeta
+# 20010824 ++ getMeta(), ShowInfo(), new option: --showinfo, $cR color
+# 20010828 ++ getItemIndex(), getLargestItem()
+#          <> Clear(): using \033c, ALL: using for((;;)) ksh syntax
+#          <> vi == Nvi
+# 20010828 v0.5
 #
 # TODO negated POSIX|special combination (Choice hack)
 # TODO on --history, just show the final RE at once?
-# TODO add expr, oawk, nawk, MKS awk, flex
-# TODO s/vi/n&/ - can't reach real vi
-# TODO vim with NO magic (quote bram)
-# TODO use new 'for' ksh syntax instead i=$((i+1))
+# TODO add mysql, expr, oawk, nawk, MKS awk, flex
 # ---- (user's requests) ----
 # TODO undo last step (Bence Fejervari @ .hu)
 # TODO std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
@@ -98,14 +103,18 @@ esac
 
 Usage(){
   echo $"\
-usage: txt2regex [--history <value>] [--nocolor|--whitebg|--all]
+usage: txt2regex [--nocolor|--whitebg|--all]
+       txt2regex --showmeta|--showinfo <program>
+       txt2regex --history <value>
 
 OPTIONS (they are default OFF):
 
-  --all              works with all registered programs
-  --nocolor          self-explanatory
-  --whitebg          colors adjusted to white background terminals
-  --history <value>  prints to STDOUT a RegEx from a history data
+  --all                 works with all registered programs
+  --nocolor             self-explanatory
+  --whitebg             colors adjusted to white background terminals
+  --showmeta            prints a complete metachar table for all programs
+  --showinfo <program>  prints regex info about the program
+  --history <value>     prints to STDOUT a RegEx from a history data
 
 for more details about the options, read the README file."
   exit 1
@@ -126,6 +135,8 @@ do case "$1" in
                [ "${hists#0}" == "${histargs#¤}" ] && unset histargs ;;
     --nocolor) f_color=0 ;;
     --whitebg) f_whitebg=1 ;;
+   --showmeta) f_showmeta=1 ;;
+   --showinfo) [ "$2" ] || Usage; infoprog="$2"; shift; f_showinfo=1 ;;
         --all) f_allprogs=1 ;;
             *) Usage;;
    esac
@@ -140,6 +151,8 @@ progs=(emacs gawk perl php python sed vim)
 # the RegEx show
 allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk perl php postgres procmail python sed tcl vbscript vi vim)
 [ "$f_allprogs" == 1 ] && progs=(${allprogs[@]})
+allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
+
 
 # texts on var because i18n inside arrays is not possible
 S0_TXT0=$"start to match"; S0_TXT1=$"on the line beginning"
@@ -218,7 +231,7 @@ S2_emacs=(     '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_lisp=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_tcl=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_expect=(    '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_vi=(        '' '' '\?' '*' '\+'  '__'    '__'      '__'   )
+S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
 #63# cause on table 6-1 it seems that the vi part is wrong
 
 ### mastering regular expressions:
@@ -233,37 +246,124 @@ S2_vi=(        '' '' '\?' '*' '\+'  '__'    '__'      '__'   )
 # php 4.0.3pl1 docs (POSIX 1003.2 extended regular expressions)
 
 
-
 # tst: \/_$[]{}()|+?^_/p , [gm]awk=egrep, lisp=emacs
 # [[:abc:]]: Invalid character class name
 #details,grouping,alternatives,escape meta,escape normal,escape inside [],[:POSIX:],TAB inside []
 #                              \.*[]{}()|+?^$   ,=tested  space=pending
-ax_ed=(        ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_vim=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
+
 ax_sed=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
+ax_ed=(        ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
 ax_grep=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' ',' 'P' ',')
-ax_find=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,+?,,' ',' ',' ',')
+ax_vim=(       ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
 ax_egrep=(     ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' ',' 'P' ',')
-ax_procmail=(  ''   '(,)'     '|' '\'  '\.*[,,,()|+?,,' ',' ',' ',')
 ax_php=(       ''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' ',' 'P' '\t')
 ax_python=(    ''   '(,)'     '|' '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
 ax_lex=(       ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' ' ' ' ' ' ')
 ax_perl=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
-ax_gawk=(      ''   '(,)'     '|' '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
 ax_postgres=(  ''   '(,)'     '|' '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
 ax_javascript=(''   '(,)'     '|' '\'  '\.*[,{,(,|+?^$' '\' ',' '\t')
 ax_vbscript=(  ''   '(,)'     '|' '\'  '\.*[ { ( |+?  ' '\' ' ' '\t')
+ax_gawk=(      ''   '(,)'     '|' '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
+ax_procmail=(  ''   '(,)'     '|' '\'  '\.*[,,,()|+?,,' ',' ',' ',')
 ax_mawk=(      ''   '(,)'     '|' '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
 ax_awk=(       ''   '(,)'     '|' '\'  '\.*[   (,|+?  ' '\' ',' '\t')
+ax_find=(      ''  '\(,\)'   '\|' '\'  '\.*[,,,,,,+?,,' ',' ',' ',')
 ax_emacs=(     ''  '\(,\)'   '\|' '\'  '\.*[      +?  ' ',' ',' ',')
 ax_lisp=(      '' '\\(,\\)' '\\|' '\\' '\.*[      +?  ' ',' ',' ',')
 ax_tcl=(       ''   '(,)'     '|' '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
 ax_expect=(    ''   '(,)'     '|' '\'  '\.*[   ( |+?  ' ' ' ' ' ' ')
-ax_vi=(        ''  '\(,\)'   '!!' '\'  '\.*[          ' ' ' ' ' ' ')
+ax_vi=(        ''  '\(,\)'   '!!' '\'  '\.*[          ' ',' 'P' ',')
 #194# emacs: a backslash ... it is completely unspecial
 #78#  emacs: it uses \s for special "syntax classes"
 #189# tcl: withing a class, a backslash is completely unspecial
 # man procmailrc: does not support named character classes.
+
+
+ColorOnOff(){
+  # the colors: Normal, Prompt, Bold, Important
+  [ "$f_color" != 1 ] && return
+  if [ "$cN" ]; then
+    unset cN cP cB cI cR
+  elif [ "$f_whitebg" != 1 ]; then
+    cN=`echo -ne "\033[m"`      # normal
+    cP=`echo -ne "\033[1;31m"`  # red
+    cB=`echo -ne "\033[1;37m"`  # white
+    cI=`echo -ne "\033[1;33m"`  # yellow
+    cR=`echo -ne "\033[7m"`     # reverse
+  else
+    cN=`echo -ne "\033[m"`      # normal
+    cP=`echo -ne "\033[31m"`    # red
+    cB=`echo -ne "\033[32m"`    # green
+    cI=`echo -ne "\033[34m"`    # blue
+    cR=`echo -ne "\033[7m"`     # reverse
+  fi
+}
+
+sek(){
+  local H='<' s='++' a=1 z=$1; [ "$2" ] && { a=$1; z=$2; }
+  [ $a -gt $z ] && { H='>'; s='--'; }; for ((i=$a;i$H=$z;i$s)); do echo $i; done
+}
+
+getItemIndex(){
+  local i=0 item="$1"; shift; while [ "$1" ]; do
+  [ "$1" == "$item" ] && { echo $i; return; }; i=$((i+1)); shift; done
+}
+
+getLargestItem(){
+  local mjr; while [ "$1" ]; do
+  [ ${#1} -gt ${#mjr} ] && mjr="$1"; shift; done; echo $mjr
+}
+
+getMeta(){
+  local m var=$1 i=$2; m=`eval echo \\${$var[$i]//[@!,_]/}`
+  echo "${m//\\\\{[01]*}"  # needed for vi
+}
+
+ShowMeta(){
+  local i j prog progsize=`getLargestItem "${allprogs[@]}"`
+  for ((i=0 ;i<${#allprogs[@]};i++)); do
+    prog=${allprogs[$i]}; printf "\n%${#progsize}s" "$prog"
+    for j in 4 2 5; do printf "%8s" `getMeta S2_$prog $j`; done
+    for j in 2 1  ; do printf "%8s" `getMeta ax_$prog $j`; done
+  done
+  printf "\n\n%s\n\n" $"NOTE: . [] [^] and * are the same on all programs."
+}
+
+ShowInfo(){
+  local index ver posix=$"NO" tabinlist=$"NO" prog=$1
+  local j t1 t2 t3 t4 t5 t6 txtsize escmeta needesc metas
+  local -a data txt
+
+  # getting data
+  index=`getItemIndex "$prog" "${allprogs[@]}"`
+  ver="${allversions[$index]}"
+  escmeta=`getMeta ax_$prog 3`
+  needesc=`getMeta ax_$prog 4`
+  [ "$needesc" ] || { printf "%s: '%s'\n" $"unknown program" "$prog"; return; }
+  [ "`getMeta ax_$prog 6`" == 'P'  ] && posix=$"YES"
+  [ "`getMeta ax_$prog 7`" == '\t' ] && tabinlist=$"YES"
+  metas=$(      for j in 4 2 5; do getMeta S2_$prog $j; done)
+  metas="$metas $(for j in 2 1; do getMeta ax_$prog $j; done)"
+  metas=". [] [^] * `echo $metas`"
+
+  # populating cool i18n arrays
+  t1=$"program" t2=$"metas" t3=$"esc meta" t4=$"need esc" t5=$"\t in []" t6=$"[:POSIX:]"
+  data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
+  txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
+
+  # show me! show me! show me!
+  ColorOnOff
+  echo ; txtsize=`getLargestItem "${txt[@]}"`
+  for ((i=0 ;i<${#txt[@]};i++)); do
+    printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
+  done ; echo
+}
+
+
+[ "$f_showmeta" ] && { ShowMeta; exit 0 ;}
+[ "$f_showinfo" ] && { ShowInfo "$infoprog"; exit 0 ;}
+
+
 
 ScreenSize(){
 # screen size/positioning issues
@@ -284,36 +384,11 @@ ScreenSize(){
 
 _eol=`echo -ne "\033[0K"`  # clear trash until EOL
 
-# the cool functions
-gotoxy(){ echo -ne "\033[$2;$1H" ;}
+# the cool control chars functions
+gotoxy(){   echo -ne "\033[$2;$1H" ;}
 clearEnd(){ echo -ne "\033[0J"; }
-Clear(){ gotoxy 1 1; clearEnd; }
-
-
-sek(){
-  local H='<' s='++' a=1 z=$1; [ "$2" ] && { a=$1; z=$2; }
-  [ $a -gt $z ] && { H='>'; s='--'; }; for ((i=$a;i$H=$z;i$s)); do echo $i; done
-}
-
-
-ColorOnOff(){
-  # the colors: Normal, Prompt, Bold, Important
-  [ "$f_color" != 1 ] && return
-  if [ "$cN" ]; then
-    unset cN cP cB cI
-  elif [ "$f_whitebg" != 1 ]; then
-    cN=`echo -ne "\033[m"`      # normal
-    cP=`echo -ne "\033[1;31m"`  # red
-    cB=`echo -ne "\033[1;37m"`  # white
-    cI=`echo -ne "\033[1;33m"`  # yellow
-  else
-    cN=`echo -ne "\033[m"`      # normal
-    cP=`echo -ne "\033[31m"`    # red
-    cB=`echo -ne "\033[32m"`    # green
-    cI=`echo -ne "\033[34m"`    # blue
-  fi
-  TopTitle
-}
+Clear(){    echo -ne "\033c"; }
+#Clear(){ gotoxy 1 1; clearEnd; }
 
 TopTitle(){ gotoxy 1 1
   [ "$f_i" != 1 ] && return
@@ -325,8 +400,9 @@ TopTitle(){ gotoxy 1 1
   then echo -n " ${cI}[/]${cN}"; echo -n $"progs"
   else echo '            '
   fi
-  gotoxy 44 ;
-  printf $"%s unknown  %s not supported" "${cB}__$cN" "$cB!!$cN"
+  gotoxy 55 ;
+  #printf "%s %s  %s %s" "${cB}__$cN" $"unknown" "$cB!!$cN" $"not supported"
+  printf "%s %s" "$cB!!$cN" $"not supported"
 }
 
 doMenu(){
@@ -351,15 +427,15 @@ Menu(){
   case "$REPLY" in
     [1-9])if [ "$REPLY" -gt "$menu_n" ]
           then Menu "$1" ; else REPLIES="$REPLIES$REPLY"; fi;;
-        .)STATUS=3 ;; 0)STATUS=0 ;; \*)ColorOnOff; Menu "$1";;
+        .)STATUS=3 ;; 0)STATUS=0 ;; \*)ColorOnOff; TopTitle; Menu "$1";;
         /)STATUS=4 ;;
         *)Menu "$1";;
   esac
-  [ "${STATUS/[034]/}" ] || continue         # 0,3,4: escape status
+  [ "${STATUS/[034]/}" ] || continue             # 0,3,4: escape status
 }
 
 doNextHist(){
-  hists=${hists#?}            #deleting previous item
+  hists=${hists#?}                               # deleting previous item
   hist=${hists:0:1}
   [ "$hist" ] || hist='.'
 }
@@ -393,7 +469,7 @@ getCharList(){ gotoxy $x_prompt2 $y_prompt
   [ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
   [ "${uin/[//}" != "$uin" ] && uin="[${uin/[/}"
   [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
-  [ "$1" ] && uin="^$uin"                   # if any $1, negated list
+  [ "$1" ] && uin="^$uin"                        # if any $1, negated list
   uin="[$uin]"
   F_ESCCHARLIST=1
 }
@@ -412,11 +488,11 @@ getNumber(){ gotoxy $x_prompt2 $y_prompt
   then echo -ne "${cP}N=$cN$_eol" ; read USERINPUT ; uin="$USERINPUT"
   else doNextHistArg; uin=$histarg
   fi
-  uin="${uin//[^0-9]/}"                     # extracting !numbers
+  uin="${uin//[^0-9]/}"                          # extracting !numbers
   [ "${uin/666/x}" == 'x' ] && { gotoxy 36 1 ; echo "$cP]:|$cN" ; } # ee
   if [ "$uin" ]
   then uins="$uins¤$uin"
-  else getNumber                            # there _must_ be a number
+  else getNumber                                 # there _must_ be a number
   fi
 }
 
@@ -465,57 +541,55 @@ getHasPosix(){
 
 escChar(){ # escape userinput chars as .,*,[ and friends
   local c x x2 z i ui esc
-  eval esc=\"\${ax_${progs[$1]}[3]}\"       # get escape char
+  eval esc=\"\${ax_${progs[$1]}[3]}\"            # get escape char
   ui="$uin"
-  eval x=\"\${ax_${progs[$1]}[4]}\"         # list of escapable chars
-  x="${x//[, ]/}"                           # , and space are trash
-  [ "${ui/[\\\\$x]/}" != "$ui" ] && {       # test for speed up
-    for i in `sek 0 $((${#ui}-1))`          # for each user char
+  eval x=\"\${ax_${progs[$1]}[4]}\"              # list of escapable chars
+  x="${x//[, ]/}"                                # , and space are trash
+  [ "${ui/[\\\\$x]/}" != "$ui" ] && {            # test for speed up
+    for ((i=0 ;i<${#ui};i++))                    # for each user char
     do c="${ui:$i:1}"
-       case "$c" in                         # special bash chars
+       case "$c" in                              # special bash chars
          [?*#%])x2="${x/[$c]/}";;
            [/}])x2="${x/\\$c/}";;
            [\\])x2="${x/$c$c/}";;
               *)x2="${x/$c/}"  ;;
        esac
-       [ "$x2" != "$x" ] && c="$esc$c"      # escaping
+       [ "$x2" != "$x" ] && c="$esc$c"           # escaping
        z="$z$c"
     done
-    uin="$z"                                # ah, the escaped string
+    uin="$z"                                     # ah, the escaped string
   }
 }
 
 escCharList(){
   local x esc ; eval x=\"\${ax_${progs[$1]}[5]}\"
-  eval esc=\"\${ax_${progs[$1]}[3]}\"           # get escape char
-  [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}" # escaping escape
+  eval esc=\"\${ax_${progs[$1]}[3]}\"            # get escape char
+  [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"  # escaping escape
 }
 
 Reset(){ gotoxy $x_regex $y_regex
   unset REPLIES uins HUMAN Regex[*]
   local p
 
-  # subroutine to calculate the maximun progs name length - global pnamesize
-  local i a z=0 ; for i in `sek 0 $((${#progs[@]}-1))`
-  do a=${#progs[$i]}; [ $a -gt $z ] && z=$a ; done; pnamesize=$z
-
-  for p in ${progs[*]}; do printf " RegEx %-${pnamesize}s: $_eol\n" "$p"; done
+  # global maxprogname
+  maxprogname=`getLargestItem "${progs[@]}"`     # global var
+  for p in ${progs[*]}; do printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"; done
 }
 
 showRegEx(){ gotoxy $x_regex $y_regex
   local i save="$uin"
-  for i in `sek 0 $((${#progs[*]}-1))`      # for each program
+  for ((i=0 ;i<${#progs[@]};i++))                # for each program
   do [ "$F_ESCCHAR"     == 1 ] && escChar     $i
      [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
      [ "$F_GETTAB"      == 1 ] && getListTab  $i
-     [ "$F_POSIX"       == 1 ] && getHasPosix $i 
+     [ "$F_POSIX"       == 1 ] && getHasPosix $i
 
-     case "$1" in                           # check status
+     case "$1" in                                # check status
        S2) eval Regex[$i]="\${Regex[$i]}\${S2_${progs[$i]}[$REPLY]/@/$uin}";;
        S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
        S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
      esac
-     printf " RegEx %-${pnamesize}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+     printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
      uin="$save"
   done
   unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
@@ -567,16 +641,15 @@ Choice(){
   lines=$((numopts/cols)) ; [ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
 
   # filling the options screen's position array (+3 = header:2, sek:1)
-  for line in `sek 0 $((lines-1))`; do
+  for ((line=0 ;line<$lines;line++)); do
     optxy[$line]="$((line+3));1"                                # column 1
     [ "$cols" == 2 ] && optxy[$((line+lines))]="$((line+3));40" # column 2
   done
 
   # showing initial status for all options
-  for op in `sek 0 $((numopts-1))`
-  do ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
+  for ((op=0 ;op<$numopts;op++)); do
+    ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
   done
-
 
   # and now the cool invisible prompt
   while :; do
@@ -585,7 +658,7 @@ Choice(){
     case "$CHOICEREPLY" in
       [a-z])
         # inverting the option status
-        for alf in `sek 0 $((numopts-1))`; do
+        for ((alf=0 ;alf<$numopts;alf++)); do
           if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]; then
             if [ "${stat[$alf]}" == '+' ]
             then stat[$alf]='-'
@@ -599,7 +672,7 @@ Choice(){
         ;;
       .)
         # getting the user choices and exiting
-        unset CHOICEREPLY; for rpl in `sek 0 $((numopts-1))`; do
+        unset CHOICEREPLY; for ((rpl=0 ;rpl<$numopts;rpl++)); do
           [ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
         done
         break
@@ -612,7 +685,7 @@ Choice(){
 # fills the stat array with the actual active programs ON
 statActiveProgs(){
   local p i=0 ps=" ${progs[*]} "
-  for i in `sek 0 $((${#allprogs[*]}-1))`; do  # for each program
+  for ((i=0 ;i<${#allprogs[@]};i++)); do       # for each program
     p="${allprogs[$i]}"; stat[$i]='-';         # default OFF
     [ "${ps/ $p /}" != "$ps" ] && stat[$i]='+' # case found, turn ON
   done

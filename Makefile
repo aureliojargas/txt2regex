@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.4
+VERSION	= 0.5
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -66,7 +66,7 @@ check-po: check-po-dir
 	@cd $(PODIR) && \
 	for pot in *.po; do \
 		echo -n "checking $$pot... "; \
-		msgfmt -vv $$pot || exit 1; \
+		msgfmt -v $$pot || exit 1; \
 	done
 
 update-po: pot po mo
@@ -78,7 +78,7 @@ tgz: clean #check-po
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR)
 
-# just once: COPYRIGHT tools linuxformat.png old
+# just once: COPYRIGHT tools linuxformat.png old screenshot.png
 upload:
 	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools//g'` index.html $(DISTDIR).tgz \
 	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs

@@ -29,7 +29,8 @@ INSTALL AND RUN
 
 after expand the tarball, do you can simply run the program directly.
 but if do you want it on your system, or in other language besides
-english (portuguese & indonesian translations available), use `make`.
+english (portuguese, polish & indonesian translations available), use
+`make`.
 
 summary:
 just english -> untar and run
@@ -75,7 +76,7 @@ if you don't get the number of lines, append "export LINES" at your
 
 HOW TO USE IT?
 
-first of all, accept the truth:
+first of all, do accept the truth:
 only works in bash >= 2.04
 only works in bash >= 2.04
 only works in bash >= 2.04
@@ -121,20 +122,26 @@ so, in short:
 
 there's a few command line options, see the --help:
 
-+----------------------------------------------------------------------+
-|                                                                      |
-|  usage: txt2regex [--history <value>] [--nocolor|--whitebg|--all]    |
-|                                                                      |
-|  OPTIONS (they are default OFF):                                     |
-|                                                                      |
-|    --all              works with all registered programs             |
-|    --nocolor          self-explanatory                               |
-|    --whitebg          colors adjusted to white background terminals  |
-|    --history <value>  prints to STDOUT a RegEx from a history data   |
-|                                                                      |
-|  for more details about the options, read the README file.           |
-|                                                                      |
-+----------------------------------------------------------------------+
++--------------------------------------------------------------------+
+|                                                                    |
+| usage: txt2regex [--nocolor|--whitebg|--all]                       |
+|        txt2regex --showmeta|--showinfo <program>                   |
+|        txt2regex --history <value>                                 |
+|                                                                    |
+| OPTIONS (they are default OFF):                                    |
+|                                                                    |
+|  --all                 works with all registered programs          |
+|  --nocolor             self-explanatory                            |
+|  --whitebg             colors adjusted to white background         |
+|                        terminals                                   |
+|  --showmeta            prints a complete metachar table for all    |
+|                        programs                                    |
+|  --showinfo <program>  prints regex info about the program         |
+|  --history <value>     prints to STDOUT a RegEx from a history data|
+|                                                                    |
+|  for more details about the options, read the README file.         |
+|                                                                    |
++--------------------------------------------------------------------+
 
 
 and as we're on the README file, here are the details:
@@ -143,6 +150,9 @@ and as we're on the README file, here are the details:
 * --nocolor is strong, so it kills --whitebg
 * --whitebg is a requirement of X users, and as i don't use X, tell me
     if anything is wrong
+* --showmeta rules
+* --showinfo has a reverse video nice output, if you don't like it, do
+    use it with --nocolor
 * --history is not very usefull now, but it will
 
 
@@ -154,6 +164,11 @@ and now what you've waiting for, the examples:
 * calling the program on a white terminal
     txt2regex --whitebg
 
+* getting information
+    txt2regex --showmeta
+
+* getting specific information
+    txt2regex --showinfo sed
 
 ----------------------------------------------------------------------
 
@@ -179,8 +194,10 @@ versions tested:
   php: 4.0.6
   postgres: psql (PostgreSQL) 7.1.2
   procmail: procmail v3.15.1 2001/01/08
+  python: Python 2.1
   sed: GNU sed version 3.02.80
   tcl: 8.3
+  vi: Nvi 1.79 (10/23/96)
   vim: VIM - Vi IMproved 5.8 (2001 May 31)
 
 gotcha:
