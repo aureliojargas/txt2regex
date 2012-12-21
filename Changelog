@@ -1,7 +1,16 @@
 txt2regex changelog
 -------------------
 
-20010904 v0.6:
+20020304 v0.7:
+  - fixed Makefile bug on DESTDIR (tks Martin Butterwecki @ debian)
+  - added man page and "Really quit?" message (Martin request again)
+  - added --version option (it's classic, so...)
+  - added japanese translations provided by Hajime Dei
+  - ready-to-use common regexes (date, hour, number) with --make
+  - added --prog option to choose which programs to use 
+  - groups are now quantifiable
+
+20010905 v0.6:
   - added (group|and|alternation) support
   - added groups balance check -> (((3)))
   - option --history improved and sync'ed with all features

@@ -1,17 +1,18 @@
 NAME = txt2regex
-VERSION	= 0.6
+VERSION	= 0.7
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 TESTDIR = test-suite
 
-FILES = Makefile README NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR)
+FILES = Makefile README README.japanese NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR) $(NAME).man 
 
 
 DESTDIR = 
 BINDIR	= $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
+MANDIR = $(DESTDIR)/usr/share/man/man1
 
 TARGET=all
 
@@ -82,15 +83,27 @@ tgz: clean #check-po
 upload:
 	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools\|test-suite//g'` index.html $(DISTDIR).tgz \
 	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs
-    
+
+#TODO install man page and README
 install: mo
 	@[ -d $(LOCALEDIR) ] || mkdir -p $(LOCALEDIR); \
+	[ -d $(BINDIR) ] || mkdir -p $(BINDIR); \
 	for pot in `cd $(PODIR) && ls *.mo`; do \
 		poti=`echo $$pot | sed 's/\.mo$$//'`; \
 		modir=$(LOCALEDIR)/$$poti/LC_MESSAGES; \
 		[ -d $$modir ] || mkdir -p $$modir; \
 		install -m644 $(PODIR)/$$pot $$modir/$(NAME).mo; \
 	done; \
-	sed 's,^\(TEXTDOMAINDIR=\).*,\1$(LOCALEDIR),' $(SHSKEL) > $(BINDIR)/$(NAME) && \
+	sed -e '/^TEXTDOMAINDIR=/s,=.*,=$(LOCALEDIR),' \
+	    -e '/^VERSION=/s/=.*/=$(VERSION)/' $(SHSKEL) > $(BINDIR)/$(NAME) && \
 	chmod +x $(BINDIR)/$(NAME) && \
 	echo "program '$(NAME)' installed. just run $(BINDIR)/$(NAME)"
+
+###DEVELOPPER ONLY###	
+doc:
+	@txt2tags -t man --stdout README.txt > $(NAME).man; \
+	txt2tags  -t txt --stdout README.txt > README; \
+	txt2tags -t html --stdout README.txt > README.html
+# got interested? http://txt2tags.sf.net
+###---###
+

@@ -1,7 +1,5 @@
-txt2regex
-aurelio@verde666.org
-2002-03-04
-
+.TH "txt2regex" 1 2002-03-04 "aurelio@verde666.org"
+.P
    a Regular Expression "wizard", all written with bash2 builtins
 
 ^txt2regex$ is a Regular Expression "wizard", all written with bash2
@@ -11,74 +9,96 @@ large variety of programs, like awk, emacs, grep, perl, php, procmail,
 python, sed and vim. there are more than 20 supported programs.
 it's bash so download and run, no compilation needed.
 
-----------------------------------------------------------------------
 
-  WHY?
 
-- to try to make simple RegExs less painful for the beginners
-- to have a reliable source for RegExs differences between programs
-- to have coding fun &:)
 
-  WHY BASH2?
+
+.SH WHY?
+
+
+.nf
+* to try to make simple RegExs less painful for the beginners
+* to have a reliable source for RegExs differences between programs
+* to have coding fun &:)
+.P
+.fi
+
+.SH WHY BASH2?
 
 basically, for me to learn the new bash2 concepts as arrays, i18n and
 advanced variable expansion. they rule!
 
-----------------------------------------------------------------------
 
-  INSTALL AND RUN
+
+
+
+.SH INSTALL AND RUN
 
 after expand the tarball, do you can simply run the program directly.
 but if do you want it on your system, or in other language besides
 english, use make.
 
-	Summary
-- just english: untar and run
-- with i18n: untar, make install and run
+.SS Summary
 
-		untar
+.nf
+* just english: untar and run
+* with i18n: untar, make install and run
+.P
+.fi
 
+.SS untar
+.nf
   tar xvzf txt2regex-VERSION.tgz
   cd txt2regex-VERSION
+.fi
 
 
-		run
+.SS run
 
-
+.nf
   ./txt2regex.sh
+.fi
 
 
-		make install
+.SS make install
 
 if you're root and wants to install it on the system, with i18n:
 
-
+.nf
   make install
   /usr/bin/txt2regex
+.fi
 
 or, if do you want to use it on locally, on the txt2regex dir, with
 i18n:
 
-
+.nf
   make install BINDIR=. LOCALEDIR=po
-  ./txt2regex
+   ./txt2regex
+.fi
 
 if you want to install it on another location, redefine BINDIR,
 LOCALEDIR and DESTDIR variables.
 
-----------------------------------------------------------------------
 
-  HOW TO USE IT?
+
+
+
+.SH HOW TO USE IT?
 
 first of all, do accept the truth:
-- only works in bash >= 2.04
-- only works in bash >= 2.04
-- only works in bash >= 2.04
+
+.nf
+* \fBonly works in bash >= 2.04\fP
+* \fBonly works in bash >= 2.04\fP
+* \fBonly works in bash >= 2.04\fP
+.P
+.fi
 
 just run it and see the it's face.
 the interface is pretty easy to understand, but in short, it's:
 
-
+.nf
   +---------------------------------------+
   | -> top menu                           |
   | -> group menu                         |
@@ -95,6 +115,7 @@ the interface is pretty easy to understand, but in short, it's:
   |    ...                                |
   |    ...                                |
   +---------------------------------------+
+.fi
 
 so, using the numeric pad on the keyboard (there, on the right side),
 press the numbers to choose the answers (turn NumLock on!) and just
@@ -107,18 +128,24 @@ on the RegEx part. just it.
 the group menu is contextual, it appears on the 2nd line when needed.
 
 so, in short:
-- read the question
-- choose the answer
-- press the number
-- fun!
 
-_______________________________________
-
-  COMMAND LINE
-
-there's a few command line options, see the --help:
+.nf
+* read the question
+* choose the answer
+* press the number
+* fun!
+.P
+.fi
 
 
+
+
+
+.SH COMMAND LINE
+
+there's a few command line options, see the \-\-help:
+
+.nf
   +--------------------------------------------------------------------+
   |                                                                    |
   | usage: txt2regex [--nocolor|--whitebg|--all]                       |
@@ -144,197 +171,252 @@ there's a few command line options, see the --help:
   |  for more details about the options, read the README file.         |
   |                                                                    |
   +--------------------------------------------------------------------+
+.fi
 
 and as we're on the README file, here are the details:
 
-- --all is cool but requires lots of lines (~35)
-- --nocolor is strong, so it kills --whitebg
-- --whitebg is a requirement of X users, and as i don't use X, tell me
+
+.nf
+* \fB\-\-all\fP is cool but requires lots of lines (~35)
+* \fB\-\-nocolor\fP is strong, so it kills \-\-whitebg
+* \fB\-\-whitebg\fP is a requirement of X users, and as i don't use X, tell me
     if anything is wrong
-- --showmeta rules, try it
-- --showinfo has a reverse video nice output, if you don't like it, do
-    use it with --nocolor
-- --history is getting useful, stay tunned
-- --prog is nice to specify your favorite programs
-- --make is a remedy for headaches
+* \fB\-\-showmeta\fP rules, try it
+* \fB\-\-showinfo\fP has a reverse video nice output, if you don't like it, do
+    use it with \-\-nocolor
+* \fB\-\-history\fP is getting useful, stay tunned
+* \fB\-\-prog\fP is nice to specify your favorite programs
+* \fB\-\-make\fP is a remedy for headaches
+.P
+.fi
 
 and now what you've waiting for, the examples:
 
 * just calling it
-
+.nf
   txt2regex
+.fi
 
 
 * calling the program on a white terminal
-
+.nf
   xterm -fg black -bg white
   txt2regex --whitebg
+.fi
 
 
 * getting information
-
+.nf
   txt2regex --showmeta
+.fi
 
 
 * getting specific information
-
+.nf
   txt2regex --showinfo sed
+.fi
 
 
 * calling it for specific programs
-
+.nf
   txt2regex --prog vim,sed,grep,python
+.fi
 
 
 * applying a history data
-
+.nf
   txt2regex --history '16421¤:01¤:'
+.fi
 
 
 * getting ready RegExes!
-
+.nf
   txt2regex --make hour
   txt2regex --make number3 --prog perl
   txt2regex --make date2 --all
+.fi
 
 
-----------------------------------------------------------------------
 
-  INFO ABOUT THE INFO ON IT
+
+
+
+.SH INFO ABOUT THE INFO ON IT
 
 all RegExes and rules the program knows about were extensively tested
-by hand or by the test-suite program. when the program can't be
+by hand or by the test\-suite program. when the program can't be
 reached or executed on my machine, the rules were taken:
 
-- from the program documentation
-- or missing it, from the "mastering regular expressions" o'reilly book
-- or missing it, from internet documents (oh no!)
+
+.nf
+* from the program documentation
+* or missing it, from the "mastering regular expressions" o'reilly book
+* or missing it, from internet documents (oh no!)
+.P
+.fi
 
 programs that were tested here:
-- ed: GNU ed version 0.2
-- mawk: mawk 1.3.3 Nov 1996
-- gawk: GNU Awk 3.0.6
-- grep: grep (GNU grep) 2.4.2
-- egrep: egrep (GNU grep) 2.4.2
-- find: GNU find version 4.1
-- javascript: netscape-4.77
-- mysql: Ver 11.13 Distrib 3.23.36
-- perl: v5.6.0 built for i386-linux
-- php: 4.0.6
-- postgres: psql (PostgreSQL) 7.1.2
-- procmail: procmail v3.15.1 2001/01/08
-- python: Python 2.1
-- sed: GNU sed version 3.02.80
-- tcl: 8.3
-- vi: Nvi 1.79 (10/23/96)
-- vim: VIM - Vi IMproved 5.8 (2001 May 31)
 
-----------------------------------------------------------------------
+.nf
+* ed: GNU ed version 0.2
+* mawk: mawk 1.3.3 Nov 1996
+* gawk: GNU Awk 3.0.6
+* grep: grep (GNU grep) 2.4.2
+* egrep: egrep (GNU grep) 2.4.2
+* find: GNU find version 4.1
+* javascript: netscape\-4.77
+* mysql: Ver 11.13 Distrib 3.23.36
+* perl: v5.6.0 built for i386\-linux
+* php: 4.0.6
+* postgres: psql (PostgreSQL) 7.1.2
+* procmail: procmail v3.15.1 2001/01/08
+* python: Python 2.1
+* sed: GNU sed version 3.02.80
+* tcl: 8.3
+* vi: Nvi 1.79 (10/23/96)
+* vim: VIM \- Vi IMproved 5.8 (2001 May 31)
+.P
+.fi
 
-  IF YOU REALLY LIKE IT
+
+
+
+
+.SH IF YOU REALLY LIKE IT
 
 use it and tell your friends.
 
 yes, it's GPL.
 
-----------------------------------------------------------------------
 
-  BUGS, IMPROVEMENTS AND CONTRIBUTIONS
 
-they're VERY welcome! send to the author (e-mail below).
+
+
+.SH BUGS, IMPROVEMENTS AND CONTRIBUTIONS
+
+they're VERY welcome! send to the author (e\-mail below).
 
 a cool (and easy/fast to do) contribution is a translation of the
 program messages to your own language. get the po/txt2regex.pot file
 and translate it. in doubt, ask.
 
-----------------------------------------------------------------------
 
-  TRANSLATIONS MAINTAINERS
+
+
+
+.SH TRANSLATIONS MAINTAINERS
 
 "i feel like i could... like i could... TAKE OVER THE WORLD"
 
-
+.nf
   en             english           the author
   pt_BR    brazilian portuguese    the author
   id_ID     bahasa indonesian      Muhamad Faizal
   pl_PL          polish            Chris Piechowicz
   de_DE          german            Jan Parthey
   ja            japanese           Hajime Dei
+.fi
 
-----------------------------------------------------------------------
 
-  FAQ
 
-- Q: my screen has more than 25 lines, i'm serious!
-- Q: why it only uses 80 columns if my screen has more?
-- Q: i've changed the xterm window size, why it didn't notice that?
-- A: the program do use the bash environment variables $LINES and
-     $COLUMNS to get the actual screen size. those MUST be exported
+
+
+.SH FAQ
+
+
+.nf
+* Q: my screen has more than 25 lines, i'm serious!
+* Q: why it only uses 80 columns if my screen has more?
+* Q: i've changed the xterm window size, why it didn't notice that?
+* A: the program do use the bash environment variables $LINES and
+     $COLUMNS to get the actual screen size. those \fBMUST\fP be exported
      variables, or you'll be stucked at the default 80x25 size. try:
-
-
+.P
+.nf
           /bin/bash -c 'echo $COLUMNS $LINES'
+.fi
 
-
+.P
      if you don't get the screen size, do:
-
-
+.P
+.nf
           echo export COLUMNS LINES >> ~/.bash_profile
+.fi
+
+.P
+.fi
 
 
-- Q: why my bash version is not recognized correctly?
-- Q: here bash --version is >=2.04. why the program gets other?
-- A: to find your bash version, the program uses the $BASH_VERSION
+.nf
+* Q: why my bash version is not recognized correctly?
+* Q: here bash \-\-version is >=2.04. why the program gets other?
+* A: to find your bash version, the program uses the $BASH_VERSION
      environment variable that is available in all bash versions.
-
+.P
      if some alien has possessed your machine and your environment
      don't have this variable, try to set it by hand. check with
-
-
+.P
+.nf
           echo $BASH_VERSION
+.fi
 
-
-     if this variable is ok, but bash --version returns other
+.P
+     if this variable is ok, but bash \-\-version returns other
      version, check if your bash is really /bin/bash:
-
-
+.P
+.nf
           which bash
+.fi
 
-
-     if it's not /bin/bash, you MUST change the first line
+.P
+     if it's not /bin/bash, you \fBMUST\fP change the first line
      of the script to your bash's right path. suppose you have the
      bash binary in your $HOME because the system's bash is old,
      just change the first line of the program to:
-
-
+.P
+.nf
           #!/home/YOU/bin/bash
+.fi
 
-
+.P
      or if you cannot change the program file, call it with bash:
-
-
+.P
+.nf
           bash ./txt2regex
+.fi
 
-
+.P
      sux, but worx.
+.P
+.fi
 
-- Q: what is that <TAB> that appears when i choose TAB on the special
+
+.nf
+* Q: what is that <TAB> that appears when i choose TAB on the special
      combination menu?
-- A: inside lists [], the <TAB> string is a visual representation of
+* A: inside lists [], the <TAB> string is a visual representation of
      a literal TAB character, for programs wich doesn't support [\t].
+.P
+.fi
 
-----------------------------------------------------------------------
 
-  ABOUT THE AUTHOR
+
+
+
+.SH ABOUT THE AUTHOR
 
 who cares?
 
-----------------------------------------------------------------------
 
 
+
+
+.nf
   --
   AUTHOR: aurélio marinho jargas <aurelio@verde666.org>
   DEBUT: 20010223
   URL: http://txt2regex.sourceforge.net
+.fi
 
+.\" man code generated by txt2tags 0.4 (http://txt2tags.sourceforge.net)
 
