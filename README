@@ -2,18 +2,18 @@ txt2regex README file
 
 
   Program    : txt2regex
-  Summary    : A Regular Expression Wizard, written with bash2 builtins
+  Summary    : The console Regular Expression Wizard
   Author     : Aurelio Marinho Jargas (verde@aurelio.net)
   License    : GPL
   Homepage   : http://txt2regex.sf.net
-  
-  Description:
-  ^txt2regex$ is a Regular Expression "wizard", all written with bash2
-  builtins, that converts human sentences to regexes. With a simple
-  interface, you just answer to questions and build your own regex for a
-  large variety of programs, like awk, emacs, grep, perl, php, procmail,
-  python, sed and vim. There are more than 20 supported programs.
-  It's bash so download and run, no compilation needed.
+
+
+  Txt2regex is a Regular Expression Wizard that converts human sentences
+  to regexes. In a simple interactive console interface, the user answer
+  questions and the program build the regexes for more than 20 programs,
+  like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice.org. It is
+  a Shell Script 100% written with Bash builtin commands. No compilation
+  or extra commands are needed, just download and run.
 
 
 ----------------------------------------------------------------------
