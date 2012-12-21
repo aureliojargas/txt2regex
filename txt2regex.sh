@@ -73,6 +73,11 @@
 # 20021019 ** program's 2 year birthday!
 # 20031019 ** program's 3 year birthday!
 # 20040928 <> bash version test (works in 3.x and newer)
+# 20040928 v0.8
+# 20040929 <> --help splitted into individual messages (helps i18n)
+# 20041019 ** program's 4 year birthday!
+# 20051019 ** program's 5 year birthday!
+# 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
 #
 
 # TODO \<borders\>
@@ -95,28 +100,28 @@ case "$BASH_VERSION" in
 esac
 
 Usage(){
-  echo $"\
-usage: txt2regex [--nocolor|--whitebg|--all]
-       txt2regex --showmeta|--showinfo <program>
-       txt2regex [--all|--prog <p1,p2>] --make <target>
-       txt2regex --history <value>
-
-OPTIONS (they are default OFF):
-
-  --all                 works with all registered programs
-  --nocolor             self-explanatory
-  --whitebg             colors adjusted to white background terminals
-  --showmeta            prints a complete metachar table for all programs
-  --showinfo <program>  prints regex info about the program
-
-  --history <value>     prints to STDOUT a regex from a history data
-  --make <target>       prints a ready regex for a common pattern
-  --prog <p1,p2,...>    choose which programs to use (separated by commas)
-
-  --version             prints the program version and quit
-  --help                prints the help message and quit
-
-for more details about the options, read the README file."
+echo $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
+echo $"       txt2regex --showmeta"
+echo $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
+echo $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
+echo $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
+echo
+echo $"OPTIONS (they are default OFF):"
+echo
+echo $"  --all               Works with all registered programs"
+echo $"  --nocolor           Don't use colors"
+echo $"  --whitebg           Colors adjusted for white background terminals"
+echo $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
+echo
+echo $"  --showmeta          Prints a metacharacters table with all programs"
+echo $"  --showinfo PROGRAM  Prints regex info about the specified program"
+echo $"  --history VALUE     Prints a regex from the given history data"
+echo $"  --make LABEL        Prints the default regex for the specified label"
+echo
+echo $"  --version           Prints the program version and quit"
+echo $"  --help              Prints the help message and quit"
+echo
+echo $"Please read the program Man Page for more information."
   exit 1
 }
 
@@ -221,7 +226,7 @@ zz4=$"an allowed characters list"
 zz5=$"a forbidden characters list"
 zz6=$"a special combination"
 zz7=$"a POSIX combination (locale aware)"
-zz8=$"a ready RegEx (not implemented)"
+zz8=$"a ready regex (not implemented)"
 zz9=$"anything"
 S1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7" "$zz8" "$zz9")
 S1_re=('' '.' '' '' '' '' '' '' '' '.*')
@@ -453,7 +458,7 @@ ScreenSize(){
   [ "$f_i" == 1 -a $LINES -lt "$y_max" ] && { printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
-  less programs to show the RegEx.\n\n" "$LINES" "$y_max"
+  less programs to show the regex.\n\n" "$LINES" "$y_max"
   exit 1
   }
 }
@@ -517,7 +522,7 @@ TopTitle(){ gotoxy 1 1
 
 doMenu(){
   local -a Menui
-  eval Menui=(\"\${$1[@]}\"); menu_n=$((${#Menui[*]}-1))    # ini
+  eval "Menui=(\"\${$1[@]}\")"; menu_n=$((${#Menui[*]}-1))  # ini
 
   if [ "$f_i" == 1 ]; then
     gotoxy $x_hist $y_hist
@@ -891,7 +896,7 @@ case ${STATUS:=0} in
     ;;
  9) gotoxy $x_hist $y_hist; clearEnd
     if [ "$f_i" == 1 ]; then
-      noregex_txt=$"no RegEx"
+      noregex_txt=$"no regex"
       printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
       echo -e "${HUMAN:-$noregex_txt}.\n"
     else

@@ -1,6 +1,15 @@
 txt2regex changelog
 -------------------
 
+v0.9 beta (unreleased):
+  - Added new tests for JavaScript
+  - Improved --help message
+  - Fixed eval bug when running in bash3 or newer
+  - Added Catalan translations provided by Carles (ChAoS)
+    <chaos ct (a) gmail com>
+  - Added French translations provided by wwp
+    <subscript (a) free fr>
+
 2004-09-28 v0.8:
   - Added OpenOffice.org regexes support
   - Documentation updated: cleaner README and new Man page

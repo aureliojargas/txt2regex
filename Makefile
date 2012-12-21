@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.8
+VERSION	= 0.9b
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
