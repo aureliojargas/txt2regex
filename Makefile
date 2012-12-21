@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.7
+VERSION	= 0.8
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -79,11 +79,6 @@ tgz: clean #check-po
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR)
 
-# just once: COPYRIGHT tools linuxformat.png old screenshot.png
-upload:
-	scp -r `echo $(FILES) | sed 's/COPYRIGHT\|tools\|test-suite//g'` index.html $(DISTDIR).tgz \
-	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs
-
 #TODO install man page and README
 install: mo
 	@[ -d $(LOCALEDIR) ] || mkdir -p $(LOCALEDIR); \
@@ -101,9 +96,9 @@ install: mo
 
 ###DEVELOPPER ONLY###	
 doc:
-	@txt2tags -t man --stdout README.txt > $(NAME).man; \
-	txt2tags  -t txt --stdout README.txt > README; \
-	txt2tags -t html --stdout README.txt > README.html
+	@txt2tags -t man  manpage.t2t; \
+	txt2tags  -t txt  README.t2t; \
+	txt2tags  -t html README.t2t manpage.t2t
 # got interested? http://txt2tags.sf.net
 ###---###
 

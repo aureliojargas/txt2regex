@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 # test-suite
-# 20001026 <verde@verde666.org> debut
+# 20001026 <verde@aurelio.net> debut
 # 20010802 ++ lots of changes
 
 #TODO php quebra linha em erro.

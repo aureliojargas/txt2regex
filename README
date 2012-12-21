@@ -1,216 +1,81 @@
-txt2regex
-aurelio@verde666.org
-2002-03-04
+txt2regex README file
 
-   a Regular Expression "wizard", all written with bash2 builtins
 
-^txt2regex$ is a Regular Expression "wizard", all written with bash2
-builtins, that converts human sentences to RegExs. with a simple
-interface, you just answer to questions and build your own RegEx for a
-large variety of programs, like awk, emacs, grep, perl, php, procmail,
-python, sed and vim. there are more than 20 supported programs.
-it's bash so download and run, no compilation needed.
+  Program    : txt2regex
+  Summary    : A Regular Expression Wizard, written with bash2 builtins
+  Author     : Aurelio Marinho Jargas (verde@aurelio.net)
+  License    : GPL
+  Homepage   : http://txt2regex.sf.net
+  
+  Description:
+  ^txt2regex$ is a Regular Expression "wizard", all written with bash2
+  builtins, that converts human sentences to regexes. With a simple
+  interface, you just answer to questions and build your own regex for a
+  large variety of programs, like awk, emacs, grep, perl, php, procmail,
+  python, sed and vim. There are more than 20 supported programs.
+  It's bash so download and run, no compilation needed.
 
-----------------------------------------------------------------------
-
-  WHY?
-
-- to try to make simple RegExs less painful for the beginners
-- to have a reliable source for RegExs differences between programs
-- to have coding fun &:)
-
-  WHY BASH2?
-
-basically, for me to learn the new bash2 concepts as arrays, i18n and
-advanced variable expansion. they rule!
 
 ----------------------------------------------------------------------
+
 
   INSTALL AND RUN
+  ===============
 
-after expand the tarball, do you can simply run the program directly.
-but if do you want it on your system, or in other language besides
-english, use make.
+Txt2regex will work in ANY system bash works, because it's a bash-only
+program. This includes Cygwin and Cygwin XFree also.
 
-	Summary
-- just english: untar and run
-- with i18n: untar, make install and run
+After expand the tarball, do you can simply run the program directly.
+But if do you want it on your system, or in other language besides
+english, use the make command.
 
-		untar
+- Just english: untar and run
+- With i18n: untar, make install and run
+
+untar
 
   tar xvzf txt2regex-VERSION.tgz
   cd txt2regex-VERSION
 
 
-		run
-
+run
 
   ./txt2regex.sh
 
 
-		make install
-
-if you're root and wants to install it on the system, with i18n:
-
+make install (as root, system install)
 
   make install
   /usr/bin/txt2regex
 
-or, if do you want to use it on locally, on the txt2regex dir, with
-i18n:
 
+make install (as user, local install)
 
   make install BINDIR=. LOCALEDIR=po
   ./txt2regex
 
-if you want to install it on another location, redefine BINDIR,
-LOCALEDIR and DESTDIR variables.
+
+Note 1: Play with BINDIR, LOCALEDIR and DESTDIR variables to
+change the defalt install paths.
+
+Note 2: Txt2regex only works in Bash version >= 2.04.
 
 ----------------------------------------------------------------------
 
-  HOW TO USE IT?
 
-first of all, do accept the truth:
-- only works in bash >= 2.04
-- only works in bash >= 2.04
-- only works in bash >= 2.04
+  TESTED PROGRAMS VERSIONS
+  ========================
 
-just run it and see the it's face.
-the interface is pretty easy to understand, but in short, it's:
-
-
-  +---------------------------------------+
-  | -> top menu                           |
-  | -> group menu                         |
-  |                                       |
-  | -> RegExs of the programs selected    |
-  |    ...                                |
-  |    ...                                |
-  |                                       |
-  | -> history                            |
-  | -> your prompt                        |
-  |                                       |
-  | -> the question                       |
-  | -> the answers                        |
-  |    ...                                |
-  |    ...                                |
-  +---------------------------------------+
-
-so, using the numeric pad on the keyboard (there, on the right side),
-press the numbers to choose the answers (turn NumLock on!) and just
-see the RegExs being made.
-
-as the top menu says, press . to quit and 0 (zero) to reset the
-RegEx. the * key toggles color ON/OFF and / add/remove programs
-on the RegEx part. just it.
-
-the group menu is contextual, it appears on the 2nd line when needed.
-
-so, in short:
-- read the question
-- choose the answer
-- press the number
-- fun!
-
-_______________________________________
-
-  COMMAND LINE
-
-there's a few command line options, see the --help:
-
-
-  +--------------------------------------------------------------------+
-  |                                                                    |
-  | usage: txt2regex [--nocolor|--whitebg|--all]                       |
-  |        txt2regex --showmeta|--showinfo <program>                   |
-  |        txt2regex [--all|--prog <p1,p2>] --make <target>            |
-  |        txt2regex --history <value>                                 |
-  |                                                                    |
-  | OPTIONS (they are default OFF):                                    |
-  |                                                                    |
-  |  --all                 works with all registered programs          |
-  |  --nocolor             self-explanatory                            |
-  |  --whitebg             colors adjusted to white background         |
-  |                        terminals                                   |
-  |  --showmeta            prints a complete metachar table for all    |
-  |                        programs                                    |
-  |  --showinfo <program>  prints regex info about the program         |
-  |                                                                    |
-  |  --history <value>     prints to STDOUT a RegEx from a history data|
-  |  --make <target>       prints a ready RegEx for a common pattern   |
-  |  --prog <p1,p2,...>    choose which programs to use                |
-  |                                                                    |
-  |                                                                    |
-  |  for more details about the options, read the README file.         |
-  |                                                                    |
-  +--------------------------------------------------------------------+
-
-and as we're on the README file, here are the details:
-
-- --all is cool but requires lots of lines (~35)
-- --nocolor is strong, so it kills --whitebg
-- --whitebg is a requirement of X users, and as i don't use X, tell me
-    if anything is wrong
-- --showmeta rules, try it
-- --showinfo has a reverse video nice output, if you don't like it, do
-    use it with --nocolor
-- --history is getting useful, stay tunned
-- --prog is nice to specify your favorite programs
-- --make is a remedy for headaches
-
-and now what you've waiting for, the examples:
-
-* just calling it
-
-  txt2regex
-
-
-* calling the program on a white terminal
-
-  xterm -fg black -bg white
-  txt2regex --whitebg
-
-
-* getting information
-
-  txt2regex --showmeta
-
-
-* getting specific information
-
-  txt2regex --showinfo sed
-
-
-* calling it for specific programs
-
-  txt2regex --prog vim,sed,grep,python
-
-
-* applying a history data
-
-  txt2regex --history '16421¤:01¤:'
-
-
-* getting ready RegExes!
-
-  txt2regex --make hour
-  txt2regex --make number3 --prog perl
-  txt2regex --make date2 --all
-
-
-----------------------------------------------------------------------
-
-  INFO ABOUT THE INFO ON IT
-
-all RegExes and rules the program knows about were extensively tested
-by hand or by the test-suite program. when the program can't be
+All regexes and rules the program knows about were extensively tested
+by hand or by the test-suite program. When the program can't be
 reached or executed on my machine, the rules were taken:
 
-- from the program documentation
-- or missing it, from the "mastering regular expressions" o'reilly book
-- or missing it, from internet documents (oh no!)
+- From the program documentation
+- Or missing it, from the "Mastering Regular Expressions" O'Reilly book
+- Or missing it, from Internet documents (Oh no!)
 
-programs that were tested here:
+Programs that were tested here:
+
 - ed: GNU ed version 0.2
 - mawk: mawk 1.3.3 Nov 1996
 - gawk: GNU Awk 3.0.6
@@ -219,6 +84,7 @@ programs that were tested here:
 - find: GNU find version 4.1
 - javascript: netscape-4.77
 - mysql: Ver 11.13 Distrib 3.23.36
+- ooo: OpenOffice.org 1.1.0
 - perl: v5.6.0 built for i386-linux
 - php: 4.0.6
 - postgres: psql (PostgreSQL) 7.1.2
@@ -231,78 +97,81 @@ programs that were tested here:
 
 ----------------------------------------------------------------------
 
-  IF YOU REALLY LIKE IT
-
-use it and tell your friends.
-
-yes, it's GPL.
-
-----------------------------------------------------------------------
-
-  BUGS, IMPROVEMENTS AND CONTRIBUTIONS
-
-they're VERY welcome! send to the author (e-mail below).
-
-a cool (and easy/fast to do) contribution is a translation of the
-program messages to your own language. get the po/txt2regex.pot file
-and translate it. in doubt, ask.
-
-----------------------------------------------------------------------
 
   TRANSLATIONS MAINTAINERS
+  ========================
 
-"i feel like i could... like i could... TAKE OVER THE WORLD"
+"I feel like I could... Like I could... TAKE OVER THE WORLD"
 
 
-  en             english           the author
-  pt_BR    brazilian portuguese    the author
-  id_ID     bahasa indonesian      Muhamad Faizal
-  pl_PL          polish            Chris Piechowicz
   de_DE          german            Jan Parthey
+  en             english           the author
+  es_ES          spanish           Diego Moya
+  id_ID     bahasa indonesian      Muhamad Faizal
+  it_IT          italian           Daniele Pizzolli
   ja            japanese           Hajime Dei
+  pl_PL          polish            Chris Piechowicz
+  pt_BR    brazilian portuguese    the author
+  ro_RO         romanian           Robert Claudiu Gheorghe
+
+
+A nice way to contribute with the project, is to translate its
+messages to your own language. Just get the po/txt2regex.pot
+file and translate it, on the "msgstr" lines. In doubt, ask.
 
 ----------------------------------------------------------------------
 
-  FAQ
 
-- Q: my screen has more than 25 lines, i'm serious!
-- Q: why it only uses 80 columns if my screen has more?
-- Q: i've changed the xterm window size, why it didn't notice that?
-- A: the program do use the bash environment variables $LINES and
-     $COLUMNS to get the actual screen size. those MUST be exported
-     variables, or you'll be stucked at the default 80x25 size. try:
+  FAQ
+  ===
+
+- Q: Why?
+- A: To try to make simple regexes less painful for the beginners
+- A: To have a reliable source for regexes differences between programs
+- A: To have coding fun &:)
+
+- Q: Why bash2?
+- A: Basically, for me to learn the new bash2 concepts as arrays, i18n
+  and advanced variable expansion. They rule!
+
+- Q: My screen has more than 25 lines, I'm serious!
+- Q: Why it only uses 80 columns if my screen has more?
+- Q: I've changed the xterm window size, why it didn't notice that?
+- A: The program do use the bash environment variables $LINES and
+     $COLUMNS to get the actual screen size. Those MUST be exported
+     variables, or you'll be stucked at the default 80x25 size. Try:
 
 
           /bin/bash -c 'echo $COLUMNS $LINES'
 
 
-     if you don't get the screen size, do:
+     If you don't get the screen size, do:
 
 
           echo export COLUMNS LINES >> ~/.bash_profile
 
 
-- Q: why my bash version is not recognized correctly?
-- Q: here bash --version is >=2.04. why the program gets other?
-- A: to find your bash version, the program uses the $BASH_VERSION
+- Q: Why my bash version is not recognized correctly?
+- Q: Here bash --version is >=2.04. Why the program gets other?
+- A: To find your bash version, the program uses the $BASH_VERSION
      environment variable that is available in all bash versions.
 
-     if some alien has possessed your machine and your environment
-     don't have this variable, try to set it by hand. check with
+     If some alien has possessed your machine and your environment
+     don't have this variable, try to set it by hand. Check with
 
 
           echo $BASH_VERSION
 
 
-     if this variable is ok, but bash --version returns other
+     If this variable is ok, but bash --version returns other
      version, check if your bash is really /bin/bash:
 
 
           which bash
 
 
-     if it's not /bin/bash, you MUST change the first line
-     of the script to your bash's right path. suppose you have the
+     If it's not /bin/bash, you MUST change the first line
+     of the script to your bash's right path. Suppose you have the
      bash binary in your $HOME because the system's bash is old,
      just change the first line of the program to:
 
@@ -310,31 +179,24 @@ and translate it. in doubt, ask.
           #!/home/YOU/bin/bash
 
 
-     or if you cannot change the program file, call it with bash:
+     Or if you cannot change the program file, call it with bash:
 
 
           bash ./txt2regex
 
 
-     sux, but worx.
+     Sux, but worx.
 
-- Q: what is that <TAB> that appears when i choose TAB on the special
-     combination menu?
-- A: inside lists [], the <TAB> string is a visual representation of
+- Q: What is that <TAB> that appears when I choose TAB on the
+  special combination menu?
+- A: Inside lists [], the <TAB> string is a visual representation of
      a literal TAB character, for programs wich doesn't support [\t].
 
 ----------------------------------------------------------------------
 
-  ABOUT THE AUTHOR
-
-who cares?
-
-----------------------------------------------------------------------
+The End.
 
 
-  --
-  AUTHOR: aurélio marinho jargas <aurelio@verde666.org>
-  DEBUT: 20010223
-  URL: http://txt2regex.sourceforge.net
+
 
 

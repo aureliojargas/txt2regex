@@ -1,55 +1,69 @@
 txt2regex changelog
 -------------------
 
-20020304 v0.7:
-  - fixed Makefile bug on DESTDIR (tks Martin Butterwecki @ debian)
-  - added man page and "Really quit?" message (Martin request again)
-  - added --version option (it's classic, so...)
-  - added japanese translations provided by Hajime Dei
-  - ready-to-use common regexes (date, hour, number) with --make
-  - added --prog option to choose which programs to use 
-  - groups are now quantifiable
+2004-09-28 v0.8:
+  - Added OpenOffice.org regexes support
+  - Documentation updated: cleaner README and new Man page
+  - Fixed bash version test, now works on bash-3.0 and newer
+    (tks Rene Engelhard @ Debian)
+  - Fixed sed script bug on procmail-re-test (tks JulioB @ caltech>
+  - Added Romanian translations provided by Robert Claudiu Gheorghe
+    <RobertGheorghe2004 (a) yahoo ca>
+  - Added Spanish translations provided by Diego Moya Velázquez
+    <diego moya (a) madrid com>
+  - Added Italian translations provided by Daniele Pizzolli and
+    revised by Marco Pagnanini
+    <ors (a) tovel it> and <info (a) marcopagnanini it>
 
-20010905 v0.6:
-  - added (group|and|alternation) support
-  - added groups balance check -> (((3)))
-  - option --history improved and sync'ed with all features
-  - added mysql support
-  - added german translations provided by Jan Parthey
+2002-03-04 v0.7:
+  - Fixed Makefile bug on DESTDIR (tks Martin Butterwecki @ Debian)
+  - Added man page and "Really quit?" message (Martin request again)
+  - Added --version option (it's classic, so...)
+  - Added Japanese translations provided by Hajime Dei
+  - Ready-to-use common regexes (date, hour, number) with --make
+  - Added --prog option to choose which programs to use
+  - Groups are now quantifiable
+
+2001-09-05 v0.6:
+  - Added (group|and|alternation) support
+  - Added groups balance check -> (((3)))
+  - Option --history improved and sync'ed with all features
+  - Added MySQL regexes support
+  - Added German translations provided by Jan Parthey
     <parthey (a) web de>
 
-20010828 v0.5:
-  - new command line options: --showmeta, --showinfo
-  
-20010802 v0.4:
-  - updated polish translations
-  - added postgres, javascript, vbscript and procmail support
-  - test-suite improved and included on the tarball
-  - new procmail-re-test utility for procmail cmdline regex test
+2001-08-28 v0.5:
+  - New command line options: --showmeta, --showinfo
 
-20010626 v0.3.1:
-  - updated indonesian and polish translations
-  - took out seq command (not bash), and substituted by the new sek()
-    function. pretty cool, just 2 lines.
-    and so, last release was NOT 100% bash, /me <- luser
-    but now it is. i think. &:)
+2001-08-02 v0.4:
+  - Updated Polish translations
+  - Added Postgres, javascript, VBscript and procmail regexes support
+  - Test-suite improved and included on the tarball
+  - New procmail-re-test utility for procmail cmdline regex test
 
-20010613 v0.3:
-  - support to localized POSIX character classes [[:abc:]]
-  - support to special user combinations inside lists []
-  - a friendly --help output
-  - new command line option: --whitebg
-  - final human sentence improved with more detailed data
-  - added polish translations provided by Chris Piechowicz
+2001-06-26 v0.3.1:
+  - Updated Indonesian and Polish translations
+  - Took out seq command (not bash), and substituted by the new sek()
+    function. Pretty cool, just 2 lines.
+    And so, last release was NOT 100% bash, /me <- Luser
+    but now it is. I think. &:)
+
+2001-06-13 v0.3:
+  - Support to localized POSIX character classes [[:abc:]]
+  - Support to special user combinations inside lists []
+  - A friendly --help output
+  - New command line option: --whitebg
+  - Final human sentence improved with more detailed data
+  - Added Polish translations provided by Chris Piechowicz
     <chris_piechowicz (a) hotmail com>
-  - took out clear and stty commands, because they were not bash
+  - Took out clear and stty commands, because they were not bash
     now we have a 100% bash builtins script!
 
-20010424 v0.2:
-  - new command line options: --nocolor, --history
-  - a new dynamic history for user input: .oO(history)(¤user_input1¤userinput2¤...)
-  - added indonesian (bahasa) translations provided by Muhamad Faizal
+2001-04-24 v0.2:
+  - New command line options: --nocolor, --history
+  - A new dynamic history for user input: .oO(history)(¤user_input1¤userinput2¤...)
+  - Added Indonesian (Bahasa) translations provided by Muhamad Faizal
     <faizal (a) mfaizal net>
 
-20010223 v0.1:
-  - initial release (as txt2regexp)
+2001-02-23 v0.1:
+  - Initial release (as txt2regexp)
