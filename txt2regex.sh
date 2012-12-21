@@ -1,8 +1,8 @@
 #!/bin/bash
 # txt2regex.sh - Regular Expressions "wizard", all in bash2 builtins
 #
-# Homepage: http://txt2regex.sf.net
-# Author  : Aurelio Marinho Jargas (verde@aurelio.net)
+# Website : http://aurelio.net/projects/txt2regex/
+# Author  : Aurelio Jargas (verde@aurelio.net)
 # License : GPL
 # Requires: bash >= 2.04
 #
@@ -78,6 +78,7 @@
 # 20041019 ** program's 4 year birthday!
 # 20051019 ** program's 5 year birthday!
 # 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
+# 20121221 ** debut in GitHub
 #
 
 # TODO \<borders\>
