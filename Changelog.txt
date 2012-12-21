@@ -18,7 +18,7 @@ v0.9 beta (unreleased):
   - Fixed sed script bug on procmail-re-test (tks JulioB @ caltech>
   - Added Romanian translations provided by Robert Claudiu Gheorghe
     <RobertGheorghe2004 (a) yahoo ca>
-  - Added Spanish translations provided by Diego Moya Velázquez
+  - Added Spanish translations provided by Diego Moya VelÃ¡zquez
     <diego moya (a) madrid com>
   - Added Italian translations provided by Daniele Pizzolli and
     revised by Marco Pagnanini
@@ -70,7 +70,7 @@ v0.9 beta (unreleased):
 
 2001-04-24 v0.2:
   - New command line options: --nocolor, --history
-  - A new dynamic history for user input: .oO(history)(¤user_input1¤userinput2¤...)
+  - A new dynamic history for user input: .oO(history)(Â¤user_input1Â¤userinput2Â¤...)
   - Added Indonesian (Bahasa) translations provided by Muhamad Faizal
     <faizal (a) mfaizal net>
 
