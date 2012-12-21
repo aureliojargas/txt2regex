@@ -209,11 +209,11 @@ Please send them to the author.
 
 .SH AUTHOR
 .P
-Written and maintained by Aurelio Marinho Jargas <verde@aurelio.net>
+Written and maintained by Aurelio Jargas <verde@aurelio.net>
 
 .SH COPYRIGHT
 .P
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Jargas
 
 .P
 This is free software; see the source for copying conditions. There is
