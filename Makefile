@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.3
+VERSION	= 0.3.1
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -30,7 +30,7 @@ pot: check-po-dir
 	echo '#, fuzzy'                                          > $(NAME).pot.tmp;\
 	echo 'msgid ""'                                         >> $(NAME).pot.tmp;\
 	echo 'msgstr ""'                                        >> $(NAME).pot.tmp;\
-	echo '"Project-Id-Version: txt2regex $(VERSION)\n"'     >> $(NAME).pot.tmp;\
+	echo '"Project-Id-Version: $(NAME) $(VERSION)\n"'       >> $(NAME).pot.tmp;\
 	echo "\"POT-Creation-Date: $$DATE\n\""                  >> $(NAME).pot.tmp;\
 	echo '"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"'      >> $(NAME).pot.tmp;\
 	echo '"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"'   >> $(NAME).pot.tmp;\
@@ -76,6 +76,10 @@ tgz: clean #check-po
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR)
 
+upload:
+	scp -r $(FILES) index.html $(DISTDIR).tgz old linuxformat.png \
+	  verde666@$(NAME).sf.net:/home/groups/t/tx/$(NAME)/htdocs
+    
 install: mo
 	@[ -d $(LOCALEDIR) ] || mkdir -p $(LOCALEDIR); \
 	for pot in `cd $(PODIR) && ls *.mo`; do \

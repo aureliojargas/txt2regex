@@ -197,8 +197,8 @@ BUGS, IMPROVEMENTS AND CONTRIBUTIONS
 they're VERY welcome! send to the author (e-mail below).
 
 a cool (and easy/fast to do) contribution is a translation of the
-program messages to your own language. get the po/pt_BR.po file as an
-example and translate it. in doubt, ask.
+program messages to your own language. get the po/txt2regex.pot file
+and translate it. in doubt, ask.
 
 ----------------------------------------------------------------------
 
@@ -219,6 +219,6 @@ who cares?
 
 
 --
-AUTHOR: aurélio marinho jargas <verde@conectiva.com.br>
+AUTHOR: aurélio marinho jargas <verde@verde666.org>
 DEBUT: 20010223
 URL: http://txt2regex.sourceforge.net

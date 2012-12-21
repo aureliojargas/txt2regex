@@ -1,6 +1,13 @@
 txt2regex changelog
 -------------------
 
+20010626 v0.3.1:
+  - updated indonesian and polish translations
+  - took out seq command (not bash), and substituted by the new sek()
+    function. pretty cool, just 2 lines.
+    and so, last release was NOT 100% bash, /me <- luser
+    but now it is. i think. &:)
+
 20010613 v0.3:
   - support to localized POSIX character classes [[:abc:]]
   - support to special user combinations inside lists []
