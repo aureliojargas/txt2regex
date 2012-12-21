@@ -1,8 +1,18 @@
 txt2regex changelog
 -------------------
 
-20010424 v0.2: 
-  - changed name to txt2regex (the final 'p' was kinda hard to speak)
+20010613 v0.3:
+  - support to localized POSIX character classes [[:abc:]]
+  - support to special user combinations inside lists []
+  - a friendly --help output
+  - new command line option: --whitebg
+  - final human sentence improved with more detailed data
+  - added polish translations provided by Chris Piechowicz
+    <chris_piechowicz (a) hotmail com>
+  - took out clear and stty commands, because they were not bash
+    now we have a 100% bash builtins script!
+
+20010424 v0.2:
   - new command line options: --nocolor, --history
   - a new dynamic history for user input: .oO(history)(¤user_input1¤userinput2¤...)
   - added indonesian (bahasa) translations provided by Muhamad Faizal

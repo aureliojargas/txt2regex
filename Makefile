@@ -1,10 +1,10 @@
 NAME = txt2regex
-VERSION	= 0.2
+VERSION	= 0.3
 
 SHSKEL = $(NAME)-$(VERSION).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
-FILES = Makefile README Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR)
+FILES = Makefile README NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools
 
 
 DESTDIR = 
@@ -14,7 +14,7 @@ LOCALEDIR = $(DESTDIR)/usr/share/locale
 TARGET=all
 
 clean:
-	rm -f po/messages po/*.{mo,old,tmp} $(NAME)
+	rm -f {,po/}messages po/*.{mo,old,tmp,bk} $(NAME)
 	find po -mindepth 1 -type d -exec rm -rf {} \;
 
 check-po-dir: 
@@ -23,23 +23,32 @@ check-po-dir:
 	exit 1;\
 	fi
 
+# shit, bash <<-HEREDOC seems to doesn't work inside Makefile...
 pot: check-po-dir
-	cd $(PODIR) && \
-	bash --dump-po-strings ../$(SHSKEL) > $(NAME).pot
+	@cd $(PODIR); \
+	DATE=`date '+%Y-%m-%d %H:%M %Z'`;\
+	echo '#, fuzzy'                                          > $(NAME).pot.tmp;\
+	echo 'msgid ""'                                         >> $(NAME).pot.tmp;\
+	echo 'msgstr ""'                                        >> $(NAME).pot.tmp;\
+	echo '"Project-Id-Version: txt2regex $(VERSION)\n"'     >> $(NAME).pot.tmp;\
+	echo "\"POT-Creation-Date: $$DATE\n\""                  >> $(NAME).pot.tmp;\
+	echo '"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"'      >> $(NAME).pot.tmp;\
+	echo '"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"'   >> $(NAME).pot.tmp;\
+	echo '"Language-Team: LANGUAGE <LL@li.org>\n"'          >> $(NAME).pot.tmp;\
+	echo '"MIME-Version: 1.0\n"'                            >> $(NAME).pot.tmp;\
+	echo '"Content-Type: text/plain; charset=iso-8859-1\n"' >> $(NAME).pot.tmp;\
+	echo '"Content-Transfer-Encoding: 8bit\n"'              >> $(NAME).pot.tmp;\
+	bash --dump-po-strings ../$(SHSKEL)                     >> $(NAME).pot.tmp;\
+	../tools/bashdump-rmdup.sh $(NAME).pot.tmp               > $(NAME).pot;\
+	grep '##duplicated##'                                      $(NAME).pot;
 
-# all the later sed festival to strip po-header discarded by bash
-# --dump-po-strings...
-po:	check-po-dir
+po: check-po-dir
 	@cd $(PODIR) && \
 	for pot in *.po; do \
 		echo -n "merging $$pot..."; \
 		poti=`echo $$pot | sed 's/\.po$$//'`; \
 		cp $$pot $$pot.old && \
-		msgmerge $$pot.old $(NAME).pot > $$pot && \
-		cp $$pot $$pot.tmp && \
-		sed '/^$$/q' $$pot.old > $$pot && \
-		sed '/^$$/{N;N;N;/\n#~ "Project-Id/{:a;$$!N;s/.*\n//;ta;d;};}' \
-			$$pot.tmp >> $$pot; \
+		msgmerge $$pot.old $(NAME).pot > $$pot; \
 	done
 
 mo: check-po-dir
@@ -60,7 +69,8 @@ check-po: check-po-dir
 
 update-po: pot po mo
 
-tgz: clean check-po
+
+tgz: clean #check-po
 	mkdir $(DISTDIR) && \
 	cp -a $(FILES) $(DISTDIR) && \
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \

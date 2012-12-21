@@ -1,3 +1,5 @@
+
+
                           ^ txt2regex.sh $
 
    a Regular Expression "wizard", all written with bash2 builtins
@@ -7,6 +9,7 @@ builtins, that converts human sentences to RegExs. with a simple
 interface, you just answer to questions and build your own RegEx for a
 large variety of programs, like awk, ed, emacs, grep, perl, php,
 python, sed, tcl and vim. there are 18 supported programs now.
+it's bash so download and run, no compilation needed.
 
 ----------------------------------------------------------------------
 
@@ -56,6 +59,18 @@ make install:
 if you want to install it on another location, redefine BINDIR,
 LOCATEDIR and DESTDIR variables.
 
+
+gotcha:
+the program do use the bash environment variable $LINES to get the
+number of lines available, it *MUST* to be an exported variable, or
+you'll be stucked at the default 24 lines limit. 
+
+try the command: /bin/bash -c 'echo $LINES'
+
+if you don't get the number of lines, append "export LINES" at your
+~/.bash_profile
+
+
 ----------------------------------------------------------------------
 
 HOW TO USE IT?
@@ -93,32 +108,52 @@ as the top menu says, press `.` to quit and `0` (zero) to reset the
 RegEx. the `*` key toggles color ON/OFF and `/` add/remove programs
 on the RegEx part. just it.
 
-so, read the question (in yellow), choose the answer, and press its
-number.
+so, in short:
+- read the question
+- choose the answer
+- press the number
+- fun!
+
              _______________________________________
+
 
   COMMAND LINE
 
-there's a few command line options
+there's a few command line options, see the --help:
+
++----------------------------------------------------------------------+
+|                                                                      |
+|  usage: txt2regex [--history <value>] [--nocolor|--whitebg|--all]    |
+|                                                                      |
+|  OPTIONS (they are default OFF):                                     |
+|                                                                      |
+|    --all              works with all registered programs             |
+|    --nocolor          self-explanatory                               |
+|    --whitebg          colors adjusted to white background terminals  |
+|    --history <value>  prints to STDOUT a RegEx from a history data   |
+|                                                                      |
+|  for more details about the options, read the README file.           |
+|                                                                      |
++----------------------------------------------------------------------+
 
 
-usage: txt2regex [--history <value>] [--nocolor|--all]
+and as we're on the README file, here are the details:
+
+* --all is cool but requires lots of lines (~35)
+* --nocolor is strong, so it kills --whitebg
+* --whitebg is a requirement of X users, and as i don't use X, tell me
+    if anything is wrong
+* --history is not very usefull now, but it will
 
 
-  --all       works with all registered programs
-  --nocolor   self-explanatory
-  --history   prints on STDOUT a RegEx from a history data
-              (no interative, implicit --nocolor)
+and now what you've waiting for, the examples:
 
-a history data are those things inside the "clouds"
-.oO(...)(...), being .oO(history)(¤user_input1¤userinput2¤...)
+* a VERY VERY VERY simple ER to match an email@like-this.com
+    txt2regex --all --history "2542154¤ @¤@¤ @"
 
-example:
+* calling the program on a white terminal
+    txt2regex --whitebg
 
-    txt2regex --all --history 2155115¤2¤:¤2
-
-to obtain a (very) simple ER to match hour on the hh:mm format.
-not very usefull now, but it will.
 
 ----------------------------------------------------------------------
 
@@ -130,7 +165,7 @@ all RegExs and rules the program knows about were taken
 - or missing it, from internet documents (oh no!)
 - or missing it, guessing and testing...
 
-of course, all info tested by hand, to the *really* reliable..
+of course, all info tested by hand, to be *really* reliable.
 
 versions tested:
   ed: GNU ed version 0.2
@@ -142,6 +177,10 @@ versions tested:
   sed: GNU sed version 3.02.80
   vim: VIM - Vi IMproved 5.7
   php: 3.0.18 and 4.0.3pl1
+
+gotcha:
+  inside lists [], the "<TAB>" string represents a literal TAB, for
+  programs wich doesn't support [\t].
 
 
 ----------------------------------------------------------------------
@@ -163,6 +202,17 @@ example and translate it. in doubt, ask.
 
 ----------------------------------------------------------------------
 
+TRANSLATIONS MAINTAINERS
+
+"i feel like i could... like i could... TAKE OVER THE WORLD"
+
+en             english           the author
+pt_BR    brazilian portuguese    the author
+id_ID     bahasa indonesian      Muhamad Faizal
+pl_PL          polish            Chris Piechowicz
+
+----------------------------------------------------------------------
+
 ABOUT THE AUTHOR
 
 who cares?
@@ -171,4 +221,4 @@ who cares?
 --
 AUTHOR: aurélio marinho jargas <verde@conectiva.com.br>
 DEBUT: 20010223
-URL: http://conectiva.com.br/~aurelio/programas/bash/txt2regex
+URL: http://txt2regex.sourceforge.net
