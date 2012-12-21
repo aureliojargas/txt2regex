@@ -191,7 +191,7 @@ do case "$1" in
        --prog) [ "$2" ] || Usage ; shift
                # sanity check
                for p in ${1//,/ }; do                    # comma separated list
-                 index=`getItemIndex "$p" "${allprogs[@]}"` # is valid?
+                 index=$(getItemIndex "$p" "${allprogs[@]}") # is valid?
                  [ "$index" ] || printError "--prog: '$p':" $"invalid argument"
                done
                eval "progs=(${1//,/ })" ;;
@@ -363,17 +363,17 @@ ColorOnOff(){
   if [ "$cN" ]; then
     unset cN cP cB cI cR
   elif [ "$f_whitebg" != 1 ]; then
-    cN=`echo -ne "\033[m"`      # normal
-    cP=`echo -ne "\033[1;31m"`  # red
-    cB=`echo -ne "\033[1;37m"`  # white
-    cI=`echo -ne "\033[1;33m"`  # yellow
-    cR=`echo -ne "\033[7m"`     # reverse
+    cN=$(echo -ne "\033[m")      # normal
+    cP=$(echo -ne "\033[1;31m")  # red
+    cB=$(echo -ne "\033[1;37m")  # white
+    cI=$(echo -ne "\033[1;33m")  # yellow
+    cR=$(echo -ne "\033[7m")     # reverse
   else
-    cN=`echo -ne "\033[m"`      # normal
-    cP=`echo -ne "\033[31m"`    # red
-    cB=`echo -ne "\033[32m"`    # green
-    cI=`echo -ne "\033[34m"`    # blue
-    cR=`echo -ne "\033[7m"`     # reverse
+    cN=$(echo -ne "\033[m")      # normal
+    cP=$(echo -ne "\033[31m")    # red
+    cB=$(echo -ne "\033[32m")    # green
+    cI=$(echo -ne "\033[34m")    # blue
+    cR=$(echo -ne "\033[7m")     # reverse
   fi
 }
 
@@ -393,12 +393,12 @@ getMeta(){
 }
 
 ShowMeta(){
-  local i j g1 g2 prog progsize=`getLargestItem "${allprogs[@]}"`
+  local i j g1 g2 prog progsize=$(getLargestItem "${allprogs[@]}")
   for ((i=0 ;i<${#allprogs[@]};i++)); do
     prog=${allprogs[$i]}; printf "\n%${#progsize}s" "$prog"
-    for j in 4 2 5; do printf "%8s" `getMeta S2_$prog $j`; done
-    printf "%8s" `getMeta ax_$prog 1`   # or
-    g1=`getMeta ax_$prog 2`; g2=`getMeta ax_$prog 3`
+    for j in 4 2 5; do printf "%8s" $(getMeta S2_$prog $j); done
+    printf "%8s" $(getMeta ax_$prog 1)   # or
+    g1=$(getMeta ax_$prog 2); g2=$(getMeta ax_$prog 3)
     printf "%8s" "$g1$g2"               # group
 #    printf " $prog: ${allversions[$i]}" #DBG
   done
@@ -411,17 +411,17 @@ ShowInfo(){
   local -a data txt
 
   # getting data
-  index=`getItemIndex "$prog" "${allprogs[@]}"`
+  index=$(getItemIndex "$prog" "${allprogs[@]}")
   ver="${allversions[$index]}"
-  escmeta=`getMeta ax_$prog 4`
-  needesc=`getMeta ax_$prog 5`
+  escmeta=$(getMeta ax_$prog 4)
+  needesc=$(getMeta ax_$prog 5)
   [ "$needesc" ] || { printf "%s: '%s'\n" $"unknown program" "$prog"; return; }
-  [ "`getMeta ax_$prog 7`" == 'P'  ] && posix=$"YES"
-  [ "`getMeta ax_$prog 8`" == '\t' ] && tabinlist=$"YES"
+  [ "$(getMeta ax_$prog 7)" == 'P'  ] && posix=$"YES"
+  [ "$(getMeta ax_$prog 8)" == '\t' ] && tabinlist=$"YES"
   metas=$(      for j in 4 2 5; do getMeta S2_$prog $j; done)
   metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
   metas="$metas$(getMeta ax_$prog 3)"                       #)
-  metas=". [] [^] * `echo $metas`"
+  metas=". [] [^] * $(echo $metas)"
 
   # populating cool i18n arrays
   t1=$"program" t2=$"metas" t3=$"esc meta" t4=$"need esc" t5=$"\t in []" t6=$"[:POSIX:]"
@@ -430,7 +430,7 @@ ShowInfo(){
 
   # show me! show me! show me!
   ColorOnOff
-  echo ; txtsize=`getLargestItem "${txt[@]}"`
+  echo ; txtsize=$(getLargestItem "${txt[@]}")
   for ((i=0 ;i<${#txt[@]};i++)); do
     printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
   done ; echo
@@ -465,7 +465,7 @@ ScreenSize(){
 }
 
 
-_eol=`echo -ne "\033[0K"`  # clear trash until EOL
+_eol=$(echo -ne "\033[0K")  # clear trash until EOL
 
 # the cool control chars functions
 gotoxy(){   [ "$f_i" == 1 ] && echo -ne "\033[$2;$1H"; }
@@ -529,7 +529,7 @@ doMenu(){
     gotoxy $x_hist $y_hist
     echo "   $cP.oO($cN$REPLIES$cP)$cN$cP($cN$uins$cP)$cN$_eol"   # history
     gotoxy $x_menu $y_menu ; echo "$cI${Menui[0]}:$cN$_eol" # title
-    for i in `sek $menu_n`                                  # itens
+    for i in $(sek $menu_n)                                  # itens
     do echo "  $cB$i$cN) ${Menui[$i]}$_eol"; i=$((i+1)); done
     clearEnd                                                # prompt
     gotoxy $x_prompt $y_prompt ; echo -ne "$cP[1-$menu_n]:$cN $_eol"
@@ -700,7 +700,7 @@ Reset(){ gotoxy $x_regex $y_regex
   local p
 
   # global maxprogname
-  maxprogname=`getLargestItem "${progs[@]}"`     # global var
+  maxprogname=$(getLargestItem "${progs[@]}")     # global var
   for p in ${progs[*]}; do
   [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"; done
 }
