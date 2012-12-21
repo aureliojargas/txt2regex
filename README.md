@@ -1,10 +1,9 @@
-## txt2regex
+## txt2regex — The console regular expression wizard
 
-    Program    : txt2regex
-    Summary    : The console Regular Expression Wizard
-    Author     : Aurelio Marinho Jargas (verde@aurelio.net)
-    License    : GPL
-    Homepage   : http://txt2regex.sf.net
+- Author: [Aurelio Jargas](http://aurelio.net/about.html)
+- License: GPL
+- First release: 2001-02-23
+- Website: http://aurelio.net/projects/txt2regex/
 
 Txt2regex is a Regular Expression Wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
@@ -19,8 +18,8 @@ or extra commands are needed, just download and run.
 Txt2regex will work in ANY system bash works, because it's a bash-only
 program. This includes Cygwin and Cygwin XFree also.
 
-After expand the tarball, do you can simply run the program directly.
-But if do you want it on your system, or in other language besides
+After expanding the tarball, simply run the program directly.
+But if you want it installed on your system, or in other language besides
 english, use the `make` command.
 
 - **Just english:** untar and run
@@ -50,6 +49,7 @@ change the default install paths.
 
 **Note 2:** Txt2regex only works in Bash version >= 2.04.
 
+
 ## Tested programs versions 
 
 All regexes and rules the program knows about were extensively tested
@@ -60,7 +60,7 @@ reached or executed on my machine, the rules were taken:
 - Or missing it, from the "Mastering Regular Expressions" O'Reilly book
 - Or missing it, from Internet documents (Oh no!)
 
-Programs that were tested here:
+Programs I've tested here:
 
 - **ed**: GNU ed version 0.2
 - **mawk**: mawk 1.3.3 Nov 1996
@@ -88,28 +88,28 @@ Programs that were tested here:
 
     ca             catalan           Carles (ChAoS)
     de_DE          german            Jan Parthey
-    en             english           the author
+    en             english           Aurelio Jargas
     es_ES          spanish           Diego Moya
     fr_FR          french            wwp
     id_ID     bahasa indonesian      Muhamad Faizal
     it_IT          italian           Daniele Pizzolli
     ja            japanese           Hajime Dei
     pl_PL          polish            Chris Piechowicz
-    pt_BR    brazilian portuguese    the author
+    pt_BR    brazilian portuguese    Aurelio Jargas
     ro_RO         romanian           Robert Claudiu Gheorghe
 
 A nice way to contribute with the project, is to translate its
 messages to your own language. Just get the `po/txt2regex.pot`
-file and translate it, on the "msgstr" lines. In doubt, ask.
+file and translate it, on the `msgstr` lines. In doubt, ask.
 
 
 ## FAQ 
 
 ### Q: Why?
 
-A: To try to make simple regexes less painful for the beginners
+A: To try to make simple regexes less painful for the beginners.
 
-A: To have a reliable source for regexes differences between programs
+A: To have a reliable source for regexes differences between programs.
 
 A: To have coding fun &:)
 
@@ -124,7 +124,7 @@ and advanced variable expansion. They rule!
 
 A: The program do use the bash environment variables `$LINES` and
 `$COLUMNS` to get the actual screen size. Those **MUST** be exported
-variables, or you'll be stucked at the default 80x25 size. Try:
+variables, or you'll be stuck at the default 80x25 size. Try:
 
     /bin/bash -c 'echo $COLUMNS $LINES'
 
