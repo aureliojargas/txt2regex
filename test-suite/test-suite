@@ -51,7 +51,7 @@ do echoprog "$a"
  	 	[ "$m" == '[\t]' ] && delesc4tabtest
  		echo -n "$re" | $a "/$m/{print}" 2>&1 | sed q
       else
-        echo -n "$re" | $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 | sed 2q
+        echo -n "$re" | $a "{print gensub(/$m/, \"$cYÂ·$cN\", \"g\")}" 2>&1 | sed 2q
       fi	
 	  echo
    done | sed '/^$/d'
@@ -64,7 +64,7 @@ local m
 echoprog sed
 sed --version | sed 1q
 for m in `echo $ms`
-do echometa "$m" ; echo -n "$re" | sed -n "s/$m/$cY·$cN/gp" 2>&1 ; echo
+do echometa "$m" ; echo -n "$re" | sed -n "s/$m/$cYÂ·$cN/gp" 2>&1 ; echo
 done | sed '/^$/d'
 echo $line
 }
@@ -88,7 +88,7 @@ echoprog php
 echo "<? echo phpversion().\"\n\" ; ?>" | php | sed 1,3d
 
 for m in `echo $ms`
-do echometa "$m" ; echo "<? \$r=ereg_replace('$m','$cY·$cN','$re');if(\$r!='$re')echo \"\$r\";?>" |
+do echometa "$m" ; echo "<? \$r=ereg_replace('$m','$cYÂ·$cN','$re');if(\$r!='$re')echo \"\$r\";?>" |
      php 2>&1 | sed '1,3d;/^<br>/d;s/<[^>]\+>//g' ; echo
 done | sed '/^ *$/d'
 echo $line
@@ -134,7 +134,7 @@ re2=`escesc "$re"`  # double escaping escaped metas
 echo "<pre><font size=8><script>var er = \"$re2\";" | tee javascript.html
 for m in `echo $ms`
 do m=`escesc "$m"`
-   echo "document.write('$m	'+er.replace('$m','<b>®</b>')+\"<br>\");" |
+   echo "document.write('$m	'+er.replace('$m','<b>Â®</b>')+\"<br>\");" |
    sed "/'\(\.{\|(\|\[\\\\\\\\]\)'/s,er\.re[^)]\+),\"ERROR\"," |
    sed "s/'\[\\\\\\\\\\\\\\\\/&./g" 
    # first sed avoid fatal error on .{, ( and [\]
@@ -150,7 +150,7 @@ local m
 echoprog perl
 perl --version | sed -n '2s/.*, //p'
 for m in `echo $ms`
-do echometa "$m" ; echo -n "$re" | perl -pe "s/$m/$cY·$cN/g" 2>&1 ; echo
+do echometa "$m" ; echo -n "$re" | perl -pe "s/$m/$cYÂ·$cN/g" 2>&1 ; echo
 done | sed '/^$/d'
 echo $line
 }
@@ -164,8 +164,8 @@ re=`escesc "$re"`
 for m in `echo $ms`
 do echometa "$m" ;
    # we need the tmpfile because it hangs on the 1st error on ...$res" | tclsh
-   echo "regsub -all {${m}} \"$re\" \"·\" res; puts \$res" > tmp; tclsh tmp 2>&1 |
-   sed "s/·/$cY&$cN/g;q"
+   echo "regsub -all {${m}} \"$re\" \"Â·\" res; puts \$res" > tmp; tclsh tmp 2>&1 |
+   sed "s/Â·/$cY&$cN/g;q"
 done
 rm -f tmp
 echo $line
