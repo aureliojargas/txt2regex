@@ -1,0 +1,12 @@
+txt2regex changelog
+-------------------
+
+20010424 v0.2: 
+  - changed name to txt2regex (the final 'p' was kinda hard to speak)
+  - new command line options: --nocolor, --history
+  - a new dynamic history for user input: .oO(history)(¤user_input1¤userinput2¤...)
+  - added indonesian (bahasa) translations provided by Muhamad Faizal
+    <faizal (a) mfaizal net>
+
+20010223 v0.1:
+  - initial release (as txt2regexp)
