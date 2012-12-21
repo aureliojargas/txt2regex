@@ -126,21 +126,26 @@ echo $line
 }
 
 
-# save the output onto javascript.html and open in netscape
+# save the output onto javascript.html
 er_javascript(){
 echoprog javascript
-rpm -q --qf 'netscape-%{VERSION}\n' netscape-navigator
+# rpm -q --qf 'netscape-%{VERSION}\n' netscape-navigator
 re2=`escesc "$re"`  # double escaping escaped metas
-echo "<pre><font size=8><script>var er = \"$re2\";" | tee javascript.html
+echo '<!DOCTYPE html>' > javascript.html
+echo '<html lang="en"><head><meta charset="UTF-8"></head>' >> javascript.html
+echo '<body style="font-size:25px;"><pre><script>' >> javascript.html
+echo "var er = \"$re2\";" | tee -a javascript.html
 for m in `echo $ms`
 do m=`escesc "$m"`
-   echo "document.write('$m	'+er.replace('$m','<b>®</b>')+\"<br>\");" |
+   echo "document.write('$m	'+er.replace('$m','<b>★</b>')+\"<br>\");" |
    sed "/'\(\.{\|(\|\[\\\\\\\\]\)'/s,er\.re[^)]\+),\"ERROR\"," |
    sed "s/'\[\\\\\\\\\\\\\\\\/&./g" 
    # first sed avoid fatal error on .{, ( and [\]
    # second sed puts a . on the [\\] cause \ cannot be the last list item
 done | tee -a javascript.html
-echo '</script></pre>' | tee -a javascript.html
+echo '</script></pre></body></html>' >> javascript.html
+echo
+echo "Check javascript.html in your browser."
 echo $line
 }
 
