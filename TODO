@@ -1,10 +1,8 @@
 txt2regex TODO:
 
-  - support (grouping|and|alternation)
   - describe some nice features as [][\^-]
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
-  - add more programs
   - ready-to-use common regexes (email, date, ip, etc)
   - support for ~/.txt2regexrc and env vars
 

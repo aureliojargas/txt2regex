@@ -1,6 +1,14 @@
 txt2regex changelog
 -------------------
 
+20010904 v0.6:
+  - added (group|and|alternation) support
+  - added groups balance check -> (((3)))
+  - option --history improved and sync'ed with all features
+  - added mysql support
+  - added german translations provided by Jan Parthey
+    <parthey (a) web de>
+
 20010828 v0.5:
   - new command line options: --showmeta, --showinfo
   

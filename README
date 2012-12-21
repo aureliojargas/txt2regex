@@ -38,8 +38,8 @@ with i18n    -> untar, make install and run
 
 
 untar:
-    tar xvzf txt2regex-0.2.tgz
-    cd txt2regex-0.2
+    tar xvzf txt2regex-0.6.tgz
+    cd txt2regex-0.6
 
 run:
     ./txt2regex.sh
@@ -60,18 +60,6 @@ make install:
 if you want to install it on another location, redefine BINDIR,
 LOCATEDIR and DESTDIR variables.
 
-
-gotcha:
-the program do use the bash environment variable $LINES to get the
-number of lines available, it *MUST* to be an exported variable, or
-you'll be stucked at the default 24 lines limit.
-
-try the command: /bin/bash -c 'echo $LINES'
-
-if you don't get the number of lines, append "export LINES" at your
-~/.bash_profile
-
-
 ----------------------------------------------------------------------
 
 HOW TO USE IT?
@@ -86,7 +74,8 @@ just run it and see the it's face.
 the interface is pretty easy to understand, but in short, it's:
 
     +---------------------------------------+
-    | -> top menu                 -> legend |
+    | -> top menu                           |
+	| -> group menu                         |
     |                                       |
     | -> RegExs of the programs selected    |
     |    ...                                |
@@ -108,6 +97,8 @@ see the RegExs being made.
 as the top menu says, press `.` to quit and `0` (zero) to reset the
 RegEx. the `*` key toggles color ON/OFF and `/` add/remove programs
 on the RegEx part. just it.
+
+the group menu is contextual, it appears on the 2nd line when needed.
 
 so, in short:
 - read the question
@@ -153,15 +144,16 @@ and as we're on the README file, here are the details:
 * --showmeta rules
 * --showinfo has a reverse video nice output, if you don't like it, do
     use it with --nocolor
-* --history is not very usefull now, but it will
+* --history is getting useful, stay tunned
 
 
 and now what you've waiting for, the examples:
 
-* a VERY VERY VERY simple ER to match an email@like-this.com
+* a VERY VERY VERY simple regex to match an email@like-this.com
     txt2regex --all --history "2542154¤ @¤@¤ @"
 
 * calling the program on a white terminal
+    xterm -fg black -bg white
     txt2regex --whitebg
 
 * getting information
@@ -170,19 +162,27 @@ and now what you've waiting for, the examples:
 * getting specific information
     txt2regex --showinfo sed
 
+* a VERY simple regex to match a date (mm/dd/aaaa)
+    txt2regex --all --history '26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4'
+
+* a date again, but more precise (from 00/00/1000 to 19/31/2999)
+    txt2regex --all --history '2416121(4161|2141)214165¤01¤:2¤/¤012¤:2¤3¤01¤/¤12¤:2¤3'
+
+
 ----------------------------------------------------------------------
 
 INFO ABOUT THE INFO ON IT
 
-all RegExs and rules the program knows about were taken
-- from the programs man pages
+all RegExes and rules the program knows about were extensively tested
+by hand or by the test-suite program. when the program can't be
+reached or executed on my machine, the rules were taken:
+
+- from the program documentation
 - or missing it, from the "mastering regular expressions" o'reilly book
 - or missing it, from internet documents (oh no!)
-- or missing it, guessing and testing...
 
-of course, all info tested by hand, to be *really* reliable.
 
-versions tested:
+programs that were tested here:
   ed: GNU ed version 0.2
   mawk: mawk 1.3.3 Nov 1996
   gawk: GNU Awk 3.0.6
@@ -190,6 +190,7 @@ versions tested:
   egrep: egrep (GNU grep) 2.4.2
   find: GNU find version 4.1
   javascript: netscape-4.77
+  mysql: Ver 11.13 Distrib 3.23.36
   perl: v5.6.0 built for i386-linux
   php: 4.0.6
   postgres: psql (PostgreSQL) 7.1.2
@@ -199,10 +200,6 @@ versions tested:
   tcl: 8.3
   vi: Nvi 1.79 (10/23/96)
   vim: VIM - Vi IMproved 5.8 (2001 May 31)
-
-gotcha:
-  inside lists [], the "<TAB>" string represents a literal TAB, for
-  programs wich doesn't support [\t].
 
 
 ----------------------------------------------------------------------
@@ -232,6 +229,32 @@ en             english           the author
 pt_BR    brazilian portuguese    the author
 id_ID     bahasa indonesian      Muhamad Faizal
 pl_PL          polish            Chris Piechowicz
+de_DE          german            Jan Parthey
+
+----------------------------------------------------------------------
+
+FAQ
+
+1) Q: my screen has more than 25 lines, i'm serious!
+   Q: why it only uses 80 columns if my screen has more?
+   Q: i've changed the xterm window size, why it didn't notice that?
+
+   A: the program do use the bash environment variables $LINES and
+	  $COLUMNS to get the actual screen size. those *MUST* be exported
+	  variables, or you'll be stucked at the default 80x25 size.
+
+      try the command: /bin/bash -c 'echo $COLUMNS $LINES'
+
+	  if you don't get the screen size, do:
+
+	  prompt$ echo export COLUMNS LINES >> ~/.bash_profile
+
+
+2) Q: what is that <TAB> that appears when i choose TAB on the special
+      combination menu?
+
+   A: inside lists [], the <TAB> string represents a (visual) literal
+      TAB, for programs wich doesn't support [\t].
 
 ----------------------------------------------------------------------
 
