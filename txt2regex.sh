@@ -94,49 +94,58 @@ TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
 VERSION=0
 
-# we _need_ bash>=2.04
+# We _need_ bash>=2.04
 case "$BASH_VERSION" in
-  2.0[4-9]*|2.[1-9]*|[3-9].*):;;
-  *)echo "bash version >=2.04 required, but you have $BASH_VERSION"; exit 1;;
+	2.0[4-9]*|2.[1-9]*|[3-9].*)
+		:  # do nothing
+	;;
+	*)
+		echo "bash version >=2.04 required, but you have $BASH_VERSION"
+		exit 1
+	;;
 esac
 
 Usage(){
-echo $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
-echo $"       txt2regex --showmeta"
-echo $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
-echo $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
-echo $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
-echo
-echo $"OPTIONS (they are default OFF):"
-echo
-echo $"  --all               Works with all registered programs"
-echo $"  --nocolor           Don't use colors"
-echo $"  --whitebg           Colors adjusted for white background terminals"
-echo $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
-echo
-echo $"  --showmeta          Prints a metacharacters table with all programs"
-echo $"  --showinfo PROGRAM  Prints regex info about the specified program"
-echo $"  --history VALUE     Prints a regex from the given history data"
-echo $"  --make LABEL        Prints the default regex for the specified label"
-echo
-echo $"  --version           Prints the program version and quit"
-echo $"  --help              Prints the help message and quit"
-echo
-echo $"Please read the program Man Page for more information."
-  exit 1
+	echo $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
+	echo $"       txt2regex --showmeta"
+	echo $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
+	echo $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
+	echo $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
+	echo
+	echo $"OPTIONS (they are default OFF):"
+	echo
+	echo $"  --all               Works with all registered programs"
+	echo $"  --nocolor           Don't use colors"
+	echo $"  --whitebg           Colors adjusted for white background terminals"
+	echo $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
+	echo
+	echo $"  --showmeta          Prints a metacharacters table with all programs"
+	echo $"  --showinfo PROGRAM  Prints regex info about the specified program"
+	echo $"  --history VALUE     Prints a regex from the given history data"
+	echo $"  --make LABEL        Prints the default regex for the specified label"
+	echo
+	echo $"  --version           Prints the program version and quit"
+	echo $"  --help              Prints the help message and quit"
+	echo
+	echo $"Please read the program Man Page for more information."
+	exit 1
 }
 
-printError(){ echo -e "\nERROR: $*\n"; exit 1 ; }
+printError(){
+	echo -e "\nERROR: $*\n"
+	exit 1
+}
 
-# the defaults
+# The defaults
 f_i=1
 f_color=1
 f_whitebg=0
-GRP1=0 ; GRP2=0
+GRP1=0
+GRP2=0
 
 
-# take out from here programs you don't want to know about
-# or to minimize the lines printed on the screen
+# Here's the default list of programs shown.
+# Edit here or use --prog to overwrite it.
 progs=(perl php postgres python sed vim)
 
 
@@ -166,43 +175,102 @@ ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2' \
 #number3: perl: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
 ### -- ###
 
-getItemIndex(){                                   # array tool
-  local i=0 item="$1"; shift; while [ "$1" ]; do
-  [ "$1" == "$item" ] && { echo $i; return; }; i=$((i+1)); shift; done
+getItemIndex(){  # array tool
+	local i=0 item="$1"
+	shift
+	while [ "$1" ]
+	do
+		[ "$1" == "$item" ] && {
+			echo $i
+			return
+		}
+		i=$((i+1))
+		shift
+	done
 }
 
-# parsing options
+# Parse command line options
 while [ $# -gt 0 ]
-do case "$1" in
-    --history) [ "$2" ] || Usage; history="$2"; shift; f_i=0 ; f_color=0
-               hists="0${history%%¤*}" ; histargs="¤${history#*¤}"
-               [ "${hists#0}" == "${histargs#¤}" ] && unset histargs ;;
-       --make) shift; f_i=0 ; f_color=0 ; arg="${1%1}" # final 1 is optional
-               # sanity check
-               valid=${!ready_*} ; valid=" ${valid//ready_/} "
-               [ "$valid" == "${valid#* $arg }" ] && \
-               printError "--make: '$1':" $"invalid argument" \
-                          '\n' $"valid names are:" "$valid"
-               # data setting
-               hist="ready_$arg[0]" ; hist=${!hist}
-                txt="ready_$arg[1]" ;  txt=${!txt}
-               hists="0${hist%%¤*}" ; histargs="¤${hist#*¤}"
-               echo -e "\n### $txt\n" ;;
-       --prog) [ "$2" ] || Usage ; shift
-               # sanity check
-               for p in ${1//,/ }; do                    # comma separated list
-                 index=$(getItemIndex "$p" "${allprogs[@]}") # is valid?
-                 [ "$index" ] || printError "--prog: '$p':" $"invalid argument"
-               done
-               eval "progs=(${1//,/ })" ;;
-    --nocolor) f_color=0 ;;
-    --whitebg) f_whitebg=1 ;;
-   --showmeta) f_showmeta=1 ;;
-   --showinfo) [ "$2" ] || Usage; infoprog="$2"; shift; f_showinfo=1 ;;
-        --all) progs=(${allprogs[@]}) ;;
-    --version) echo "txt2regex v$VERSION" ; exit 0 ;;
-       --help) Usage;; 
-            *) echo "'$1':" $"invalid option" ; Usage;;
+do
+	case "$1" in
+		--history)
+			[ "$2" ] || Usage
+			history="$2"
+			shift
+			f_i=0
+			f_color=0
+
+			hists="0${history%%¤*}"
+			histargs="¤${history#*¤}"
+			[ "${hists#0}" == "${histargs#¤}" ] && unset histargs
+		;;
+		--make)
+			shift
+			f_i=0
+			f_color=0
+			arg="${1%1}"  # final 1 is optional
+
+			# Sanity check
+			valid=${!ready_*}
+			valid=" ${valid//ready_/} "
+			[ "$valid" == "${valid#* $arg }" ] && \
+				printError "--make: '$1':" $"invalid argument" \
+					'\n' $"valid names are:" "$valid"
+
+			# Data setting
+			hist="ready_$arg[0]"
+			hist=${!hist}
+
+			txt="ready_$arg[1]"
+			txt=${!txt}
+
+			hists="0${hist%%¤*}"
+			histargs="¤${hist#*¤}"
+
+			echo -e "\n### $txt\n"
+		;;
+		--prog)
+			[ "$2" ] || Usage
+			shift
+
+			# Sanity check
+			for p in ${1//,/ }  # comma separated list
+			do
+				# Is valid?
+				index=$(getItemIndex "$p" "${allprogs[@]}")
+				[ "$index" ] || printError "--prog: '$p':" $"invalid argument"
+			done
+			eval "progs=(${1//,/ })"
+		;;
+		--nocolor)
+			f_color=0
+		;;
+		--whitebg)
+			f_whitebg=1
+		;;
+		--showmeta)
+			f_showmeta=1
+		;;
+		--showinfo)
+			[ "$2" ] || Usage
+			infoprog="$2"
+			shift
+			f_showinfo=1
+		;;
+		--all)
+			progs=(${allprogs[@]})
+		;;
+		--version)
+			echo "txt2regex v$VERSION"
+			exit 0
+		;;
+		--help)
+			Usage
+		;;
+		*)
+			echo "'$1':" $"invalid option"
+			Usage
+		;;
    esac
    shift
 done
@@ -210,9 +278,10 @@ done
 set -o noglob
 
 
-# the RegEx show
+### The RegEx show
 
-#NOTE texts on vars because i18n inside arrays is not possible (sux)
+# NOTE: texts on vars because i18n inside arrays is not possible (sux)
+
 zz0=$"start to match"
 zz1=$"on the line beginning"
 zz2=$"in any part of the line"
@@ -252,7 +321,7 @@ zz5=$"TAB"
 combo_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5")
 combo_re=('A-Z' 'a-z' '0-9' '_' ' ' '@')
 
-#TODO put all posix components?
+#TODO use all posix components?
 zz0=$"letters"
 zz1=$"lowercase letters"
 zz2=$"uppercase letters"
@@ -264,7 +333,7 @@ zz7=$"graphic chars (not-whitespace)"
 posix_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
 posix_re=('alpha' 'lower' 'upper' 'digit' 'alnum' 'xdigit' 'blank' 'graph')
 
-# title (line 1)
+# Title (line 1)
 zz0=$"quit"
 zz1=$"reset"
 zz2=$"color"
@@ -273,17 +342,19 @@ zz9='^txt2regex$'
 tit1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "" "" "" "" "" "$zz9")
 tit1_cmd=('.' '0' '*' '/' '' '' '' '' '' '')
 
-# title (line 2-3)
+# Title (line 2-3)
 zz0=$"or"
 zz1=$"open group"
 zz2=$"close group"
 zz9=$"not supported"
 tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9")
 tit2_cmd=('|' '(' ')' '' '' '' '' '' '' '!!')
+
+# Remove all zz* temporary vars
 unset ${!zz*}
 
 
-# here's all the quantifiers
+# Here's all the quantifiers
 S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_grep=(      '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
@@ -310,7 +381,7 @@ S2_expect=(    '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
 #63# cause on table 6-1 it seems that the vi part is wrong
 
-### mastering regular expressions:
+### Mastering Regular Expressions pages:
 # egrep 29 1-3
 # .* 182 6-1
 # grep 183 6-2
@@ -318,7 +389,7 @@ S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
 # tcl 189 6-4
 # emacs 194 6-7
 # perl 201 7-1
-### other:
+### Other:
 # php 4.0.3pl1 docs (POSIX 1003.2 extended regular expressions)
 
 
@@ -358,473 +429,759 @@ ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
 
 
 ColorOnOff(){
-  # the colors: Normal, Prompt, Bold, Important
-  [ "$f_color" != 1 ] && return
-  if [ "$cN" ]; then
-    unset cN cP cB cI cR
-  elif [ "$f_whitebg" != 1 ]; then
-    cN=$(echo -ne "\033[m")      # normal
-    cP=$(echo -ne "\033[1;31m")  # red
-    cB=$(echo -ne "\033[1;37m")  # white
-    cI=$(echo -ne "\033[1;33m")  # yellow
-    cR=$(echo -ne "\033[7m")     # reverse
-  else
-    cN=$(echo -ne "\033[m")      # normal
-    cP=$(echo -ne "\033[31m")    # red
-    cB=$(echo -ne "\033[32m")    # green
-    cI=$(echo -ne "\033[34m")    # blue
-    cR=$(echo -ne "\033[7m")     # reverse
-  fi
+	# The colors: Normal, Prompt, Bold, Important
+	[ "$f_color" != 1 ] && return
+	if [ "$cN" ]
+	then
+		unset cN cP cB cI cR
+	elif [ "$f_whitebg" != 1 ]
+	then
+		cN=$(echo -ne "\033[m")      # normal
+		cP=$(echo -ne "\033[1;31m")  # red
+		cB=$(echo -ne "\033[1;37m")  # white
+		cI=$(echo -ne "\033[1;33m")  # yellow
+		cR=$(echo -ne "\033[7m")     # reverse
+	else
+		cN=$(echo -ne "\033[m")      # normal
+		cP=$(echo -ne "\033[31m")    # red
+		cB=$(echo -ne "\033[32m")    # green
+		cI=$(echo -ne "\033[34m")    # blue
+		cR=$(echo -ne "\033[7m")     # reverse
+	fi
 }
 
 sek(){
-  local H='<' s='++' a=1 z=$1; [ "$2" ] && { a=$1; z=$2; }
-  [ $a -gt $z ] && { H='>'; s='--'; }; for ((i=$a;i$H=$z;i$s)); do echo $i; done
+	local H='<' s='++' a=1 z=$1
+	[ "$2" ] && {
+		a=$1
+		z=$2
+	}
+	[ $a -gt $z ] && {
+		H='>'
+		s='--'
+	}
+	for ((i=$a; i$H=$z; i$s))
+	do
+		echo $i
+	done
 }
 
 getLargestItem(){
-  local mjr; while [ "$1" ]; do
-  [ ${#1} -gt ${#mjr} ] && mjr="$1"; shift; done; echo $mjr
+	local mjr
+	while [ "$1" ]
+	do
+		[ ${#1} -gt ${#mjr} ] && mjr="$1"
+		shift
+	done
+	echo $mjr
 }
 
 getMeta(){
-  local m="$1[$2]"; m=${!m}; m=${m//[@!,_]/}
-  echo "${m//\\\\{[01]*}"  # needed for vi
+	local m="$1[$2]"
+	m=${!m}
+	m=${m//[@!,_]/}
+	echo "${m//\\\\{[01]*}"  # needed for vi
 }
 
 ShowMeta(){
-  local i j g1 g2 prog progsize=$(getLargestItem "${allprogs[@]}")
-  for ((i=0 ;i<${#allprogs[@]};i++)); do
-    prog=${allprogs[$i]}; printf "\n%${#progsize}s" "$prog"
-    for j in 4 2 5; do printf "%8s" $(getMeta S2_$prog $j); done
-    printf "%8s" $(getMeta ax_$prog 1)   # or
-    g1=$(getMeta ax_$prog 2); g2=$(getMeta ax_$prog 3)
-    printf "%8s" "$g1$g2"               # group
-#    printf " $prog: ${allversions[$i]}" #DBG
-  done
-  printf "\n\n%s\n\n" $"NOTE: . [] [^] and * are the same on all programs."
+	local i j g1 g2 prog progsize=$(getLargestItem "${allprogs[@]}")
+	for ((i=0; i<${#allprogs[@]}; i++))
+	do
+		prog=${allprogs[$i]}
+		printf "\n%${#progsize}s" "$prog"
+
+		for j in 4 2 5
+		do
+			printf "%8s" $(getMeta S2_$prog $j)
+		done
+
+		printf "%8s" $(getMeta ax_$prog 1)  # or
+
+		g1=$(getMeta ax_$prog 2)
+		g2=$(getMeta ax_$prog 3)
+		printf "%8s" "$g1$g2"               # group
+		# printf " $prog: ${allversions[$i]}" #DEBUG
+	done
+	printf "\n\n%s\n\n" $"NOTE: . [] [^] and * are the same on all programs."
 }
 
 ShowInfo(){
-  local index ver posix=$"NO" tabinlist=$"NO" prog=$1
-  local j t1 t2 t3 t4 t5 t6 txtsize escmeta needesc metas
-  local -a data txt
+	local index ver posix=$"NO" tabinlist=$"NO" prog=$1
+	local j t1 t2 t3 t4 t5 t6 txtsize escmeta needesc metas
+	local -a data txt
 
-  # getting data
-  index=$(getItemIndex "$prog" "${allprogs[@]}")
-  ver="${allversions[$index]}"
-  escmeta=$(getMeta ax_$prog 4)
-  needesc=$(getMeta ax_$prog 5)
-  [ "$needesc" ] || { printf "%s: '%s'\n" $"unknown program" "$prog"; return; }
-  [ "$(getMeta ax_$prog 7)" == 'P'  ] && posix=$"YES"
-  [ "$(getMeta ax_$prog 8)" == '\t' ] && tabinlist=$"YES"
-  metas=$(      for j in 4 2 5; do getMeta S2_$prog $j; done)
-  metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
-  metas="$metas$(getMeta ax_$prog 3)"                       #)
-  metas=". [] [^] * $(echo $metas)"
+	# Getting data
+	index=$(getItemIndex "$prog" "${allprogs[@]}")
+	ver="${allversions[$index]}"
+	escmeta=$(getMeta ax_$prog 4)
+	needesc=$(getMeta ax_$prog 5)
+	[ "$needesc" ] || {
+		printf "%s: '%s'\n" $"unknown program" "$prog"
+		return
+	}
+	[ "$(getMeta ax_$prog 7)" == 'P'  ] && posix=$"YES"
+	[ "$(getMeta ax_$prog 8)" == '\t' ] && tabinlist=$"YES"
+	metas=$(for j in 4 2 5; do getMeta S2_$prog $j; done)
+	metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
+	metas="$metas$(getMeta ax_$prog 3)"                       #)
+	metas=". [] [^] * $(echo $metas)"
 
-  # populating cool i18n arrays
-  t1=$"program" t2=$"metas" t3=$"esc meta" t4=$"need esc" t5=$"\t in []" t6=$"[:POSIX:]"
-  data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
-  txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
+	# Populating cool i18n arrays
+	t1=$"program"
+	t2=$"metas"
+	t3=$"esc meta"
+	t4=$"need esc"
+	t5=$"\t in []"
+	t6=$"[:POSIX:]"
+	data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
+	txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
 
-  # show me! show me! show me!
-  ColorOnOff
-  echo ; txtsize=$(getLargestItem "${txt[@]}")
-  for ((i=0 ;i<${#txt[@]};i++)); do
-    printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
-  done ; echo
+	# Show me! show me! show me!
+	ColorOnOff
+	echo
+	txtsize=$(getLargestItem "${txt[@]}")
+	for ((i=0; i<${#txt[@]}; i++))
+	do
+		printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
+	done
+	echo
 }
 
 
-[ "$f_showmeta" ] && { ShowMeta; exit 0 ;}
-[ "$f_showinfo" ] && { ShowInfo "$infoprog"; exit 0 ;}
+if [ "$f_showmeta" ]
+then
+	ShowMeta
+	exit 0
+fi
+
+if [ "$f_showinfo" ]
+then
+	ShowInfo "$infoprog"
+	exit 0
+fi
 
 
-
+# Screen size/positioning issues
 ScreenSize(){
-# screen size/positioning issues
-  x_regex=1  ; y_regex=4
-  x_hist=3   ; y_hist=$((y_regex+${#progs[*]}+1))
-  x_prompt=3 ; y_prompt=$((y_regex+${#progs[*]}+2))
-  x_menu=3   ; y_menu=$((y_prompt+2))
-  x_prompt2=15
-  y_max=$((y_menu+${#S1_txt[*]}))
+	x_regex=1
+	y_regex=4
+	x_hist=3
+	y_hist=$((y_regex+${#progs[*]}+1))
+	x_prompt=3
+	y_prompt=$((y_regex+${#progs[*]}+2))
+	x_menu=3
+	y_menu=$((y_prompt+2))
+	x_prompt2=15
+	y_max=$((y_menu+${#S1_txt[*]}))
 
-  # the defaults case not exported
-  : ${LINES:=25}
-  : ${COLUMNS:=80}
+	# The defaults case not exported
+	: ${LINES:=25}
+	: ${COLUMNS:=80}
 
-  #TODO automatic check when selecting programs
-  [ "$f_i" == 1 -a $LINES -lt "$y_max" ] && { printf $"error:
+	#TODO automatic check when selecting programs
+	[ "$f_i" == 1 -a $LINES -lt "$y_max" ] && {
+		printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
   less programs to show the regex.\n\n" "$LINES" "$y_max"
-  exit 1
-  }
+		exit 1
+	}
 }
 
 
 _eol=$(echo -ne "\033[0K")  # clear trash until EOL
 
-# the cool control chars functions
+# The cool control chars functions
 gotoxy(){   [ "$f_i" == 1 ] && echo -ne "\033[$2;$1H"; }
 clearEnd(){ [ "$f_i" == 1 ] && echo -ne "\033[0J"; }
 clearN(){   [ "$f_i" == 1 ] && echo -ne "\033[$1X"; }
 Clear(){    [ "$f_i" == 1 ] && echo -ne "\033c"; }
-# ideas: tab between, $cR on cmd, yellow-white-yellow
-printTitleCmd(){ printf "[$cI%s$cN]%s  " "$1" "$2"; }
 
-TopTitle(){ gotoxy 1 1
-  local i j showme txt color
-  [ "$f_i" != 1 ] && return
+# Ideas: tab between, $cR on cmd, yellow-white-yellow
+printTitleCmd(){
+	printf "[$cI%s$cN]%s  " "$1" "$2"
+}
 
-  # 1st line: aplication commands
-  for ((i=0 ;i<10;i++)); do
-    showme=0
-    txt=${tit1_txt[$i]}; cmd=${tit1_cmd[$i]}
-    case $i in
-      [01]) showme=1 ;;
-         2) [ "$f_color" == 1 ] && showme=1 ;;
-         3) [ $STATUS -eq 0 ]   && showme=1 ;;
-         9) gotoxy $((COLUMNS-${#txt})) 1; echo "$txt";;
-     esac
-     if [ $showme -eq 1 ]; then printTitleCmd "$cmd" "$txt"
-     else clearN $((${#txt}+3)); fi
-  done
+TopTitle(){
+	gotoxy 1 1
+	local i j showme txt color
+	[ "$f_i" != 1 ] && return
 
-  # 2nd line: grouping and or
-  if [ $STATUS -eq 0 ]; then echo -n $_eol
-  else
-    if [ $STATUS -eq 1 ]; then
-      for i in 0 1 2; do
-        txt=${tit2_txt[$i]}; cmd=${tit2_cmd[$i]}
-        showme=1 ; [ $i -eq 2 -a $GRP1 -eq $GRP2 ] && showme=0
-        if [ $showme -eq 1 ]; then printTitleCmd "$cmd" "$txt"
-        else clearN $((${#txt}+3)); fi
-      done
-    else  # delete commands only
-      clearN $((${#tit2_txt[0]}+5+${#tit2_txt[1]}+5+${#tit2_txt[2]}+5))
-    fi
+	# 1st line: aplication commands
+	for ((i=0; i<10; i++))
+	do
+		showme=0
+		txt=${tit1_txt[$i]}
+		cmd=${tit1_cmd[$i]}
+		case $i in
+			[01])
+				showme=1
+			;;
+			2)
+				[ "$f_color" == 1 ] && showme=1
+			;;
+			3)
+				[ $STATUS -eq 0 ] && showme=1
+			;;
+			9)
+				gotoxy $((COLUMNS-${#txt})) 1
+				echo "$txt"
+			;;
+		esac
+		if [ $showme -eq 1 ]
+		then
+			printTitleCmd "$cmd" "$txt"
+		else
+			clearN $((${#txt}+3))
+		fi
+	done
 
-    # open groups
-    gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2
-    color="$cP"; [ "$GRP1" -eq "$GRP2" ] && color="$cB"
-    for ((j=0 ;j<$GRP1;j++)); do echo -n "$color($cN"; done
-    [ $GRP1 -gt 0 ] && echo -n $GRP1
-    for ((j=0 ;j<$GRP2;j++)); do echo -n "$color)$cN"; done
-  fi
+	# 2nd line: grouping and or
+	if [ $STATUS -eq 0 ]
+	then
+		echo -n $_eol
+	else
+		if [ $STATUS -eq 1 ]
+		then
+			for i in 0 1 2
+			do
+				txt=${tit2_txt[$i]}
+				cmd=${tit2_cmd[$i]}
+				showme=1
+				[ $i -eq 2 -a $GRP1 -eq $GRP2 ] && showme=0
+				if [ $showme -eq 1 ]
+				then
+					printTitleCmd "$cmd" "$txt"
+				else
+					clearN $((${#txt}+3))
+				fi
+			done
+		else  # delete commands only
+			clearN $((${#tit2_txt[0]}+5+${#tit2_txt[1]}+5+${#tit2_txt[2]}+5))
+		fi
 
-  # 3rd line: legend
-  txt=${tit2_txt[9]}; cmd=${tit2_cmd[9]}
-  gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
-  printf "$cB%s$cN %s" "$cmd" "$txt"
+		# open groups
+		gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2
+		color="$cP"
+		[ "$GRP1" -eq "$GRP2" ] && color="$cB"
+		for ((j=0 ;j<$GRP1;j++)); do echo -n "$color($cN"; done
+		[ $GRP1 -gt 0 ] && echo -n $GRP1
+		for ((j=0 ;j<$GRP2;j++)); do echo -n "$color)$cN"; done
+	fi
+
+	# 3rd line: legend
+	txt=${tit2_txt[9]}
+	cmd=${tit2_cmd[9]}
+	gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
+	printf "$cB%s$cN %s" "$cmd" "$txt"
 }
 
 doMenu(){
-  local -a Menui
-  eval "Menui=(\"\${$1[@]}\")"; menu_n=$((${#Menui[*]}-1))  # ini
+	local -a Menui
+	eval "Menui=(\"\${$1[@]}\")"
+	menu_n=$((${#Menui[*]}-1))  # ini
 
-  if [ "$f_i" == 1 ]; then
-    gotoxy $x_hist $y_hist
-    echo "   $cP.oO($cN$REPLIES$cP)$cN$cP($cN$uins$cP)$cN$_eol"   # history
-    gotoxy $x_menu $y_menu ; echo "$cI${Menui[0]}:$cN$_eol" # title
-    for i in $(sek $menu_n)                                  # itens
-    do echo "  $cB$i$cN) ${Menui[$i]}$_eol"; i=$((i+1)); done
-    clearEnd                                                # prompt
-    gotoxy $x_prompt $y_prompt ; echo -ne "$cP[1-$menu_n]:$cN $_eol"
-    read -n 1
-  else
-    doNextHist; REPLY=$hist
-  fi
+	if [ "$f_i" == 1 ]
+	then
+
+		# history
+		gotoxy $x_hist $y_hist
+		echo "   $cP.oO($cN$REPLIES$cP)$cN$cP($cN$uins$cP)$cN$_eol"
+
+		# title
+		gotoxy $x_menu $y_menu
+		echo "$cI${Menui[0]}:$cN$_eol"
+
+		# itens
+		for i in $(sek $menu_n)
+		do
+			echo "  $cB$i$cN) ${Menui[$i]}$_eol"
+			i=$((i+1))
+		done
+		clearEnd
+
+		# prompt
+		gotoxy $x_prompt $y_prompt
+		echo -ne "$cP[1-$menu_n]:$cN $_eol"
+		read -n 1
+	else
+		doNextHist
+		REPLY=$hist
+	fi
 }
 
 Menu(){
-  local ok=0 name="$1"
-  while [ $ok -eq 0 ]; do
-    doMenu "$name"
-    case "$REPLY" in
-    [1-9]) [ "$REPLY" -gt "$menu_n" ] && continue
-           ok=1 ; REPLIES="$REPLIES$REPLY";;
-        .) ok=1 ; LASTSTATUS=$STATUS; STATUS=3 ;;
-        0) ok=1 ; STATUS=Z ;;
-       \*) ColorOnOff; TopTitle;;
- [\(\)\|]) [ "$STATUS" -ne 1 ] && continue
-           [ "$REPLY" == ')' ] &&
-             [ $GRP1 -gt 0 -a $GRP1 -eq $GRP2 -o $GRP1 -eq 0 ] && continue
-           [ "$REPLY" == ')' ] && STATUS=2
-           ok=1 ; REPLIES="$REPLIES$REPLY";;
-        /) ok=1 ; STATUS=4 ;;
-    esac
-  done
-  [ "${STATUS/[Z34]/}" ] || continue             # 0,3,4: escape status
+	local ok=0 name="$1"
+	while [ $ok -eq 0 ]
+	do
+		doMenu "$name"
+		case "$REPLY" in
+			[1-9])
+				[ "$REPLY" -gt "$menu_n" ] && continue
+				ok=1
+				REPLIES="$REPLIES$REPLY"
+			;;
+			.)
+				ok=1
+				LASTSTATUS=$STATUS
+				STATUS=3
+			;;
+			0)
+				ok=1
+				STATUS=Z
+			;;
+			\*)
+				ColorOnOff
+				TopTitle
+			;;
+			[\(\)\|])
+				[ "$STATUS" -ne 1 ] && continue
+				[ "$REPLY" == ')' ] && [ $GRP1 -gt 0 -a $GRP1 -eq $GRP2 -o $GRP1 -eq 0 ] && continue
+				[ "$REPLY" == ')' ] && STATUS=2
+				ok=1
+				REPLIES="$REPLIES$REPLY"
+			;;
+			/)
+				ok=1
+				STATUS=4
+			;;
+		esac
+	done
+
+	# 0,3,4: escape status
+	[ "${STATUS/[Z34]/}" ] || continue
 }
 
 doNextHist(){
-  hists=${hists#?}                               # deleting previous item
-  hist=${hists:0:1}
-  : ${hist:=.}                                   # if last, quit
+	hists=${hists#?}   # deleting previous item
+	hist=${hists:0:1}
+	: ${hist:=.}       # if last, quit
 }
 
 doNextHistArg(){
-  histargs=${histargs#*¤}
-  histarg=${histargs%%¤*}
+	histargs=${histargs#*¤}
+	histarg=${histargs%%¤*}
 }
 
-getChar(){ gotoxy $x_prompt2 $y_prompt
-  if [ "$f_i" == 1 ]
-  then echo -n "${cP}"; echo -n $"which one?"; echo -n " $cN"
-       read -n 1 -r USERINPUT; uin="$USERINPUT"
-  else doNextHistArg; uin=$histarg
-  fi
-  uins="$uins¤$uin"
-  F_ESCCHAR=1
+getChar(){
+	gotoxy $x_prompt2 $y_prompt
+
+	if [ "$f_i" == 1 ]
+	then
+		echo -n "${cP}"
+		echo -n $"which one?"
+		echo -n " $cN"
+		read -n 1 -r USERINPUT
+		uin="$USERINPUT"
+	else
+		doNextHistArg
+		uin=$histarg
+	fi
+
+	uins="$uins¤$uin"
+	F_ESCCHAR=1
 }
 
 
 #TODO 1st of all, take out repeated chars
-getCharList(){ gotoxy $x_prompt2 $y_prompt
-  if [ "$f_i" == 1 ]
-  then echo -n "${cP}"; echo -n $"which?"; echo -n " $cN"
-       read -r USERINPUT; uin="$USERINPUT"
-  else doNextHistArg; uin=$histarg
-  fi
-  uins="$uins¤$uin"
-  # putting not special chars in not special places: [][^-]
-  [ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
-  [ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
-  [ "${uin/[//}" != "$uin" ] && uin="[${uin/[/}"
-  [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
-  [ "$1" ] && uin="^$uin"                        # if any $1, negated list
-  uin="[$uin]"
-  F_ESCCHARLIST=1
+getCharList(){
+	gotoxy $x_prompt2 $y_prompt
+
+	if [ "$f_i" == 1 ]
+	then
+		echo -n "${cP}"
+		echo -n $"which?"
+		echo -n " $cN"
+		read -r USERINPUT
+		uin="$USERINPUT"
+	else
+		doNextHistArg
+		uin=$histarg
+	fi
+	uins="$uins¤$uin"
+
+	# putting not special chars in not special places: [][^-]
+	[ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
+	[ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
+	[ "${uin/[//}" != "$uin" ] && uin="[${uin/[/}"
+	[ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
+
+	# if any $1, negated list
+	[ "$1" ] && uin="^$uin"
+
+	uin="[$uin]"
+	F_ESCCHARLIST=1
 }
 
-getString(){ gotoxy $x_prompt2 $y_prompt
-  if [ "$f_i" == 1 ]
-  then echo -ne "${cP}txt:$cN " ; read -r USERINPUT ; uin="$USERINPUT"
-  else doNextHistArg; uin=$histarg
-  fi
-  uins="$uins¤$uin"
-  F_ESCCHAR=1
+getString(){
+	gotoxy $x_prompt2 $y_prompt
+
+	if [ "$f_i" == 1 ]
+	then
+		echo -ne "${cP}txt:$cN "
+		read -r USERINPUT
+		uin="$USERINPUT"
+	else
+		doNextHistArg
+		uin=$histarg
+	fi
+
+	uins="$uins¤$uin"
+	F_ESCCHAR=1
 }
 
-getNumber(){ gotoxy $x_prompt2 $y_prompt
-  if [ "$f_i" == 1 ]
-  then echo -ne "${cP}N=$cN$_eol" ; read USERINPUT ; uin="$USERINPUT"
-  else doNextHistArg; uin=$histarg
-  fi
-  uin="${uin//[^0-9]/}"                          # extracting !numbers
-  [ "${uin/666/x}" == 'x' ] && { gotoxy 36 1 ; echo "$cP]:|$cN" ; } # ee
-  if [ "$uin" ]
-  then uins="$uins¤$uin"
-  else getNumber                                 # there _must_ be a number
-  fi
+getNumber(){
+	gotoxy $x_prompt2 $y_prompt
+
+	if [ "$f_i" == 1 ]
+	then
+		echo -ne "${cP}N=$cN$_eol"
+		read USERINPUT
+		uin="$USERINPUT"
+	else
+		doNextHistArg
+		uin=$histarg
+	fi
+
+	# Extracting !numbers
+	uin="${uin//[^0-9]/}"
+
+	# ee
+	[ "${uin/666/x}" == 'x' ] && {
+		gotoxy 36 1
+		echo "$cP]:|$cN"
+	}
+
+	if [ "$uin" ]
+	then
+		uins="$uins¤$uin"
+	else
+		getNumber  # there _must_ be a number
+	fi
 }
 
 getPosix(){
-  local rpl psx=''; unset SUBHUMAN
-  if [ "$f_i" == 1 ]; then Choice --reset "${posix_txt[@]}"; else ChoiceAuto; fi
-  for rpl in $CHOICEREPLY; do
-    psx="$psx[:${posix_re[$rpl]}:]"; SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
-  done
-  SUBHUMAN=${SUBHUMAN#, }
-  F_POSIX=1
-  uin="[$psx]"
-  uins="$uins¤:${CHOICEREPLY// /}"
+	local rpl psx=''
+	unset SUBHUMAN
+
+	if [ "$f_i" == 1 ]
+	then
+		Choice --reset "${posix_txt[@]}"
+	else
+		ChoiceAuto
+	fi
+
+	for rpl in $CHOICEREPLY
+	do
+		psx="$psx[:${posix_re[$rpl]}:]"
+		SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
+	done
+
+	SUBHUMAN=${SUBHUMAN#, }
+	F_POSIX=1
+
+	uin="[$psx]"
+	uins="$uins¤:${CHOICEREPLY// /}"
 }
 
 getCombo(){
-  local rpl cmb=''; unset SUBHUMAN
-  if [ "$f_i" == 1 ]; then Choice --reset "${combo_txt[@]}"; else ChoiceAuto; fi
-  for rpl in $CHOICEREPLY; do
-    cmb="$cmb${combo_re[$rpl]}"; SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
-  done
-  #TODO change this to if [ "$rpl" -eq 5 ]
-  [ "$cmb" != "${cmb/@/}" ] && F_GETTAB=1
-  SUBHUMAN=${SUBHUMAN#, }
-  uin="[$cmb]"; [ "$1" == 'negated' ] && uin="[^$cmb]"
-  uins="$uins¤:${CHOICEREPLY// /}"
+	local rpl cmb=''
+	unset SUBHUMAN
+
+	if [ "$f_i" == 1 ]
+	then
+		Choice --reset "${combo_txt[@]}"
+	else
+		ChoiceAuto
+	fi
+
+	for rpl in $CHOICEREPLY
+	do
+		cmb="$cmb${combo_re[$rpl]}"
+		SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
+	done
+
+	#TODO change this to if [ "$rpl" -eq 5 ]
+	[ "$cmb" != "${cmb/@/}" ] && F_GETTAB=1
+
+	SUBHUMAN=${SUBHUMAN#, }
+
+	if [ "$1" == 'negated' ]
+	then
+		uin="[^$cmb]"
+	else
+		uin="[$cmb]"
+	fi
+	uins="$uins¤:${CHOICEREPLY// /}"
 }
 
 #TODO all
 getREady(){
-  unset SUBHUMAN
-  uin=''
+	unset SUBHUMAN
+	uin=''
 }
 
 # convert [@] -> [\t] or [<TAB>] based on ax_*[8] value
 # TODO expand this to all "gettable" fields: @
 getListTab(){
-  local x="ax_${progs[$1]}[8]"; x=${!x}
-  [ "$x" == ',' -o "$x" == ' ' ] && x='<TAB>'
-  uin="${uin/@/$x}"
+	local x="ax_${progs[$1]}[8]"
+
+	x=${!x}
+	[ "$x" == ',' -o "$x" == ' ' ] && x='<TAB>'
+	uin="${uin/@/$x}"
 }
 
 getHasPosix(){
-  # let's just unsupport the tested ones
-  local x="ax_${progs[$1]}[7]"; [ "${!x}" == ',' ] && uin='!!'
+	# let's just unsupport the tested ones
+	local x="ax_${progs[$1]}[7]"
+
+	[ "${!x}" == ',' ] && uin='!!'
 }
 
-escChar(){ # escape userinput chars as .,*,[ and friends
-  local c x x2 z i esc ui="$uin"
-  esc="ax_${progs[$1]}[4]"; esc=${!esc}          # get escape char
-  x="ax_${progs[$1]}[5]"; x=${!x}                # list of escapable chars
-  x="${x//[, ]/}"                                # , and space are trash
-  [ "${ui/[\\\\$x]/}" != "$ui" ] && {            # test for speed up
-    for ((i=0 ;i<${#ui};i++))                    # for each user char
-    do c="${ui:$i:1}"
-       case "$c" in                              # special bash chars
-         [?*#%])x2="${x/[$c]/}";;
-           [/}])x2="${x/\\$c/}";;
-           [\\])x2="${x/$c$c/}";;
-              *)x2="${x/$c/}"  ;;
-       esac
-       [ "$x2" != "$x" ] && c="$esc$c"           # escaping
-       z="$z$c"
-    done
-    uin="$z"                                     # ah, the escaped string
-  }
+# escape userinput chars as .,*,[ and friends
+escChar(){
+	local c x x2 z i esc ui="$uin"
+
+	# Get escape char
+	esc="ax_${progs[$1]}[4]"
+	esc=${!esc}
+
+	# List of escapable chars
+	x="ax_${progs[$1]}[5]"
+	x=${!x}
+
+	# , and space are trash
+	x="${x//[, ]/}"
+
+	# Test for speed up
+	[ "${ui/[\\\\$x]/}" != "$ui" ] && {
+
+		for ((i=0; i<${#ui}; i++))  # for each user char
+		do
+			c="${ui:$i:1}"
+			case "$c" in  # special bash chars
+				[?*#%])
+					x2="${x/[$c]/}"
+				;;
+				[/}])
+					x2="${x/\\$c/}"
+				;;
+				[\\])
+					x2="${x/$c$c/}"
+				;;
+				*)
+					x2="${x/$c/}"
+				;;
+			esac
+
+			# escaping
+			[ "$x2" != "$x" ] && c="$esc$c"
+			z="$z$c"
+		done
+		uin="$z"  # ah, the escaped string
+	}
 }
 
 escCharList(){
-  local esc x
-    x="ax_${progs[$1]}[6]";   x=${!x}            # need escape on []
-  esc="ax_${progs[$1]}[4]"; esc=${!esc}          # escape char
-  [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"  # escaping escape
+	local esc x
+
+	# need escape on []
+	x="ax_${progs[$1]}[6]"
+	x=${!x}
+
+	# escape char
+	esc="ax_${progs[$1]}[4]"
+	esc=${!esc}
+
+	# escaping escape
+	[ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"
 }
 
-Reset(){ gotoxy $x_regex $y_regex
-  unset REPLIES uins HUMAN Regex[*]
-  GRP1=0 ; GRP2=0
-  local p
+Reset(){
+	gotoxy $x_regex $y_regex
+	unset REPLIES uins HUMAN Regex[*]
+	GRP1=0
+	GRP2=0
+  	local p
 
-  # global maxprogname
-  maxprogname=$(getLargestItem "${progs[@]}")     # global var
-  for p in ${progs[*]}; do
-  [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"; done
+	# global maxprogname
+	maxprogname=$(getLargestItem "${progs[@]}")  # global var
+	for p in ${progs[*]}
+	do
+		[ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"
+	done
 }
 
 showRegEx(){
-  gotoxy $x_regex $y_regex
-  local i save="$uin"
-  for ((i=0 ;i<${#progs[@]};i++))                # for each program
-  do [ "$F_ESCCHAR"     == 1 ] && escChar     $i
-     [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
-     [ "$F_GETTAB"      == 1 ] && getListTab  $i
-     [ "$F_POSIX"       == 1 ] && getHasPosix $i
+	gotoxy $x_regex $y_regex
+	local i save="$uin"
 
-     case "$1" in                                # check status
-    ax|S2) eval Regex[$i]="\${Regex[$i]}\${$1_${progs[$i]}[$REPLY]/@/$uin}";;
-       S0) Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}";;
-       S1) Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}";;
-     esac
-     [ "$f_i" == 1 ] && \
-     printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
-     uin="$save"
-  done
-  unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
+	# For each program
+	for ((i=0 ;i<${#progs[@]}; i++))
+	do
+		[ "$F_ESCCHAR"     == 1 ] && escChar     $i
+		[ "$F_ESCCHARLIST" == 1 ] && escCharList $i
+		[ "$F_GETTAB"      == 1 ] && getListTab  $i
+		[ "$F_POSIX"       == 1 ] && getHasPosix $i
+
+		# Check status
+		case "$1" in
+			ax|S2)
+				eval Regex[$i]="\${Regex[$i]}\${$1_${progs[$i]}[$REPLY]/@/$uin}"
+			;;
+			S0)
+				Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}"
+			;;
+			S1)
+				Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}"
+			;;
+		esac
+
+		[ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+		uin="$save"
+	done
+	unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
 }
 
 
 #
-### and now the cool-smart-MSclippy choice menu/prompt
+### And now the cool-smart-MSclippy choice menu/prompt
 #
 # number of items <= 10, 1 column
 # number of items >  10, 2 columns
 # maximum number of items = 26 (a-z)
 #
 
-# just refresh the selected item on the screen
+# Just refresh the selected item on the screen
 ChoiceRefresh(){
-  local xy=$1 a=$2 stat=$3 opt=$4
-  # colorizing case status is ON
-  [ "$stat" == '+' ] && stat="$cI$stat$cN"
-  gotoxy "${xy#*;}" "${xy%;*}"
-  printf "  $cB%s$cN) %s%s " "$a" "$stat" "$opt"
+	local xy=$1 a=$2 stat=$3 opt=$4
+
+	# colorizing case status is ON
+	[ "$stat" == '+' ] && stat="$cI$stat$cN"
+
+	gotoxy "${xy#*;}" "${xy%;*}"
+	printf "  $cB%s$cN) %s%s " "$a" "$stat" "$opt"
 }
 
 # --reset resets the stat array
 Choice(){
-  [ "$1" == '--reset' ] && shift && local choicereset=1
-  local alpha opts optxy numopts=$#
-  local lines cols line line2 op alf rpl
-  alpha=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+	[ "$1" == '--reset' ] && shift && local choicereset=1
 
-  # reading options and filling default status (off)
-  i=0; for opt in "$@"; do
-    opts[$i]="$opt"; [ "$choicereset" ] && stat[$i]='-'; i=$((i+1))
-  done
+	local alpha opts optxy numopts=$#
+	local lines cols line line2 op alf rpl
+	alpha=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 
-  # checking our number of items limit
-  [ $numopts -gt "${#alpha[*]}" ] && {
-    printf "too much itens (>%d)" "${#alpha[*]}"; exit 1; }
+	# Reading options and filling default status (off)
+	i=0
+	for opt in "$@"
+	do
+		opts[$i]="$opt"
+		[ "$choicereset" ] && stat[$i]='-'
+		i=$((i+1))
+	done
 
-  # the header
-  Clear ; printTitleCmd '.' $"exit"
-  printf "| %s" $"press the letters to (un)select the items"
+	# Checking our number of items limit
+	[ $numopts -gt "${#alpha[*]}" ] && {
+		printf "too much itens (>%d)" "${#alpha[*]}"
+		exit 1
+	}
 
-  # we will need 2 columns?
-  cols=1 ; [ "$numopts" -gt 10 ] && cols=2
+	# The header
+	Clear
+	printTitleCmd '.' $"exit"
+	printf "| %s" $"press the letters to (un)select the items"
 
-  # and how much lines? (remember: odd number of items, requires one more line)
-  lines=$((numopts/cols)) ; [ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
+	# We will need 2 columns?
+	cols=1
+	[ "$numopts" -gt 10 ] && cols=2
 
-  # filling the options screen's position array (+3 = header:2, sek:1)
-  for ((line=0 ;line<$lines;line++)); do
-    optxy[$line]="$((line+3));1"                                # column 1
-    [ "$cols" == 2 ] && optxy[$((line+lines))]="$((line+3));40" # column 2
-  done
+	# And how much lines? (remember: odd number of items, requires one more line)
+	lines=$((numopts/cols))
+	[ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
 
-  # showing initial status for all options
-  for ((op=0 ;op<$numopts;op++)); do
-    ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
-  done
+	# Filling the options screen's position array (+3 = header:2, sek:1)
+	for ((line=0; line<$lines; line++))
+	do
+		# Column 1
+		optxy[$line]="$((line+3));1"
 
-  # and now the cool invisible prompt
-  while :; do
-    read -s -r -n 1 CHOICEREPLY
+		# Column 2
+		[ "$cols" == 2 ] && optxy[$((line+lines))]="$((line+3));40"
+	done
 
-    case "$CHOICEREPLY" in
-      [a-z])
-        # inverting the option status
-        for ((alf=0 ;alf<$numopts;alf++)); do
-          if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]; then
-            if [ "${stat[$alf]}" == '+' ]
-            then stat[$alf]='-'
-            else stat[$alf]='+'
-            fi
-            break
-          fi
-        done
-        # showing the change
-        [ "${opts[alf]}" ] || continue
-        ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
-        ;;
-      .)
-        # getting the user choices and exiting
-        unset CHOICEREPLY; for ((rpl=0 ;rpl<$numopts;rpl++)); do
-          [ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
-        done
-        break
-        ;;
-    esac
-  done
+	# Showing initial status for all options
+	for ((op=0; op<$numopts; op++))
+	do
+		ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
+	done
+
+	# And now the cool invisible prompt
+	while :
+	do
+		read -s -r -n 1 CHOICEREPLY
+
+		case "$CHOICEREPLY" in
+			[a-z])
+				# Inverting the option status
+				for ((alf=0; alf<$numopts; alf++))
+				do
+					if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]
+					then
+						if [ "${stat[$alf]}" == '+' ]
+						then
+							stat[$alf]='-'
+						else
+							stat[$alf]='+'
+						fi
+						break
+					fi
+				done
+
+				# Showing the change
+				[ "${opts[alf]}" ] || continue
+				ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
+			;;
+			.)
+				# Getting the user choices and exiting
+				unset CHOICEREPLY
+				for ((rpl=0; rpl<$numopts; rpl++))
+				do
+					[ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
+				done
+				break
+			;;
+		esac
+	done
 }
 
-# non-interative, just return the answers
+# Non-interative, just return the answers
 ChoiceAuto(){
-  local i z; unset CHOICEREPLY; doNextHistArg; z=${histarg#:} # marker
-  for ((i=0 ;i<${#z};i++)); do CHOICEREPLY="$CHOICEREPLY ${z:$i:1}"; done
+	local i z
+
+	unset CHOICEREPLY
+	doNextHistArg
+	z=${histarg#:}  # marker
+
+	for ((i=0; i<${#z}; i++))
+	do
+		CHOICEREPLY="$CHOICEREPLY ${z:$i:1}"
+	done
 }
 
-# fills the stat array with the actual active programs ON
+# Fills the stat array with the actual active programs ON
 statActiveProgs(){
-  local p i=0 ps=" ${progs[*]} "
-  for ((i=0 ;i<${#allprogs[@]};i++)); do       # for each program
-    p="${allprogs[$i]}"; stat[$i]='-';         # default OFF
-    [ "${ps/ $p /}" != "$ps" ] && stat[$i]='+' # case found, turn ON
-  done
+	local p i=0 ps=" ${progs[*]} "
+
+	# For each program
+	for ((i=0; i<${#allprogs[@]}; i++))
+	do
+		# Default OFF
+		p="${allprogs[$i]}"
+		stat[$i]='-'
+
+		# Case found, turn ON
+		[ "${ps/ $p /}" != "$ps" ] && stat[$i]='+'
+	done
 }
 
 ###############################################################################
@@ -836,81 +1193,141 @@ Clear; ScreenSize  # screen things
 ColorOnOff         # turning color ON
 trap "clearEnd; echo; exit" SIGINT
 
-while : ; do
-case ${STATUS:=0} in
-0|Z)STATUS=${STATUS/Z/0}
-    Reset; TopTitle
-    Menu S0_txt
-    HUMAN="$S0_txt ${S0_txt[$REPLY]}"
-    showRegEx S0
-    STATUS=1
-    ;;
- 1) TopTitle ; Menu S1_txt
-    if [ "${REPLY/[1-9]/}" ]; then
-      HUMAN="$HUMAN $REPLY"
-      if   [ "$REPLY" == '|' ]; then REPLY=1
-      elif [ "$REPLY" == '(' ]; then REPLY=2 ; GRP1=$((GRP1+1))
-      elif [ "$REPLY" == ')' ]; then REPLY=3 ; GRP2=$((GRP2+1))
-      else echo -e "\n\nERROR: unknowm reply type '$REPLY'"; exit 1
-      fi
-      showRegEx ax
-    else
-      HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]/ (*)/}"
-      case "$REPLY" in
-          1) STATUS=2 ;;
-          2) STATUS=2  ; getChar;;
-          3) STATUS=1  ; getString; HUMAN="$HUMAN {$uin}";;
-          4) STATUS=2  ; getCharList;;
-          5) STATUS=2  ; getCharList negated;;
-      [678]) STATUS=12 ; continue;;
-          9) STATUS=1 ;;
-      esac
-      showRegEx S1
-    fi
-    ;;
-12) [ "$REPLY" -eq 6  ] && STATUS=2 && getCombo
-    [ "$REPLY" -eq 7  ] && STATUS=2 && getPosix
-    [ "$REPLY" -eq 8  ] && STATUS=1 && getREady
-    Clear; TopTitle
-    HUMAN="$HUMAN {$SUBHUMAN}"
-    showRegEx S1
-    ;;
- 2) TopTitle ; Menu S2_txt
-    rep_middle=$"repeated"
-    rep_txt="${S2_txt[$REPLY]}"; rep_txtend=$"times"
-    [ "$REPLY" -ge 5 ] && getNumber && rep_txt=${rep_txt/N/$uin}
-    HUMAN="$HUMAN, $rep_middle ${rep_txt/ (*)/} $rep_txtend"
-    showRegEx S2
-    STATUS=1
-    ;;
- 3) [ "$f_i" != 1 ] && { STATUS=9 ; continue ; }
-    warning=$"Really quit?"
-    read -n 1 -p "..$cB $warning [.] $cN"
-    STATUS=$LASTSTATUS; [ "$REPLY" == '.' ] && STATUS=9
-    ;;
- 4) statActiveProgs
-    Choice "${allprogs[@]}"
-    i=0 ; unset progs       # rewriting the progs array with the user choices
-    for rpl in $CHOICEREPLY; do progs[$i]=${allprogs[$rpl]}; i=$((i+1)); done
-    ScreenSize; Clear
-    STATUS=0
-    ;;
- 9) gotoxy $x_hist $y_hist; clearEnd
-    if [ "$f_i" == 1 ]; then
-      noregex_txt=$"no regex"
-      printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
-      echo -e "${HUMAN:-$noregex_txt}.\n"
-    else
-      for ((i=0 ;i<${#progs[@]};i++))                # for each program
-      do printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
-      done ; echo
-    fi
-    exit 0
-    ;;
- *) echo "Error: STATUS = '$STATUS'"
-    exit 1
-    ;;
-esac
-done
+while :
+do
+	case ${STATUS:=0} in
+		0|Z)
+			STATUS=${STATUS/Z/0}
+			Reset
+			TopTitle
+			Menu S0_txt
+			HUMAN="$S0_txt ${S0_txt[$REPLY]}"
+			showRegEx S0
+			STATUS=1
+		;;
+		1)
+			TopTitle
+			Menu S1_txt
+			if [ "${REPLY/[1-9]/}" ]
+			then
+				HUMAN="$HUMAN $REPLY"
+				if [ "$REPLY" == '|' ]
+				then
+					REPLY=1
+				elif [ "$REPLY" == '(' ]
+				then
+					REPLY=2
+					GRP1=$((GRP1+1))
+				elif [ "$REPLY" == ')' ]
+				then
+					REPLY=3
+					GRP2=$((GRP2+1))
+				else
+					echo -e "\n\nERROR: unknowm reply type '$REPLY'"
+					exit 1
+				fi
+				showRegEx ax
+			else
+				HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]/ (*)/}"
+				case "$REPLY" in
+					1)
+						STATUS=2
+					;;
+					2)
+						STATUS=2
+						getChar
+					;;
+					3)
+						STATUS=1
+						getString
+						HUMAN="$HUMAN {$uin}"
+					;;
+					4)
+						STATUS=2
+						getCharList
+					;;
+					5)
+						STATUS=2
+						getCharList negated
+					;;
+					[678])
+						STATUS=12
+						continue
+					;;
+					9)
+						STATUS=1
+					;;
+				esac
+				showRegEx S1
+			fi
+		;;
+		12)
+			[ "$REPLY" -eq 6  ] && STATUS=2 && getCombo
+			[ "$REPLY" -eq 7  ] && STATUS=2 && getPosix
+			[ "$REPLY" -eq 8  ] && STATUS=1 && getREady
+			Clear
+			TopTitle
+			HUMAN="$HUMAN {$SUBHUMAN}"
+			showRegEx S1
+		;;
+		2)
+			TopTitle
+			Menu S2_txt
+			rep_middle=$"repeated"
+			rep_txt="${S2_txt[$REPLY]}"
+			rep_txtend=$"times"
 
-# vim: tw=80 et
+			[ "$REPLY" -ge 5 ] && getNumber && rep_txt=${rep_txt/N/$uin}
+			HUMAN="$HUMAN, $rep_middle ${rep_txt/ (*)/} $rep_txtend"
+			showRegEx S2
+			STATUS=1
+		;;
+		3)
+			[ "$f_i" != 1 ] && {
+				STATUS=9
+				continue
+			}
+			warning=$"Really quit?"
+			read -n 1 -p "..$cB $warning [.] $cN"
+			STATUS=$LASTSTATUS
+			[ "$REPLY" == '.' ] && STATUS=9
+		;;
+		4)
+			statActiveProgs
+			Choice "${allprogs[@]}"
+			i=0
+			unset progs
+
+			# Rewriting the progs array with the user choices
+			for rpl in $CHOICEREPLY
+			do
+				progs[$i]=${allprogs[$rpl]}
+				i=$((i+1))
+			done
+			ScreenSize
+			Clear
+			STATUS=0
+		;;
+		9)
+			gotoxy $x_hist $y_hist
+			clearEnd
+			if [ "$f_i" == 1 ]
+			then
+				noregex_txt=$"no regex"
+				printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
+				echo -e "${HUMAN:-$noregex_txt}.\n"
+			else
+				for ((i=0; i<${#progs[@]}; i++))  # for each program
+				do
+					printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+				done
+				echo
+			fi
+			exit 0
+		;;
+		*)
+			echo "Error: STATUS = '$STATUS'"
+			exit 1
+		;;
+	esac
+done
