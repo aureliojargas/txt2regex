@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<STYLE TYPE="text/css">
+body { margin:3em               ;} 
+a    { text-decoration:none     ;} 
+pre  { background-color:#ffffcc ;} 
+</STYLE>
+<META NAME="generator" CONTENT="http://txt2tags.org">
+<TITLE>TXT2REGEX</TITLE>
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<CENTER>
+<H1>TXT2REGEX</H1>
+<FONT SIZE="4">September, 28th - 2004</FONT>
+</CENTER>
+
+
+<H1>NAME</H1>
+
+<P>
+txt2regex - the console Regular Expression Wizard
+</P>
+
+<H1>SYNOPSIS</H1>
+
+<P>
+<B>txt2regex</B> [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+</P>
+<P>
+<B>txt2regex</B> --showmeta
+</P>
+<P>
+<B>txt2regex</B> --showinfo PROGRAM [ --nocolor ]
+</P>
+<P>
+<B>txt2regex</B> --history VALUE [ --all | --prog PROGRAMS ]
+</P>
+<P>
+<B>txt2regex</B> --make LABEL [ --all | --prog PROGRAMS ]
+</P>
+
+<H1>DESCRIPTION</H1>
+
+<P>
+<B>txt2regex</B> is a Regular Expression Wizard that converts human
+sentences to regexes.
+</P>
+<P>
+In a simple interactive console interface, the user answer questions
+and the program build the regexes for more than 20 programs, like Vim,
+Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
+</P>
+<P>
+It is a Shell Script 100% written with Bash builtin commands. No
+compilation or extra commands are needed, just download and run.
+</P>
+<P>
+Please visit the program homepage at
+<I>http://txt2regex.sf.net</I>.
+</P>
+
+<H1>OPTIONS</H1>
+
+<DL>
+<DT><B>--all</B></DT><DD>
+Works with all registered programs
+<P></P>
+<DT><B>--help</B></DT><DD>
+Prints the help message and quit
+<P></P>
+<DT><B>--history &lt;value&gt;</B></DT><DD>
+Prints to STDOUT a regex from a history data
+<P></P>
+<DT><B>--make &lt;target&gt;</B></DT><DD>
+Prints a ready regex for a common pattern
+<P></P>
+<DT><B>--nocolor</B></DT><DD>
+Self-explanatory
+<P></P>
+<DT><B>--prog &lt;p1,p2,...&gt;</B></DT><DD>
+Choose which programs to use (separated by commas)
+<P></P>
+<DT><B>--showinfo &lt;program&gt;</B></DT><DD>
+Prints regex info about the program
+<P></P>
+<DT><B>--showmeta</B></DT><DD>
+Prints a complete metachar table for all programs
+<P></P>
+<DT><B>--version</B></DT><DD>
+Prints the program version and quit
+<P></P>
+<DT><B>--whitebg</B></DT><DD>
+Colors adjusted to white background terminals
+</DL>
+
+<P>
+By default, all options are turned OFF. Just call it with no options
+to launch the default interactive interface.
+</P>
+
+<H1>DETAILS</H1>
+
+<P>
+<B>--all</B> is cool but requires lots of lines (~35)
+</P>
+<P>
+<B>--nocolor</B> is strong, so it kills --whitebg
+</P>
+<P>
+<B>--showmeta</B> rules, try it
+</P>
+<P>
+<B>--showinfo</B> uses reverse video output, --nocolor turns it off
+</P>
+<P>
+<B>--history</B> is getting useful, stay tunned
+</P>
+<P>
+<B>--make</B> is a remedy for headaches
+</P>
+<P>
+<B>--prog</B> is nice to use your favorite programs, mix it with --make and --history
+</P>
+
+<H1>EXAMPLES</H1>
+
+<DL>
+<DT>Calling the program on the default interactive interface</DT><DD>
+<PRE>
+  $ txt2regex
+</PRE>
+
+<P></P>
+<DT>Calling the program on a white terminal</DT><DD>
+<PRE>
+  $ xterm -fg black -bg white ; txt2regex --whitebg
+</PRE>
+
+<P></P>
+<DT>Getting information</DT><DD>
+<PRE>
+  $ txt2regex --showmeta
+</PRE>
+
+<P></P>
+<DT>Getting specific information</DT><DD>
+<PRE>
+  $ txt2regex --showinfo sed
+</PRE>
+
+<P></P>
+<DT>Calling it for specific programs</DT><DD>
+<PRE>
+  $ txt2regex --prog vim,sed,grep,python
+</PRE>
+
+<P></P>
+<DT>Applying a history data</DT><DD>
+<PRE>
+  $ txt2regex --history '16421¤:01¤:'
+</PRE>
+
+<P></P>
+<DT>Getting ready regexes!</DT><DD>
+<PRE>
+  $ txt2regex --make hour
+  $ txt2regex --make number3 --prog perl
+  $ txt2regex --make date2 --all
+</PRE>
+
+</DL>
+
+<H1>INTERFACE</H1>
+
+<P>
+The program interface is simple and easy to use. This is its contents:
+</P>
+
+<PRE>
+         +---------------------------------------+
+         | -&gt; Top menu                           |
+         | -&gt; Group menu                         |
+         |                                       |
+         | -&gt; Regexes of the programs selected   |
+         |    ...                                |
+         |    ...                                |
+         |                                       |
+         | -&gt; History                            |
+         | -&gt; Your prompt                        |
+         |                                       |
+         | -&gt; The question                       |
+         | -&gt; The answers                        |
+         |    ...                                |
+         |    ...                                |
+         +---------------------------------------+
+</PRE>
+
+<P>
+All the basic commands can be used on the numeric pad on the keyboard,
+but remember to turn ON the NumLock key.
+</P>
+
+<TABLE ALIGN="center" CELLPADDING="4">
+<TR>
+<TH>Command</TH>
+<TH>Description</TH>
+</TR>
+<TR>
+<TD ALIGN="center"><B>.</B></TD>
+<TD>Quit the program (with confirmation)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>0</B></TD>
+<TD>Reset the Regular Expression</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>1-9</B></TD>
+<TD>Answers the questions</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>*</B></TD>
+<TD>Toggles color ON/OFF</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>/</B></TD>
+<TD>Add/remove programs on/from the list</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>|</B></TD>
+<TD>Insert an alternation (where allowed)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>(</B></TD>
+<TD>Open a new group (where allowed)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>)</B></TD>
+<TD>Close the opened group (if any)</TD>
+</TR>
+</TABLE>
+
+<H1>BUGS</H1>
+
+<P>
+Bug reports and contributions are VERY welcome!
+Please send them to the author.
+</P>
+
+<H1>AUTHOR</H1>
+
+<P>
+Written and maintained by Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
+</P>
+
+<H1>COPYRIGHT</H1>
+
+<P>
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+</P>
+<P>
+This is free software; see the source for copying conditions. There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.
+</P>
+
+<!-- html code generated by txt2tags 2.6.1087 (http://txt2tags.org) -->
+<!-- cmdline: txt2tags -t html txt2regex.t2t -->
+</BODY></HTML>
