@@ -1,0 +1,178 @@
+TXT2REGEX
+
+September, 28th - 2004
+
+%!target: man
+%!options(man) : -o txt2regex.man
+%!options(html): -o txt2regex.html --mask-email
+
+%!postproc(html): <HEAD>      '<HEAD>\n<STYLE TYPE="text/css">\n</STYLE>'
+%!postproc(html): (</STYLE>)  'body { margin:3em               ;} \n\1'
+%!postproc(html): (</STYLE>)  'a    { text-decoration:none     ;} \n\1'
+%!postproc(html): (</STYLE>)  'pre  { background-color:#ffffcc ;} \n\1'
+
+= NAME =
+
+txt2regex - the console Regular Expression Wizard
+
+= SYNOPSIS =
+
+**txt2regex** [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+
+**txt2regex** --showmeta
+
+**txt2regex** --showinfo PROGRAM [ --nocolor ]
+
+**txt2regex** --history VALUE [ --all | --prog PROGRAMS ]
+
+**txt2regex** --make LABEL [ --all | --prog PROGRAMS ]
+
+= DESCRIPTION =
+
+**txt2regex** is a Regular Expression Wizard that converts human
+sentences to regexes.
+
+In a simple interactive console interface, the user answer questions
+and the program build the regexes for more than 20 programs, like Vim,
+Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
+
+It is a Shell Script 100% written with Bash builtin commands. No
+compilation or extra commands are needed, just download and run.
+
+Please visit the program homepage at
+//""http://txt2regex.sf.net""//.
+
+= OPTIONS =
+
+: **--all**
+Works with all registered programs
+
+: **--help**
+Prints the help message and quit
+
+: **--history <value>**
+Prints to STDOUT a regex from a history data
+
+: **--make <target>**
+Prints a ready regex for a common pattern
+
+: **--nocolor**
+Self-explanatory
+
+: **--prog <p1,p2,...>**
+Choose which programs to use (separated by commas)
+
+: **--showinfo <program>**
+Prints regex info about the program
+
+: **--showmeta**
+Prints a complete metachar table for all programs
+
+: **--version**
+Prints the program version and quit
+
+: **--whitebg**
+Colors adjusted to white background terminals
+
+
+By default, all options are turned OFF. Just call it with no options
+to launch the default interactive interface.
+
+= DETAILS =
+
+**--all** is cool but requires lots of lines (~35)
+
+**--nocolor** is strong, so it kills --whitebg
+
+**--showmeta** rules, try it
+
+**--showinfo** uses reverse video output, --nocolor turns it off
+
+**--history** is getting useful, stay tunned
+
+**--make** is a remedy for headaches
+
+**--prog** is nice to use your favorite programs, mix it with --make and --history
+
+
+= EXAMPLES =
+
+: Calling the program on the default interactive interface
+``` $ txt2regex
+
+: Calling the program on a white terminal
+``` $ xterm -fg black -bg white ; txt2regex --whitebg
+
+: Getting information
+``` $ txt2regex --showmeta
+
+: Getting specific information
+``` $ txt2regex --showinfo sed
+
+: Calling it for specific programs
+``` $ txt2regex --prog vim,sed,grep,python
+
+: Applying a history data
+``` $ txt2regex --history '16421¤:01¤:'
+
+: Getting ready regexes!
+```
+$ txt2regex --make hour
+$ txt2regex --make number3 --prog perl
+$ txt2regex --make date2 --all
+```
+
+
+= INTERFACE =
+
+The program interface is simple and easy to use. This is its contents:
+
+```
+       +---------------------------------------+
+       | -> Top menu                           |
+       | -> Group menu                         |
+       |                                       |
+       | -> Regexes of the programs selected   |
+       |    ...                                |
+       |    ...                                |
+       |                                       |
+       | -> History                            |
+       | -> Your prompt                        |
+       |                                       |
+       | -> The question                       |
+       | -> The answers                        |
+       |    ...                                |
+       |    ...                                |
+       +---------------------------------------+
+```
+
+All the basic commands can be used on the numeric pad on the keyboard,
+but remember to turn ON the NumLock key.
+
+  ||  Command  | Description
+  |   **.**    | Quit the program (with confirmation)
+  |   **0**    | Reset the Regular Expression
+  |  **1-9**   | Answers the questions
+  |   *****    | Toggles color ON/OFF
+  |   **/**    | Add/remove programs on/from the list
+  |   **|**    | Insert an alternation (where allowed)
+  |   **(**    | Open a new group (where allowed)
+  |   **)**    | Close the opened group (if any)
+%Enter: redraw screen? (or just part of it?)
+
+= BUGS =
+
+Bug reports and contributions are VERY welcome!
+Please send them to the author.
+
+= AUTHOR =
+
+Written and maintained by Aurelio Jargas <verde@aurelio.net>
+
+= COPYRIGHT =
+
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+
+This is free software; see the source for copying conditions. There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.
