@@ -1,0 +1,186 @@
+TXT2REGEX
+
+28 de Setembro de 2004 
+
+%!target: man
+%!options(man) : -o txt2regex.man
+%!options(html): -o txt2regex.html --mask-email
+
+%!postproc(html): <HEAD>      '<HEAD>\n<STYLE TYPE="text/css">\n</STYLE>'
+%!postproc(html): (</STYLE>)  'body { margin:3em               ;} \n\1'
+%!postproc(html): (</STYLE>)  'a    { text-decoration:none     ;} \n\1'
+%!postproc(html): (</STYLE>)  'pre  { background-color:#ffffcc ;} \n\1'
+
+= NOME = 
+
+txt2regex - O assistente para Expressões Regulares no console
+
+= SINOPSE =
+
+**txt2regex** [ --nocolor | --whitebg ] [ --all | --prog PROGRAMAS ]
+
+**txt2regex** --showmeta
+
+**txt2regex** --showinfo PROGRAMA [ --nocolor ]
+
+**txt2regex** --history VALOR [ --all | --prog PROGRAMAS ]
+
+**txt2regex** --make NOME [ --all | --prog PROGRAMAS ]
+
+
+= DESCRIÇÃO =
+
+O **txt2regex** é um assistente que converte frases humanas para
+Expressões Regulares.
+
+Com uma interface para console, simples e intuitiva, o usuário
+responde perguntas e o programa constrói expressões regulares para
+mais de 20 programas diferentes. Alguns deles: Vim, Emacs, Perl, PHP,
+Python, Procmail e OpenOffice.org.
+
+O programa é um Script Shell que utiliza apenas os comandos internos
+do interpretador. Não é preciso compilá-lo, basta baixar e executar.
+
+Visite a págian oficial do programa em
+//""http://txt2regex.sf.net""//.
+
+
+= OPÇÕES =
+
+: **--all**
+Trabalha com todos os programas registrados
+
+: **--help**
+Exibe uma mensagem de ajuda e sai
+
+: **--history <valor>**
+Imprime para o STDOUT a expressão regular para histórico dos dados
+
+: **--make <nome>**
+Imprime uma expressão regular pronta
+
+: **--nocolor**
+Não usa cores
+
+: **--prog <p1,p2,...>**
+Escolha quais programas usar, separados por vírgulas
+
+: **--showinfo <programa>**
+Imprime informações sobre o programa
+
+: **--showmeta**
+Imprime a tabela dos metacaracteres para todos os programas
+
+: **--version**
+Imprime a versão do programa e sai
+
+: **--whitebg**
+Ajusta as cores de fundo dos terminais para branco
+
+
+Por default, todas as opções são desligadas. Chame o programa sem
+opções para abrir a interface interativa.
+
+
+= DETALHES =
+
+**--all** é uma boa opção, mas requer muitas linhas (cerca de 35)
+
+**--nocolor** é forte, ganha do --whitebg
+
+**--showmeta** é legal, use-o
+
+**--showinfo** usa saída reversa de video, --nocolor desliga as cores
+
+**--history** ainda vai ser util
+
+**--make** é o remédio para as suas dores de cabeça
+
+**--prog** é bom usá-lo com seus programas favoritos, misture-o com a --make e --history
+
+
+= EXEMPLOS =
+
+: Usa o programa em sua interface interativa
+``` $ txt2regex
+
+: Usa o programa num terminal branco
+``` $ xterm -fg black -bg white ; txt2regex --whitebg
+
+: Obtém informações
+``` $ txt2regex --showmeta
+
+: Obtém informações especificas
+``` $ txt2regex --showinfo sed
+
+: Usando para programas específicos
+``` $ txt2regex --prog vim,sed,grep,python
+
+: Aplicando o histórico de dados
+``` $ txt2regex --history '16421¤:01¤:'
+
+: Obtendo expressões prontas
+```
+$ txt2regex --make hour
+$ txt2regex --make number3 --prog perl
+$ txt2regex --make date2 --all
+```
+
+
+= INTERFACE =
+
+A interface do programa é simples de usar e contém.
+
+```
+       +---------------------------------------+
+       | -> Menu principal                     |
+       | -> Menu de grupo                      |
+       |                                       |
+       | -> Regex para os prog selecionados    |
+       |    ...                                |
+       |    ...                                |
+       |                                       |
+       | -> Histórico                          |
+       | -> Seu prompt                         |
+       |                                       |
+       | -> A pergunta                         |
+       | -> As respostas                       |
+       |    ...                                |
+       |    ...                                |
+       +---------------------------------------+
+```
+
+Todos os comandos básicos podem ser usados a partir do teclado
+numérico, mas lembre-se de ativar a tecla NumLock.
+
+  ||  Comando  | Descrição
+  |   **.**    | Sair do programa (com confirmação)
+  |   **0**    | Reinicia as expressões regulares
+  |  **1-9**   | Respostas para as perguntas
+  |   *****    | Liga/Desliga as cores
+  |   **/**    | Adiciona/remove programas
+  |   **|**    | Inserir alternação (quando permitido)
+  |   **(**    | Abrir um novo grupo (quando permitido)
+  |   **)**    | Fechar o grupo aberto (se existir algum)
+
+
+= BUGS =
+
+Relatos de problemas e contribuições são MUITO bem-vindos!
+Por favor mande para o autor.
+
+
+= AUTOR =
+
+Escrito e mantido por Aurelio Jargas <verde@aurelio.net>
+
+Página de manual traduzida para o Português por
+Gustavo Roberto Rodrigues Gonçalves.
+
+= COPYRIGHT =
+
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+
+Este é um software livre; veja o código e as condições para copiar.
+Não há nenhuma garantia; Não pode ser vendido, é somente para uso
+particular.
