@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<STYLE TYPE="text/css">
+body { margin:3em               ;} 
+a    { text-decoration:none     ;} 
+pre  { background-color:#ffffcc ;} 
+</STYLE>
+<META NAME="generator" CONTENT="http://txt2tags.org">
+<TITLE>TXT2REGEX</TITLE>
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<CENTER>
+<H1>TXT2REGEX</H1>
+<FONT SIZE="4">28 de Setembro de 2004 </FONT>
+</CENTER>
+
+
+<H1>NOME</H1>
+
+<P>
+txt2regex - O assistente para Expressões Regulares no console
+</P>
+
+<H1>SINOPSE</H1>
+
+<P>
+<B>txt2regex</B> [ --nocolor | --whitebg ] [ --all | --prog PROGRAMAS ]
+</P>
+<P>
+<B>txt2regex</B> --showmeta
+</P>
+<P>
+<B>txt2regex</B> --showinfo PROGRAMA [ --nocolor ]
+</P>
+<P>
+<B>txt2regex</B> --history VALOR [ --all | --prog PROGRAMAS ]
+</P>
+<P>
+<B>txt2regex</B> --make NOME [ --all | --prog PROGRAMAS ]
+</P>
+
+<H1>DESCRIÇÃO</H1>
+
+<P>
+O <B>txt2regex</B> é um assistente que converte frases humanas para
+Expressões Regulares.
+</P>
+<P>
+Com uma interface para console, simples e intuitiva, o usuário
+responde perguntas e o programa constrói expressões regulares para
+mais de 20 programas diferentes. Alguns deles: Vim, Emacs, Perl, PHP,
+Python, Procmail e OpenOffice.org.
+</P>
+<P>
+O programa é um Script Shell que utiliza apenas os comandos internos
+do interpretador. Não é preciso compilá-lo, basta baixar e executar.
+</P>
+<P>
+Visite a págian oficial do programa em
+<I>http://txt2regex.sf.net</I>.
+</P>
+
+<H1>OPÇÕES</H1>
+
+<DL>
+<DT><B>--all</B></DT><DD>
+Trabalha com todos os programas registrados
+<P></P>
+<DT><B>--help</B></DT><DD>
+Exibe uma mensagem de ajuda e sai
+<P></P>
+<DT><B>--history &lt;valor&gt;</B></DT><DD>
+Imprime para o STDOUT a expressão regular para histórico dos dados
+<P></P>
+<DT><B>--make &lt;nome&gt;</B></DT><DD>
+Imprime uma expressão regular pronta
+<P></P>
+<DT><B>--nocolor</B></DT><DD>
+Não usa cores
+<P></P>
+<DT><B>--prog &lt;p1,p2,...&gt;</B></DT><DD>
+Escolha quais programas usar, separados por vírgulas
+<P></P>
+<DT><B>--showinfo &lt;programa&gt;</B></DT><DD>
+Imprime informações sobre o programa
+<P></P>
+<DT><B>--showmeta</B></DT><DD>
+Imprime a tabela dos metacaracteres para todos os programas
+<P></P>
+<DT><B>--version</B></DT><DD>
+Imprime a versão do programa e sai
+<P></P>
+<DT><B>--whitebg</B></DT><DD>
+Ajusta as cores de fundo dos terminais para branco
+</DL>
+
+<P>
+Por default, todas as opções são desligadas. Chame o programa sem
+opções para abrir a interface interativa.
+</P>
+
+<H1>DETALHES</H1>
+
+<P>
+<B>--all</B> é uma boa opção, mas requer muitas linhas (cerca de 35)
+</P>
+<P>
+<B>--nocolor</B> é forte, ganha do --whitebg
+</P>
+<P>
+<B>--showmeta</B> é legal, use-o
+</P>
+<P>
+<B>--showinfo</B> usa saída reversa de video, --nocolor desliga as cores
+</P>
+<P>
+<B>--history</B> ainda vai ser util
+</P>
+<P>
+<B>--make</B> é o remédio para as suas dores de cabeça
+</P>
+<P>
+<B>--prog</B> é bom usá-lo com seus programas favoritos, misture-o com a --make e --history
+</P>
+
+<H1>EXEMPLOS</H1>
+
+<DL>
+<DT>Usa o programa em sua interface interativa</DT><DD>
+<PRE>
+  $ txt2regex
+</PRE>
+
+<P></P>
+<DT>Usa o programa num terminal branco</DT><DD>
+<PRE>
+  $ xterm -fg black -bg white ; txt2regex --whitebg
+</PRE>
+
+<P></P>
+<DT>Obtém informações</DT><DD>
+<PRE>
+  $ txt2regex --showmeta
+</PRE>
+
+<P></P>
+<DT>Obtém informações especificas</DT><DD>
+<PRE>
+  $ txt2regex --showinfo sed
+</PRE>
+
+<P></P>
+<DT>Usando para programas específicos</DT><DD>
+<PRE>
+  $ txt2regex --prog vim,sed,grep,python
+</PRE>
+
+<P></P>
+<DT>Aplicando o histórico de dados</DT><DD>
+<PRE>
+  $ txt2regex --history '16421¤:01¤:'
+</PRE>
+
+<P></P>
+<DT>Obtendo expressões prontas</DT><DD>
+<PRE>
+  $ txt2regex --make hour
+  $ txt2regex --make number3 --prog perl
+  $ txt2regex --make date2 --all
+</PRE>
+
+</DL>
+
+<H1>INTERFACE</H1>
+
+<P>
+A interface do programa é simples de usar e contém.
+</P>
+
+<PRE>
+         +---------------------------------------+
+         | -&gt; Menu principal                     |
+         | -&gt; Menu de grupo                      |
+         |                                       |
+         | -&gt; Regex para os prog selecionados    |
+         |    ...                                |
+         |    ...                                |
+         |                                       |
+         | -&gt; Histórico                          |
+         | -&gt; Seu prompt                         |
+         |                                       |
+         | -&gt; A pergunta                         |
+         | -&gt; As respostas                       |
+         |    ...                                |
+         |    ...                                |
+         +---------------------------------------+
+</PRE>
+
+<P>
+Todos os comandos básicos podem ser usados a partir do teclado
+numérico, mas lembre-se de ativar a tecla NumLock.
+</P>
+
+<TABLE ALIGN="center" CELLPADDING="4">
+<TR>
+<TH>Comando</TH>
+<TH>Descrição</TH>
+</TR>
+<TR>
+<TD ALIGN="center"><B>.</B></TD>
+<TD>Sair do programa (com confirmação)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>0</B></TD>
+<TD>Reinicia as expressões regulares</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>1-9</B></TD>
+<TD>Respostas para as perguntas</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>*</B></TD>
+<TD>Liga/Desliga as cores</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>/</B></TD>
+<TD>Adiciona/remove programas</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>|</B></TD>
+<TD>Inserir alternação (quando permitido)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>(</B></TD>
+<TD>Abrir um novo grupo (quando permitido)</TD>
+</TR>
+<TR>
+<TD ALIGN="center"><B>)</B></TD>
+<TD>Fechar o grupo aberto (se existir algum)</TD>
+</TR>
+</TABLE>
+
+<H1>BUGS</H1>
+
+<P>
+Relatos de problemas e contribuições são MUITO bem-vindos!
+Por favor mande para o autor.
+</P>
+
+<H1>AUTOR</H1>
+
+<P>
+Escrito e mantido por Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
+</P>
+<P>
+Página de manual traduzida para o Português por
+Gustavo Roberto Rodrigues Gonçalves.
+</P>
+
+<H1>COPYRIGHT</H1>
+
+<P>
+Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+</P>
+<P>
+Este é um software livre; veja o código e as condições para copiar.
+Não há nenhuma garantia; Não pode ser vendido, é somente para uso
+particular.
+</P>
+
+<!-- html code generated by txt2tags 2.6.1087 (http://txt2tags.org) -->
+<!-- cmdline: txt2tags -t html txt2regex.t2t -->
+</BODY></HTML>
