@@ -1,13 +1,13 @@
 ## txt2regex — The console regular expression wizard
 
-- Author: [Aurelio Jargas](http://aurelio.net/about.html)
+- Author: [Aurelio Jargas](https://aurelio.net/about.html)
 - License: GPL
 - First release: 2001-02-23
-- Website: http://aurelio.net/projects/txt2regex/
+- Website: https://aurelio.net/projects/txt2regex/
 
 Txt2regex is a Regular Expression Wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
-questions and the program build the regexes for more than 20 programs,
+questions and the program builds the regexes for more than 20 programs
 like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice.org. It is
 a Shell Script 100% written with Bash builtin commands. No compilation
 or extra commands are needed, just download and run.
@@ -15,36 +15,23 @@ or extra commands are needed, just download and run.
 
 ## Install and run
 
-Txt2regex will work in ANY system bash works, because it's a bash-only
-program. This includes Cygwin and Cygwin XFree also.
+Txt2regex is a stand-alone Bash script, it doesn't need to be installed.
+Just run it:
 
-After expanding the tarball, simply run the program directly.
-But if you want it installed on your system, or in other language besides
-english, use the `make` command.
+    bash txt2regex.sh
 
-- **Just english:** untar and run
-- **With i18n:** untar, make install and run
+Better yet, make it an executable file, so you can run it directly:
 
-untar:
-
-    tar xvzf txt2regex-VERSION.tgz
-    cd txt2regex-VERSION
-
-run:
-
+    chmod +x txt2regex.sh
     ./txt2regex.sh
 
-make install (as root, system install):
-
-    make install
-    /usr/bin/txt2regex
-
-make install (as user, local install):
+If you want it in another language besides English, use the `make`
+command to properly install it in your system:
 
     make install BINDIR=. LOCALEDIR=po
     ./txt2regex
 
-**Note 1:** Play with BINDIR, LOCALEDIR and DESTDIR variables to
+**Note 1:** Play with `BINDIR`, `LOCALEDIR` and `DESTDIR` variables to
 change the default install paths.
 
 **Note 2:** Txt2regex only works in Bash version >= 2.04.
@@ -52,13 +39,13 @@ change the default install paths.
 
 ## Tested programs versions 
 
-All regexes and rules the program knows about were extensively tested
-by hand or by the test-suite program. When the program can't be
-reached or executed on my machine, the rules were taken:
+All the regexes and rules were extensively tested by hand or by the
+`test-suite` script. When the program couldn't be executed on my
+machine, the rules were taken:
 
-- From the program documentation
-- Or missing it, from the "Mastering Regular Expressions" O'Reilly book
-- Or missing it, from Internet documents (Oh no!)
+- from the program own documentation, or
+- from the "Mastering Regular Expressions" O'Reilly book, or
+- from the Internet (oh no!)
 
 Programs I've tested here:
 
@@ -122,7 +109,7 @@ and advanced variable expansion. They rule!
 ### Q: Why it only uses 80 columns if my screen has more?
 ### Q: I've changed the xterm window size, why it didn't notice that?
 
-A: The program do use the bash environment variables `$LINES` and
+A: The program do use the Bash environment variables `$LINES` and
 `$COLUMNS` to get the actual screen size. Those **MUST** be exported
 variables, or you'll be stuck at the default 80x25 size. Try:
 
@@ -133,38 +120,37 @@ If you don't get the screen size, do:
     echo export COLUMNS LINES >> ~/.bash_profile
 
 ### Q: Why my bash version is not recognized correctly?
-### Q: Here bash --version is >=2.04. Why the program gets other?
+### Q: Here `bash --version` is >=2.04. Why the program gets other?
 
-A: To find your bash version, the program uses the `$BASH_VERSION`
-environment variable that is available in all bash versions.
+A: The program uses the `$BASH_VERSION`
+environment variable, that is available in all Bash versions,
+to detect your current version.
 
 If some alien has possessed your machine and your environment
 don't have this variable, try to set it by hand. Check with
 
     echo $BASH_VERSION
 
-If this variable is ok, but `bash --version` returns other
-version, check if your bash is really /bin/bash:
+If this variable is ok, but `bash --version` returns another
+version, check if your Bash is really `/bin/bash`:
 
     which bash
 
 If it's not `/bin/bash`, you **MUST** change the first line
-of the script to your bash's right path. Suppose you have the
-bash binary in your `$HOME` because the system's bash is old,
-just change the first line of the program to:
+of the script to your Bash's actual path. For example, if you
+have the `bash` binary in your `$HOME`, inside the `bin`
+directory, just change the first line of the program to:
 
     #!/home/YOU/bin/bash
 
-Or if you cannot change the program file, call it with bash:
+As a last resort, you can always call it with Bash:
 
-    bash ./txt2regex
+    bash ./txt2regex.sh
 
-Sux, but worx.
-
-### Q: What is that <TAB> that appears when I choose TAB on the special combination menu?
+### Q: What is that `<TAB>` that appears when I choose TAB on the "special combination" menu?
 	
-A: Inside lists [], the <TAB> string is a visual representation of
-a literal TAB character, for programs which doesn't support [\t].
+A: Inside lists `[]`, the `<TAB>` string is a visual representation of
+a literal tab character, for programs that don't support `[\t]`.
 
 --
 
