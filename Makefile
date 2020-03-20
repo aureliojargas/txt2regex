@@ -1,15 +1,15 @@
 NAME = txt2regex
 VERSION	= 0.9b
 
-SHSKEL = $(NAME)-$(VERSION).sh
+SHSKEL = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 TESTDIR = test-suite
 
-FILES = Makefile README README.japanese NEWS Changelog COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR) $(NAME).man 
+FILES = Makefile README.md README.japanese NEWS Changelog.txt COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR) man
 
 
-DESTDIR = 
+DESTDIR =
 BINDIR	= $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
@@ -17,16 +17,15 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 TARGET=all
 
 clean:
-	rm -f {,po/}messages po/*.{mo,old,tmp,bk} test-suite/javascript.html $(NAME)
+	rm -f {,po/}messages po/*.{mo,old,tmp,bk} $(NAME)
 	find po -mindepth 1 -type d -exec rm -rf {} \;
 
-check-po-dir: 
+check-po-dir:
 	@if [ ! -d $(PODIR) ]; then \
 	echo "warning: directory '$(PODIR)' not found. nothing to do."; \
 	exit 1;\
 	fi
 
-# shit, bash <<-HEREDOC seems to doesn't work inside Makefile...
 pot: check-po-dir
 	@cd $(PODIR); \
 	DATE=`date '+%Y-%m-%d %H:%M %Z'`;\
@@ -79,7 +78,6 @@ tgz: clean #check-po
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR)
 
-#TODO install man page and README
 install: mo
 	@[ -d $(LOCALEDIR) ] || mkdir -p $(LOCALEDIR); \
 	[ -d $(BINDIR) ] || mkdir -p $(BINDIR); \
@@ -94,11 +92,8 @@ install: mo
 	chmod +x $(BINDIR)/$(NAME) && \
 	echo "program '$(NAME)' installed. just run $(BINDIR)/$(NAME)"
 
-###DEVELOPPER ONLY###	
 doc:
-	@txt2tags -t man  manpage.t2t; \
-	txt2tags  -t txt  README.t2t; \
-	txt2tags  -t html README.t2t manpage.t2t
-# got interested? http://txt2tags.sf.net
-###---###
-
+	@txt2tags -t man  man/txt2regex.t2t; \
+	txt2tags  -t html man/txt2regex.t2t; \
+	txt2tags  -t man  man/pt_BR/txt2regex.t2t; \
+	txt2tags  -t html man/pt_BR/txt2regex.t2t;
