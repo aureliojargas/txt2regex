@@ -37,10 +37,10 @@ change the default install paths.
 **Note 2:** Txt2regex only works in Bash version >= 2.04.
 
 
-## Tested programs versions 
+## Tested programs versions
 
 All the regexes and rules were extensively tested by hand or by the
-`test-suite` script. When the program couldn't be executed on my
+`test-suite.sh` script. When the program couldn't be executed on my
 machine, the rules were taken:
 
 - from the program own documentation, or
@@ -90,7 +90,7 @@ messages to your own language. Just get the `po/txt2regex.pot`
 file and translate it, on the `msgstr` lines. In doubt, ask.
 
 
-## FAQ 
+## FAQ
 
 ### Q: Why?
 
@@ -148,7 +148,7 @@ As a last resort, you can always call it with Bash:
     bash ./txt2regex.sh
 
 ### Q: What is that `<TAB>` that appears when I choose TAB on the "special combination" menu?
-	
+
 A: Inside lists `[]`, the `<TAB>` string is a visual representation of
 a literal tab character, for programs that don't support `[\t]`.
 
