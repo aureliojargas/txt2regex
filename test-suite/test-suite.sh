@@ -1,5 +1,5 @@
 #!/bin/bash
-# test-suite
+# test-suite.sh
 # 20001026 <verde@aurelio.net> debut
 # 20010802 ++ lots of changes
 
@@ -10,7 +10,7 @@
 
 
 #color=1
-set -o noglob 
+set -o noglob
 
 if [ ${color:=0} -eq 1 ]
 then cN=`echo -ne "\033[m"`      # normal
@@ -32,7 +32,7 @@ echoprog(){ echo -n "$cY$1$cN: "; }
 echometa(){ printf '%-13s' "$1"; }
 
 er_ed(){
-echoprog ed 
+echoprog ed
 ed --version
 #TODO
 echo $line
@@ -52,7 +52,7 @@ do echoprog "$a"
  		echo -n "$re" | $a "/$m/{print}" 2>&1 | sed q
       else
         echo -n "$re" | $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 | sed 2q
-      fi	
+      fi
 	  echo
    done | sed '/^$/d'
    echo $line
@@ -99,7 +99,7 @@ er_find(){
 local m
 echoprog find
 find --version
-touch "$re" 
+touch "$re"
 for m in `echo $ms`
 do echometa "$m" ; [ "$m" == '[\t]' ] && delesc4tabtest
    find . -regex ".*$m.*" -print 2>&1 | sed 1q ; echo
@@ -139,7 +139,7 @@ for m in `echo $ms`
 do m=`escesc "$m"`
    echo "document.write('$m	'+er.replace('$m','<b>★</b>')+\"<br>\");" |
    sed "/'\(\.{\|(\|\[\\\\\\\\]\)'/s,er\.re[^)]\+),\"ERROR\"," |
-   sed "s/'\[\\\\\\\\\\\\\\\\/&./g" 
+   sed "s/'\[\\\\\\\\\\\\\\\\/&./g"
    # first sed avoid fatal error on .{, ( and [\]
    # second sed puts a . on the [\\] cause \ cannot be the last list item
 done | tee -a javascript.html
@@ -162,7 +162,7 @@ echo $line
 
 
 er_tcl(){
-local m 
+local m
 echoprog tcl
 echo 'puts $tcl_version' | tclsh
 re=`escesc "$re"`
@@ -189,7 +189,7 @@ echoprog procmail
 procmail -v 2>&1 | sed q
 for m in `echo $ms`;
 do echometa "$m" ; [ "$m" == '[\t]' ] && delesc4tabtest
-   ./procmail-re-test "$m" "$re"
+   ./procmail-re-test.sh "$m" "$re"
 done
 echo $line
 
