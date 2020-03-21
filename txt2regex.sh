@@ -170,7 +170,7 @@ ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2' \
             'number LEVEL 2: level 1 plus optional float point')
 ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2' \
             'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90')
-#date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}            
+#date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}
 #hour3  : perl: ([01][0-9]|2[0123]):[012345][0-9]
 #number3: perl: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
 ### -- ###
@@ -1223,7 +1223,7 @@ do
 					REPLY=3
 					GRP2=$((GRP2+1))
 				else
-					echo -e "\n\nERROR: unknowm reply type '$REPLY'"
+					echo -e "\n\nERROR: unknown reply type '$REPLY'"
 					exit 1
 				fi
 				showRegEx ax
