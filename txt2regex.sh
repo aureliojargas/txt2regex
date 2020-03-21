@@ -208,8 +208,8 @@ do
 			valid=${!ready_*}
 			valid=" ${valid//ready_/} "
 			[ "$valid" == "${valid#* $arg }" ] && \
-				printError "--make: '$1':" $"invalid argument" \
-					'\n' $"valid names are:" "$valid"
+				printError "--make: '$1':" \
+					$"invalid argument"'\n'$"valid names are:" "${valid% }"
 
 			# Data setting
 			hist="ready_$arg[0]"
