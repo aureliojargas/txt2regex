@@ -14,6 +14,9 @@ like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice. It is a
 Shell Script 100% written with Bash builtin commands. No compilation or
 extra commands are needed, just download it and run.
 
+See [cmdline.md](cmdline.md) for a complete list of all the available
+command line options and examples on using them.
+
 
 ## Install and run
 
