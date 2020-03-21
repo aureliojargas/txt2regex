@@ -63,23 +63,17 @@
 #          ++ history now works with Choice() menus
 #          ++ history appears when quiting
 # 20010905 v0.6
-# 20011019 ** program's 1 year birthday!
 # 20020225 ++ "really quit?" message, ++ --version
 # 20020304 <> --history just shows final RE on STDOUT
 #          ++ --make, --prog, printError()
 #          ++ groups are now quantifiable
 #          ++ ready_(date[123], hour[123], number[123])
 # 20020304 v0.7
-# 20021019 ** program's 2 year birthday!
-# 20031019 ** program's 3 year birthday!
 # 20040928 <> bash version test (works in 3.x and newer)
 # 20040928 v0.8
 # 20040929 <> --help splitted into individual messages (helps i18n)
-# 20041019 ** program's 4 year birthday!
-# 20051019 ** program's 5 year birthday!
 # 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
-# 20121221 ** debut in GitHub
-#
+# 20121221 ** moved to GitHub, please see the Git history from now on
 
 # TODO \<borders\>
 # TODO empty | check like ^| or (|)

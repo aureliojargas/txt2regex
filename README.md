@@ -84,6 +84,7 @@ Programs I've tested here:
     pl_PL          polish            Chris Piechowicz
     pt_BR    brazilian portuguese    Aurelio Jargas
     ro_RO         romanian           Robert Claudiu Gheorghe
+    tr             turkish           erayalakese
 
 A nice way to contribute with the project, is to translate its
 messages to your own language. Just get the `po/txt2regex.pot`
