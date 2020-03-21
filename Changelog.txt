@@ -2,9 +2,13 @@ txt2regex changelog
 -------------------
 
 v0.9 beta (unreleased):
+  - Fixed to work properly in bash5 (tks Yanmarshus Bachtiar)
+  - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
+  - Improved the source code formatting, now it is readable
   - Added new tests for JavaScript
   - Improved --help message
-  - Fixed eval bug when running in bash3 or newer
+  - Added Brazilian Portuguese translation for the man page
+  - Added Turkish translations provided by erayalakese
   - Added Catalan translations provided by Carles (ChAoS)
     <chaos ct (a) gmail com>
   - Added French translations provided by wwp
