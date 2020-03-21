@@ -71,20 +71,18 @@ Programs I've tested here:
 
 ## Translations maintainers
 
-"I feel like I could... Like I could... TAKE OVER THE WORLD"
-
-    ca             catalan           Carles (ChAoS)
-    de_DE          german            Jan Parthey
-    en             english           Aurelio Jargas
-    es_ES          spanish           Diego Moya
-    fr_FR          french            wwp
-    id_ID     bahasa indonesian      Muhamad Faizal
-    it_IT          italian           Daniele Pizzolli
-    ja            japanese           Hajime Dei
-    pl_PL          polish            Chris Piechowicz
-    pt_BR    brazilian portuguese    Aurelio Jargas
-    ro_RO         romanian           Robert Claudiu Gheorghe
-    tr             turkish           erayalakese
+    ca             Catalan           Carles (ChAoS)
+    de_DE          German            Jan Parthey
+    en             English           Aurelio Jargas
+    es_ES          Spanish           Diego Moya
+    fr_FR          French            wwp
+    id_ID     Bahasa Indonesian      Muhamad Faizal
+    it_IT          Italian           Daniele Pizzolli
+    ja            Japanese           Hajime Dei
+    pl_PL          Polish            Chris Piechowicz
+    pt_BR    Brazilian Portuguese    Aurelio Jargas
+    ro_RO         Romanian           Robert Claudiu Gheorghe
+    tr             Turkish           erayalakese
 
 A nice way to contribute with the project, is to translate its
 messages to your own language. Just get the `po/txt2regex.pot`
