@@ -747,9 +747,6 @@ Menu(){
 			;;
 		esac
 	done
-
-	# 0,3,4: escape status
-	[ "${STATUS/[Z34]/}" ] || continue
 }
 
 doNextHist(){
@@ -1201,6 +1198,7 @@ do
 			Reset
 			TopTitle
 			Menu S0_txt
+			[ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
 			HUMAN="$S0_txt ${S0_txt[$REPLY]}"
 			showRegEx S0
 			STATUS=1
@@ -1208,6 +1206,7 @@ do
 		1)
 			TopTitle
 			Menu S1_txt
+			[ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
 			if [ "${REPLY/[1-9]/}" ]
 			then
 				HUMAN="$HUMAN $REPLY"
@@ -1273,6 +1272,7 @@ do
 		2)
 			TopTitle
 			Menu S2_txt
+			[ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
 			rep_middle=$"repeated"
 			rep_txt="${S2_txt[$REPLY]}"
 			rep_txtend=$"times"
