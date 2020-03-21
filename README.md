@@ -1,5 +1,7 @@
 ## txt2regex — The console regular expression wizard
 
+![](https://aurelio.net/projects/txt2regex/img/screenshot.png)
+
 - Author: [Aurelio Jargas](https://aurelio.net/about.html)
 - License: GPL
 - First release: 2001-02-23
@@ -8,9 +10,9 @@
 Txt2regex is a Regular Expression Wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
 questions and the program builds the regexes for more than 20 programs
-like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice.org. It is
-a Shell Script 100% written with Bash builtin commands. No compilation
-or extra commands are needed, just download and run.
+like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice. It is a
+Shell Script 100% written with Bash builtin commands. No compilation or
+extra commands are needed, just download it and run.
 
 
 ## Install and run
