@@ -212,10 +212,10 @@ do
                     $"invalid argument"'\n'$"valid names are:" "${valid% }"
 
             # Data setting
-            hist="ready_$arg[0]"
+            hist="ready_${arg}[0]"
             hist=${!hist}
 
-            txt="ready_$arg[1]"
+            txt="ready_${arg}[1]"
             txt=${!txt}
 
             hists="0${hist%%¤*}"
@@ -696,7 +696,7 @@ doMenu(){
 
         # prompt
         gotoxy $x_prompt $y_prompt
-        echo -ne "$cP[1-$menu_n]:$cN $_eol"
+        echo -ne "${cP}[1-$menu_n]:$cN $_eol"
         read -n 1
     else
         doNextHist
@@ -864,7 +864,7 @@ getPosix(){
 
     for rpl in $CHOICEREPLY
     do
-        psx="$psx[:${posix_re[$rpl]}:]"
+        psx="${psx}[:${posix_re[$rpl]}:]"
         SUBHUMAN="$SUBHUMAN, ${posix_txt[$rpl]/ (*)/}"
     done
 
