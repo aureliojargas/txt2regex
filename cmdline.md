@@ -338,3 +338,13 @@ $ txt2regex --make date --prog foo
 ERROR: unknown program: foo
 $
 ```
+
+## Invalid option
+
+```console
+$ txt2regex --foo | head -n 3 | sed '3 s/:.*//'
+--foo: invalid option
+
+usage
+$
+```
