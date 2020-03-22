@@ -769,7 +769,7 @@ getChar(){
 		uin=$histarg
 	fi
 
-	uins="$uins¤$uin"
+	uins="${uins}¤$uin"
 	F_ESCCHAR=1
 }
 
@@ -789,7 +789,7 @@ getCharList(){
 		doNextHistArg
 		uin=$histarg
 	fi
-	uins="$uins¤$uin"
+	uins="${uins}¤$uin"
 
 	# putting not special chars in not special places: [][^-]
 	[ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
@@ -817,7 +817,7 @@ getString(){
 		uin=$histarg
 	fi
 
-	uins="$uins¤$uin"
+	uins="${uins}¤$uin"
 	F_ESCCHAR=1
 }
 
@@ -845,7 +845,7 @@ getNumber(){
 
 	if [ "$uin" ]
 	then
-		uins="$uins¤$uin"
+		uins="${uins}¤$uin"
 	else
 		getNumber  # there _must_ be a number
 	fi
@@ -872,7 +872,7 @@ getPosix(){
 	F_POSIX=1
 
 	uin="[$psx]"
-	uins="$uins¤:${CHOICEREPLY// /}"
+	uins="${uins}¤:${CHOICEREPLY// /}"
 }
 
 getCombo(){
@@ -903,7 +903,7 @@ getCombo(){
 	else
 		uin="[$cmb]"
 	fi
-	uins="$uins¤:${CHOICEREPLY// /}"
+	uins="${uins}¤:${CHOICEREPLY// /}"
 }
 
 #TODO all

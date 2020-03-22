@@ -136,9 +136,9 @@ Note that you can also inform `--prog` to specify the list of programs (separate
 
 ```console
 $ txt2regex --history '124259¤a¤b¤5' --prog sed,python,sed
- RegEx sed     : ^a\+b\{5\}.*
- RegEx python  : ^a+b{5}.*
- RegEx sed     : ^a\+b\{5\}.*
+ RegEx sed   : ^a\+b\{5\}.*
+ RegEx python: ^a+b{5}.*
+ RegEx sed   : ^a\+b\{5\}.*
 
 $
 ```
