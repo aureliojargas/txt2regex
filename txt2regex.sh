@@ -94,34 +94,34 @@ case "$BASH_VERSION" in
         :  # do nothing
     ;;
     *)
-        echo "bash version >=2.04 required, but you have $BASH_VERSION"
+        printf 'bash version >=2.04 required, but you have %s\n' "$BASH_VERSION"
         exit 1
     ;;
 esac
 
 Usage(){
-    echo $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
-    echo $"       txt2regex --showmeta"
-    echo $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
-    echo $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
-    echo $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
-    echo
-    echo $"OPTIONS (they are default OFF):"
-    echo
-    echo $"  --all               Works with all registered programs"
-    echo $"  --nocolor           Don't use colors"
-    echo $"  --whitebg           Colors adjusted for white background terminals"
-    echo $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
-    echo
-    echo $"  --showmeta          Prints a metacharacters table with all programs"
-    echo $"  --showinfo PROGRAM  Prints regex info about the specified program"
-    echo $"  --history VALUE     Prints a regex from the given history data"
-    echo $"  --make LABEL        Prints the default regex for the specified label"
-    echo
-    echo $"  --version           Prints the program version and quit"
-    echo $"  --help              Prints the help message and quit"
-    echo
-    echo $"Please read the program Man Page for more information."
+    printf '%s\n' $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
+    printf '%s\n' $"       txt2regex --showmeta"
+    printf '%s\n' $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
+    printf '%s\n' $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
+    printf '%s\n' $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
+    printf '\n'
+    printf '%s\n' $"OPTIONS (they are default OFF):"
+    printf '\n'
+    printf '%s\n' $"  --all               Works with all registered programs"
+    printf '%s\n' $"  --nocolor           Don't use colors"
+    printf '%s\n' $"  --whitebg           Colors adjusted for white background terminals"
+    printf '%s\n' $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
+    printf '\n'
+    printf '%s\n' $"  --showmeta          Prints a metacharacters table with all programs"
+    printf '%s\n' $"  --showinfo PROGRAM  Prints regex info about the specified program"
+    printf '%s\n' $"  --history VALUE     Prints a regex from the given history data"
+    printf '%s\n' $"  --make LABEL        Prints the default regex for the specified label"
+    printf '\n'
+    printf '%s\n' $"  --version           Prints the program version and quit"
+    printf '%s\n' $"  --help              Prints the help message and quit"
+    printf '\n'
+    printf '%s\n' $"Please read the program Man Page for more information."
     exit 1
 }
 
@@ -176,7 +176,7 @@ getItemIndex(){  # array tool
     while [ "$1" ]
     do
         [ "$1" == "$item" ] && {
-            echo $i
+            printf '%d\n' "$i"
             return
         }
         i=$((i+1))
@@ -232,7 +232,7 @@ do
             hists="0${hist%%¤*}"
             histargs="¤${hist#*¤}"
 
-            echo -e "\n### $txt\n"
+            printf '\n### %s\n\n' "$txt"
         ;;
         --prog)
             [ "$2" ] || Usage
@@ -260,14 +260,14 @@ do
             progs=(${allprogs[@]})
         ;;
         --version)
-            echo "txt2regex v$VERSION"
+            printf 'txt2regex v%s\n' "$VERSION"
             exit 0
         ;;
         --help)
             Usage
         ;;
         *)
-            echo "'$1':" $"invalid option"
+            printf '%s: %s\n\n' "$1" $"invalid option"
             Usage
         ;;
    esac
@@ -435,17 +435,17 @@ ColorOnOff(){
         unset cN cP cB cI cR
     elif [ "$f_whitebg" != 1 ]
     then
-        cN=$(echo -ne "\033[m")      # normal
-        cP=$(echo -ne "\033[1;31m")  # red
-        cB=$(echo -ne "\033[1;37m")  # white
-        cI=$(echo -ne "\033[1;33m")  # yellow
-        cR=$(echo -ne "\033[7m")     # reverse
+        cN=$(printf '\033[m')      # normal
+        cP=$(printf '\033[1;31m')  # red
+        cB=$(printf '\033[1;37m')  # white
+        cI=$(printf '\033[1;33m')  # yellow
+        cR=$(printf '\033[7m')     # reverse
     else
-        cN=$(echo -ne "\033[m")      # normal
-        cP=$(echo -ne "\033[31m")    # red
-        cB=$(echo -ne "\033[32m")    # green
-        cI=$(echo -ne "\033[34m")    # blue
-        cR=$(echo -ne "\033[7m")     # reverse
+        cN=$(printf '\033[m')      # normal
+        cP=$(printf '\033[31m')    # red
+        cB=$(printf '\033[32m')    # green
+        cI=$(printf '\033[34m')    # blue
+        cR=$(printf '\033[7m')     # reverse
     fi
 }
 
@@ -461,7 +461,7 @@ sek(){
     }
     for ((i=$a; i$H=$z; i$s))
     do
-        echo $i
+        printf '%d\n' "$i"
     done
 }
 
@@ -472,14 +472,14 @@ getLargestItem(){
         [ ${#1} -gt ${#mjr} ] && mjr="$1"
         shift
     done
-    echo $mjr
+    printf '%s\n' "$mjr"
 }
 
 getMeta(){
     local m="$1[$2]"
     m=${!m}
     m=${m//[@!,_]/}
-    echo "${m//\\\\{[01]*}"  # needed for vi
+    printf '%s\n' "${m//\\\\{[01]*}"  # needed for vi
 }
 
 ShowMeta(){
@@ -533,13 +533,13 @@ ShowInfo(){
 
     # Show me! show me! show me!
     ColorOnOff
-    echo
+    printf '\n'
     txtsize=$(getLargestItem "${txt[@]}")
     for ((i=0; i<${#txt[@]}; i++))
     do
         printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
     done
-    echo
+    printf '\n'
 }
 
 
@@ -584,13 +584,13 @@ ScreenSize(){
 }
 
 
-_eol=$(echo -ne "\033[0K")  # clear trash until EOL
+_eol=$(printf '\033[0K')  # clear trash until EOL
 
 # The cool control chars functions
-gotoxy(){   [ "$f_i" == 1 ] && echo -ne "\033[$2;$1H"; }
-clearEnd(){ [ "$f_i" == 1 ] && echo -ne "\033[0J"; }
-clearN(){   [ "$f_i" == 1 ] && echo -ne "\033[$1X"; }
-Clear(){    [ "$f_i" == 1 ] && echo -ne "\033c"; }
+gotoxy(){   [ "$f_i" == 1 ] && printf '\033[%d;%dH' "$2" "$1"; }
+clearEnd(){ [ "$f_i" == 1 ] && printf '\033[0J'; }
+clearN(){   [ "$f_i" == 1 ] && printf '\033[%dX' "$1"; }
+Clear(){    [ "$f_i" == 1 ] && printf '\033c'; }
 
 # Ideas: tab between, $cR on cmd, yellow-white-yellow
 printTitleCmd(){
@@ -620,7 +620,7 @@ TopTitle(){
             ;;
             9)
                 gotoxy $((COLUMNS-${#txt})) 1
-                echo "$txt"
+                printf '%s\n' "$txt"
             ;;
         esac
         if [ $showme -eq 1 ]
@@ -634,7 +634,7 @@ TopTitle(){
     # 2nd line: grouping and or
     if [ $STATUS -eq 0 ]
     then
-        echo -n $_eol
+        printf %s "$_eol"
     else
         if [ $STATUS -eq 1 ]
         then
@@ -659,9 +659,9 @@ TopTitle(){
         gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2
         color="$cP"
         [ "$GRP1" -eq "$GRP2" ] && color="$cB"
-        for ((j=0 ;j<$GRP1;j++)); do echo -n "$color($cN"; done
-        [ $GRP1 -gt 0 ] && echo -n $GRP1
-        for ((j=0 ;j<$GRP2;j++)); do echo -n "$color)$cN"; done
+        for ((j=0 ;j<$GRP1;j++)); do printf '%s(%s' "$color" "$cN"; done
+        [ $GRP1 -gt 0 ] && printf %s "$GRP1"
+        for ((j=0 ;j<$GRP2;j++)); do printf '%s)%s' "$color" "$cN"; done
     fi
 
     # 3rd line: legend
@@ -681,23 +681,26 @@ doMenu(){
 
         # history
         gotoxy $x_hist $y_hist
-        echo "   $cP.oO($cN$REPLIES$cP)$cN$cP($cN$uins$cP)$cN$_eol"
+        printf '   %s.oO(%s%s%s)%s%s(%s%s%s)%s%s\n' \
+            "$cP" "$cN" "$REPLIES" "$cP" "$cN" \
+            "$cP" "$cN" "$uins" "$cP" "$cN" \
+            "$_eol"
 
         # title
         gotoxy $x_menu $y_menu
-        echo "$cI${Menui[0]}:$cN$_eol"
+        printf '%s%s:%s%s\n' "$cI" "${Menui[0]}" "$cN" "$_eol"
 
         # itens
         for i in $(sek $menu_n)
         do
-            echo "  $cB$i$cN) ${Menui[$i]}$_eol"
+            printf '  %s%d%s) %s%s\n' "$cB" "$i" "$cN" "${Menui[$i]}" "$_eol"
             i=$((i+1))
         done
         clearEnd
 
         # prompt
         gotoxy $x_prompt $y_prompt
-        echo -ne "${cP}[1-$menu_n]:$cN $_eol"
+        printf '%s[1-%d]:%s %s' "$cP" "$menu_n" "$cN" "$_eol"
         read -r -n 1
     else
         doNextHist
@@ -760,9 +763,7 @@ getChar(){
 
     if [ "$f_i" == 1 ]
     then
-        echo -n "${cP}"
-        echo -n $"which one?"
-        echo -n " $cN"
+        printf '%s%s%s ' "$cP" $"which one?" "$cN"
         read -n 1 -r USERINPUT
         uin="$USERINPUT"
     else
@@ -781,9 +782,7 @@ getCharList(){
 
     if [ "$f_i" == 1 ]
     then
-        echo -n "${cP}"
-        echo -n $"which?"
-        echo -n " $cN"
+        printf '%s%s%s ' "$cP" $"which?" "$cN"
         read -r USERINPUT
         uin="$USERINPUT"
     else
@@ -810,7 +809,7 @@ getString(){
 
     if [ "$f_i" == 1 ]
     then
-        echo -ne "${cP}txt:$cN "
+        printf '%stxt:%s ' "$cP" "$cN"
         read -r USERINPUT
         uin="$USERINPUT"
     else
@@ -827,7 +826,7 @@ getNumber(){
 
     if [ "$f_i" == 1 ]
     then
-        echo -ne "${cP}N=$cN$_eol"
+        printf '%sN=%s%s' "$cP" "$cN" "$_eol"
         read -r USERINPUT
         uin="$USERINPUT"
     else
@@ -841,7 +840,7 @@ getNumber(){
     # ee
     [ "${uin/666/x}" == 'x' ] && {
         gotoxy 36 1
-        echo "$cP]:|$cN"
+        printf '%s]:|%s\n' "$cP" "$cN"
     }
 
     if [ "$uin" ]
@@ -1217,7 +1216,7 @@ do
                     REPLY=3
                     GRP2=$((GRP2+1))
                 else
-                    echo -e "\n\nERROR: unknown reply type '$REPLY'"
+                    printf '\n\nERROR: unknown reply type "%s"\n' "$REPLY"
                     exit 1
                 fi
                 showRegEx ax
@@ -1310,18 +1309,18 @@ do
             then
                 noregex_txt=$"no regex"
                 printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
-                echo -e "${HUMAN:-$noregex_txt}.\n"
+                printf '%s.\n' "${HUMAN:-$noregex_txt}"
             else
                 for ((i=0; i<${#progs[@]}; i++))  # for each program
                 do
                     printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
                 done
-                echo
+                printf '\n'
             fi
             exit 0
         ;;
         *)
-            echo "Error: STATUS = '$STATUS'"
+            printf 'Error: STATUS = "%s"\n' "$STATUS"
             exit 1
         ;;
     esac
