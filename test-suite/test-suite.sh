@@ -48,12 +48,12 @@ do echoprog "$a"
    for m in `echo $ms`
    do echometa "$m" ;
       if [ "$a" == 'mawk' ]; then
- 	 	[ "$m" == '[\t]' ] && delesc4tabtest
- 		echo -n "$re" | $a "/$m/{print}" 2>&1 | sed q
+         [ "$m" == '[\t]' ] && delesc4tabtest
+         echo -n "$re" | $a "/$m/{print}" 2>&1 | sed q
       else
-        echo -n "$re" | $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 | sed 2q
+         echo -n "$re" | $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 | sed 2q
       fi
-	  echo
+      echo
    done | sed '/^$/d'
    echo $line
 done
@@ -89,7 +89,7 @@ echo "<? echo phpversion().\"\n\" ; ?>" | php | sed 1,3d
 
 for m in `echo $ms`
 do echometa "$m" ; echo "<? \$r=ereg_replace('$m','$cY·$cN','$re');if(\$r!='$re')echo \"\$r\";?>" |
-     php 2>&1 | sed '1,3d;/^<br>/d;s/<[^>]\+>//g' ; echo
+      php 2>&1 | sed '1,3d;/^<br>/d;s/<[^>]\+>//g' ; echo
 done | sed '/^ *$/d'
 echo $line
 }
