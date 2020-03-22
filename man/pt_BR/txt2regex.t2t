@@ -13,7 +13,7 @@ TXT2REGEX
 
 = NOME = 
 
-txt2regex - O assistente para Expressıes Regulares no console
+txt2regex - O assistente para Express√µes Regulares no console
 
 = SINOPSE =
 
@@ -28,24 +28,24 @@ txt2regex - O assistente para Expressıes Regulares no console
 **txt2regex** --make NOME [ --all | --prog PROGRAMAS ]
 
 
-= DESCRI«√O =
+= DESCRI√á√ÉO =
 
-O **txt2regex** È um assistente que converte frases humanas para
-Expressıes Regulares.
+O **txt2regex** √© um assistente que converte frases humanas para
+Express√µes Regulares.
 
-Com uma interface para console, simples e intuitiva, o usu·rio
-responde perguntas e o programa constrÛi expressıes regulares para
+Com uma interface para console, simples e intuitiva, o usu√°rio
+responde perguntas e o programa constr√≥i express√µes regulares para
 mais de 20 programas diferentes. Alguns deles: Vim, Emacs, Perl, PHP,
 Python, Procmail e OpenOffice.org.
 
-O programa È um Script Shell que utiliza apenas os comandos internos
-do interpretador. N„o È preciso compil·-lo, basta baixar e executar.
+O programa √© um Script Shell que utiliza apenas os comandos internos
+do interpretador. N√£o √© preciso compil√°-lo, basta baixar e executar.
 
-Visite a p·gian oficial do programa em
+Visite a p√°gian oficial do programa em
 //""http://txt2regex.sf.net""//.
 
 
-= OP«’ES =
+= OP√á√ïES =
 
 : **--all**
 Trabalha com todos os programas registrados
@@ -54,49 +54,49 @@ Trabalha com todos os programas registrados
 Exibe uma mensagem de ajuda e sai
 
 : **--history <valor>**
-Imprime para o STDOUT a express„o regular para histÛrico dos dados
+Imprime para o STDOUT a express√£o regular para hist√≥rico dos dados
 
 : **--make <nome>**
-Imprime uma express„o regular pronta
+Imprime uma express√£o regular pronta
 
 : **--nocolor**
-N„o usa cores
+N√£o usa cores
 
 : **--prog <p1,p2,...>**
-Escolha quais programas usar, separados por vÌrgulas
+Escolha quais programas usar, separados por v√≠rgulas
 
 : **--showinfo <programa>**
-Imprime informaÁıes sobre o programa
+Imprime informa√ß√µes sobre o programa
 
 : **--showmeta**
 Imprime a tabela dos metacaracteres para todos os programas
 
 : **--version**
-Imprime a vers„o do programa e sai
+Imprime a vers√£o do programa e sai
 
 : **--whitebg**
 Ajusta as cores de fundo dos terminais para branco
 
 
-Por default, todas as opÁıes s„o desligadas. Chame o programa sem
-opÁıes para abrir a interface interativa.
+Por default, todas as op√ß√µes s√£o desligadas. Chame o programa sem
+op√ß√µes para abrir a interface interativa.
 
 
 = DETALHES =
 
-**--all** È uma boa opÁ„o, mas requer muitas linhas (cerca de 35)
+**--all** √© uma boa op√ß√£o, mas requer muitas linhas (cerca de 35)
 
-**--nocolor** È forte, ganha do --whitebg
+**--nocolor** √© forte, ganha do --whitebg
 
-**--showmeta** È legal, use-o
+**--showmeta** √© legal, use-o
 
-**--showinfo** usa saÌda reversa de video, --nocolor desliga as cores
+**--showinfo** usa sa√≠da reversa de video, --nocolor desliga as cores
 
 **--history** ainda vai ser util
 
-**--make** È o remÈdio para as suas dores de cabeÁa
+**--make** √© o rem√©dio para as suas dores de cabe√ßa
 
-**--prog** È bom us·-lo com seus programas favoritos, misture-o com a --make e --history
+**--prog** √© bom us√°-lo com seus programas favoritos, misture-o com a --make e --history
 
 
 = EXEMPLOS =
@@ -107,19 +107,19 @@ opÁıes para abrir a interface interativa.
 : Usa o programa num terminal branco
 ``` $ xterm -fg black -bg white ; txt2regex --whitebg
 
-: ObtÈm informaÁıes
+: Obt√©m informa√ß√µes
 ``` $ txt2regex --showmeta
 
-: ObtÈm informaÁıes especificas
+: Obt√©m informa√ß√µes especificas
 ``` $ txt2regex --showinfo sed
 
-: Usando para programas especÌficos
+: Usando para programas espec√≠ficos
 ``` $ txt2regex --prog vim,sed,grep,python
 
-: Aplicando o histÛrico de dados
-``` $ txt2regex --history '16421§:01§:'
+: Aplicando o hist√≥rico de dados
+``` $ txt2regex --history '16421¬§:01¬§:'
 
-: Obtendo expressıes prontas
+: Obtendo express√µes prontas
 ```
 $ txt2regex --make hour
 $ txt2regex --make number3 --prog perl
@@ -129,7 +129,7 @@ $ txt2regex --make date2 --all
 
 = INTERFACE =
 
-A interface do programa È simples de usar e contÈm.
+A interface do programa √© simples de usar e cont√©m.
 
 ```
        +---------------------------------------+
@@ -140,7 +140,7 @@ A interface do programa È simples de usar e contÈm.
        |    ...                                |
        |    ...                                |
        |                                       |
-       | -> HistÛrico                          |
+       | -> Hist√≥rico                          |
        | -> Seu prompt                         |
        |                                       |
        | -> A pergunta                         |
@@ -150,23 +150,23 @@ A interface do programa È simples de usar e contÈm.
        +---------------------------------------+
 ```
 
-Todos os comandos b·sicos podem ser usados a partir do teclado
-numÈrico, mas lembre-se de ativar a tecla NumLock.
+Todos os comandos b√°sicos podem ser usados a partir do teclado
+num√©rico, mas lembre-se de ativar a tecla NumLock.
 
-  ||  Comando  | DescriÁ„o
-  |   **.**    | Sair do programa (com confirmaÁ„o)
-  |   **0**    | Reinicia as expressıes regulares
+  ||  Comando  | Descri√ß√£o
+  |   **.**    | Sair do programa (com confirma√ß√£o)
+  |   **0**    | Reinicia as express√µes regulares
   |  **1-9**   | Respostas para as perguntas
   |   *****    | Liga/Desliga as cores
   |   **/**    | Adiciona/remove programas
-  |   **|**    | Inserir alternaÁ„o (quando permitido)
+  |   **|**    | Inserir alterna√ß√£o (quando permitido)
   |   **(**    | Abrir um novo grupo (quando permitido)
   |   **)**    | Fechar o grupo aberto (se existir algum)
 
 
 = BUGS =
 
-Relatos de problemas e contribuiÁıes s„o MUITO bem-vindos!
+Relatos de problemas e contribui√ß√µes s√£o MUITO bem-vindos!
 Por favor mande para o autor.
 
 
@@ -174,13 +174,13 @@ Por favor mande para o autor.
 
 Escrito e mantido por Aurelio Jargas <verde@aurelio.net>
 
-P·gina de manual traduzida para o PortuguÍs por
-Gustavo Roberto Rodrigues GonÁalves.
+P√°gina de manual traduzida para o Portugu√™s por
+Gustavo Roberto Rodrigues Gon√ßalves.
 
 = COPYRIGHT =
 
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright ¬© 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
 
-Este È um software livre; veja o cÛdigo e as condiÁıes para copiar.
-N„o h· nenhuma garantia; N„o pode ser vendido, È somente para uso
+Este √© um software livre; veja o c√≥digo e as condi√ß√µes para copiar.
+N√£o h√° nenhuma garantia; N√£o pode ser vendido, √© somente para uso
 particular.
