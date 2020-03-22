@@ -498,7 +498,7 @@ ShowMeta(){
         g1=$(getMeta ax_$prog 2)
         g2=$(getMeta ax_$prog 3)
         printf '%8s' "$g1$g2"               # group
-        # printf " $prog: ${allversions[$i]}" #DEBUG
+        # printf ' %s: %s' "$prog" "${allversions[$i]}"  # DEBUG
     done
     printf '\n\n%s\n\n' $"NOTE: . [] [^] and * are the same on all programs."
 }
@@ -536,7 +536,8 @@ ShowInfo(){
     txtsize=$(getLargestItem "${txt[@]}")
     for ((i=0; i<${#txt[@]}; i++))
     do
-        printf "$cR %${#txtsize}s ${cN:-:} %s\n" "${txt[$i]}" "${data[$i]}"
+        printf "%s %${#txtsize}s %s %s\n" \
+            "$cR" "${txt[$i]}" "${cN:-:}" "${data[$i]}"
     done
     printf '\n'
 }
@@ -593,7 +594,7 @@ Clear(){    [ "$f_i" == 1 ] && printf '\033c'; }
 
 # Ideas: tab between, $cR on cmd, yellow-white-yellow
 printTitleCmd(){
-    printf "[$cI%s$cN]%s  " "$1" "$2"
+    printf '[%s%s%s]%s  ' "$cI" "$1" "$cN" "$2"
 }
 
 TopTitle(){
@@ -667,7 +668,7 @@ TopTitle(){
     txt=${tit2_txt[9]}
     cmd=${tit2_cmd[9]}
     gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
-    printf "$cB%s$cN %s" "$cmd" "$txt"
+    printf '%s%s%s %s' "$cB" "$cmd" "$cN" "$txt"
 }
 
 doMenu(){
@@ -998,7 +999,7 @@ Reset(){
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
     for p in ${progs[*]}
     do
-        [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: $_eol\n" "$p"
+        [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
 }
 
@@ -1050,7 +1051,7 @@ ChoiceRefresh(){
     [ "$stat" == '+' ] && stat="$cI$stat$cN"
 
     gotoxy "${xy#*;}" "${xy%;*}"
-    printf "  $cB%s$cN) %s%s " "$a" "$stat" "$opt"
+    printf '  %s%s%s) %s%s ' "$cB" "$a" "$cN" "$stat" "$opt"
 }
 
 # --reset resets the stat array
@@ -1305,7 +1306,8 @@ do
             if [ "$f_i" == 1 ]
             then
                 noregex_txt=$"no regex"
-                printf "$cB%s '%s%s'$cN\n\n" "txt2regex --history" "$REPLIES" "$uins"
+                printf '%stxt2regex --history '%s%s'%s\n\n' \
+                    "$cB" "$REPLIES" "$uins" "$cN"
                 printf '%s.\n' "${HUMAN:-$noregex_txt}"
             else
                 for ((i=0; i<${#progs[@]}; i++))  # for each program
