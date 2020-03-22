@@ -2,7 +2,7 @@
 
 .SH NOME
 .P
-txt2regex \- O assistente para Expressıes Regulares no console
+txt2regex \- O assistente para Express√µes Regulares no console
 .SH SINOPSE
 .P
 \fBtxt2regex\fR [ \-\-nocolor | \-\-whitebg ] [ \-\-all | \-\-prog PROGRAMAS ]
@@ -14,22 +14,22 @@ txt2regex \- O assistente para Expressıes Regulares no console
 \fBtxt2regex\fR \-\-history VALOR [ \-\-all | \-\-prog PROGRAMAS ]
 .P
 \fBtxt2regex\fR \-\-make NOME [ \-\-all | \-\-prog PROGRAMAS ]
-.SH DESCRI«√O
+.SH DESCRI√á√ÉO
 .P
-O \fBtxt2regex\fR È um assistente que converte frases humanas para
-Expressıes Regulares.
+O \fBtxt2regex\fR √© um assistente que converte frases humanas para
+Express√µes Regulares.
 .P
-Com uma interface para console, simples e intuitiva, o usu·rio
-responde perguntas e o programa constrÛi expressıes regulares para
+Com uma interface para console, simples e intuitiva, o usu√°rio
+responde perguntas e o programa constr√≥i express√µes regulares para
 mais de 20 programas diferentes. Alguns deles: Vim, Emacs, Perl, PHP,
 Python, Procmail e OpenOffice.org.
 .P
-O programa È um Script Shell que utiliza apenas os comandos internos
-do interpretador. N„o È preciso compil·\-lo, basta baixar e executar.
+O programa √© um Script Shell que utiliza apenas os comandos internos
+do interpretador. N√£o √© preciso compil√°\-lo, basta baixar e executar.
 .P
-Visite a p·gian oficial do programa em
+Visite a p√°gian oficial do programa em
 \fIhttp://txt2regex.sf.net\fR.
-.SH OP«’ES
+.SH OP√á√ïES
 
 .TP
 \fB\-\-all\fR
@@ -41,23 +41,23 @@ Exibe uma mensagem de ajuda e sai
 
 .TP
 \fB\-\-history <valor>\fR
-Imprime para o STDOUT a express„o regular para histÛrico dos dados
+Imprime para o STDOUT a express√£o regular para hist√≥rico dos dados
 
 .TP
 \fB\-\-make <nome>\fR
-Imprime uma express„o regular pronta
+Imprime uma express√£o regular pronta
 
 .TP
 \fB\-\-nocolor\fR
-N„o usa cores
+N√£o usa cores
 
 .TP
 \fB\-\-prog <p1,p2,...>\fR
-Escolha quais programas usar, separados por vÌrgulas
+Escolha quais programas usar, separados por v√≠rgulas
 
 .TP
 \fB\-\-showinfo <programa>\fR
-Imprime informaÁıes sobre o programa
+Imprime informa√ß√µes sobre o programa
 
 .TP
 \fB\-\-showmeta\fR
@@ -65,30 +65,30 @@ Imprime a tabela dos metacaracteres para todos os programas
 
 .TP
 \fB\-\-version\fR
-Imprime a vers„o do programa e sai
+Imprime a vers√£o do programa e sai
 
 .TP
 \fB\-\-whitebg\fR
 Ajusta as cores de fundo dos terminais para branco
 
 .P
-Por default, todas as opÁıes s„o desligadas. Chame o programa sem
-opÁıes para abrir a interface interativa.
+Por default, todas as op√ß√µes s√£o desligadas. Chame o programa sem
+op√ß√µes para abrir a interface interativa.
 .SH DETALHES
 .P
-\fB\-\-all\fR È uma boa opÁ„o, mas requer muitas linhas (cerca de 35)
+\fB\-\-all\fR √© uma boa op√ß√£o, mas requer muitas linhas (cerca de 35)
 .P
-\fB\-\-nocolor\fR È forte, ganha do \-\-whitebg
+\fB\-\-nocolor\fR √© forte, ganha do \-\-whitebg
 .P
-\fB\-\-showmeta\fR È legal, use\-o
+\fB\-\-showmeta\fR √© legal, use\-o
 .P
-\fB\-\-showinfo\fR usa saÌda reversa de video, \-\-nocolor desliga as cores
+\fB\-\-showinfo\fR usa sa√≠da reversa de video, \-\-nocolor desliga as cores
 .P
 \fB\-\-history\fR ainda vai ser util
 .P
-\fB\-\-make\fR È o remÈdio para as suas dores de cabeÁa
+\fB\-\-make\fR √© o rem√©dio para as suas dores de cabe√ßa
 .P
-\fB\-\-prog\fR È bom us·\-lo com seus programas favoritos, misture\-o com a \-\-make e \-\-history
+\fB\-\-prog\fR √© bom us√°\-lo com seus programas favoritos, misture\-o com a \-\-make e \-\-history
 .SH EXEMPLOS
 
 .TP
@@ -110,7 +110,7 @@ $ xterm -fg black -bg white ; txt2regex --whitebg
 
 
 .TP
-ObtÈm informaÁıes
+Obt√©m informa√ß√µes
 
 .nf
 $ txt2regex --showmeta
@@ -119,7 +119,7 @@ $ txt2regex --showmeta
 
 
 .TP
-ObtÈm informaÁıes especificas
+Obt√©m informa√ß√µes especificas
 
 .nf
 $ txt2regex --showinfo sed
@@ -128,7 +128,7 @@ $ txt2regex --showinfo sed
 
 
 .TP
-Usando para programas especÌficos
+Usando para programas espec√≠ficos
 
 .nf
 $ txt2regex --prog vim,sed,grep,python
@@ -137,16 +137,16 @@ $ txt2regex --prog vim,sed,grep,python
 
 
 .TP
-Aplicando o histÛrico de dados
+Aplicando o hist√≥rico de dados
 
 .nf
-$ txt2regex --history '16421§:01§:'
+$ txt2regex --history '16421¬§:01¬§:'
 .fi
 
 
 
 .TP
-Obtendo expressıes prontas
+Obtendo express√µes prontas
 
 .nf
 $ txt2regex --make hour
@@ -158,7 +158,7 @@ $ txt2regex --make date2 --all
 
 .SH INTERFACE
 .P
-A interface do programa È simples de usar e contÈm.
+A interface do programa √© simples de usar e cont√©m.
 
 .nf
        +---------------------------------------+
@@ -169,7 +169,7 @@ A interface do programa È simples de usar e contÈm.
        |    ...                                |
        |    ...                                |
        |                                       |
-       | -> HistÛrico                          |
+       | -> Hist√≥rico                          |
        | -> Seu prompt                         |
        |                                       |
        | -> A pergunta                         |
@@ -181,38 +181,38 @@ A interface do programa È simples de usar e contÈm.
 
 
 .P
-Todos os comandos b·sicos podem ser usados a partir do teclado
-numÈrico, mas lembre\-se de ativar a tecla NumLock.
+Todos os comandos b√°sicos podem ser usados a partir do teclado
+num√©rico, mas lembre\-se de ativar a tecla NumLock.
 
 .TS
 center, tab(^); cl.
- \fBComando\fR^\fBDescriÁ„o\fR
- \fB.\fR^Sair do programa (com confirmaÁ„o)
- \fB0\fR^Reinicia as expressıes regulares
+ \fBComando\fR^\fBDescri√ß√£o\fR
+ \fB.\fR^Sair do programa (com confirma√ß√£o)
+ \fB0\fR^Reinicia as express√µes regulares
  \fB1\-9\fR^Respostas para as perguntas
  \fB*\fR^Liga/Desliga as cores
  \fB/\fR^Adiciona/remove programas
- \fB|\fR^Inserir alternaÁ„o (quando permitido)
+ \fB|\fR^Inserir alterna√ß√£o (quando permitido)
  \fB(\fR^Abrir um novo grupo (quando permitido)
  \fB)\fR^Fechar o grupo aberto (se existir algum)
 .TE
 
 .SH BUGS
 .P
-Relatos de problemas e contribuiÁıes s„o MUITO bem\-vindos!
+Relatos de problemas e contribui√ß√µes s√£o MUITO bem\-vindos!
 Por favor mande para o autor.
 .SH AUTOR
 .P
 Escrito e mantido por Aurelio Jargas <verde@aurelio.net>
 .P
-P·gina de manual traduzida para o PortuguÍs por
-Gustavo Roberto Rodrigues GonÁalves.
+P√°gina de manual traduzida para o Portugu√™s por
+Gustavo Roberto Rodrigues Gon√ßalves.
 .SH COPYRIGHT
 .P
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright ¬© 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
 .P
-Este È um software livre; veja o cÛdigo e as condiÁıes para copiar.
-N„o h· nenhuma garantia; N„o pode ser vendido, È somente para uso
+Este √© um software livre; veja o c√≥digo e as condi√ß√µes para copiar.
+N√£o h√° nenhuma garantia; N√£o pode ser vendido, √© somente para uso
 particular.
 
 .\" man code generated by txt2tags 2.6.1087 (http://txt2tags.org)

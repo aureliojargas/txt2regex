@@ -113,7 +113,7 @@ to launch the default interactive interface.
 ``` $ txt2regex --prog vim,sed,grep,python
 
 : Applying a history data
-``` $ txt2regex --history '16421¤:01¤:'
+``` $ txt2regex --history '16421Â¤:01Â¤:'
 
 : Getting ready regexes!
 ```
@@ -171,7 +171,7 @@ Written and maintained by Aurelio Jargas <verde@aurelio.net>
 
 = COPYRIGHT =
 
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright Â© 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
 
 This is free software; see the source for copying conditions. There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
