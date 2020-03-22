@@ -112,7 +112,7 @@ Error handling:
 $ txt2regex --showinfo | sed 1q | cut -d : -f 1
 usage
 $ txt2regex --showinfo foo
-unknown program: 'foo'
+ERROR: unknown program: foo
 $
 ```
 
@@ -184,7 +184,7 @@ $ txt2regex --history invalid --prog sed | sed 's/ $//'
  RegEx sed:
 
 $ txt2regex --history '124259¤a¤b¤5' --prog foo
-ERROR: --prog: "foo": invalid argument
+ERROR: unknown program: foo
 $
 ```
 
@@ -335,6 +335,6 @@ $ txt2regex --make date --prog foo
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
-ERROR: --prog: "foo": invalid argument
+ERROR: unknown program: foo
 $
 ```
