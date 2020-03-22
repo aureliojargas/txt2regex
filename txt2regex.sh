@@ -256,7 +256,7 @@ do
             validateProgramNames "$infoprog"
         ;;
         --all)
-            progs=(${allprogs[@]})
+            progs=("${allprogs[@]}")
         ;;
         --version)
             printf 'txt2regex v%s\n' "$VERSION"
@@ -490,10 +490,10 @@ ShowMeta(){
 
         for j in 4 2 5
         do
-            printf '%8s' $(getMeta S2_$prog $j)
+            printf '%8s' "$(getMeta S2_$prog $j)"
         done
 
-        printf '%8s' $(getMeta ax_$prog 1)  # or
+        printf '%8s' "$(getMeta ax_$prog 1)"  # or
 
         g1=$(getMeta ax_$prog 2)
         g2=$(getMeta ax_$prog 3)
