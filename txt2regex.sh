@@ -697,7 +697,7 @@ doMenu(){
         # prompt
         gotoxy $x_prompt $y_prompt
         echo -ne "${cP}[1-$menu_n]:$cN $_eol"
-        read -n 1
+        read -r -n 1
     else
         doNextHist
         REPLY=$hist
@@ -827,7 +827,7 @@ getNumber(){
     if [ "$f_i" == 1 ]
     then
         echo -ne "${cP}N=$cN$_eol"
-        read USERINPUT
+        read -r USERINPUT
         uin="$USERINPUT"
     else
         doNextHistArg
@@ -1282,7 +1282,7 @@ do
                 continue
             }
             warning=$"Really quit?"
-            read -n 1 -p "..$cB $warning [.] $cN"
+            read -r -n 1 -p "..$cB $warning [.] $cN"
             STATUS=$LASTSTATUS
             [ "$REPLY" == '.' ] && STATUS=9
         ;;
