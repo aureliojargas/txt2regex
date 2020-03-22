@@ -127,7 +127,7 @@ Usage(){
     printf '%s\n' $"  --help              Prints the help message and quit"
     printf '\n'
     printf '%s\n' $"Please read the program Man Page for more information."
-    exit 1
+    exit "${1:-0}"  # $1 is the exit code (default is 0)
 }
 
 # The defaults
@@ -197,7 +197,7 @@ while [ $# -gt 0 ]
 do
     case "$1" in
         --history)
-            [ "$2" ] || Usage
+            [ "$2" ] || Usage 1
             history="$2"
             shift
             f_i=0
@@ -234,7 +234,7 @@ do
             printf '\n### %s\n\n' "$txt"
         ;;
         --prog)
-            [ "$2" ] || Usage
+            [ "$2" ] || Usage 1
             shift
             eval "progs=(${1//,/ })"
             validateProgramNames "${progs[@]}"
@@ -249,7 +249,7 @@ do
             f_showmeta=1
         ;;
         --showinfo)
-            [ "$2" ] || Usage
+            [ "$2" ] || Usage 1
             infoprog="$2"
             shift
             f_showinfo=1
@@ -263,11 +263,11 @@ do
             exit 0
         ;;
         --help)
-            Usage
+            Usage 0
         ;;
         *)
             printf '%s: %s\n\n' "$1" $"invalid option"
-            Usage
+            Usage 1
         ;;
    esac
    shift
