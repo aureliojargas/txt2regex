@@ -184,9 +184,7 @@ $ txt2regex --history invalid --prog sed | sed 's/ $//'
  RegEx sed:
 
 $ txt2regex --history '124259¤a¤b¤5' --prog foo
-
-ERROR: --prog: 'foo': invalid argument
-
+ERROR: --prog: "foo": invalid argument
 $
 ```
 
@@ -328,21 +326,15 @@ Error handling:
 
 ```console
 $ txt2regex --make
-
-ERROR: --make: '': invalid argument
-valid names are:  date date2 date3 hour hour2 hour3 number number2 number3
-
+ERROR: --make: "": invalid argument
+valid names are: date date2 date3 hour hour2 hour3 number number2 number3
 $ txt2regex --make foo
-
-ERROR: --make: 'foo': invalid argument
-valid names are:  date date2 date3 hour hour2 hour3 number number2 number3
-
+ERROR: --make: "foo": invalid argument
+valid names are: date date2 date3 hour hour2 hour3 number number2 number3
 $ txt2regex --make date --prog foo
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
-
-ERROR: --prog: 'foo': invalid argument
-
+ERROR: --prog: "foo": invalid argument
 $
 ```
