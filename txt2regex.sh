@@ -490,17 +490,17 @@ ShowMeta(){
 
         for j in 4 2 5
         do
-            printf "%8s" $(getMeta S2_$prog $j)
+            printf '%8s' $(getMeta S2_$prog $j)
         done
 
-        printf "%8s" $(getMeta ax_$prog 1)  # or
+        printf '%8s' $(getMeta ax_$prog 1)  # or
 
         g1=$(getMeta ax_$prog 2)
         g2=$(getMeta ax_$prog 3)
-        printf "%8s" "$g1$g2"               # group
+        printf '%8s' "$g1$g2"               # group
         # printf " $prog: ${allversions[$i]}" #DEBUG
     done
-    printf "\n\n%s\n\n" $"NOTE: . [] [^] and * are the same on all programs."
+    printf '\n\n%s\n\n' $"NOTE: . [] [^] and * are the same on all programs."
 }
 
 ShowInfo(){
@@ -1077,7 +1077,7 @@ Choice(){
     # The header
     Clear
     printTitleCmd '.' $"exit"
-    printf "| %s" $"press the letters to (un)select the items"
+    printf '| %s' $"press the letters to (un)select the items"
 
     # We will need 2 columns?
     cols=1
