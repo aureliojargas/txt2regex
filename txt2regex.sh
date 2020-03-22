@@ -1,7 +1,7 @@
 #!/bin/bash
 # txt2regex.sh - Regular Expressions "wizard", all in bash2 builtins
 #
-# Website : http://aurelio.net/projects/txt2regex/
+# Website : https://aurelio.net/projects/txt2regex/
 # Author  : Aurelio Jargas (verde@aurelio.net)
 # License : GPL
 # Requires: bash >= 2.04
