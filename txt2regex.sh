@@ -184,6 +184,15 @@ getItemIndex(){  # array tool
     done
 }
 
+validateProgramNames(){
+    local name
+    for name in "$@"
+    do
+        test -z "$(getItemIndex "$name" "${allprogs[@]}")" &&
+            printError '%s: %s\n' $"unknown program" "$name"
+    done
+}
+
 # Parse command line options
 while [ $# -gt 0 ]
 do
@@ -228,16 +237,8 @@ do
         --prog)
             [ "$2" ] || Usage
             shift
-
-            # Sanity check
-            for p in ${1//,/ }  # comma separated list
-            do
-                # Is valid?
-                index=$(getItemIndex "$p" "${allprogs[@]}")
-                [ "$index" ] ||
-                    printError '%s: "%s": %s\n' '--prog' "$p" $"invalid argument"
-            done
             eval "progs=(${1//,/ })"
+            validateProgramNames "${progs[@]}"
         ;;
         --nocolor)
             f_color=0
@@ -253,6 +254,7 @@ do
             infoprog="$2"
             shift
             f_showinfo=1
+            validateProgramNames "$infoprog"
         ;;
         --all)
             progs=(${allprogs[@]})
@@ -512,10 +514,6 @@ ShowInfo(){
     ver="${allversions[$index]}"
     escmeta=$(getMeta ax_$prog 4)
     needesc=$(getMeta ax_$prog 5)
-    [ "$needesc" ] || {
-        printf "%s: '%s'\n" $"unknown program" "$prog"
-        return
-    }
     [ "$(getMeta ax_$prog 7)" == 'P'  ] && posix=$"YES"
     [ "$(getMeta ax_$prog 8)" == '\t' ] && tabinlist=$"YES"
     metas=$(for j in 4 2 5; do getMeta S2_$prog $j; done)
