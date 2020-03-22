@@ -88,14 +88,19 @@ TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
 VERSION=0
 
+printError(){
+    printf 'ERROR: '
+    printf "$@"
+    exit 1
+}
+
 # We _need_ bash>=2.04
 case "$BASH_VERSION" in
     2.0[4-9]*|2.[1-9]*|[3-9].*)
         :  # do nothing
     ;;
     *)
-        printf 'bash version >=2.04 required, but you have %s\n' "$BASH_VERSION"
-        exit 1
+        printError 'bash version >=2.04 required, but you have %s\n' "$BASH_VERSION"
     ;;
 esac
 
@@ -122,12 +127,6 @@ Usage(){
     printf '%s\n' $"  --help              Prints the help message and quit"
     printf '\n'
     printf '%s\n' $"Please read the program Man Page for more information."
-    exit 1
-}
-
-printError(){
-    printf 'ERROR: '
-    printf "$@"
     exit 1
 }
 
@@ -1072,10 +1071,8 @@ Choice(){
     done
 
     # Checking our number of items limit
-    [ $numopts -gt "${#alpha[*]}" ] && {
-        printf "too much itens (>%d)" "${#alpha[*]}"
-        exit 1
-    }
+    [ $numopts -gt "${#alpha[*]}" ] &&
+        printError 'too much itens (>%d)' "${#alpha[*]}"
 
     # The header
     Clear
@@ -1216,8 +1213,8 @@ do
                     REPLY=3
                     GRP2=$((GRP2+1))
                 else
-                    printf '\n\nERROR: unknown reply type "%s"\n' "$REPLY"
-                    exit 1
+                    printf '\n\n'
+                    printError 'unknown reply type "%s"\n' "$REPLY"
                 fi
                 showRegEx ax
             else
@@ -1320,8 +1317,7 @@ do
             exit 0
         ;;
         *)
-            printf 'Error: STATUS = "%s"\n' "$STATUS"
-            exit 1
+            printError 'STATUS = "%s"\n' "$STATUS"
         ;;
     esac
 done
