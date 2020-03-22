@@ -28,7 +28,7 @@ O programa é um Script Shell que utiliza apenas os comandos internos
 do interpretador. Não é preciso compilá\-lo, basta baixar e executar.
 .P
 Visite a págian oficial do programa em
-\fIhttp://txt2regex.sf.net\fR.
+\fIhttps://aurelio.net/projects/txt2regex/\fR.
 .SH OPÇÕES
 
 .TP
