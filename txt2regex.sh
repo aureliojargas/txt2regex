@@ -1067,7 +1067,7 @@ Choice(){
     [ "$1" == '--reset' ] && shift && local choicereset=1
 
     local alpha opts optxy numopts=$#
-    local lines cols line line2 op alf rpl
+    local lines cols line op alf rpl
     alpha=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 
     # Reading options and filling default status (off)
