@@ -662,12 +662,12 @@ TopTitle(){
         fi
 
         # open groups
-        gotoxy $((COLUMNS-$GRP1-$GRP2-${#GRP1})) 2
+        gotoxy $((COLUMNS - GRP1 - GRP2 - ${#GRP1})) 2
         color="$cP"
         [ "$GRP1" -eq "$GRP2" ] && color="$cB"
-        for ((j=0 ;j<$GRP1;j++)); do printf '%s(%s' "$color" "$cN"; done
+        for ((j=0 ;j<GRP1;j++)); do printf '%s(%s' "$color" "$cN"; done
         [ $GRP1 -gt 0 ] && printf %s "$GRP1"
-        for ((j=0 ;j<$GRP2;j++)); do printf '%s)%s' "$color" "$cN"; done
+        for ((j=0 ;j<GRP2;j++)); do printf '%s)%s' "$color" "$cN"; done
     fi
 
     # 3rd line: legend
@@ -1097,7 +1097,7 @@ Choice(){
     [ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
 
     # Filling the options screen's position array (+3 = header:2, sek:1)
-    for ((line=0; line<$lines; line++))
+    for ((line=0; line<lines; line++))
     do
         # Column 1
         optxy[$line]="$((line+3));1"
@@ -1107,7 +1107,7 @@ Choice(){
     done
 
     # Showing initial status for all options
-    for ((op=0; op<$numopts; op++))
+    for ((op=0; op<numopts; op++))
     do
         ChoiceRefresh "${optxy[$op]}" "${alpha[$op]}" "${stat[$op]}" "${opts[$op]}"
     done
@@ -1120,7 +1120,7 @@ Choice(){
         case "$CHOICEREPLY" in
             [a-z])
                 # Inverting the option status
-                for ((alf=0; alf<$numopts; alf++))
+                for ((alf=0; alf<numopts; alf++))
                 do
                     if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]
                     then
@@ -1141,7 +1141,7 @@ Choice(){
             .)
                 # Getting the user choices and exiting
                 unset CHOICEREPLY
-                for ((rpl=0; rpl<$numopts; rpl++))
+                for ((rpl=0; rpl<numopts; rpl++))
                 do
                     [ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
                 done
