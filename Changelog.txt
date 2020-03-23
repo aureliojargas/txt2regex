@@ -6,6 +6,7 @@ v0.9 beta (unreleased):
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
   - Converted everything (code and docs) to UTF-8
   - Improved the source code formatting, now it is readable
+  - Now using shellcheck to improve code quality
   - New tests for all the command line options (cmdline.md)
   - Added new tests for JavaScript
   - Improved --help message
