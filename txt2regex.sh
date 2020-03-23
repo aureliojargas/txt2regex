@@ -513,10 +513,17 @@ ShowInfo(){
     needesc=$(getMeta "ax_$prog" 5)
     [ "$(getMeta "ax_$prog" 7)" == 'P'  ] && posix=$"YES"
     [ "$(getMeta "ax_$prog" 8)" == '\t' ] && tabinlist=$"YES"
-    metas=$(for j in 4 2 5; do getMeta "S2_$prog" $j; done)
-    metas="$metas $(getMeta "ax_$prog" 1; getMeta "ax_$prog" 2)"  #| (
-    metas="$metas$(getMeta "ax_$prog" 3)"                       #)
-    metas=". [] [^] * $(echo $metas)"
+
+    # Metachars list
+    # printf arguments: + ? {} | ( )
+    metas="$(printf '. [] [^] * %s %s %s %s %s%s' \
+        "$(getMeta "S2_$prog" 4)" \
+        "$(getMeta "S2_$prog" 2)" \
+        "$(getMeta "S2_$prog" 5)" \
+        "$(getMeta "ax_$prog" 1)" \
+        "$(getMeta "ax_$prog" 2)" \
+        "$(getMeta "ax_$prog" 3)"
+    )"
 
     # Populating cool i18n arrays
     t1=$"program"
