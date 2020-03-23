@@ -6,6 +6,11 @@
 # License : GPL
 # Requires: bash >= 2.04
 #
+# shellcheck disable=SC1117,SC1003,SC2034
+#   SC1117 because it was obsoleted in shellcheck >0.5
+#   SC1003 because it gets crazy when defining arrays (i.e. ax_sed)
+#   SC2034 because it considers unused vars that I load with eval (ax_*)
+#
 # Please, read the README file.
 #
 # $STATUS:
@@ -90,6 +95,7 @@ VERSION=0
 
 printError(){
     printf 'ERROR: '
+    # shellcheck disable=SC2059
     printf "$@"
     exit 1
 }
