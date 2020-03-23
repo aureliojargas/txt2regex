@@ -755,7 +755,7 @@ Menu(){
 doNextHist(){
     hists=${hists#?}   # deleting previous item
     hist=${hists:0:1}
-    : ${hist:=.}       # if last, quit
+    : "${hist:=.}"       # if last, quit
 }
 
 doNextHistArg(){
