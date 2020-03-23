@@ -449,18 +449,15 @@ ColorOnOff(){
 }
 
 sek(){
-    local H='<' s='++' a=1 z=$1
+    local a=1 z=$1
     [ "$2" ] && {
         a=$1
         z=$2
     }
-    [ $a -gt $z ] && {
-        H='>'
-        s='--'
-    }
-    for ((i=$a; i$H=$z; i$s))
+    while test "$a" -le "$z"
     do
-        printf '%d\n' "$i"
+        printf '%d\n' "$a"
+        a=$((a + 1))
     done
 }
 
