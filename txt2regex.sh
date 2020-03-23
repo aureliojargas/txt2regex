@@ -480,7 +480,8 @@ getMeta(){
 }
 
 ShowMeta(){
-    local i j g1 g2 prog progsize=$(getLargestItem "${allprogs[@]}")
+    local i j g1 g2 prog progsize
+    progsize=$(getLargestItem "${allprogs[@]}")
     for ((i=0; i<${#allprogs[@]}; i++))
     do
         prog=${allprogs[$i]}
