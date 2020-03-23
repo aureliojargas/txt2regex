@@ -152,23 +152,23 @@ progs=(perl php postgres python sed vim)
 ### IMPORTANT DATA ###
 allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql ooo perl php postgres procmail python sed tcl vbscript vi vim)
 allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'OpenOffice.org 1.1.0' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
-ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4' \
+ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4'
             'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999')
-ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3' \
+ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3'
             'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999')
-ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3' \
+ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3'
             'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999')
-ready_hour=('2652165¤:2¤2¤:¤:2¤2' \
+ready_hour=('2652165¤:2¤2¤:¤:2¤2'
             'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99')
-ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2' \
+ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2'
             'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59')
-ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2' \
+ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2'
             'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59')
-ready_number=('24264¤-+¤:2' \
+ready_number=('24264¤-+¤:2'
             'number LEVEL 1: integer, positive and negative')
-ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2' \
+ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2'
             'number LEVEL 2: level 1 plus optional float point')
-ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2' \
+ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'
             'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90')
 #date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}
 #hour3  : perl: ([01][0-9]|2[0123]):[012345][0-9]
@@ -222,7 +222,7 @@ do
             # Sanity check
             valid=${!ready_*}
             valid=" ${valid//ready_/} "
-            [ "$valid" == "${valid#* $arg }" ] && \
+            [ "$valid" == "${valid#* $arg }" ] &&
                 printError '%s: "%s": %s\n%s%s\n' \
                     '--make' "$1" $"invalid argument" \
                     $"valid names are:" "${valid% }"
