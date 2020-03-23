@@ -955,6 +955,8 @@ escChar(){
         for ((i=0; i<${#ui}; i++))  # for each user char
         do
             c="${ui:$i:1}"
+            # Disabling because of the } in the second case option
+            # shellcheck disable=SC1083
             case "$c" in  # special bash chars
                 [?*#%])
                     x2="${x/[$c]/}"
