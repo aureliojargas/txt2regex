@@ -903,12 +903,7 @@ getCombo(){
 
     SUBHUMAN=${SUBHUMAN#, }
 
-    if [ "$1" == 'negated' ]
-    then
-        uin="[^$cmb]"
-    else
-        uin="[$cmb]"
-    fi
+    uin="[$cmb]"
     uins="${uins}¤:${CHOICEREPLY// /}"
 }
 
