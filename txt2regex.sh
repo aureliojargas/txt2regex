@@ -349,6 +349,7 @@ tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9")
 tit2_cmd=('|' '(' ')' '' '' '' '' '' '' '!!')
 
 # Remove all zz* temporary vars
+# shellcheck disable=SC2086
 unset ${!zz*}
 
 
@@ -487,13 +488,13 @@ ShowMeta(){
 
         for j in 4 2 5
         do
-            printf '%8s' "$(getMeta S2_$prog $j)"
+            printf '%8s' "$(getMeta "S2_$prog" $j)"
         done
 
-        printf '%8s' "$(getMeta ax_$prog 1)"  # or
+        printf '%8s' "$(getMeta "ax_$prog" 1)"  # or
 
-        g1=$(getMeta ax_$prog 2)
-        g2=$(getMeta ax_$prog 3)
+        g1=$(getMeta "ax_$prog" 2)
+        g2=$(getMeta "ax_$prog" 3)
         printf '%8s' "$g1$g2"               # group
         # printf ' %s: %s' "$prog" "${allversions[$i]}"  # DEBUG
     done
@@ -508,13 +509,13 @@ ShowInfo(){
     # Getting data
     index=$(getItemIndex "$prog" "${allprogs[@]}")
     ver="${allversions[$index]}"
-    escmeta=$(getMeta ax_$prog 4)
-    needesc=$(getMeta ax_$prog 5)
-    [ "$(getMeta ax_$prog 7)" == 'P'  ] && posix=$"YES"
-    [ "$(getMeta ax_$prog 8)" == '\t' ] && tabinlist=$"YES"
-    metas=$(for j in 4 2 5; do getMeta S2_$prog $j; done)
-    metas="$metas $(getMeta ax_$prog 1; getMeta ax_$prog 2)"  #| (
-    metas="$metas$(getMeta ax_$prog 3)"                       #)
+    escmeta=$(getMeta "ax_$prog" 4)
+    needesc=$(getMeta "ax_$prog" 5)
+    [ "$(getMeta "ax_$prog" 7)" == 'P'  ] && posix=$"YES"
+    [ "$(getMeta "ax_$prog" 8)" == '\t' ] && tabinlist=$"YES"
+    metas=$(for j in 4 2 5; do getMeta "S2_$prog" $j; done)
+    metas="$metas $(getMeta "ax_$prog" 1; getMeta "ax_$prog" 2)"  #| (
+    metas="$metas$(getMeta "ax_$prog" 3)"                       #)
     metas=". [] [^] * $(echo $metas)"
 
     # Populating cool i18n arrays
@@ -613,7 +614,7 @@ TopTitle(){
                 [ "$f_color" == 1 ] && showme=1
             ;;
             3)
-                [ $STATUS -eq 0 ] && showme=1
+                [ "$STATUS" -eq 0 ] && showme=1
             ;;
             9)
                 gotoxy $((COLUMNS-${#txt})) 1
@@ -629,11 +630,11 @@ TopTitle(){
     done
 
     # 2nd line: grouping and or
-    if [ $STATUS -eq 0 ]
+    if [ "$STATUS" -eq 0 ]
     then
         printf %s "$_eol"
     else
-        if [ $STATUS -eq 1 ]
+        if [ "$STATUS" -eq 1 ]
         then
             for i in 0 1 2
             do
@@ -1069,7 +1070,7 @@ Choice(){
     done
 
     # Checking our number of items limit
-    [ $numopts -gt "${#alpha[*]}" ] &&
+    [ "$numopts" -gt "${#alpha[*]}" ] &&
         printError 'too much itens (>%d)' "${#alpha[*]}"
 
     # The header
