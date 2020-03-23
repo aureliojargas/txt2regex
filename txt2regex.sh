@@ -1199,7 +1199,7 @@ do
             TopTitle
             Menu S0_txt
             [ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
-            HUMAN="$S0_txt ${S0_txt[$REPLY]}"
+            HUMAN="${S0_txt[0]} ${S0_txt[$REPLY]}"
             showRegEx S0
             STATUS=1
         ;;
@@ -1227,7 +1227,7 @@ do
                 fi
                 showRegEx ax
             else
-                HUMAN="$HUMAN, $S1_txt ${S1_txt[$REPLY]/ (*)/}"
+                HUMAN="$HUMAN, ${S1_txt[0]} ${S1_txt[$REPLY]/ (*)/}"
                 case "$REPLY" in
                     1)
                         STATUS=2
