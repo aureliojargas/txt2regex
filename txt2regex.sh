@@ -14,7 +14,7 @@
 # Please, read the README file.
 #
 # $STATUS:
-#   0  begining of the regex
+#   0  beginning of the regex
 #   1  defining regex
 #   12 choosing subregex
 #   2  defining quantifier
@@ -31,7 +31,7 @@
 # 20010223 v0.1
 # 20010420 ++ id.po, \lfunction_name, s/regexp/regex/ig
 # 20010423 ++ --nocolor, --history, Usage(), doNextHist{,Args}()
-#          ++ flags: interative, color, allprogs
+#          ++ flags: interactive, color, allprogs
 #          ++ .oO(¤user parameters history)
 # 20010424 v0.2
 # 20010606 ++ option --whitebg
@@ -42,7 +42,7 @@
 #          ++ POSIX character classes [[:abc:]]
 #          ++ special combinations inside []
 #          ++ $HUMAN improved with getString, getNumber, Choice
-#          ++ detailed --help, sorceforge'd
+#          ++ detailed --help, moved to sourceforge
 # 20010613 v0.3
 # 20010620 -- seq command (not bash), ++ sek()
 # 20010613 v0.3.1
@@ -66,7 +66,7 @@
 # 20010903 <> Choice: fixed outrange answers
 #          ++ trapping ^c do clearEnd, ++ new prog: mysql
 #          ++ history now works with Choice() menus
-#          ++ history appears when quiting
+#          ++ history appears when quitting
 # 20010905 v0.6
 # 20020225 ++ "really quit?" message, ++ --version
 # 20020304 <> --history just shows final RE on STDOUT
@@ -76,7 +76,7 @@
 # 20020304 v0.7
 # 20040928 <> bash version test (works in 3.x and newer)
 # 20040928 v0.8
-# 20040929 <> --help splitted into individual messages (helps i18n)
+# 20040929 <> --help split into individual messages (helps i18n)
 # 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
 # 20121221 ** moved to GitHub, please see the Git history from now on
 
@@ -427,9 +427,9 @@ ax_lisp=(      '' '\\|' '\\(' '\\)' '\\' '\.*[      +?  ' ',' ',' ',' )
 ax_tcl=(       ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
 ax_expect=(    ''   '|'   '(' ')'   '\'  '\.*[   ( |+?  ' ' ' ' ' ' ' )
 ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
-#194# emacs: a backslash ... it is completely unspecial
+#194# emacs: a backslash ... it is not special
 #78#  emacs: it uses \s for special "syntax classes"
-#189# tcl: withing a class, a backslash is completely unspecial
+#189# tcl: withing a class, a backslash is not special
 # man procmailrc: does not support named character classes.
 
 
@@ -521,7 +521,7 @@ ShowInfo(){
     [ "$(getMeta "ax_$prog" 7)" == 'P'  ] && posix=$"YES"
     [ "$(getMeta "ax_$prog" 8)" == '\t' ] && tabinlist=$"YES"
 
-    # Metachars list
+    # Metacharacters list
     # printf arguments: + ? {} | ( )
     metas="$(printf '. [] [^] * %s %s %s %s %s%s' \
         "$(getMeta "S2_$prog" 4)" \
