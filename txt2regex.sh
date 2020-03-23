@@ -995,10 +995,10 @@ escCharList(){
 
 Reset(){
     gotoxy $x_regex $y_regex
-    unset REPLIES uins HUMAN Regex[*]
+    unset REPLIES uins HUMAN "Regex[*]"
     GRP1=0
     GRP2=0
-      local p
+    local p
 
     # global maxprogname
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
