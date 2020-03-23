@@ -580,7 +580,7 @@ ScreenSize(){
     : ${COLUMNS:=80}
 
     #TODO automatic check when selecting programs
-    [ "$f_i" == 1 -a $LINES -lt "$y_max" ] && {
+    test "$f_i" == 1 && test $LINES -lt "$y_max" && {
         printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
@@ -649,7 +649,7 @@ TopTitle(){
                 txt=${tit2_txt[$i]}
                 cmd=${tit2_cmd[$i]}
                 showme=1
-                [ $i -eq 2 -a $GRP1 -eq $GRP2 ] && showme=0
+                test $i -eq 2 && test $GRP1 -eq $GRP2 && showme=0
                 if [ $showme -eq 1 ]
                 then
                     printTitleCmd "$cmd" "$txt"
@@ -740,7 +740,7 @@ Menu(){
             ;;
             [\(\)\|])
                 [ "$STATUS" -ne 1 ] && continue
-                [ "$REPLY" == ')' ] && [ $GRP1 -gt 0 -a $GRP1 -eq $GRP2 -o $GRP1 -eq 0 ] && continue
+                [ "$REPLY" == ')' ] && { test $GRP1 -gt 0 && test $GRP1 -eq $GRP2 || test $GRP1 -eq 0; } && continue
                 [ "$REPLY" == ')' ] && STATUS=2
                 ok=1
                 REPLIES="$REPLIES$REPLY"
@@ -919,7 +919,7 @@ getListTab(){
     local x="ax_${progs[$1]}[8]"
 
     x=${!x}
-    [ "$x" == ',' -o "$x" == ' ' ] && x='<TAB>'
+    { test "$x" == ',' || test "$x" == ' '; } && x='<TAB>'
     uin="${uin/@/$x}"
 }
 
