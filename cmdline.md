@@ -175,6 +175,19 @@ $ txt2regex --history '124259¤a¤b¤5' --all
 $
 ```
 
+Stress test using all the available menu options:
+
+```console
+$ txt2regex --history '111223445566778(9|9)3¤a¤bc¤de¤fg¤5¤:012345¤6¤:01234567¤7' --prog sed,vim,egrep,python,emacs
+ RegEx sed   : ^.a\?bc[de]\+[^fg]\{5\}[A-Za-z0-9_ \t]\{1,6\}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,\}\(.*\|.*\)*
+ RegEx vim   : ^.a\=bc[de]\+[^fg]\{5}[A-Za-z0-9_ \t]\{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,}\(.*\|.*\)*
+ RegEx egrep : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ <TAB>]{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]{7,}(.*|.*)*
+ RegEx python: ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ \t]{1,6}!!{7,}(.*|.*)*
+ RegEx emacs : ^.a?bc[de]+[^fg]!![A-Za-z0-9_ <TAB>]!!!!!!\(.*\|.*\)*
+
+$
+```
+
 Error handling:
 
 ```console
@@ -182,6 +195,33 @@ $ txt2regex --history | sed 1q | cut -d : -f 1
 usage
 $ txt2regex --history invalid --prog sed | sed 's/ $//'
  RegEx sed:
+
+$ txt2regex --history 2 --prog sed | sed 's/ $//'
+ RegEx sed:
+
+$ txt2regex --history '1¤unused¤arguments' --prog sed | sed 's/ $//'
+ RegEx sed: ^
+
+$ txt2regex --history 11 --prog sed | sed 's/ $//'  # missing repetition argument
+ RegEx sed: ^.
+
+$ txt2regex --history 12 --prog sed | sed 's/ $//'  # missing char argument
+ RegEx sed: ^
+
+$ txt2regex --history 13 --prog sed | sed 's/ $//'  # missing string argument
+ RegEx sed: ^
+
+$ txt2regex --history 14 --prog sed | sed 's/ $//'  # missing list string argument
+ RegEx sed: ^[]
+
+$ txt2regex --history 16 --prog sed | sed 's/ $//'  # missing list choice argument
+ RegEx sed: ^[]
+
+$ txt2regex --history '16¤:' --prog sed | sed 's/ $//'  # empty list choice argument
+ RegEx sed: ^[]
+
+$ txt2regex --history '16¤:9' --prog sed | sed 's/ $//'  # out-of-range list choice argument
+ RegEx sed: ^[]
 
 $ txt2regex --history '124259¤a¤b¤5' --prog foo
 ERROR: unknown program: foo
