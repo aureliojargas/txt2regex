@@ -1315,7 +1315,7 @@ do
             if [ "$f_i" == 1 ]
             then
                 noregex_txt=$"no regex"
-                printf '%stxt2regex --history '%s%s'%s\n\n' \
+                printf "%stxt2regex --history '%s%s'%s\n\n" \
                     "$cB" "$REPLIES" "$uins" "$cN"
                 printf '%s.\n' "${HUMAN:-$noregex_txt}"
             else

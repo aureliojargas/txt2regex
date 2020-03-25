@@ -388,3 +388,16 @@ $ txt2regex --foo | head -n 3 | sed '3 s/:.*//'
 usage
 $
 ```
+
+## On quit, show --history and regex textual description
+
+This is the same stress test used in the previous `--history` test, but this time feeding the commands via STDIN (simulating the user interaction) and checking only the last 3 lines of the final result.
+
+```console
+$ user_input='1112a23bc\n4de\n45fg\n55\n6abcdef.66\n7abcdefgh.77\n8(9|9)3..'
+$ printf "$user_input" | txt2regex --nocolor | tail -n 3 | sed '1 s/.*txt2/txt2/'
+txt2regex --history '111223445566778(9|9)3¤a¤bc¤de¤fg¤5¤:012345¤6¤:01234567¤7'
+
+start to match on the line beginning, followed by any character, repeated one times, followed by a specific character, repeated zero or one times, followed by a literal string {bc}, followed by an allowed characters list, repeated one or more times, followed by a forbidden characters list, repeated exactly 5 times, followed by a special combination {uppercase letters, lowercase letters, numbers, underscore, space, TAB}, repeated up to 6 times, followed by a POSIX combination {letters, lowercase letters, uppercase letters, numbers, letters and numbers, hexadecimal numbers, whitespaces, graphic chars}, repeated at least 7 times, followed by a ready regex {} (, followed by anything |, followed by anything ), repeated zero or more times.
+$
+```
