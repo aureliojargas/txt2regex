@@ -185,7 +185,7 @@ getItemIndex(){  # array tool
             printf '%d\n' "$i"
             return
         }
-        i=$((i+1))
+        i=$((i + 1))
         shift
     done
 }
@@ -574,13 +574,13 @@ ScreenSize(){
     x_regex=1
     y_regex=4
     x_hist=3
-    y_hist=$((y_regex+${#progs[*]}+1))
+    y_hist=$((y_regex + ${#progs[*]} + 1))
     x_prompt=3
-    y_prompt=$((y_regex+${#progs[*]}+2))
+    y_prompt=$((y_regex + ${#progs[*]} + 2))
     x_menu=3
-    y_menu=$((y_prompt+2))
+    y_menu=$((y_prompt + 2))
     x_prompt2=15
-    y_max=$((y_menu+${#S1_txt[*]}))
+    y_max=$((y_menu + ${#S1_txt[*]}))
 
     # The defaults case not exported
     : ${LINES:=25}
@@ -632,7 +632,7 @@ TopTitle(){
                 [ "$STATUS" -eq 0 ] && showme=1
             ;;
             9)
-                gotoxy $((COLUMNS-${#txt})) 1
+                gotoxy $((COLUMNS - ${#txt})) 1
                 printf '%s\n' "$txt"
             ;;
         esac
@@ -640,7 +640,7 @@ TopTitle(){
         then
             printTitleCmd "$cmd" "$txt"
         else
-            clearN $((${#txt}+3))
+            clearN $((${#txt} + 3))
         fi
     done
 
@@ -661,11 +661,11 @@ TopTitle(){
                 then
                     printTitleCmd "$cmd" "$txt"
                 else
-                    clearN $((${#txt}+3))
+                    clearN $((${#txt} + 3))
                 fi
             done
         else  # delete commands only
-            clearN $((${#tit2_txt[0]}+5+${#tit2_txt[1]}+5+${#tit2_txt[2]}+5))
+            clearN $((${#tit2_txt[0]} + 5 + ${#tit2_txt[1]} + 5 + ${#tit2_txt[2]} + 5))
         fi
 
         # open groups
@@ -680,19 +680,19 @@ TopTitle(){
     # 3rd line: legend
     txt=${tit2_txt[9]}
     cmd=${tit2_cmd[9]}
-    gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
+    gotoxy $((COLUMNS - ${#txt} - ${#cmd} - 1)) 3
     if [ "$has_not_supported" -eq 1 ]
     then
         printf '%s%s%s %s' "$cB" "$cmd" "$cN" "$txt"
     else
-        clearN $((${#txt}+${#cmd}+1))
+        clearN $((${#txt} + ${#cmd} + 1))
     fi
 }
 
 doMenu(){
     local -a Menui
     eval "Menui=(\"\${$1[@]}\")"
-    menu_n=$((${#Menui[*]}-1))  # ini
+    menu_n=$((${#Menui[*]} - 1))  # ini
 
     if [ "$f_i" == 1 ]
     then
@@ -712,7 +712,7 @@ doMenu(){
         for i in $(sek $menu_n)
         do
             printf '  %s%d%s) %s%s\n' "$cB" "$i" "$cN" "${Menui[$i]}" "$_eol"
-            i=$((i+1))
+            i=$((i + 1))
         done
         clearEnd
 
@@ -1091,7 +1091,7 @@ Choice(){
     do
         opts[$i]="$opt"
         [ "$choicereset" ] && stat[$i]='-'
-        i=$((i+1))
+        i=$((i + 1))
     done
 
     # Checking our number of items limit
@@ -1108,17 +1108,17 @@ Choice(){
     [ "$numopts" -gt 10 ] && cols=2
 
     # And how much lines? (remember: odd number of items, requires one more line)
-    lines=$((numopts/cols))
-    [ "$((numopts%cols))" -eq 1 ] && lines=$((lines+1))
+    lines=$((numopts / cols))
+    [ "$((numopts % cols))" -eq 1 ] && lines=$((lines + 1))
 
     # Filling the options screen's position array (+3 = header:2, sek:1)
     for ((line=0; line<lines; line++))
     do
         # Column 1
-        optxy[$line]="$((line+3));1"
+        optxy[$line]="$((line + 3));1"
 
         # Column 2
-        [ "$cols" == 2 ] && optxy[$((line+lines))]="$((line+3));40"
+        [ "$cols" == 2 ] && optxy[$((line + lines))]="$((line + 3));40"
     done
 
     # Showing initial status for all options
@@ -1231,11 +1231,11 @@ do
                 elif [ "$REPLY" == '(' ]
                 then
                     REPLY=2
-                    GRP1=$((GRP1+1))
+                    GRP1=$((GRP1 + 1))
                 elif [ "$REPLY" == ')' ]
                 then
                     REPLY=3
-                    GRP2=$((GRP2+1))
+                    GRP2=$((GRP2 + 1))
                 else
                     printf '\n\n'
                     printError 'unknown reply type "%s"\n' "$REPLY"
@@ -1317,7 +1317,7 @@ do
             for rpl in $CHOICEREPLY
             do
                 progs[$i]=${allprogs[$rpl]}
-                i=$((i+1))
+                i=$((i + 1))
             done
             ScreenSize
             Clear
