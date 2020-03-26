@@ -196,7 +196,7 @@ validateProgramNames(){
     local name
     for name in "$@"
     do
-        test -z "$(getItemIndex "$name" "${allprogs[@]}")" &&
+        [ -z "$(getItemIndex "$name" "${allprogs[@]}")" ] &&
             printError '%s: %s\n' $"unknown program" "$name"
     done
 }
@@ -464,7 +464,7 @@ sek(){
         a=$1
         z=$2
     }
-    while test "$a" -le "$z"
+    while [ "$a" -le "$z" ]
     do
         printf '%d\n' "$a"
         a=$((a + 1))
@@ -589,7 +589,7 @@ ScreenSize(){
     : ${COLUMNS:=80}
 
     #TODO automatic check when selecting programs
-    test "$is_interactive" -eq 1 && test $LINES -lt "$y_max" && {
+    [ "$is_interactive" -eq 1 ] && [ $LINES -lt "$y_max" ] && {
         printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
@@ -658,7 +658,7 @@ TopTitle(){
                 txt=${tit2_txt[$i]}
                 cmd=${tit2_cmd[$i]}
                 showme=1
-                test $i -eq 2 && test $GRP1 -eq $GRP2 && showme=0
+                [ $i -eq 2 ] && [ $GRP1 -eq $GRP2 ] && showme=0
                 if [ $showme -eq 1 ]
                 then
                     printTitleCmd "$cmd" "$txt"
@@ -754,7 +754,7 @@ Menu(){
             ;;
             [\(\)\|])
                 [ "$STATUS" -ne 1 ] && continue
-                [ "$REPLY" == ')' ] && { test $GRP1 -gt 0 && test $GRP1 -eq $GRP2 || test $GRP1 -eq 0; } && continue
+                [ "$REPLY" == ')' ] && { [ $GRP1 -gt 0 ] && [ $GRP1 -eq $GRP2 ] || [ $GRP1 -eq 0 ]; } && continue
                 [ "$REPLY" == ')' ] && STATUS=2
                 ok=1
                 REPLIES="$REPLIES$REPLY"
@@ -933,7 +933,7 @@ getListTab(){
     local x="ax_${progs[$1]}[8]"
 
     x=${!x}
-    { test "$x" == ',' || test "$x" == ' '; } && x='<TAB>'
+    { [ "$x" == ',' ] || [ "$x" == ' ' ]; } && x='<TAB>'
     uin="${uin/@/$x}"
 }
 
