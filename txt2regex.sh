@@ -141,6 +141,8 @@ is_interactive=1
 use_colors=1
 has_white_background=0
 has_not_supported=0
+mode_show_meta=0
+mode_show_info=0
 GRP1=0
 GRP2=0
 
@@ -253,13 +255,13 @@ do
             has_white_background=1
         ;;
         --showmeta)
-            f_showmeta=1
+            mode_show_meta=1
         ;;
         --showinfo)
             [ "$2" ] || Usage 1
             infoprog="$2"
             shift
-            f_showinfo=1
+            mode_show_info=1
             validateProgramNames "$infoprog"
         ;;
         --all)
@@ -556,13 +558,13 @@ ShowInfo(){
 }
 
 
-if [ "$f_showmeta" ]
+if [ "$mode_show_meta" -eq 1 ]
 then
     ShowMeta
     exit 0
 fi
 
-if [ "$f_showinfo" ]
+if [ "$mode_show_info" -eq 1 ]
 then
     ShowInfo "$infoprog"
     exit 0
@@ -1079,7 +1081,8 @@ ChoiceRefresh(){
 
 # --reset resets the stat array
 Choice(){
-    [ "$1" == '--reset' ] && shift && local choicereset=1
+    local choicereset=0
+    [ "$1" == '--reset' ] && shift && choicereset=1
 
     local alpha opts optxy numopts=$#
     local lines cols line op alf rpl
@@ -1090,7 +1093,7 @@ Choice(){
     for opt in "$@"
     do
         opts[$i]="$opt"
-        [ "$choicereset" ] && stat[$i]='-'
+        [ "$choicereset" -eq 1 ] && stat[$i]='-'
         i=$((i + 1))
     done
 
