@@ -1,6 +1,7 @@
 txt2regex TODO:
 
-  - new programs: expr, oawk, nawk, MKS awk, flex
+  - new programs: expr, oawk, nawk, MKS awk, flex, ruby, bash, java, html5, lua
+  - modernize php, javascript, postgres, perl
   - add support for \<borders\>
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
