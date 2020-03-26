@@ -13,10 +13,10 @@ $ alias txt2regex="bash ./txt2regex.sh"
 $
 ```
 
-## Option --help
+## Options -h, --help
 
 ```console
-$ txt2regex --help
+$ txt2regex --help | tee help.txt
 usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
        txt2regex --showmeta
        txt2regex --showinfo PROGRAM [ --nocolor ]
@@ -36,9 +36,12 @@ OPTIONS (they are default OFF):
   --make LABEL        Prints the default regex for the specified label
 
   --version           Prints the program version and quit
-  --help              Prints the help message and quit
+  -h, --help          Prints the help message and quit
 
 Please read the program Man Page for more information.
+$ txt2regex -h > h.txt
+$ diff help.txt h.txt
+$ rm help.txt h.txt
 $
 ```
 
