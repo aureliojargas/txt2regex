@@ -672,9 +672,9 @@ TopTitle(){
         gotoxy $((COLUMNS - GRP1 - GRP2 - ${#GRP1})) 2
         color="$cP"
         [ "$GRP1" -eq "$GRP2" ] && color="$cB"
-        for ((j=0 ;j<GRP1;j++)); do printf '%s(%s' "$color" "$cN"; done
+        for ((j=0; j<GRP1; j++)); do printf '%s(%s' "$color" "$cN"; done
         [ $GRP1 -gt 0 ] && printf %s "$GRP1"
-        for ((j=0 ;j<GRP2;j++)); do printf '%s)%s' "$color" "$cN"; done
+        for ((j=0; j<GRP2; j++)); do printf '%s)%s' "$color" "$cN"; done
     fi
 
     # 3rd line: legend
@@ -1024,7 +1024,7 @@ showRegEx(){
     local i new_part save="$uin"
 
     # For each program
-    for ((i=0 ;i<${#progs[@]}; i++))
+    for ((i=0; i<${#progs[@]}; i++))
     do
         [ "$F_ESCCHAR"     == 1 ] && escChar     $i
         [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
