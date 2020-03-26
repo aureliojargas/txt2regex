@@ -181,7 +181,7 @@ ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'
 getItemIndex(){  # array tool
     local i=0 item="$1"
     shift
-    while [ "$1" ]
+    while [ -n "$1" ]
     do
         [ "$1" == "$item" ] && {
             printf '%d\n' "$i"
@@ -206,7 +206,7 @@ while [ $# -gt 0 ]
 do
     case "$1" in
         --history)
-            [ "$2" ] || Usage 1
+            [ -z "$2" ] && Usage 1
             history="$2"
             shift
             is_interactive=0
@@ -243,7 +243,7 @@ do
             printf '\n### %s\n\n' "$txt"
         ;;
         --prog)
-            [ "$2" ] || Usage 1
+            [ -z "$2" ] && Usage 1
             shift
             eval "progs=(${1//,/ })"
             validateProgramNames "${progs[@]}"
@@ -258,7 +258,7 @@ do
             mode_show_meta=1
         ;;
         --showinfo)
-            [ "$2" ] || Usage 1
+            [ -z "$2" ] && Usage 1
             infoprog="$2"
             shift
             mode_show_info=1
@@ -439,7 +439,7 @@ ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
 ColorOnOff(){
     # The colors: Normal, Prompt, Bold, Important
     [ "$use_colors" -eq 0 ] && return
-    if [ "$cN" ]
+    if [ -n "$cN" ]
     then
         unset cN cP cB cI cR
     elif [ "$has_white_background" -eq 0 ]
@@ -460,7 +460,7 @@ ColorOnOff(){
 
 sek(){
     local a=1 z=$1
-    [ "$2" ] && {
+    [ -n "$2" ]  && {
         a=$1
         z=$2
     }
@@ -473,7 +473,7 @@ sek(){
 
 getLargestItem(){
     local mjr
-    while [ "$1" ]
+    while [ -n "$1" ]
     do
         [ ${#1} -gt ${#mjr} ] && mjr="$1"
         shift
@@ -818,7 +818,7 @@ getCharList(){
     [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
 
     # if any $1, negated list
-    [ "$1" ] && uin="^$uin"
+    [ -n "$1" ]  && uin="^$uin"
 
     uin="[$uin]"
     F_ESCCHARLIST=1
@@ -863,7 +863,7 @@ getNumber(){
         printf '%s]:|%s\n' "$cP" "$cN"
     }
 
-    if [ "$uin" ]
+    if [ -n "$uin" ]
     then
         uins="${uins}¤$uin"
     else
@@ -1153,7 +1153,7 @@ Choice(){
                 done
 
                 # Showing the change
-                [ "${opts[alf]}" ] || continue
+                [ -z "${opts[alf]}" ] && continue
                 ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
             ;;
             .)
@@ -1216,7 +1216,7 @@ do
             Reset
             TopTitle
             Menu S0_txt
-            [ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
+            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
             HUMAN="${S0_txt[0]} ${S0_txt[$REPLY]}"
             showRegEx S0
             STATUS=1
@@ -1224,8 +1224,8 @@ do
         1)
             TopTitle
             Menu S1_txt
-            [ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
-            if [ "${REPLY/[1-9]/}" ]
+            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
+            if [ -n "${REPLY/[1-9]/}" ]
             then
                 HUMAN="$HUMAN $REPLY"
                 if [ "$REPLY" == '|' ]
@@ -1290,7 +1290,7 @@ do
         2)
             TopTitle
             Menu S2_txt
-            [ "${STATUS/[Z34]/}" ] || continue  # 0,3,4: escape status
+            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
             rep_middle=$"repeated"
             rep_txt="${S2_txt[$REPLY]}"
             rep_txtend=$"times"
