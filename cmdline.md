@@ -122,12 +122,12 @@ Every time you quit txt2regex, it shows a history string that you can inform to 
 
 ```console
 $ txt2regex --history '124259¤a¤b¤5'
- RegEx perl    : ^a+b{5}.*
- RegEx php     : ^a+b{5}.*
- RegEx postgres: ^a+b{5}.*
- RegEx python  : ^a+b{5}.*
- RegEx sed     : ^a\+b\{5\}.*
- RegEx vim     : ^a\+b\{5}.*
+ Regex perl    : ^a+b{5}.*
+ Regex php     : ^a+b{5}.*
+ Regex postgres: ^a+b{5}.*
+ Regex python  : ^a+b{5}.*
+ Regex sed     : ^a\+b\{5\}.*
+ Regex vim     : ^a\+b\{5}.*
 
 $
 ```
@@ -136,9 +136,9 @@ Note that you can also inform `--prog` to specify the list of programs (separate
 
 ```console
 $ txt2regex --history '124259¤a¤b¤5' --prog sed,python,sed
- RegEx sed   : ^a\+b\{5\}.*
- RegEx python: ^a+b{5}.*
- RegEx sed   : ^a\+b\{5\}.*
+ Regex sed   : ^a\+b\{5\}.*
+ Regex python: ^a+b{5}.*
+ Regex sed   : ^a\+b\{5\}.*
 
 $
 ```
@@ -147,30 +147,30 @@ Another alternative is using `--all` to show your regex in the syntax of every p
 
 ```console
 $ txt2regex --history '124259¤a¤b¤5' --all
- RegEx awk       : ^a+b!!.*
- RegEx ed        : ^a\+b\{5\}.*
- RegEx egrep     : ^a+b{5}.*
- RegEx emacs     : ^a+b!!.*
- RegEx expect    : ^a+b!!.*
- RegEx find      : ^a+b!!.*
- RegEx gawk      : ^a+b{5}.*
- RegEx grep      : ^a\+b\{5\}.*
- RegEx javascript: ^a+b{5}.*
- RegEx lex       : ^a+b{5}.*
- RegEx lisp      : ^a+b!!.*
- RegEx mawk      : ^a+b!!.*
- RegEx mysql     : ^a+b{5}.*
- RegEx ooo       : ^a+b{5}.*
- RegEx perl      : ^a+b{5}.*
- RegEx php       : ^a+b{5}.*
- RegEx postgres  : ^a+b{5}.*
- RegEx procmail  : ^a+b!!.*
- RegEx python    : ^a+b{5}.*
- RegEx sed       : ^a\+b\{5\}.*
- RegEx tcl       : ^a+b!!.*
- RegEx vbscript  : ^a+b{5}.*
- RegEx vi        : ^a\{1,\}b\{5\}.*
- RegEx vim       : ^a\+b\{5}.*
+ Regex awk       : ^a+b!!.*
+ Regex ed        : ^a\+b\{5\}.*
+ Regex egrep     : ^a+b{5}.*
+ Regex emacs     : ^a+b!!.*
+ Regex expect    : ^a+b!!.*
+ Regex find      : ^a+b!!.*
+ Regex gawk      : ^a+b{5}.*
+ Regex grep      : ^a\+b\{5\}.*
+ Regex javascript: ^a+b{5}.*
+ Regex lex       : ^a+b{5}.*
+ Regex lisp      : ^a+b!!.*
+ Regex mawk      : ^a+b!!.*
+ Regex mysql     : ^a+b{5}.*
+ Regex ooo       : ^a+b{5}.*
+ Regex perl      : ^a+b{5}.*
+ Regex php       : ^a+b{5}.*
+ Regex postgres  : ^a+b{5}.*
+ Regex procmail  : ^a+b!!.*
+ Regex python    : ^a+b{5}.*
+ Regex sed       : ^a\+b\{5\}.*
+ Regex tcl       : ^a+b!!.*
+ Regex vbscript  : ^a+b{5}.*
+ Regex vi        : ^a\{1,\}b\{5\}.*
+ Regex vim       : ^a\+b\{5}.*
 
 $
 ```
@@ -179,11 +179,11 @@ Stress test using all the available menu options:
 
 ```console
 $ txt2regex --history '111223445566778(9|9)3¤a¤bc¤de¤fg¤5¤:012345¤6¤:01234567¤7' --prog sed,vim,egrep,python,emacs
- RegEx sed   : ^.a\?bc[de]\+[^fg]\{5\}[A-Za-z0-9_ \t]\{1,6\}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,\}\(.*\|.*\)*
- RegEx vim   : ^.a\=bc[de]\+[^fg]\{5}[A-Za-z0-9_ \t]\{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,}\(.*\|.*\)*
- RegEx egrep : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ <TAB>]{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]{7,}(.*|.*)*
- RegEx python: ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ \t]{1,6}!!{7,}(.*|.*)*
- RegEx emacs : ^.a?bc[de]+[^fg]!![A-Za-z0-9_ <TAB>]!!!!!!\(.*\|.*\)*
+ Regex sed   : ^.a\?bc[de]\+[^fg]\{5\}[A-Za-z0-9_ \t]\{1,6\}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,\}\(.*\|.*\)*
+ Regex vim   : ^.a\=bc[de]\+[^fg]\{5}[A-Za-z0-9_ \t]\{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,}\(.*\|.*\)*
+ Regex egrep : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ <TAB>]{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]{7,}(.*|.*)*
+ Regex python: ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ \t]{1,6}!!{7,}(.*|.*)*
+ Regex emacs : ^.a?bc[de]+[^fg]!![A-Za-z0-9_ <TAB>]!!!!!!\(.*\|.*\)*
 
 $
 ```
@@ -194,34 +194,34 @@ Error handling:
 $ txt2regex --history | sed 1q | cut -d : -f 1
 usage
 $ txt2regex --history invalid --prog sed | sed 's/ $//'
- RegEx sed:
+ Regex sed:
 
 $ txt2regex --history 2 --prog sed | sed 's/ $//'
- RegEx sed:
+ Regex sed:
 
 $ txt2regex --history '1¤unused¤arguments' --prog sed | sed 's/ $//'
- RegEx sed: ^
+ Regex sed: ^
 
 $ txt2regex --history 11 --prog sed | sed 's/ $//'  # missing repetition argument
- RegEx sed: ^.
+ Regex sed: ^.
 
 $ txt2regex --history 12 --prog sed | sed 's/ $//'  # missing char argument
- RegEx sed: ^
+ Regex sed: ^
 
 $ txt2regex --history 13 --prog sed | sed 's/ $//'  # missing string argument
- RegEx sed: ^
+ Regex sed: ^
 
 $ txt2regex --history 14 --prog sed | sed 's/ $//'  # missing list string argument
- RegEx sed: ^[]
+ Regex sed: ^[]
 
 $ txt2regex --history 16 --prog sed | sed 's/ $//'  # missing list choice argument
- RegEx sed: ^[]
+ Regex sed: ^[]
 
 $ txt2regex --history '16¤:' --prog sed | sed 's/ $//'  # empty list choice argument
- RegEx sed: ^[]
+ Regex sed: ^[]
 
 $ txt2regex --history '16¤:9' --prog sed | sed 's/ $//'  # out-of-range list choice argument
- RegEx sed: ^[]
+ Regex sed: ^[]
 
 $ txt2regex --history '124259¤a¤b¤5' --prog foo
 ERROR: unknown program: foo
@@ -237,12 +237,12 @@ $ txt2regex --make date
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
- RegEx perl    : [0-9]{2}/[0-9]{2}/[0-9]{4}
- RegEx php     : [0-9]{2}/[0-9]{2}/[0-9]{4}
- RegEx postgres: [0-9]{2}/[0-9]{2}/[0-9]{4}
- RegEx python  : [0-9]{2}/[0-9]{2}/[0-9]{4}
- RegEx sed     : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
- RegEx vim     : [0-9]\{2}/[0-9]\{2}/[0-9]\{4}
+ Regex perl    : [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex php     : [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex postgres: [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex python  : [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex sed     : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
+ Regex vim     : [0-9]\{2}/[0-9]\{2}/[0-9]\{4}
 
 $
 ```
@@ -254,9 +254,9 @@ $ txt2regex --make date --prog sed,python,sed
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
- RegEx sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
- RegEx python: [0-9]{2}/[0-9]{2}/[0-9]{4}
- RegEx sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
+ Regex sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
+ Regex python: [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
 
 $
 ```
@@ -268,30 +268,30 @@ $ txt2regex --make number2 --all
 
 ### number LEVEL 2: level 1 plus optional float point
 
- RegEx awk       : [+-]?[0-9]+(\.[0-9]!!)?
- RegEx ed        : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
- RegEx egrep     : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx emacs     : [+-]?[0-9]+\(\.[0-9]!!\)?
- RegEx expect    : [+-]?[0-9]+(\.[0-9]!!)?
- RegEx find      : [+-]?[0-9]+\(\.[0-9]!!\)?
- RegEx gawk      : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx grep      : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
- RegEx javascript: [+-]?[0-9]+(\.[0-9]{2})?
- RegEx lex       : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx lisp      : [+-]?[0-9]+\\(\\.[0-9]!!\\)?
- RegEx mawk      : [+-]?[0-9]+(\.[0-9]!!)?
- RegEx mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
- RegEx ooo       : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx perl      : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx php       : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx postgres  : [+-]?[0-9]+(\\.[0-9]{2})?
- RegEx procmail  : [+-]?[0-9]+(\.[0-9]!!)?
- RegEx python    : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx sed       : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
- RegEx tcl       : [+-]?[0-9]+(\.[0-9]!!)?
- RegEx vbscript  : [+-]?[0-9]+(\.[0-9]{2})?
- RegEx vi        : [+-]\{0,1\}[0-9]\{1,\}\(\.[0-9]\{2\}\)\{0,1\}
- RegEx vim       : [+-]\=[0-9]\+\(\.[0-9]\{2}\)\=
+ Regex awk       : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex ed        : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
+ Regex egrep     : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex emacs     : [+-]?[0-9]+\(\.[0-9]!!\)?
+ Regex expect    : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex find      : [+-]?[0-9]+\(\.[0-9]!!\)?
+ Regex gawk      : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex grep      : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
+ Regex javascript: [+-]?[0-9]+(\.[0-9]{2})?
+ Regex lex       : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex lisp      : [+-]?[0-9]+\\(\\.[0-9]!!\\)?
+ Regex mawk      : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
+ Regex ooo       : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex perl      : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex php       : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex postgres  : [+-]?[0-9]+(\\.[0-9]{2})?
+ Regex procmail  : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex python    : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex sed       : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
+ Regex tcl       : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex vbscript  : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex vi        : [+-]\{0,1\}[0-9]\{1,\}\(\.[0-9]\{2\}\)\{0,1\}
+ Regex vim       : [+-]\=[0-9]\+\(\.[0-9]\{2}\)\=
 
 $
 ```
@@ -303,17 +303,17 @@ $ for x in date date2 date3; do txt2regex --make $x --prog python; done
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
- RegEx python: [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex python: [0-9]{2}/[0-9]{2}/[0-9]{4}
 
 
 ### date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999
 
- RegEx python: [01][0-9]/[0123][0-9]/[12][0-9]{3}
+ Regex python: [01][0-9]/[0123][0-9]/[12][0-9]{3}
 
 
 ### date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999
 
- RegEx python: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}
+ Regex python: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}
 
 $
 ```
@@ -325,17 +325,17 @@ $ for x in hour hour2 hour3; do txt2regex --make $x --prog python; done
 
 ### hour LEVEL 1: hh:mm: matches from 00:00 to 99:99
 
- RegEx python: [0-9]{2}:[0-9]{2}
+ Regex python: [0-9]{2}:[0-9]{2}
 
 
 ### hour LEVEL 2: hh:mm: matches from 00:00 to 29:59
 
- RegEx python: [012][0-9]:[012345][0-9]
+ Regex python: [012][0-9]:[012345][0-9]
 
 
 ### hour LEVEL 3: hh:mm: matches from 00:00 to 23:59
 
- RegEx python: ([01][0-9]|2[0123]):[012345][0-9]
+ Regex python: ([01][0-9]|2[0123]):[012345][0-9]
 
 $
 ```
@@ -347,17 +347,17 @@ $ for x in number number2 number3; do txt2regex --make $x --prog python; done
 
 ### number LEVEL 1: integer, positive and negative
 
- RegEx python: [+-]?[0-9]+
+ Regex python: [+-]?[0-9]+
 
 
 ### number LEVEL 2: level 1 plus optional float point
 
- RegEx python: [+-]?[0-9]+(\.[0-9]{2})?
+ Regex python: [+-]?[0-9]+(\.[0-9]{2})?
 
 
 ### number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90
 
- RegEx python: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
+ Regex python: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
 
 $
 ```

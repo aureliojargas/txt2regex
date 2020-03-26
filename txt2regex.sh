@@ -282,7 +282,7 @@ done
 set -o noglob
 
 
-### The RegEx show
+### The Regex show
 
 # NOTE: texts on vars because i18n inside arrays is not possible (sux)
 
@@ -1012,11 +1012,11 @@ Reset(){
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
     for p in ${progs[*]}
     do
-        [ "$is_interactive" -eq 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
+        [ "$is_interactive" -eq 1 ] && printf " Regex %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
 }
 
-showRegEx(){
+showRegex(){
     gotoxy $x_regex $y_regex
     local i new_part save="$uin"
 
@@ -1048,7 +1048,7 @@ showRegEx(){
             ;;
         esac
 
-        [ "$is_interactive" -eq 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+        [ "$is_interactive" -eq 1 ] && printf " Regex %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
         uin="$save"
     done
     unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
@@ -1213,7 +1213,7 @@ do
             Menu S0_txt
             [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
             HUMAN="${S0_txt[0]} ${S0_txt[$REPLY]}"
-            showRegEx S0
+            showRegex S0
             STATUS=1
         ;;
         1)
@@ -1238,7 +1238,7 @@ do
                     printf '\n\n'
                     printError 'unknown reply type "%s"\n' "$REPLY"
                 fi
-                showRegEx ax
+                showRegex ax
             else
                 HUMAN="$HUMAN, ${S1_txt[0]} ${S1_txt[$REPLY]/ (*)/}"
                 case "$REPLY" in
@@ -1270,7 +1270,7 @@ do
                         STATUS=1
                     ;;
                 esac
-                showRegEx S1
+                showRegex S1
             fi
         ;;
         12)
@@ -1280,7 +1280,7 @@ do
             Clear
             TopTitle
             HUMAN="$HUMAN {$SUBHUMAN}"
-            showRegEx S1
+            showRegex S1
         ;;
         2)
             TopTitle
@@ -1292,7 +1292,7 @@ do
 
             [ "$REPLY" -ge 5 ] && getNumber && rep_txt=${rep_txt/N/$uin}
             HUMAN="$HUMAN, $rep_middle ${rep_txt/ (*)/} $rep_txtend"
-            showRegEx S2
+            showRegex S2
             STATUS=1
         ;;
         3)
@@ -1330,7 +1330,7 @@ do
             else
                 for ((i=0; i<${#progs[@]}; i++))  # for each program
                 do
-                    printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+                    printf " Regex %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
                 done
                 printf '\n'
             fi
