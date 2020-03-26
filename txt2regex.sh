@@ -144,8 +144,36 @@ progs=(python egrep grep sed vim)
 
 
 ### IMPORTANT DATA ###
-allprogs=(awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql ooo perl php postgres procmail python sed tcl vbscript vi vim)
-allversions=('' 'GNU ed version 0.2' 'egrep (GNU grep) 2.4.2' '' '' 'GNU find version 4.1' 'GNU Awk 3.0.6' 'grep (GNU grep) 2.4.2' 'netscape-4.77' '' '' 'mawk 1.3.3 Nov 1996' 'Ver 11.13 Distrib 3.23.36' 'OpenOffice.org 1.1.0' 'v5.6.0 built for i386-linux' '4.0.6' 'psql (PostgreSQL) 7.1.2' 'procmail v3.15.1 2001/01/08' 'Python 2.1' 'GNU sed version 3.02.80' '8.3' '' 'Nvi 1.79 (10/23/96)' 'VIM - Vi IMproved 5.8 (2001 May 31)')
+allprogs=(
+    awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql ooo
+    perl php postgres procmail python sed tcl vbscript vi vim
+)
+allversions=(
+    ''  # awk
+    'GNU ed version 0.2'
+    'egrep (GNU grep) 2.4.2'
+    ''  # emacs
+    ''  # expect
+    'GNU find version 4.1'
+    'GNU Awk 3.0.6'
+    'grep (GNU grep) 2.4.2'
+    'netscape-4.77'  #javascript
+    ''  # lex
+    ''  #lisp
+    'mawk 1.3.3 Nov 1996'
+    'Ver 11.13 Distrib 3.23.36'  # mysql
+    'OpenOffice.org 1.1.0'
+    'v5.6.0 built for i386-linux'  # perl
+    '4.0.6'  # php
+    'psql (PostgreSQL) 7.1.2'
+    'procmail v3.15.1 2001/01/08'
+    'Python 2.1'
+    'GNU sed version 3.02.80'
+    '8.3'  # tcl
+    ''  # vbscript
+    'Nvi 1.79 (10/23/96)'
+    'VIM - Vi IMproved 5.8 (2001 May 31)'
+)
 ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4'
             'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999')
 ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3'
