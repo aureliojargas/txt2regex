@@ -80,15 +80,6 @@
 # 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
 # 20121221 ** moved to GitHub, please see the Git history from now on
 
-# TODO \<borders\>
-# TODO empty | check like ^| or (|)
-# TODO ready_email (see guia_er)
-# TODO negated POSIX|special combination (Choice hack)
-# TODO add expr, oawk, nawk, MKS awk, flex
-# TODO ~/.txt2regexrc: remember programs, last histories, name REs
-# TODO LATER how to capture blanks on Get* (via menu)?
-# TODO LATER user defined ranges on lists (prompt, validation)
-
 TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
 VERSION=0

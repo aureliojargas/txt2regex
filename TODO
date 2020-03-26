@@ -1,10 +1,17 @@
 txt2regex TODO:
 
-  - more ready-to-use regexes! (ip, email, url)
-  - describe some nice features as [][\^-]
+  - new programs: expr, oawk, nawk, MKS awk, flex
+  - add support for \<borders\>
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
-  - support for ~/.txt2regexrc and env vars
+  - more ready-to-use regexes! (ip, email, url)
+  - ~/.txt2regexrc: remember programs, last histories, name REs
+  - negated POSIX|special combination (Choice hack)
+  - describe some nice features as [][\^-]
+  - empty | check, for things like ^| or (|)
+  - how to capture blanks on Get* (via menu)?
+
+User requests:
 
   - undo last step (Bence Fejervari @ .hu)
   - std{in,out} mode to use it with a frontend (Robert-Claudiu Gheorghe @ .com)
@@ -14,4 +21,6 @@ txt2regex TODO:
   - easy way for people contribute on program's regexes rules (julioB @ .edu)
   - escape special chars when **applying** the regex (julioB @ .edu)
 
-technical TODO: grep TODO txt2regex
+Extra TODO:
+
+  - grep TODO txt2regex.sh
