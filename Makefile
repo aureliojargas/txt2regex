@@ -92,10 +92,10 @@ install: mo
 	echo "program '$(NAME)' installed. just run $(BINDIR)/$(NAME)"
 
 doc:
-	@txt2tags -t man  man/txt2regex.t2t; \
-	txt2tags  -t html man/txt2regex.t2t; \
-	txt2tags  -t man  man/pt_BR/txt2regex.t2t; \
-	txt2tags  -t html man/pt_BR/txt2regex.t2t;
+	@txt2tags -t man  man/txt2regex.t2t
+	@txt2tags -t html man/txt2regex.t2t
+	@txt2tags -t man  man/pt_BR/txt2regex.t2t
+	@txt2tags -t html man/pt_BR/txt2regex.t2t
 
 check:
 	shellcheck $(SHSKEL)
