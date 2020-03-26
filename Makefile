@@ -6,7 +6,7 @@ DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 TESTDIR = test-suite
 
-FILES = Makefile README.md README.japanese NEWS Changelog.txt COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR) man
+FILES = Makefile README.md README.japanese NEWS Changelog.txt cmdline.md COPYRIGHT TODO $(SHSKEL) $(PODIR) tools $(TESTDIR) man
 
 
 DESTDIR =
