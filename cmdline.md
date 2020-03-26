@@ -35,7 +35,7 @@ OPTIONS (they are default OFF):
   --history VALUE     Prints a regex from the given history data
   --make LABEL        Prints the default regex for the specified label
 
-  --version           Prints the program version and quit
+  -V, --version       Prints the program version and quit
   -h, --help          Prints the help message and quit
 
 Please read the program Man Page for more information.
@@ -45,10 +45,12 @@ $ rm help.txt h.txt
 $
 ```
 
-## Option --version
+## Options -V, --version
 
 ```console
 $ txt2regex --version
+txt2regex v0
+$ txt2regex -V
 txt2regex v0
 $
 ```
