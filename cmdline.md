@@ -127,12 +127,11 @@ Every time you quit txt2regex, it shows a history string that you can inform to 
 
 ```console
 $ txt2regex --history '124259¤a¤b¤5'
- Regex perl    : ^a+b{5}.*
- Regex php     : ^a+b{5}.*
- Regex postgres: ^a+b{5}.*
- Regex python  : ^a+b{5}.*
- Regex sed     : ^a\+b\{5\}.*
- Regex vim     : ^a\+b\{5}.*
+ Regex python: ^a+b{5}.*
+ Regex egrep : ^a+b{5}.*
+ Regex grep  : ^a\+b\{5\}.*
+ Regex sed   : ^a\+b\{5\}.*
+ Regex vim   : ^a\+b\{5}.*
 
 $
 ```
@@ -242,12 +241,11 @@ $ txt2regex --make date
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999
 
- Regex perl    : [0-9]{2}/[0-9]{2}/[0-9]{4}
- Regex php     : [0-9]{2}/[0-9]{2}/[0-9]{4}
- Regex postgres: [0-9]{2}/[0-9]{2}/[0-9]{4}
- Regex python  : [0-9]{2}/[0-9]{2}/[0-9]{4}
- Regex sed     : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
- Regex vim     : [0-9]\{2}/[0-9]\{2}/[0-9]\{4}
+ Regex python: [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex egrep : [0-9]{2}/[0-9]{2}/[0-9]{4}
+ Regex grep  : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
+ Regex sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
+ Regex vim   : [0-9]\{2}/[0-9]\{2}/[0-9]\{4}
 
 $
 ```

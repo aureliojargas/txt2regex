@@ -6,6 +6,7 @@ v0.9 beta (unreleased):
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
   - New tests for all the command line options (cmdline.md)
   - Added short options -h (for --help) and -V (for --version)
+  - Changed the default programs: +egrep +grep -perl -php -postgres
   - Converted everything (code and docs) to UTF-8
   - Improved the source code formatting, now it is readable
   - Now using shellcheck to improve code quality
