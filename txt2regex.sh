@@ -137,9 +137,9 @@ Usage(){
 }
 
 # The defaults
-f_i=1
-f_color=1
-f_whitebg=0
+is_interactive=1
+use_colors=1
+has_white_background=0
 has_not_supported=0
 GRP1=0
 GRP2=0
@@ -207,8 +207,8 @@ do
             [ "$2" ] || Usage 1
             history="$2"
             shift
-            f_i=0
-            f_color=0
+            is_interactive=0
+            use_colors=0
 
             hists="0${history%%¤*}"
             histargs="¤${history#*¤}"
@@ -216,8 +216,8 @@ do
         ;;
         --make)
             shift
-            f_i=0
-            f_color=0
+            is_interactive=0
+            use_colors=0
             arg="${1%1}"  # final 1 is optional
 
             # Sanity check
@@ -247,10 +247,10 @@ do
             validateProgramNames "${progs[@]}"
         ;;
         --nocolor)
-            f_color=0
+            use_colors=0
         ;;
         --whitebg)
-            f_whitebg=1
+            has_white_background=1
         ;;
         --showmeta)
             f_showmeta=1
@@ -436,11 +436,11 @@ ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
 
 ColorOnOff(){
     # The colors: Normal, Prompt, Bold, Important
-    [ "$f_color" != 1 ] && return
+    [ "$use_colors" != 1 ] && return
     if [ "$cN" ]
     then
         unset cN cP cB cI cR
-    elif [ "$f_whitebg" != 1 ]
+    elif [ "$has_white_background" != 1 ]
     then
         cN=$(printf '\033[m')      # normal
         cP=$(printf '\033[1;31m')  # red
@@ -587,7 +587,7 @@ ScreenSize(){
     : ${COLUMNS:=80}
 
     #TODO automatic check when selecting programs
-    test "$f_i" == 1 && test $LINES -lt "$y_max" && {
+    test "$is_interactive" == 1 && test $LINES -lt "$y_max" && {
         printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
@@ -600,10 +600,10 @@ ScreenSize(){
 _eol=$(printf '\033[0K')  # clear trash until EOL
 
 # The cool control chars functions
-gotoxy(){   [ "$f_i" == 1 ] && printf '\033[%d;%dH' "$2" "$1"; }
-clearEnd(){ [ "$f_i" == 1 ] && printf '\033[0J'; }
-clearN(){   [ "$f_i" == 1 ] && printf '\033[%dX' "$1"; }
-Clear(){    [ "$f_i" == 1 ] && printf '\033c'; }
+gotoxy(){   [ "$is_interactive" == 1 ] && printf '\033[%d;%dH' "$2" "$1"; }
+clearEnd(){ [ "$is_interactive" == 1 ] && printf '\033[0J'; }
+clearN(){   [ "$is_interactive" == 1 ] && printf '\033[%dX' "$1"; }
+Clear(){    [ "$is_interactive" == 1 ] && printf '\033c'; }
 
 # Ideas: tab between, $cR on cmd, yellow-white-yellow
 printTitleCmd(){
@@ -613,7 +613,7 @@ printTitleCmd(){
 TopTitle(){
     gotoxy 1 1
     local i j showme txt color
-    [ "$f_i" != 1 ] && return
+    [ "$is_interactive" != 1 ] && return
 
     # 1st line: aplication commands
     for ((i=0; i<10; i++))
@@ -626,7 +626,7 @@ TopTitle(){
                 showme=1
             ;;
             2)
-                [ "$f_color" == 1 ] && showme=1
+                [ "$use_colors" == 1 ] && showme=1
             ;;
             3)
                 [ "$STATUS" -eq 0 ] && showme=1
@@ -694,7 +694,7 @@ doMenu(){
     eval "Menui=(\"\${$1[@]}\")"
     menu_n=$((${#Menui[*]} - 1))  # ini
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
 
         # history
@@ -779,7 +779,7 @@ doNextHistArg(){
 getChar(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         printf '%s%s%s ' "$cP" $"which one?" "$cN"
         read -n 1 -r USERINPUT
@@ -798,7 +798,7 @@ getChar(){
 getCharList(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         printf '%s%s%s ' "$cP" $"which?" "$cN"
         read -r USERINPUT
@@ -825,7 +825,7 @@ getCharList(){
 getString(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         printf '%stxt:%s ' "$cP" "$cN"
         read -r USERINPUT
@@ -842,7 +842,7 @@ getString(){
 getNumber(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         printf '%sN=%s%s' "$cP" "$cN" "$_eol"
         read -r USERINPUT
@@ -873,7 +873,7 @@ getPosix(){
     local rpl psx=''
     unset SUBHUMAN
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         Choice --reset "${posix_txt[@]}"
     else
@@ -897,7 +897,7 @@ getCombo(){
     local rpl cmb=''
     unset SUBHUMAN
 
-    if [ "$f_i" == 1 ]
+    if [ "$is_interactive" == 1 ]
     then
         Choice --reset "${combo_txt[@]}"
     else
@@ -1015,7 +1015,7 @@ Reset(){
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
     for p in ${progs[*]}
     do
-        [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
+        [ "$is_interactive" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
 }
 
@@ -1051,7 +1051,7 @@ showRegEx(){
             ;;
         esac
 
-        [ "$f_i" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+        [ "$is_interactive" == 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
         uin="$save"
     done
     unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
@@ -1298,7 +1298,7 @@ do
             STATUS=1
         ;;
         3)
-            [ "$f_i" != 1 ] && {
+            [ "$is_interactive" != 1 ] && {
                 STATUS=9
                 continue
             }
@@ -1326,7 +1326,7 @@ do
         9)
             gotoxy $x_hist $y_hist
             clearEnd
-            if [ "$f_i" == 1 ]
+            if [ "$is_interactive" == 1 ]
             then
                 noregex_txt=$"no regex"
                 printf "%stxt2regex --history '%s%s'%s\n\n" \
