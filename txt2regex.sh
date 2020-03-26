@@ -181,9 +181,9 @@ ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'
 getItemIndex(){  # array tool
     local i=0 item="$1"
     shift
-    while [ -n "$1" ]
+    while test -n "$1"
     do
-        [ "$1" == "$item" ] && {
+        test "$1" == "$item" && {
             printf '%d\n' "$i"
             return
         }
@@ -202,11 +202,11 @@ validateProgramNames(){
 }
 
 # Parse command line options
-while [ $# -gt 0 ]
+while test $# -gt 0
 do
     case "$1" in
         --history)
-            [ -z "$2" ] && Usage 1
+            test -z "$2" && Usage 1
             history="$2"
             shift
             is_interactive=0
@@ -214,7 +214,7 @@ do
 
             hists="0${history%%¤*}"
             histargs="¤${history#*¤}"
-            [ "${hists#0}" == "${histargs#¤}" ] && unset histargs
+            test "${hists#0}" == "${histargs#¤}" && unset histargs
         ;;
         --make)
             shift
@@ -225,7 +225,7 @@ do
             # Sanity check
             valid=${!ready_*}
             valid=" ${valid//ready_/} "
-            [ "$valid" == "${valid#* $arg }" ] &&
+            test "$valid" == "${valid#* $arg }" &&
                 printError '%s: "%s": %s\n%s%s\n' \
                     '--make' "$1" $"invalid argument" \
                     $"valid names are:" "${valid% }"
@@ -243,7 +243,7 @@ do
             printf '\n### %s\n\n' "$txt"
         ;;
         --prog)
-            [ -z "$2" ] && Usage 1
+            test -z "$2" && Usage 1
             shift
             eval "progs=(${1//,/ })"
             validateProgramNames "${progs[@]}"
@@ -258,7 +258,7 @@ do
             mode_show_meta=1
         ;;
         --showinfo)
-            [ -z "$2" ] && Usage 1
+            test -z "$2" && Usage 1
             infoprog="$2"
             shift
             mode_show_info=1
@@ -438,11 +438,11 @@ ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
 
 ColorOnOff(){
     # The colors: Normal, Prompt, Bold, Important
-    [ "$use_colors" -eq 0 ] && return
-    if [ -n "$cN" ]
+    test "$use_colors" -eq 0 && return
+    if test -n "$cN"
     then
         unset cN cP cB cI cR
-    elif [ "$has_white_background" -eq 0 ]
+    elif test "$has_white_background" -eq 0
     then
         cN=$(printf '\033[m')      # normal
         cP=$(printf '\033[1;31m')  # red
@@ -460,7 +460,7 @@ ColorOnOff(){
 
 sek(){
     local a=1 z=$1
-    [ -n "$2" ]  && {
+    test -n "$2"  && {
         a=$1
         z=$2
     }
@@ -473,9 +473,9 @@ sek(){
 
 getLargestItem(){
     local mjr
-    while [ -n "$1" ]
+    while test -n "$1"
     do
-        [ ${#1} -gt ${#mjr} ] && mjr="$1"
+        test ${#1} -gt ${#mjr} && mjr="$1"
         shift
     done
     printf '%s\n' "$mjr"
@@ -521,8 +521,8 @@ ShowInfo(){
     ver="${allversions[$index]}"
     escmeta=$(getMeta "ax_$prog" 4)
     needesc=$(getMeta "ax_$prog" 5)
-    [ "$(getMeta "ax_$prog" 7)" == 'P'  ] && posix=$"YES"
-    [ "$(getMeta "ax_$prog" 8)" == '\t' ] && tabinlist=$"YES"
+    test "$(getMeta "ax_$prog" 7)" == 'P'  && posix=$"YES"
+    test "$(getMeta "ax_$prog" 8)" == '\t' && tabinlist=$"YES"
 
     # Metacharacters list
     # printf arguments: + ? {} | ( )
@@ -558,13 +558,13 @@ ShowInfo(){
 }
 
 
-if [ "$mode_show_meta" -eq 1 ]
+if test "$mode_show_meta" -eq 1
 then
     ShowMeta
     exit 0
 fi
 
-if [ "$mode_show_info" -eq 1 ]
+if test "$mode_show_info" -eq 1
 then
     ShowInfo "$infoprog"
     exit 0
@@ -602,10 +602,10 @@ ScreenSize(){
 _eol=$(printf '\033[0K')  # clear trash until EOL
 
 # The cool control chars functions
-gotoxy(){   [ "$is_interactive" -eq 1 ] && printf '\033[%d;%dH' "$2" "$1"; }
-clearEnd(){ [ "$is_interactive" -eq 1 ] && printf '\033[0J'; }
-clearN(){   [ "$is_interactive" -eq 1 ] && printf '\033[%dX' "$1"; }
-Clear(){    [ "$is_interactive" -eq 1 ] && printf '\033c'; }
+gotoxy(){   test "$is_interactive" -eq 1 && printf '\033[%d;%dH' "$2" "$1"; }
+clearEnd(){ test "$is_interactive" -eq 1 && printf '\033[0J'; }
+clearN(){   test "$is_interactive" -eq 1 && printf '\033[%dX' "$1"; }
+Clear(){    test "$is_interactive" -eq 1 && printf '\033c'; }
 
 # Ideas: tab between, $cR on cmd, yellow-white-yellow
 printTitleCmd(){
@@ -615,7 +615,7 @@ printTitleCmd(){
 TopTitle(){
     gotoxy 1 1
     local i j showme txt color
-    [ "$is_interactive" -eq 0 ] && return
+    test "$is_interactive" -eq 0 && return
 
     # 1st line: aplication commands
     for ((i=0; i<10; i++))
@@ -628,17 +628,17 @@ TopTitle(){
                 showme=1
             ;;
             2)
-                [ "$use_colors" -eq 1 ] && showme=1
+                test "$use_colors" -eq 1 && showme=1
             ;;
             3)
-                [ "$STATUS" -eq 0 ] && showme=1
+                test "$STATUS" -eq 0 && showme=1
             ;;
             9)
                 gotoxy $((COLUMNS - ${#txt})) 1
                 printf '%s\n' "$txt"
             ;;
         esac
-        if [ $showme -eq 1 ]
+        if test $showme -eq 1
         then
             printTitleCmd "$cmd" "$txt"
         else
@@ -647,11 +647,11 @@ TopTitle(){
     done
 
     # 2nd line: grouping and or
-    if [ "$STATUS" -eq 0 ]
+    if test "$STATUS" -eq 0
     then
         printf %s "$_eol"
     else
-        if [ "$STATUS" -eq 1 ]
+        if test "$STATUS" -eq 1
         then
             for i in 0 1 2
             do
@@ -659,7 +659,7 @@ TopTitle(){
                 cmd=${tit2_cmd[$i]}
                 showme=1
                 test $i -eq 2 && test $GRP1 -eq $GRP2 && showme=0
-                if [ $showme -eq 1 ]
+                if test $showme -eq 1
                 then
                     printTitleCmd "$cmd" "$txt"
                 else
@@ -673,9 +673,9 @@ TopTitle(){
         # open groups
         gotoxy $((COLUMNS - GRP1 - GRP2 - ${#GRP1})) 2
         color="$cP"
-        [ "$GRP1" -eq "$GRP2" ] && color="$cB"
+        test "$GRP1" -eq "$GRP2" && color="$cB"
         for ((j=0; j<GRP1; j++)); do printf '%s(%s' "$color" "$cN"; done
-        [ $GRP1 -gt 0 ] && printf %s "$GRP1"
+        test $GRP1 -gt 0 && printf %s "$GRP1"
         for ((j=0; j<GRP2; j++)); do printf '%s)%s' "$color" "$cN"; done
     fi
 
@@ -683,7 +683,7 @@ TopTitle(){
     txt=${tit2_txt[9]}
     cmd=${tit2_cmd[9]}
     gotoxy $((COLUMNS - ${#txt} - ${#cmd} - 1)) 3
-    if [ "$has_not_supported" -eq 1 ]
+    if test "$has_not_supported" -eq 1
     then
         printf '%s%s%s %s' "$cB" "$cmd" "$cN" "$txt"
     else
@@ -696,7 +696,7 @@ doMenu(){
     eval "Menui=(\"\${$1[@]}\")"
     menu_n=$((${#Menui[*]} - 1))  # ini
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
 
         # history
@@ -730,12 +730,12 @@ doMenu(){
 
 Menu(){
     local ok=0 name="$1"
-    while [ $ok -eq 0 ]
+    while test $ok -eq 0
     do
         doMenu "$name"
         case "$REPLY" in
             [1-9])
-                [ "$REPLY" -gt "$menu_n" ] && continue
+                test "$REPLY" -gt "$menu_n" && continue
                 ok=1
                 REPLIES="$REPLIES$REPLY"
             ;;
@@ -753,9 +753,9 @@ Menu(){
                 TopTitle
             ;;
             [\(\)\|])
-                [ "$STATUS" -ne 1 ] && continue
-                [ "$REPLY" == ')' ] && { test $GRP1 -gt 0 && test $GRP1 -eq $GRP2 || test $GRP1 -eq 0; } && continue
-                [ "$REPLY" == ')' ] && STATUS=2
+                test "$STATUS" -ne 1 && continue
+                test "$REPLY" == ')' && { test $GRP1 -gt 0 && test $GRP1 -eq $GRP2 || test $GRP1 -eq 0; } && continue
+                test "$REPLY" == ')' && STATUS=2
                 ok=1
                 REPLIES="$REPLIES$REPLY"
             ;;
@@ -781,7 +781,7 @@ doNextHistArg(){
 getChar(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         printf '%s%s%s ' "$cP" $"which one?" "$cN"
         read -n 1 -r USERINPUT
@@ -800,7 +800,7 @@ getChar(){
 getCharList(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         printf '%s%s%s ' "$cP" $"which?" "$cN"
         read -r USERINPUT
@@ -812,13 +812,13 @@ getCharList(){
     uins="${uins}¤$uin"
 
     # putting not special chars in not special places: [][^-]
-    [ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
-    [ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
-    [ "${uin/[//}" != "$uin" ] && uin="[${uin/[/}"
-    [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
+    test "${uin/^//}" != "$uin" && uin="${uin/^/}^"
+    test "${uin/-//}" != "$uin" && uin="${uin/-/}-"
+    test "${uin/[//}" != "$uin" && uin="[${uin/[/}"
+    test "${uin/]//}" != "$uin" && uin="]${uin/]/}"
 
     # if any $1, negated list
-    [ -n "$1" ]  && uin="^$uin"
+    test -n "$1" && uin="^$uin"
 
     uin="[$uin]"
     F_ESCCHARLIST=1
@@ -827,7 +827,7 @@ getCharList(){
 getString(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         printf '%stxt:%s ' "$cP" "$cN"
         read -r USERINPUT
@@ -844,7 +844,7 @@ getString(){
 getNumber(){
     gotoxy $x_prompt2 $y_prompt
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         printf '%sN=%s%s' "$cP" "$cN" "$_eol"
         read -r USERINPUT
@@ -858,12 +858,12 @@ getNumber(){
     uin="${uin//[^0-9]/}"
 
     # ee
-    [ "${uin/666/x}" == 'x' ] && {
+    test "${uin/666/x}" == 'x' && {
         gotoxy 36 1
         printf '%s]:|%s\n' "$cP" "$cN"
     }
 
-    if [ -n "$uin" ]
+    if test -n "$uin"
     then
         uins="${uins}¤$uin"
     else
@@ -875,7 +875,7 @@ getPosix(){
     local rpl psx=''
     unset SUBHUMAN
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         Choice --reset "${posix_txt[@]}"
     else
@@ -899,7 +899,7 @@ getCombo(){
     local rpl cmb=''
     unset SUBHUMAN
 
-    if [ "$is_interactive" -eq 1 ]
+    if test "$is_interactive" -eq 1
     then
         Choice --reset "${combo_txt[@]}"
     else
@@ -913,7 +913,7 @@ getCombo(){
     done
 
     #TODO change this to if [ "$rpl" -eq 5 ]
-    [ "$cmb" != "${cmb/@/}" ] && F_GETTAB=1
+    test "$cmb" != "${cmb/@/}" && F_GETTAB=1
 
     SUBHUMAN=${SUBHUMAN#, }
 
@@ -941,7 +941,7 @@ getHasPosix(){
     # let's just unsupport the tested ones
     local x="ax_${progs[$1]}[7]"
 
-    [ "${!x}" == ',' ] && uin='!!'
+    test "${!x}" == ',' && uin='!!'
 }
 
 # escape userinput chars as .,*,[ and friends
@@ -960,7 +960,7 @@ escChar(){
     x="${x//[, ]/}"
 
     # Test for speed up
-    [ "${ui/[\\\\$x]/}" != "$ui" ] && {
+    test "${ui/[\\\\$x]/}" != "$ui" && {
 
         for ((i=0; i<${#ui}; i++))  # for each user char
         do
@@ -983,7 +983,7 @@ escChar(){
             esac
 
             # escaping
-            [ "$x2" != "$x" ] && c="$esc$c"
+            test "$x2" != "$x" && c="$esc$c"
             z="$z$c"
         done
         uin="$z"  # ah, the escaped string
@@ -1002,7 +1002,7 @@ escCharList(){
     esc=${!esc}
 
     # escaping escape
-    [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"
+    test "$x" == '\' && uin="${uin/\\\\/$esc$esc}"
 }
 
 Reset(){
@@ -1017,7 +1017,8 @@ Reset(){
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
     for p in ${progs[*]}
     do
-        [ "$is_interactive" -eq 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
+        test "$is_interactive" -eq 1 &&
+            printf " RegEx %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
 }
 
@@ -1028,17 +1029,17 @@ showRegEx(){
     # For each program
     for ((i=0; i<${#progs[@]}; i++))
     do
-        [ "$F_ESCCHAR"     == 1 ] && escChar     $i
-        [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
-        [ "$F_GETTAB"      == 1 ] && getListTab  $i
-        [ "$F_POSIX"       == 1 ] && getHasPosix $i
+        test "$F_ESCCHAR"     == 1 && escChar     $i
+        test "$F_ESCCHARLIST" == 1 && escCharList $i
+        test "$F_GETTAB"      == 1 && getListTab  $i
+        test "$F_POSIX"       == 1 && getHasPosix $i
 
         # Check status
         case "$1" in
             ax|S2)
                 eval new_part="\${$1_${progs[$i]}[$REPLY]/@/$uin}"
                 Regex[$i]="${Regex[$i]}$new_part"
-                [ "$new_part" == '!!' ] && has_not_supported=1
+                test "$new_part" == '!!' && has_not_supported=1
             ;;
             S0)
                 Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}"
@@ -1049,11 +1050,12 @@ showRegEx(){
                 # When a program does not support POSIX character classes, $uin
                 # will be set to !! by getHasPosix(). Also check $REPLY to avoid
                 # a false positive when the user wants to match the !! string.
-                [ "$REPLY" -eq 7 ] && [ "$uin" == '!!' ] && has_not_supported=1
+                test "$REPLY" -eq 7 && test "$uin" == '!!' && has_not_supported=1
             ;;
         esac
 
-        [ "$is_interactive" -eq 1 ] && printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+        test "$is_interactive" -eq 1 &&
+            printf " RegEx %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
         uin="$save"
     done
     unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
@@ -1073,7 +1075,7 @@ ChoiceRefresh(){
     local xy=$1 a=$2 stat=$3 opt=$4
 
     # colorizing case status is ON
-    [ "$stat" == '+' ] && stat="$cI$stat$cN"
+    test "$stat" == '+' && stat="$cI$stat$cN"
 
     gotoxy "${xy#*;}" "${xy%;*}"
     printf '  %s%s%s) %s%s ' "$cB" "$a" "$cN" "$stat" "$opt"
@@ -1082,7 +1084,7 @@ ChoiceRefresh(){
 # --reset resets the stat array
 Choice(){
     local choicereset=0
-    [ "$1" == '--reset' ] && shift && choicereset=1
+    test "$1" == '--reset' && shift && choicereset=1
 
     local alpha opts optxy numopts=$#
     local lines cols line op alf rpl
@@ -1093,12 +1095,12 @@ Choice(){
     for opt in "$@"
     do
         opts[$i]="$opt"
-        [ "$choicereset" -eq 1 ] && stat[$i]='-'
+        test "$choicereset" -eq 1 && stat[$i]='-'
         i=$((i + 1))
     done
 
     # Checking our number of items limit
-    [ "$numopts" -gt "${#alpha[*]}" ] &&
+    test "$numopts" -gt "${#alpha[*]}" &&
         printError 'too much itens (>%d)' "${#alpha[*]}"
 
     # The header
@@ -1108,11 +1110,11 @@ Choice(){
 
     # We will need 2 columns?
     cols=1
-    [ "$numopts" -gt 10 ] && cols=2
+    test "$numopts" -gt 10 && cols=2
 
     # And how much lines? (remember: odd number of items, requires one more line)
     lines=$((numopts / cols))
-    [ "$((numopts % cols))" -eq 1 ] && lines=$((lines + 1))
+    test "$((numopts % cols))" -eq 1 && lines=$((lines + 1))
 
     # Filling the options screen's position array (+3 = header:2, sek:1)
     for ((line=0; line<lines; line++))
@@ -1121,7 +1123,7 @@ Choice(){
         optxy[$line]="$((line + 3));1"
 
         # Column 2
-        [ "$cols" == 2 ] && optxy[$((line + lines))]="$((line + 3));40"
+        test "$cols" == 2 && optxy[$((line + lines))]="$((line + 3));40"
     done
 
     # Showing initial status for all options
@@ -1140,9 +1142,9 @@ Choice(){
                 # Inverting the option status
                 for ((alf=0; alf<numopts; alf++))
                 do
-                    if [ "${alpha[$alf]}" == "$CHOICEREPLY" ]
+                    if test "${alpha[$alf]}" == "$CHOICEREPLY"
                     then
-                        if [ "${stat[$alf]}" == '+' ]
+                        if test "${stat[$alf]}" == '+'
                         then
                             stat[$alf]='-'
                         else
@@ -1153,7 +1155,7 @@ Choice(){
                 done
 
                 # Showing the change
-                [ -z "${opts[alf]}" ] && continue
+                test -z "${opts[alf]}" && continue
                 ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
             ;;
             .)
@@ -1161,7 +1163,7 @@ Choice(){
                 unset CHOICEREPLY
                 for ((rpl=0; rpl<numopts; rpl++))
                 do
-                    [ "${stat[$rpl]}" == '+' ] && CHOICEREPLY="$CHOICEREPLY $rpl"
+                    test "${stat[$rpl]}" == '+' && CHOICEREPLY="$CHOICEREPLY $rpl"
                 done
                 break
             ;;
@@ -1195,7 +1197,7 @@ statActiveProgs(){
         stat[$i]='-'
 
         # Case found, turn ON
-        [ "${ps/ $p /}" != "$ps" ] && stat[$i]='+'
+        test "${ps/ $p /}" != "$ps" && stat[$i]='+'
     done
 }
 
@@ -1216,7 +1218,7 @@ do
             Reset
             TopTitle
             Menu S0_txt
-            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
+            test -z "${STATUS/[Z34]/}" && continue  # 0,3,4: escape status
             HUMAN="${S0_txt[0]} ${S0_txt[$REPLY]}"
             showRegEx S0
             STATUS=1
@@ -1224,18 +1226,18 @@ do
         1)
             TopTitle
             Menu S1_txt
-            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
-            if [ -n "${REPLY/[1-9]/}" ]
+            test -z "${STATUS/[Z34]/}" && continue  # 0,3,4: escape status
+            if test -n "${REPLY/[1-9]/}"
             then
                 HUMAN="$HUMAN $REPLY"
-                if [ "$REPLY" == '|' ]
+                if test "$REPLY" == '|'
                 then
                     REPLY=1
-                elif [ "$REPLY" == '(' ]
+                elif test "$REPLY" == '('
                 then
                     REPLY=2
                     GRP1=$((GRP1 + 1))
-                elif [ "$REPLY" == ')' ]
+                elif test "$REPLY" == ')'
                 then
                     REPLY=3
                     GRP2=$((GRP2 + 1))
@@ -1279,9 +1281,9 @@ do
             fi
         ;;
         12)
-            [ "$REPLY" -eq 6  ] && STATUS=2 && getCombo
-            [ "$REPLY" -eq 7  ] && STATUS=2 && getPosix
-            [ "$REPLY" -eq 8  ] && STATUS=1 && getREady
+            test "$REPLY" -eq 6  && STATUS=2 && getCombo
+            test "$REPLY" -eq 7  && STATUS=2 && getPosix
+            test "$REPLY" -eq 8  && STATUS=1 && getREady
             Clear
             TopTitle
             HUMAN="$HUMAN {$SUBHUMAN}"
@@ -1290,25 +1292,25 @@ do
         2)
             TopTitle
             Menu S2_txt
-            [ -z "${STATUS/[Z34]/}" ] && continue  # 0,3,4: escape status
+            test -z "${STATUS/[Z34]/}" && continue  # 0,3,4: escape status
             rep_middle=$"repeated"
             rep_txt="${S2_txt[$REPLY]}"
             rep_txtend=$"times"
 
-            [ "$REPLY" -ge 5 ] && getNumber && rep_txt=${rep_txt/N/$uin}
+            test "$REPLY" -ge 5 && getNumber && rep_txt=${rep_txt/N/$uin}
             HUMAN="$HUMAN, $rep_middle ${rep_txt/ (*)/} $rep_txtend"
             showRegEx S2
             STATUS=1
         ;;
         3)
-            [ "$is_interactive" -eq 0 ] && {
+            test "$is_interactive" -eq 0 && {
                 STATUS=9
                 continue
             }
             warning=$"Really quit?"
             read -r -n 1 -p "..$cB $warning [.] $cN"
             STATUS=$LASTSTATUS
-            [ "$REPLY" == '.' ] && STATUS=9
+            test "$REPLY" == '.' && STATUS=9
         ;;
         4)
             statActiveProgs
@@ -1329,7 +1331,7 @@ do
         9)
             gotoxy $x_hist $y_hist
             clearEnd
-            if [ "$is_interactive" -eq 1 ]
+            if test "$is_interactive" -eq 1
             then
                 noregex_txt=$"no regex"
                 printf "%stxt2regex --history '%s%s'%s\n\n" \
