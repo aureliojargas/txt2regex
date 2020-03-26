@@ -460,10 +460,6 @@ ColorOnOff(){
 
 sek(){
     local a=1 z=$1
-    [ -n "$2" ]  && {
-        a=$1
-        z=$2
-    }
     while [ "$a" -le "$z" ]
     do
         printf '%d\n' "$a"
