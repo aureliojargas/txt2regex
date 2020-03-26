@@ -4,11 +4,13 @@ txt2regex changelog
 v0.9 beta (unreleased):
   - Fixed to work properly in bash5 (tks Yanmarshus Bachtiar)
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
+  - New tests for all the command line options (cmdline.md)
   - Converted everything (code and docs) to UTF-8
   - Improved the source code formatting, now it is readable
   - Now using shellcheck to improve code quality
-  - New tests for all the command line options (cmdline.md)
   - Added new tests for JavaScript
+  - Now the "!! not supported" legend only appears when there are
+    unsupported metacharacters in the current regex
   - Improved --help message
   - Added Brazilian Portuguese translation for the man page
   - Added Turkish translations provided by erayalakese
