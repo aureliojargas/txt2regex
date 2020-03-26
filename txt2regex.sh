@@ -140,7 +140,7 @@ GRP2=0
 
 # Here's the default list of programs shown.
 # Edit here or use --prog to overwrite it.
-progs=(perl php postgres python sed vim)
+progs=(python egrep grep sed vim)
 
 
 ### IMPORTANT DATA ###
