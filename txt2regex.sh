@@ -129,7 +129,7 @@ Usage(){
     printf '%s\n' $"  --history VALUE     Prints a regex from the given history data"
     printf '%s\n' $"  --make LABEL        Prints the default regex for the specified label"
     printf '\n'
-    printf '%s\n' $"  --version           Prints the program version and quit"
+    printf '%s\n' $"  -V, --version       Prints the program version and quit"
     printf '%s\n' $"  -h, --help          Prints the help message and quit"
     printf '\n'
     printf '%s\n' $"Please read the program Man Page for more information."
@@ -264,7 +264,7 @@ do
         --all)
             progs=("${allprogs[@]}")
         ;;
-        --version)
+        -V | --version)
             printf 'txt2regex v%s\n' "$VERSION"
             exit 0
         ;;

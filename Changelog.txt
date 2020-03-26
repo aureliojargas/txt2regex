@@ -5,7 +5,7 @@ v0.9 beta (unreleased):
   - Fixed to work properly in bash5 (tks Yanmarshus Bachtiar)
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
   - New tests for all the command line options (cmdline.md)
-  - Added short option -h (for --help)
+  - Added short options -h (for --help) and -V (for --version)
   - Converted everything (code and docs) to UTF-8
   - Improved the source code formatting, now it is readable
   - Now using shellcheck to improve code quality
