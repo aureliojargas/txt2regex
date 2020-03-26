@@ -183,10 +183,7 @@ getItemIndex(){  # array tool
     shift
     while [ -n "$1" ]
     do
-        [ "$1" == "$item" ] && {
-            printf '%d\n' "$i"
-            return
-        }
+        [ "$1" == "$item" ] && printf '%d\n' "$i" && return
         i=$((i + 1))
         shift
     done
@@ -585,13 +582,14 @@ ScreenSize(){
     : ${COLUMNS:=80}
 
     #TODO automatic check when selecting programs
-    [ "$is_interactive" -eq 1 ] && [ $LINES -lt "$y_max" ] && {
+    if [ "$is_interactive" -eq 1 ] && [ $LINES -lt "$y_max" ]
+    then
         printf $"error:
   your screen has %s lines and should have at least %s to this
   program fit on it. increase the number of lines or select
   less programs to show the regex.\n\n" "$LINES" "$y_max"
         exit 1
-    }
+    fi
 }
 
 
@@ -814,7 +812,7 @@ getCharList(){
     [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
 
     # if any $1, negated list
-    [ -n "$1" ]  && uin="^$uin"
+    [ -n "$1" ] && uin="^$uin"
 
     uin="[$uin]"
     F_ESCCHARLIST=1
@@ -854,10 +852,11 @@ getNumber(){
     uin="${uin//[^0-9]/}"
 
     # ee
-    [ "${uin/666/x}" == 'x' ] && {
+    if [ "${uin/666/x}" == 'x' ]
+    then
         gotoxy 36 1
         printf '%s]:|%s\n' "$cP" "$cN"
-    }
+    fi
 
     if [ -n "$uin" ]
     then
@@ -956,8 +955,8 @@ escChar(){
     x="${x//[, ]/}"
 
     # Test for speed up
-    [ "${ui/[\\\\$x]/}" != "$ui" ] && {
-
+    if [ "${ui/[\\\\$x]/}" != "$ui" ]
+    then
         for ((i=0; i<${#ui}; i++))  # for each user char
         do
             c="${ui:$i:1}"
@@ -983,7 +982,7 @@ escChar(){
             z="$z$c"
         done
         uin="$z"  # ah, the escaped string
-    }
+    fi
 }
 
 escCharList(){
@@ -1297,10 +1296,7 @@ do
             STATUS=1
         ;;
         3)
-            [ "$is_interactive" -eq 0 ] && {
-                STATUS=9
-                continue
-            }
+            [ "$is_interactive" -eq 0 ] && STATUS=9 && continue
             warning=$"Really quit?"
             read -r -n 1 -p "..$cB $warning [.] $cN"
             STATUS=$LASTSTATUS
