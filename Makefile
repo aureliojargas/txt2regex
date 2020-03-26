@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION	= 0.9b
+VERSION = 0.9b
 
 SHSKEL = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -10,7 +10,7 @@ FILES = Makefile README.md README.japanese NEWS Changelog.txt COPYRIGHT TODO $(S
 
 
 DESTDIR =
-BINDIR	= $(DESTDIR)/usr/bin
+BINDIR = $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
