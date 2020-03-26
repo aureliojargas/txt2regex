@@ -140,6 +140,7 @@ Usage(){
 f_i=1
 f_color=1
 f_whitebg=0
+has_not_supported=0
 GRP1=0
 GRP2=0
 
@@ -680,7 +681,12 @@ TopTitle(){
     txt=${tit2_txt[9]}
     cmd=${tit2_cmd[9]}
     gotoxy $((COLUMNS-${#txt}-${#cmd}-1)) 3
-    printf '%s%s%s %s' "$cB" "$cmd" "$cN" "$txt"
+    if [ "$has_not_supported" -eq 1 ]
+    then
+        printf '%s%s%s %s' "$cB" "$cmd" "$cN" "$txt"
+    else
+        clearN $((${#txt}+${#cmd}+1))
+    fi
 }
 
 doMenu(){
@@ -1000,6 +1006,7 @@ escCharList(){
 Reset(){
     gotoxy $x_regex $y_regex
     unset REPLIES uins HUMAN "Regex[*]"
+    has_not_supported=0
     GRP1=0
     GRP2=0
     local p
@@ -1014,7 +1021,7 @@ Reset(){
 
 showRegEx(){
     gotoxy $x_regex $y_regex
-    local i save="$uin"
+    local i new_part save="$uin"
 
     # For each program
     for ((i=0 ;i<${#progs[@]}; i++))
@@ -1027,13 +1034,20 @@ showRegEx(){
         # Check status
         case "$1" in
             ax|S2)
-                eval Regex[$i]="\${Regex[$i]}\${$1_${progs[$i]}[$REPLY]/@/$uin}"
+                eval new_part="\${$1_${progs[$i]}[$REPLY]/@/$uin}"
+                Regex[$i]="${Regex[$i]}$new_part"
+                [ "$new_part" == '!!' ] && has_not_supported=1
             ;;
             S0)
                 Regex[$i]="${Regex[$i]}${S0_re[$REPLY]}"
             ;;
             S1)
                 Regex[$i]="${Regex[$i]}${uin:-${S1_re[$REPLY]}}"
+
+                # When a program does not support POSIX character classes, $uin
+                # will be set to !! by getHasPosix(). Also check $REPLY to avoid
+                # a false positive when the user wants to match the !! string.
+                [ "$REPLY" -eq 7 ] && [ "$uin" == '!!' ] && has_not_supported=1
             ;;
         esac
 
