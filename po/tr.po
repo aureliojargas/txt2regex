@@ -12,7 +12,7 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Loco-Source-Locale: tr_TR\n"
@@ -20,68 +20,56 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/"
 
 #: ../txt2regex-0.9.sh:101
-msgctxt ""
-"kullanım: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMLAR ]"
 msgid "usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
 msgstr ""
+"kullanım: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMLAR ]"
 
 #: ../txt2regex-0.9.sh:102
-msgctxt "       txt2regex --showmeta"
 msgid "       txt2regex --showmeta"
-msgstr ""
+msgstr "       txt2regex --showmeta"
 
 #: ../txt2regex-0.9.sh:103
-msgctxt "       txt2regex --showinfo PROGRAM [ --nocolor ]"
 msgid "       txt2regex --showinfo PROGRAM [ --nocolor ]"
-msgstr ""
+msgstr "       txt2regex --showinfo PROGRAM [ --nocolor ]"
 
 #: ../txt2regex-0.9.sh:104
-msgctxt "       txt2regex --history DEĞER [ --all | --prog PROGRAMLAR ]"
 msgid "       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
-msgstr ""
+msgstr "       txt2regex --history DEĞER [ --all | --prog PROGRAMLAR ]"
 
 #: ../txt2regex-0.9.sh:105
-msgctxt "       txt2regex --make ETİKET [ --all | --prog PROGRAMLAR ]"
 msgid "       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
-msgstr ""
+msgstr "       txt2regex --make ETİKET [ --all | --prog PROGRAMLAR ]"
 
 #: ../txt2regex-0.9.sh:107
-msgctxt "SEÇENEKLER (varsayılan olarak hepsi KAPALI):"
 msgid "OPTIONS (they are default OFF):"
-msgstr ""
+msgstr "SEÇENEKLER (varsayılan olarak hepsi KAPALI):"
 
 #: ../txt2regex-0.9.sh:109
-msgctxt "  --all               Tüm kayıtlı programlarla çalışır"
 msgid "  --all               Works with all registered programs"
-msgstr ""
+msgstr "  --all               Tüm kayıtlı programlarla çalışır"
 
 #: ../txt2regex-0.9.sh:110
-msgctxt "  --nocolor           Renk kullanma"
 msgid "  --nocolor           Don't use colors"
-msgstr ""
+msgstr "  --nocolor           Renk kullanma"
 
 #: ../txt2regex-0.9.sh:111
-msgctxt ""
-"  --whitebg           Renkler siyah-beyaz terminal ekranlarına göre ayarlanır"
 msgid "  --whitebg           Colors adjusted for white background terminals"
 msgstr ""
+"  --whitebg           Renkler siyah-beyaz terminal ekranlarına göre ayarlanır"
 
 #: ../txt2regex-0.9.sh:112
-msgctxt ""
-"  --prog PROGRAMS     Hangi programların kullanılanacağını seçin (virgülle "
-"ayrılmış)"
 msgid "  --prog PROGRAMS     Choose which programs to use, separated by commas"
 msgstr ""
+"  --prog PROGRAMS     Hangi programların kullanılanacağını seçin (virgülle "
+"ayrılmış)"
 
 #: ../txt2regex-0.9.sh:114
-msgctxt "  --showmeta          Prints a metacharacters table with all programs"
 msgid "  --showmeta          Prints a metacharacters table with all programs"
-msgstr ""
+msgstr "  --showmeta          Prints a metacharacters table with all programs"
 
 #: ../txt2regex-0.9.sh:115
-msgctxt "  --showinfo PROGRAM  Belirtilen program için regex bilgisi verir"
 msgid "  --showinfo PROGRAM  Prints regex info about the specified program"
-msgstr ""
+msgstr "  --showinfo PROGRAM  Belirtilen program için regex bilgisi verir"
 
 #: ../txt2regex-0.9.sh:116
 msgid "  --history VALUE     Prints a regex from the given history data"
@@ -92,248 +80,204 @@ msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:119
-msgctxt "  --version           Program versiyonunu yazdırır ve çıkar"
 msgid "  --version           Prints the program version and quit"
-msgstr ""
+msgstr "  --version           Program versiyonunu yazdırır ve çıkar"
 
 #: ../txt2regex-0.9.sh:120
-msgctxt "  --help              Yardım mesajı yazdırır ve çıkar"
 msgid "  --help              Prints the help message and quit"
-msgstr ""
+msgstr "  --help              Yardım mesajı yazdırır ve çıkar"
 
 #: ../txt2regex-0.9.sh:122
-msgctxt "Daha detaylı bilgi için yardım sayfasını okuyun."
 msgid "Please read the program Man Page for more information."
-msgstr ""
+msgstr "Daha detaylı bilgi için yardım sayfasını okuyun."
 
 #: ../txt2regex-0.9.sh:181
-msgctxt "geçersiz parametre"
 msgid "invalid argument"
-msgstr ""
+msgstr "geçersiz parametre"
 
 #: ../txt2regex-0.9.sh:182
-msgctxt "geçerli isimler:"
 msgid "valid names are:"
-msgstr ""
+msgstr "geçerli isimler:"
 
 #: ../txt2regex-0.9.sh:202
-msgctxt "geçersiz seçenek"
 msgid "invalid option"
-msgstr ""
+msgstr "geçersiz seçenek"
 
 #: ../txt2regex-0.9.sh:213
-msgctxt "eşleştirmeye başla"
 msgid "start to match"
-msgstr ""
+msgstr "eşleştirmeye başla"
 
 #: ../txt2regex-0.9.sh:214
-msgctxt "sayfanın başında"
 msgid "on the line beginning"
-msgstr ""
+msgstr "sayfanın başında"
 
 #: ../txt2regex-0.9.sh:215
-msgctxt "sayfanın herhangi bir yerinde"
 msgid "in any part of the line"
-msgstr ""
+msgstr "sayfanın herhangi bir yerinde"
 
 #: ../txt2regex-0.9.sh:219
 msgid "followed by"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:220
-msgctxt "herhangi bir karakter"
 msgid "any character"
-msgstr ""
+msgstr "herhangi bir karakter"
 
 #: ../txt2regex-0.9.sh:221
-msgctxt "belli bir karakter"
 msgid "a specific character"
-msgstr ""
+msgstr "belli bir karakter"
 
 #: ../txt2regex-0.9.sh:222
-msgctxt "belli bir ifade (string)"
 msgid "a literal string"
-msgstr ""
+msgstr "belli bir ifade (string)"
 
 #: ../txt2regex-0.9.sh:223
-msgctxt "izin verilen karakterler listesi"
 msgid "an allowed characters list"
-msgstr ""
+msgstr "izin verilen karakterler listesi"
 
 #: ../txt2regex-0.9.sh:224
-msgctxt "yasaklı karakterler listesi"
 msgid "a forbidden characters list"
-msgstr ""
+msgstr "yasaklı karakterler listesi"
 
 #: ../txt2regex-0.9.sh:225
-msgctxt "özel bir kombinasyon"
 msgid "a special combination"
-msgstr ""
+msgstr "özel bir kombinasyon"
 
 #: ../txt2regex-0.9.sh:226
-msgctxt "POSIX kombinasyonu"
 msgid "a POSIX combination (locale aware)"
-msgstr ""
+msgstr "POSIX kombinasyonu"
 
 #: ../txt2regex-0.9.sh:227
-msgctxt "hazır bir REGEX (henüz implement edilmedi)"
 msgid "a ready regex (not implemented)"
-msgstr ""
+msgstr "hazır bir REGEX (henüz implement edilmedi)"
 
 #: ../txt2regex-0.9.sh:228
-msgctxt "herşey"
 msgid "anything"
-msgstr ""
+msgstr "herşey"
 
 #: ../txt2regex-0.9.sh:232
-msgctxt "kaç kere (tekrar)"
 msgid "how many times (repetition)"
-msgstr ""
+msgstr "kaç kere (tekrar)"
 
 #: ../txt2regex-0.9.sh:233
-msgctxt "bir"
 msgid "one"
-msgstr ""
+msgstr "bir"
 
 #: ../txt2regex-0.9.sh:234
-msgctxt "sıfır ya da bir (isteğe bağlı)"
 msgid "zero or one (optional)"
-msgstr ""
+msgstr "sıfır ya da bir (isteğe bağlı)"
 
 #: ../txt2regex-0.9.sh:235
-msgctxt "sıfır ya da daha fazla"
 msgid "zero or more"
-msgstr ""
+msgstr "sıfır ya da daha fazla"
 
 #: ../txt2regex-0.9.sh:236
-msgctxt "bir ya da daha fazla"
 msgid "one or more"
-msgstr ""
+msgstr "bir ya da daha fazla"
 
 #: ../txt2regex-0.9.sh:237
-msgctxt "N tane"
 msgid "exactly N"
-msgstr ""
+msgstr "N tane"
 
 #: ../txt2regex-0.9.sh:238
-msgctxt "N'e kadar"
 msgid "up to N"
-msgstr ""
+msgstr "N'e kadar"
 
 #: ../txt2regex-0.9.sh:239
-msgctxt "en az N tane"
 msgid "at least N"
-msgstr ""
+msgstr "en az N tane"
 
 #: ../txt2regex-0.9.sh:243
-msgctxt "büyük harfler"
 msgid "uppercase letters"
-msgstr ""
+msgstr "büyük harfler"
 
 #: ../txt2regex-0.9.sh:244
-msgctxt "küçük harfler"
 msgid "lowercase letters"
-msgstr ""
+msgstr "küçük harfler"
 
 #: ../txt2regex-0.9.sh:245
-msgctxt "sayılar"
 msgid "numbers"
-msgstr ""
+msgstr "sayılar"
 
 #: ../txt2regex-0.9.sh:246
-msgctxt "altçizgi"
 msgid "underscore"
-msgstr ""
+msgstr "altçizgi"
 
 #: ../txt2regex-0.9.sh:247
-msgctxt "boşluk"
 msgid "space"
-msgstr ""
+msgstr "boşluk"
 
 #: ../txt2regex-0.9.sh:248
 msgid "TAB"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:253
-msgctxt "harfler"
 msgid "letters"
-msgstr ""
+msgstr "harfler"
 
 #: ../txt2regex-0.9.sh:257
-msgctxt "harfler ve sayılar"
 msgid "letters and numbers"
-msgstr ""
+msgstr "harfler ve sayılar"
 
 #: ../txt2regex-0.9.sh:258
-msgctxt "heksadesimal sayılar"
 msgid "hexadecimal numbers"
-msgstr ""
+msgstr "heksadesimal sayılar"
 
 #: ../txt2regex-0.9.sh:259
-msgctxt "boşluklar (space ve TAB)"
 msgid "whitespaces (space and TAB)"
-msgstr ""
+msgstr "boşluklar (space ve TAB)"
 
 #: ../txt2regex-0.9.sh:260
 msgid "graphic chars (not-whitespace)"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:265
-msgctxt "çık"
 msgid "quit"
-msgstr ""
+msgstr "çık"
 
 #: ../txt2regex-0.9.sh:266
-msgctxt "sıfırla"
 msgid "reset"
-msgstr ""
+msgstr "sıfırla"
 
 #: ../txt2regex-0.9.sh:267
-msgctxt "renk"
 msgid "color"
-msgstr ""
+msgstr "renk"
 
 #: ../txt2regex-0.9.sh:268
 msgid "programs"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:274
-msgctxt "veya"
 msgid "or"
-msgstr ""
+msgstr "veya"
 
 #: ../txt2regex-0.9.sh:275
-msgctxt "grup aç"
 msgid "open group"
-msgstr ""
+msgstr "grup aç"
 
 #: ../txt2regex-0.9.sh:276
-msgctxt "grubu kapat"
 msgid "close group"
-msgstr ""
+msgstr "grubu kapat"
 
 #: ../txt2regex-0.9.sh:277
-msgctxt "desteklenmiyor"
 msgid "not supported"
-msgstr ""
+msgstr "desteklenmiyor"
 
 #: ../txt2regex-0.9.sh:402
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr ""
 
 #: ../txt2regex-0.9.sh:406
-msgctxt "HAYIR"
 msgid "NO"
-msgstr ""
+msgstr "HAYIR"
 
 #: ../txt2regex-0.9.sh:415
 msgid "unknown program"
 msgstr ""
 
 #: ../txt2regex-0.9.sh:416
-msgctxt "EVET"
 msgid "YES"
-msgstr ""
+msgstr "EVET"
 
 #: ../txt2regex-0.9.sh:424
 msgid "program"
@@ -369,41 +313,33 @@ msgid ""
 msgstr ""
 
 #: ../txt2regex-0.9.sh:573
-msgctxt "hangisi?"
 msgid "which one?"
-msgstr ""
+msgstr "hangisi?"
 
 #: ../txt2regex-0.9.sh:585
-msgctxt "hangisi?"
 msgid "which?"
-msgstr ""
+msgstr "hangisi?"
 
 #: ../txt2regex-0.9.sh:761
-msgctxt "çık"
 msgid "exit"
-msgstr ""
+msgstr "çık"
 
 #: ../txt2regex-0.9.sh:762
-msgctxt "seçimi değiştirmek için harflere basın"
 msgid "press the letters to (un)select the items"
-msgstr ""
+msgstr "seçimi değiştirmek için harflere basın"
 
 #: ../txt2regex-0.9.sh:876
-msgctxt "tekrar edildi"
 msgid "repeated"
-msgstr ""
+msgstr "tekrar edildi"
 
 #: ../txt2regex-0.9.sh:877
-msgctxt "kere"
 msgid "times"
-msgstr ""
+msgstr "kere"
 
 #: ../txt2regex-0.9.sh:884
-msgctxt "Gerçekten çıkmak istiyor musunuz?"
 msgid "Really quit?"
-msgstr ""
+msgstr "Gerçekten çıkmak istiyor musunuz?"
 
 #: ../txt2regex-0.9.sh:897
-msgctxt "regex yok"
 msgid "no regex"
-msgstr ""
+msgstr "regex yok"
