@@ -6,11 +6,6 @@ September, 28th - 2004
 %!options(man) : -o txt2regex.man
 %!options(html): -o txt2regex.html --mask-email
 
-%!postproc(html): <HEAD>      '<HEAD>\n<STYLE TYPE="text/css">\n</STYLE>'
-%!postproc(html): (</STYLE>)  'body { margin:3em               ;} \n\1'
-%!postproc(html): (</STYLE>)  'a    { text-decoration:none     ;} \n\1'
-%!postproc(html): (</STYLE>)  'pre  { background-color:#ffffcc ;} \n\1'
-
 = NAME =
 
 txt2regex - the console Regular Expression Wizard
