@@ -9,7 +9,7 @@ The [clitest](https://github.com/aureliojargas/clitest) tool can identify and ru
 Make sure all the commands use the same Bash version and the same txt2regex file.
 
 ```console
-$ alias txt2regex="bash ./txt2regex.sh"
+$ txt2regex() { bash ./txt2regex.sh "$@"; }
 $
 ```
 
