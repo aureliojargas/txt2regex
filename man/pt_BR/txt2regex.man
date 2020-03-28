@@ -1,4 +1,4 @@
-.TH "TXT2REGEX" 1 "28 de Setembro de 2004 " ""
+.TH "TXT2REGEX" 1 "28 de Setembro de 2004" ""
 
 .SH NOME
 .P
@@ -161,22 +161,22 @@ $ txt2regex --make date2 --all
 A interface do programa é simples de usar e contém.
 
 .nf
-       +---------------------------------------+
-       | -> Menu principal                     |
-       | -> Menu de grupo                      |
-       |                                       |
-       | -> Regex para os prog selecionados    |
-       |    ...                                |
-       |    ...                                |
-       |                                       |
-       | -> Histórico                          |
-       | -> Seu prompt                         |
-       |                                       |
-       | -> A pergunta                         |
-       | -> As respostas                       |
-       |    ...                                |
-       |    ...                                |
-       +---------------------------------------+
+    +---------------------------------------+
+    | -> Menu principal                     |
+    | -> Menu de grupo                      |
+    |                                       |
+    | -> Regex para os prog selecionados    |
+    |    ...                                |
+    |    ...                                |
+    |                                       |
+    | -> Histórico                          |
+    | -> Seu prompt                         |
+    |                                       |
+    | -> A pergunta                         |
+    | -> As respostas                       |
+    |    ...                                |
+    |    ...                                |
+    +---------------------------------------+
 .fi
 
 
@@ -209,7 +209,7 @@ Página de manual traduzida para o Português por
 Gustavo Roberto Rodrigues Gonçalves.
 .SH COPYRIGHT
 .P
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright © 2000\-2020 Aurelio Jargas
 .P
 Este é um software livre; veja o código e as condições para copiar.
 Não há nenhuma garantia; Não pode ser vendido, é somente para uso

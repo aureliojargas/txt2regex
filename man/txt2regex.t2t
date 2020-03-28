@@ -123,22 +123,22 @@ $ txt2regex --make date2 --all
 The program interface is simple and easy to use. This is its contents:
 
 ```
-       +---------------------------------------+
-       | -> Top menu                           |
-       | -> Group menu                         |
-       |                                       |
-       | -> Regexes of the programs selected   |
-       |    ...                                |
-       |    ...                                |
-       |                                       |
-       | -> History                            |
-       | -> Your prompt                        |
-       |                                       |
-       | -> The question                       |
-       | -> The answers                        |
-       |    ...                                |
-       |    ...                                |
-       +---------------------------------------+
+    +---------------------------------------+
+    | -> Top menu                           |
+    | -> Group menu                         |
+    |                                       |
+    | -> Regexes of the programs selected   |
+    |    ...                                |
+    |    ...                                |
+    |                                       |
+    | -> History                            |
+    | -> Your prompt                        |
+    |                                       |
+    | -> The question                       |
+    | -> The answers                        |
+    |    ...                                |
+    |    ...                                |
+    +---------------------------------------+
 ```
 
 All the basic commands can be used on the numeric pad on the keyboard,
@@ -153,12 +153,12 @@ but remember to turn ON the NumLock key.
   |   **|**    | Insert an alternation (where allowed)
   |   **(**    | Open a new group (where allowed)
   |   **)**    | Close the opened group (if any)
-%Enter: redraw screen? (or just part of it?)
 
 = BUGS =
 
 Bug reports and contributions are VERY welcome!
-Please send them to the author.
+Please use the GitHub issues system:
+https://github.com/aureliojargas/txt2regex/issues
 
 = AUTHOR =
 
@@ -166,7 +166,7 @@ Written and maintained by Aurelio Jargas <verde@aurelio.net>
 
 = COPYRIGHT =
 
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright © 2000-2020 Aurelio Jargas
 
 This is free software; see the source for copying conditions. There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR

@@ -160,22 +160,22 @@ $ txt2regex --make date2 --all
 The program interface is simple and easy to use. This is its contents:
 
 .nf
-       +---------------------------------------+
-       | -> Top menu                           |
-       | -> Group menu                         |
-       |                                       |
-       | -> Regexes of the programs selected   |
-       |    ...                                |
-       |    ...                                |
-       |                                       |
-       | -> History                            |
-       | -> Your prompt                        |
-       |                                       |
-       | -> The question                       |
-       | -> The answers                        |
-       |    ...                                |
-       |    ...                                |
-       +---------------------------------------+
+    +---------------------------------------+
+    | -> Top menu                           |
+    | -> Group menu                         |
+    |                                       |
+    | -> Regexes of the programs selected   |
+    |    ...                                |
+    |    ...                                |
+    |                                       |
+    | -> History                            |
+    | -> Your prompt                        |
+    |                                       |
+    | -> The question                       |
+    | -> The answers                        |
+    |    ...                                |
+    |    ...                                |
+    +---------------------------------------+
 .fi
 
 
@@ -199,13 +199,14 @@ center, tab(^); cl.
 .SH BUGS
 .P
 Bug reports and contributions are VERY welcome!
-Please send them to the author.
+Please use the GitHub issues system:
+https://github.com/aureliojargas/txt2regex/issues
 .SH AUTHOR
 .P
 Written and maintained by Aurelio Jargas <verde@aurelio.net>
 .SH COPYRIGHT
 .P
-Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
+Copyright © 2000\-2020 Aurelio Jargas
 .P
 This is free software; see the source for copying conditions. There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
