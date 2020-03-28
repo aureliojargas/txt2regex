@@ -1,268 +1,322 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-<STYLE TYPE="text/css">
-body { margin:3em               ;} 
-a    { text-decoration:none     ;} 
-pre  { background-color:#ffffcc ;} 
-</STYLE>
-<META NAME="generator" CONTENT="http://txt2tags.org">
-<TITLE>TXT2REGEX</TITLE>
-</HEAD><BODY BGCOLOR="white" TEXT="black">
-<CENTER>
-<H1>TXT2REGEX</H1>
-<FONT SIZE="4">September, 28th - 2004</FONT>
-</CENTER>
+<!DOCTYPE html>
+<html>
+<head>
+<title>TXT2REGEX</title>
+<meta name="generator" content="http://txt2tags.org">
+<style>
+body{background-color:#fff;color:#000;}
+hr{background-color:#000;border:0;color:#000;}
+hr.heavy{height:5px;}
+hr.light{height:1px;}
+img{border:0;display:block;}
+img.right{margin:0 0 0 auto;}
+img.center{border:0;margin:0 auto;}
+table th,table td{padding:4px;}
+.center,header{text-align:center;}
+table.center {margin-left:auto; margin-right:auto;}
+.right{text-align:right;}
+.left{text-align:left;}
+.tableborder,.tableborder td,.tableborder th{border:1px solid #000;}
+.underline{text-decoration:underline;}
+</style>
+</head>
+<body>
+<header>
+<hgroup>
+<h1>TXT2REGEX</h1>
+<h3>September, 28th - 2004</h3>
+</hgroup>
+</header>
+<article>
 
+<div class="body" id="body">
 
-<H1>NAME</H1>
+<section>
+<h1>NAME</h1>
 
-<P>
+<p>
 txt2regex - the console Regular Expression Wizard
-</P>
+</p>
 
-<H1>SYNOPSIS</H1>
+</section>
+<section>
+<h1>SYNOPSIS</h1>
 
-<P>
-<B>txt2regex</B> [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
-</P>
-<P>
-<B>txt2regex</B> --showmeta
-</P>
-<P>
-<B>txt2regex</B> --showinfo PROGRAM [ --nocolor ]
-</P>
-<P>
-<B>txt2regex</B> --history VALUE [ --all | --prog PROGRAMS ]
-</P>
-<P>
-<B>txt2regex</B> --make LABEL [ --all | --prog PROGRAMS ]
-</P>
+<p>
+<strong>txt2regex</strong> [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+</p>
+<p>
+<strong>txt2regex</strong> --showmeta
+</p>
+<p>
+<strong>txt2regex</strong> --showinfo PROGRAM [ --nocolor ]
+</p>
+<p>
+<strong>txt2regex</strong> --history VALUE [ --all | --prog PROGRAMS ]
+</p>
+<p>
+<strong>txt2regex</strong> --make LABEL [ --all | --prog PROGRAMS ]
+</p>
 
-<H1>DESCRIPTION</H1>
+</section>
+<section>
+<h1>DESCRIPTION</h1>
 
-<P>
-<B>txt2regex</B> is a Regular Expression Wizard that converts human
+<p>
+<strong>txt2regex</strong> is a Regular Expression Wizard that converts human
 sentences to regexes.
-</P>
-<P>
+</p>
+<p>
 In a simple interactive console interface, the user answer questions
 and the program build the regexes for more than 20 programs, like Vim,
 Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
-</P>
-<P>
+</p>
+<p>
 It is a Shell Script 100% written with Bash builtin commands. No
 compilation or extra commands are needed, just download and run.
-</P>
-<P>
+</p>
+<p>
 Please visit the program homepage at
-<I>https://aurelio.net/projects/txt2regex/</I>.
-</P>
+<em>https://aurelio.net/projects/txt2regex/</em>.
+</p>
 
-<H1>OPTIONS</H1>
+</section>
+<section>
+<h1>OPTIONS</h1>
 
-<DL>
-<DT><B>--all</B></DT><DD>
+<dl>
+<dt><strong>--all</strong></dt><dd>
 Works with all registered programs
-<P></P>
-<DT><B>--help</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--help</strong></dt><dd>
 Prints the help message and quit
-<P></P>
-<DT><B>--history &lt;value&gt;</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--history &lt;value&gt;</strong></dt><dd>
 Prints to STDOUT a regex from a history data
-<P></P>
-<DT><B>--make &lt;target&gt;</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--make &lt;target&gt;</strong></dt><dd>
 Prints a ready regex for a common pattern
-<P></P>
-<DT><B>--nocolor</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--nocolor</strong></dt><dd>
 Self-explanatory
-<P></P>
-<DT><B>--prog &lt;p1,p2,...&gt;</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--prog &lt;p1,p2,...&gt;</strong></dt><dd>
 Choose which programs to use (separated by commas)
-<P></P>
-<DT><B>--showinfo &lt;program&gt;</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--showinfo &lt;program&gt;</strong></dt><dd>
 Prints regex info about the program
-<P></P>
-<DT><B>--showmeta</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--showmeta</strong></dt><dd>
 Prints a complete metachar table for all programs
-<P></P>
-<DT><B>--version</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--version</strong></dt><dd>
 Prints the program version and quit
-<P></P>
-<DT><B>--whitebg</B></DT><DD>
+<p></p>
+</dd>
+<dt><strong>--whitebg</strong></dt><dd>
 Colors adjusted to white background terminals
-</DL>
+</dd>
+</dl>
 
-<P>
+<p>
 By default, all options are turned OFF. Just call it with no options
 to launch the default interactive interface.
-</P>
+</p>
 
-<H1>DETAILS</H1>
+</section>
+<section>
+<h1>DETAILS</h1>
 
-<P>
-<B>--all</B> is cool but requires lots of lines (~35)
-</P>
-<P>
-<B>--nocolor</B> is strong, so it kills --whitebg
-</P>
-<P>
-<B>--showmeta</B> rules, try it
-</P>
-<P>
-<B>--showinfo</B> uses reverse video output, --nocolor turns it off
-</P>
-<P>
-<B>--history</B> is getting useful, stay tunned
-</P>
-<P>
-<B>--make</B> is a remedy for headaches
-</P>
-<P>
-<B>--prog</B> is nice to use your favorite programs, mix it with --make and --history
-</P>
+<p>
+<strong>--all</strong> is cool but requires lots of lines (~35)
+</p>
+<p>
+<strong>--nocolor</strong> is strong, so it kills --whitebg
+</p>
+<p>
+<strong>--showmeta</strong> rules, try it
+</p>
+<p>
+<strong>--showinfo</strong> uses reverse video output, --nocolor turns it off
+</p>
+<p>
+<strong>--history</strong> is getting useful, stay tunned
+</p>
+<p>
+<strong>--make</strong> is a remedy for headaches
+</p>
+<p>
+<strong>--prog</strong> is nice to use your favorite programs, mix it with --make and --history
+</p>
 
-<H1>EXAMPLES</H1>
+</section>
+<section>
+<h1>EXAMPLES</h1>
 
-<DL>
-<DT>Calling the program on the default interactive interface</DT><DD>
-<PRE>
-  $ txt2regex
-</PRE>
+<dl>
+<dt>Calling the program on the default interactive interface</dt><dd>
+<pre>
+$ txt2regex
+</pre>
 
-<P></P>
-<DT>Calling the program on a white terminal</DT><DD>
-<PRE>
-  $ xterm -fg black -bg white ; txt2regex --whitebg
-</PRE>
+<p></p>
+</dd>
+<dt>Calling the program on a white terminal</dt><dd>
+<pre>
+$ xterm -fg black -bg white ; txt2regex --whitebg
+</pre>
 
-<P></P>
-<DT>Getting information</DT><DD>
-<PRE>
-  $ txt2regex --showmeta
-</PRE>
+<p></p>
+</dd>
+<dt>Getting information</dt><dd>
+<pre>
+$ txt2regex --showmeta
+</pre>
 
-<P></P>
-<DT>Getting specific information</DT><DD>
-<PRE>
-  $ txt2regex --showinfo sed
-</PRE>
+<p></p>
+</dd>
+<dt>Getting specific information</dt><dd>
+<pre>
+$ txt2regex --showinfo sed
+</pre>
 
-<P></P>
-<DT>Calling it for specific programs</DT><DD>
-<PRE>
-  $ txt2regex --prog vim,sed,grep,python
-</PRE>
+<p></p>
+</dd>
+<dt>Calling it for specific programs</dt><dd>
+<pre>
+$ txt2regex --prog vim,sed,grep,python
+</pre>
 
-<P></P>
-<DT>Applying a history data</DT><DD>
-<PRE>
-  $ txt2regex --history '16421¤:01¤:'
-</PRE>
+<p></p>
+</dd>
+<dt>Applying a history data</dt><dd>
+<pre>
+$ txt2regex --history '16421¤:01¤:'
+</pre>
 
-<P></P>
-<DT>Getting ready regexes!</DT><DD>
-<PRE>
-  $ txt2regex --make hour
-  $ txt2regex --make number3 --prog perl
-  $ txt2regex --make date2 --all
-</PRE>
+<p></p>
+</dd>
+<dt>Getting ready regexes!</dt><dd>
+<pre>
+$ txt2regex --make hour
+$ txt2regex --make number3 --prog perl
+$ txt2regex --make date2 --all
+</pre>
 
-</DL>
+</dd>
+</dl>
 
-<H1>INTERFACE</H1>
+</section>
+<section>
+<h1>INTERFACE</h1>
 
-<P>
+<p>
 The program interface is simple and easy to use. This is its contents:
-</P>
+</p>
 
-<PRE>
-         +---------------------------------------+
-         | -&gt; Top menu                           |
-         | -&gt; Group menu                         |
-         |                                       |
-         | -&gt; Regexes of the programs selected   |
-         |    ...                                |
-         |    ...                                |
-         |                                       |
-         | -&gt; History                            |
-         | -&gt; Your prompt                        |
-         |                                       |
-         | -&gt; The question                       |
-         | -&gt; The answers                        |
-         |    ...                                |
-         |    ...                                |
-         +---------------------------------------+
-</PRE>
+<pre>
+       +---------------------------------------+
+       | -&gt; Top menu                           |
+       | -&gt; Group menu                         |
+       |                                       |
+       | -&gt; Regexes of the programs selected   |
+       |    ...                                |
+       |    ...                                |
+       |                                       |
+       | -&gt; History                            |
+       | -&gt; Your prompt                        |
+       |                                       |
+       | -&gt; The question                       |
+       | -&gt; The answers                        |
+       |    ...                                |
+       |    ...                                |
+       +---------------------------------------+
+</pre>
 
-<P>
+<p>
 All the basic commands can be used on the numeric pad on the keyboard,
 but remember to turn ON the NumLock key.
-</P>
+</p>
 
-<TABLE ALIGN="center" CELLPADDING="4">
-<TR>
-<TH>Command</TH>
-<TH>Description</TH>
-</TR>
-<TR>
-<TD ALIGN="center"><B>.</B></TD>
-<TD>Quit the program (with confirmation)</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>0</B></TD>
-<TD>Reset the Regular Expression</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>1-9</B></TD>
-<TD>Answers the questions</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>*</B></TD>
-<TD>Toggles color ON/OFF</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>/</B></TD>
-<TD>Add/remove programs on/from the list</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>|</B></TD>
-<TD>Insert an alternation (where allowed)</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>(</B></TD>
-<TD>Open a new group (where allowed)</TD>
-</TR>
-<TR>
-<TD ALIGN="center"><B>)</B></TD>
-<TD>Close the opened group (if any)</TD>
-</TR>
-</TABLE>
+<table style="margin-left: auto; margin-right: auto;">
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="center"><strong>.</strong></td>
+<td>Quit the program (with confirmation)</td>
+</tr>
+<tr>
+<td class="center"><strong>0</strong></td>
+<td>Reset the Regular Expression</td>
+</tr>
+<tr>
+<td class="center"><strong>1-9</strong></td>
+<td>Answers the questions</td>
+</tr>
+<tr>
+<td class="center"><strong>*</strong></td>
+<td>Toggles color ON/OFF</td>
+</tr>
+<tr>
+<td class="center"><strong>/</strong></td>
+<td>Add/remove programs on/from the list</td>
+</tr>
+<tr>
+<td class="center"><strong>|</strong></td>
+<td>Insert an alternation (where allowed)</td>
+</tr>
+<tr>
+<td class="center"><strong>(</strong></td>
+<td>Open a new group (where allowed)</td>
+</tr>
+<tr>
+<td class="center"><strong>)</strong></td>
+<td>Close the opened group (if any)</td>
+</tr>
+</table>
 
-<H1>BUGS</H1>
+</section>
+<section>
+<h1>BUGS</h1>
 
-<P>
+<p>
 Bug reports and contributions are VERY welcome!
 Please send them to the author.
-</P>
+</p>
 
-<H1>AUTHOR</H1>
+</section>
+<section>
+<h1>AUTHOR</h1>
 
-<P>
+<p>
 Written and maintained by Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
-</P>
+</p>
 
-<H1>COPYRIGHT</H1>
+</section>
+<section>
+<h1>COPYRIGHT</h1>
 
-<P>
+<p>
 Copyright © 2000, 2001, 2002, 2003, 2004 Aurelio Marinho Jargas
-</P>
-<P>
+</p>
+<p>
 This is free software; see the source for copying conditions. There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 PURPOSE.
-</P>
+</p>
+</section>
+</div>
 
-<!-- html code generated by txt2tags 2.6.1087 (http://txt2tags.org) -->
-<!-- cmdline: txt2tags -t html txt2regex.t2t -->
-</BODY></HTML>
+<!-- html code generated by txt2tags 3.4 (http://txt2tags.org) -->
+<!-- cmdline: txt2tags -t html man/txt2regex.t2t -->
+</article></body></html>
