@@ -97,6 +97,10 @@ doc:
 	@txt2tags -t man  man/pt_BR/txt2regex.t2t
 	@txt2tags -t html man/pt_BR/txt2regex.t2t
 
-check:
+check: clitest
 	shellcheck $(SHSKEL)
-	clitest --progress none cmdline.md
+	./clitest --progress none cmdline.md
+
+clitest:
+	curl -sOL https://raw.githubusercontent.com/aureliojargas/clitest/master/clitest
+	chmod +x ./clitest
