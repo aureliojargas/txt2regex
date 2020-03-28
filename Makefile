@@ -98,7 +98,7 @@ doc:
 	@txt2tags -t html man/pt_BR/txt2regex.t2t
 
 check: clitest
-	shellcheck $(SHSKEL)
+	shellcheck $(SHSKEL) tools/*.sh
 	./clitest --progress none cmdline.md
 
 clitest:
