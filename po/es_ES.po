@@ -1,296 +1,297 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2004-09-29 10:54 BRT\n"
+"POT-Creation-Date: 2020-03-29 23:50 CEST\n"
 "PO-Revision-Date: 2002-03-12 20:03-0000\n"
-"Last-Translator: Diego Moya Vel·zquez <diego.moya@madrid.com>\n"
+"Last-Translator: Diego Moya Vel√°zquez <diego.moya@madrid.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8BIT\n"
 
-#: ../txt2regex-0.9.sh:100
+#: txt2regex.sh:105
 msgid "usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:101
+#: txt2regex.sh:106
 msgid "       txt2regex --showmeta"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:102
-msgid "       txt2regex --showinfo PROGRAM [--nocolor]"
+#: txt2regex.sh:107
+msgid "       txt2regex --showinfo PROGRAM [ --nocolor ]"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:103
+#: txt2regex.sh:108
 msgid "       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:104
+#: txt2regex.sh:109
 msgid "       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:106
+#: txt2regex.sh:111
 msgid "OPTIONS (they are default OFF):"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:108
+#: txt2regex.sh:113
 msgid "  --all               Works with all registered programs"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:109
+#: txt2regex.sh:114
 msgid "  --nocolor           Don't use colors"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:110
+#: txt2regex.sh:115
 msgid "  --whitebg           Colors adjusted for white background terminals"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:111
+#: txt2regex.sh:116
 msgid "  --prog PROGRAMS     Choose which programs to use, separated by commas"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:113
+#: txt2regex.sh:118
 msgid "  --showmeta          Prints a metacharacters table with all programs"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:114
+#: txt2regex.sh:119
 msgid "  --showinfo PROGRAM  Prints regex info about the specified program"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:115
+#: txt2regex.sh:120
 msgid "  --history VALUE     Prints a regex from the given history data"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:116
+#: txt2regex.sh:121
 msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:118
-msgid "  --version           Prints the program version and quit"
+#: txt2regex.sh:123
+msgid "  -V, --version       Prints the program version and quit"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:119
-msgid "  --help              Prints the help message and quit"
+#: txt2regex.sh:124
+msgid "  -h, --help          Prints the help message and quit"
 msgstr ""
 
-#: ../txt2regex-0.9.sh:121
+#: txt2regex.sh:126
 msgid "Please read the program Man Page for more information."
 msgstr ""
 
-#: ../txt2regex-0.9.sh:180
+#: txt2regex.sh:216
+msgid "unknown program"
+msgstr "programa desconocido"
+
+#: txt2regex.sh:246
 msgid "invalid argument"
-msgstr "argumento no v·lido"
+msgstr "argumento no v√°lido"
 
-#: ../txt2regex-0.9.sh:181
+#: txt2regex.sh:247
 msgid "valid names are:"
-msgstr "los nobres v·lidos son:"
+msgstr "los nobres v√°lidos son:"
 
-#: ../txt2regex-0.9.sh:201
+#: txt2regex.sh:294
 msgid "invalid option"
-msgstr "opciÛn no v·lida"
+msgstr "opci√≥n no v√°lida"
 
-#: ../txt2regex-0.9.sh:212
+#: txt2regex.sh:308
 msgid "start to match"
 msgstr "hacer coincidir"
 
-#: ../txt2regex-0.9.sh:213
+#: txt2regex.sh:309
 msgid "on the line beginning"
-msgstr "al comienzo de la lÌnea"
+msgstr "al comienzo de la l√≠nea"
 
-#: ../txt2regex-0.9.sh:214
+#: txt2regex.sh:310
 msgid "in any part of the line"
-msgstr "en cualquier parte de la lÌnea"
+msgstr "en cualquier parte de la l√≠nea"
 
-#: ../txt2regex-0.9.sh:218
+#: txt2regex.sh:314
 msgid "followed by"
 msgstr "seguido de"
 
-#: ../txt2regex-0.9.sh:219
+#: txt2regex.sh:315
 msgid "any character"
-msgstr "un car·cter cualquiera"
+msgstr "un car√°cter cualquiera"
 
-#: ../txt2regex-0.9.sh:220
+#: txt2regex.sh:316
 msgid "a specific character"
-msgstr "un car·cter especÌfico"
+msgstr "un car√°cter espec√≠fico"
 
-#: ../txt2regex-0.9.sh:221
+#: txt2regex.sh:317
 msgid "a literal string"
 msgstr "una cadena literal de caracteres"
 
-#: ../txt2regex-0.9.sh:222
+#: txt2regex.sh:318
 msgid "an allowed characters list"
 msgstr "una lista de caracteres permitidos"
 
-#: ../txt2regex-0.9.sh:223
+#: txt2regex.sh:319
 msgid "a forbidden characters list"
 msgstr "una lista de caracteres prohibidos"
 
-#: ../txt2regex-0.9.sh:224
+#: txt2regex.sh:320
 msgid "a special combination"
-msgstr "una combinaciÛn especial"
+msgstr "una combinaci√≥n especial"
 
-#: ../txt2regex-0.9.sh:225
+#: txt2regex.sh:321
 msgid "a POSIX combination (locale aware)"
-msgstr "una combinaciÛn POSIX (incluyendo caracteres locales)"
+msgstr "una combinaci√≥n POSIX (incluyendo caracteres locales)"
 
-#: ../txt2regex-0.9.sh:226
+#: txt2regex.sh:322
 #, fuzzy
 msgid "a ready regex (not implemented)"
 msgstr "una RegEx lista para usar (no implementado)"
 
-#: ../txt2regex-0.9.sh:227
+#: txt2regex.sh:323
 msgid "anything"
 msgstr "cualquier cosa"
 
-#: ../txt2regex-0.9.sh:231
+#: txt2regex.sh:327
 msgid "how many times (repetition)"
-msgstr "cu·ntas veces (repeticiÛn)"
+msgstr "cu√°ntas veces (repetici√≥n)"
 
-#: ../txt2regex-0.9.sh:232
+#: txt2regex.sh:328
 msgid "one"
 msgstr "una"
 
-#: ../txt2regex-0.9.sh:233
+#: txt2regex.sh:329
 msgid "zero or one (optional)"
 msgstr "cero o una (opcional)"
 
-#: ../txt2regex-0.9.sh:234
+#: txt2regex.sh:330
 msgid "zero or more"
-msgstr "cero o m·s"
+msgstr "cero o m√°s"
 
-#: ../txt2regex-0.9.sh:235
+#: txt2regex.sh:331
 msgid "one or more"
-msgstr "una o m·s"
+msgstr "una o m√°s"
 
-#: ../txt2regex-0.9.sh:236
+#: txt2regex.sh:332
 msgid "exactly N"
 msgstr "exactamente N"
 
-#: ../txt2regex-0.9.sh:237
+#: txt2regex.sh:333
 msgid "up to N"
 msgstr "como mucho N"
 
-#: ../txt2regex-0.9.sh:238
+#: txt2regex.sh:334
 msgid "at least N"
-msgstr "como mÌnimo N"
+msgstr "como m√≠nimo N"
 
-#: ../txt2regex-0.9.sh:242
+#: txt2regex.sh:338
 msgid "uppercase letters"
-msgstr "letras may˙sculas"
+msgstr "letras may√∫sculas"
 
-#: ../txt2regex-0.9.sh:243
+#: txt2regex.sh:339
 msgid "lowercase letters"
-msgstr "letras min˙sculas"
+msgstr "letras min√∫sculas"
 
-#: ../txt2regex-0.9.sh:244
+#: txt2regex.sh:340
 msgid "numbers"
 msgstr "cifras"
 
-#: ../txt2regex-0.9.sh:245
+#: txt2regex.sh:341
 msgid "underscore"
-msgstr "car·cter de subrayado"
+msgstr "car√°cter de subrayado"
 
-#: ../txt2regex-0.9.sh:246
+#: txt2regex.sh:342
 msgid "space"
 msgstr "espacio"
 
-#: ../txt2regex-0.9.sh:247
+#: txt2regex.sh:343
 msgid "TAB"
 msgstr "TAB"
 
-#: ../txt2regex-0.9.sh:252
+#: txt2regex.sh:348
 msgid "letters"
 msgstr "letras"
 
-#: ../txt2regex-0.9.sh:256
+#: txt2regex.sh:352
 msgid "letters and numbers"
 msgstr "cifras y letras"
 
-#: ../txt2regex-0.9.sh:257
+#: txt2regex.sh:353
 msgid "hexadecimal numbers"
 msgstr "cifras hexadecimales"
 
-#: ../txt2regex-0.9.sh:258
+#: txt2regex.sh:354
 msgid "whitespaces (space and TAB)"
 msgstr "blancos (espacio y TAB)"
 
-#: ../txt2regex-0.9.sh:259
+#: txt2regex.sh:355
 msgid "graphic chars (not-whitespace)"
-msgstr "caracteres gr·ficos (no blancos)"
+msgstr "caracteres gr√°ficos (no blancos)"
 
-#: ../txt2regex-0.9.sh:264
+#: txt2regex.sh:360
 msgid "quit"
 msgstr "salir"
 
-#: ../txt2regex-0.9.sh:265
+#: txt2regex.sh:361
 msgid "reset"
 msgstr "reiniciar"
 
-#: ../txt2regex-0.9.sh:266
+#: txt2regex.sh:362
 msgid "color"
 msgstr "color"
 
-#: ../txt2regex-0.9.sh:267
+#: txt2regex.sh:363
 msgid "programs"
 msgstr "programas"
 
-#: ../txt2regex-0.9.sh:273
+#: txt2regex.sh:369
 msgid "or"
 msgstr "o"
 
-#: ../txt2regex-0.9.sh:274
+#: txt2regex.sh:370
 msgid "open group"
 msgstr "abrir grupo"
 
-#: ../txt2regex-0.9.sh:275
+#: txt2regex.sh:371
 msgid "close group"
 msgstr "cerrar grupo"
 
-#: ../txt2regex-0.9.sh:276
+#: txt2regex.sh:372
 msgid "not supported"
 msgstr "no soportado"
 
-#: ../txt2regex-0.9.sh:401
+#: txt2regex.sh:523
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr "NOTA: . [] [^] y * son iguales para todos los programas."
 
-#: ../txt2regex-0.9.sh:405
+#: txt2regex.sh:527
 msgid "NO"
 msgstr "NO"
 
-#: ../txt2regex-0.9.sh:414
-msgid "unknown program"
-msgstr "programa desconocido"
-
-#: ../txt2regex-0.9.sh:415
+#: txt2regex.sh:536
 msgid "YES"
 msgstr "SI"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:551
 msgid "program"
 msgstr "programa"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:552
 msgid "metas"
 msgstr "metacaracteres"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:553
 msgid "esc meta"
-msgstr "metacar·cter de escape"
+msgstr "metacar√°cter de escape"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:554
 msgid "need esc"
 msgstr "necesitan escape"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:555
 msgid "\\t in []"
 msgstr "\\t en []"
 
-#: ../txt2regex-0.9.sh:423
+#: txt2regex.sh:556
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: ../txt2regex-0.9.sh:455
+#: txt2regex.sh:606
 #, fuzzy
 msgid ""
 "error:\n"
@@ -299,39 +300,39 @@ msgid ""
 "  less programs to show the regex.\\n\\n"
 msgstr ""
 "error:\n"
-"  Su pantalla tiene %s lÌneas y debe tener como mÌnimo %s para que\n"
-"  este programa quepa en ella. Aumente el n˙mero de lÌneas o\n"
+"  Su pantalla tiene %s l√≠neas y debe tener como m√≠nimo %s para que\n"
+"  este programa quepa en ella. Aumente el n√∫mero de l√≠neas o\n"
 "  seleccione menos programas para mostrar la RegEx.\\n\\n"
 
-#: ../txt2regex-0.9.sh:572
+#: txt2regex.sh:799
 msgid "which one?"
-msgstr "øcu·l?"
+msgstr "¬øcu√°l?"
 
-#: ../txt2regex-0.9.sh:584
+#: txt2regex.sh:818
 msgid "which?"
-msgstr "øcu·les?"
+msgstr "¬øcu√°les?"
 
-#: ../txt2regex-0.9.sh:760
+#: txt2regex.sh:1120
 msgid "exit"
 msgstr "salir"
 
-#: ../txt2regex-0.9.sh:761
+#: txt2regex.sh:1121
 msgid "press the letters to (un)select the items"
 msgstr "pulse las letras para (des)ativar los items"
 
-#: ../txt2regex-0.9.sh:875
+#: txt2regex.sh:1308
 msgid "repeated"
 msgstr "repetido"
 
-#: ../txt2regex-0.9.sh:876
+#: txt2regex.sh:1310
 msgid "times"
 msgstr "veces"
 
-#: ../txt2regex-0.9.sh:883
+#: txt2regex.sh:1319
 msgid "Really quit?"
-msgstr "øSalir?"
+msgstr "¬øSalir?"
 
-#: ../txt2regex-0.9.sh:896
+#: txt2regex.sh:1345
 #, fuzzy
 msgid "no regex"
 msgstr "ninguna RegEx"
@@ -347,14 +348,12 @@ msgstr "ninguna RegEx"
 #~ "  --all                 works with all registered programs\n"
 #~ "  --nocolor             self-explanatory\n"
 #~ "  --whitebg             colors adjusted to white background terminals\n"
-#~ "  --showmeta            prints a complete metachar table for all "
-#~ "programs\n"
+#~ "  --showmeta            prints a complete metachar table for all programs\n"
 #~ "  --showinfo <program>  prints regex info about the program\n"
 #~ "\n"
 #~ "  --history <value>     prints to STDOUT a RegEx from a history data\n"
 #~ "  --make <target>       prints a ready RegEx for a common pattern\n"
-#~ "  --prog <p1,p2,...>    choose which programs to use (separated by "
-#~ "commas)\n"
+#~ "  --prog <p1,p2,...>    choose which programs to use (separated by commas)\n"
 #~ "\n"
 #~ "  --version             prints the program version and quit\n"
 #~ "  --help                prints the help message and quit\n"
@@ -366,24 +365,19 @@ msgstr "ninguna RegEx"
 #~ "     txt2regex [--all|--prog <p1,p2>] --make <tipo>\n"
 #~ "     txt2regex --history <valor>\n"
 #~ "\n"
-#~ "OPCIONES (por defecto est·n DESACTIVADAS):\n"
+#~ "OPCIONES (por defecto est√°n DESACTIVADAS):\n"
 #~ "\n"
 #~ "  --all                  funciona com todos los programas registrados\n"
 #~ "  --nocolor              no usar colores\n"
-#~ "  --whitebg              colores ajustados para terminales de fondo "
-#~ "blanco\n"
-#~ "  --showmeta             muestra una tabla con los metacaracteres para "
-#~ "todos los programas\n"
-#~ "  --showinfo <programa>  muestra informaciÛn sobre las RegEx del "
-#~ "programa\n"
+#~ "  --whitebg              colores ajustados para terminales de fondo blanco\n"
+#~ "  --showmeta             muestra una tabla con los metacaracteres para todos los programas\n"
+#~ "  --showinfo <programa>  muestra informaci√≥n sobre las RegEx del programa\n"
 #~ "\n"
-#~ "  --history <valor>      muestra en la salida est·ndar una RegEx guardada "
-#~ "en el histÛrico\n"
-#~ "  --make <nombre>        muestra una RegEx para una expresiÛn de un tipo "
-#~ "habitual\n"
-#~ "  --prog <p1,p2,...>     escoge quÈ programas usar (separados por comas)\n"
+#~ "  --history <valor>      muestra en la salida est√°ndar una RegEx guardada en el hist√≥rico\n"
+#~ "  --make <nombre>        muestra una RegEx para una expresi√≥n de un tipo habitual\n"
+#~ "  --prog <p1,p2,...>     escoge qu√© programas usar (separados por comas)\n"
 #~ "\n"
-#~ "  --version              muestra la versiÛn del programa y termina\n"
+#~ "  --version              muestra la versi√≥n del programa y termina\n"
 #~ "  --help                 muestra el mensaje de ayuda y termina\n"
 #~ "\n"
-#~ "para m·s detalles, lea el archivo README."
+#~ "para m√°s detalles, lea el archivo README."
