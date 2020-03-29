@@ -1,196 +1,175 @@
-.TH "TXT2REGEX" 1 "September, 28th - 2004" ""
+.TH "TXT2REGEX" 1 "March, 29th - 2020" ""
 
 .SH NAME
 .P
-txt2regex \- the console Regular Expression Wizard
+\fBtxt2regex\fR \-\- console regular expression wizard
 .SH SYNOPSIS
 .P
-\fBtxt2regex\fR [ \-\-nocolor | \-\-whitebg ] [ \-\-all | \-\-prog PROGRAMS ]
+\fBtxt2regex\fR [\fB\-\-nocolor\fR|\fB\-\-whitebg\fR] [\fB\-\-all\fR|\fB\-\-prog\fR \fIprograms\fR]
 .P
-\fBtxt2regex\fR \-\-showmeta
+\fBtxt2regex\fR \fB\-\-showmeta\fR
 .P
-\fBtxt2regex\fR \-\-showinfo PROGRAM [ \-\-nocolor ]
+\fBtxt2regex\fR \fB\-\-showinfo\fR \fIprogram\fR [\fB\-\-nocolor\fR]
 .P
-\fBtxt2regex\fR \-\-history VALUE [ \-\-all | \-\-prog PROGRAMS ]
+\fBtxt2regex\fR \fB\-\-history\fR \fIvalue\fR [\fB\-\-all\fR|\fB\-\-prog\fR \fIprograms\fR]
 .P
-\fBtxt2regex\fR \-\-make LABEL [ \-\-all | \-\-prog PROGRAMS ]
+\fBtxt2regex\fR \fB\-\-make\fR \fIlabel\fR [\fB\-\-all\fR|\fB\-\-prog\fR \fIprograms\fR]
 .SH DESCRIPTION
 .P
-\fBtxt2regex\fR is a Regular Expression Wizard that converts human
+\fBtxt2regex\fR is a regular expression wizard that converts human
 sentences to regexes.
 .P
-In a simple interactive console interface, the user answer questions
-and the program build the regexes for more than 20 programs, like Vim,
-Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
+In a simple interactive console interface, the user answer questions and
+\fBtxt2regex\fR builds the regexes for more than 20 programs.
 .P
-It is a Shell Script 100% written with Bash builtin commands. No
-compilation or extra commands are needed, just download and run.
-.P
-Please visit the program homepage at
-\fIhttps://aurelio.net/projects/txt2regex/\fR.
+\fIhttps://aurelio.net/projects/txt2regex/\fR
 .SH OPTIONS
 
 .TP
 \fB\-\-all\fR
-Works with all registered programs
+Select all the available programs. Be aware that the list of available
+programs is long. You will need a terminal window with more than 40
+lines for the user interface to fit. Also make sure that the \fB$LINES\fR
+shell variable is exported, so \fBtxt2regex\fR can detect the current
+number of available lines.
 
 .TP
-\fB\-\-help\fR
-Prints the help message and quit
+\fB\-h\fR, \fB\-\-help\fR
+Print the help message and quit.
 
 .TP
 \fB\-\-history <value>\fR
-Prints to STDOUT a regex from a history data
+Print a regex from the given history data. The history value is shown in
+the last screen of the wizard, when you quit.
 
 .TP
-\fB\-\-make <target>\fR
-Prints a ready regex for a common pattern
+\fB\-\-make <label>\fR
+Print a ready regex for the specified label. Inform an empty label to
+see the list of available labels.
 
 .TP
 \fB\-\-nocolor\fR
-Self\-explanatory
+Do not use colors.
 
 .TP
-\fB\-\-prog <p1,p2,...>\fR
-Choose which programs to use (separated by commas)
+\fB\-\-prog <program1,program2,...>\fR
+Specify which programs to use, separated by commas. Use \fB\-\-showmeta\fR
+to see the complete list of available programs.
 
 .TP
 \fB\-\-showinfo <program>\fR
-Prints regex info about the program
+Print regex\-related info about the specified program. Use \fB\-\-nocolor\fR
+to have a text\-only output (no control characters).
 
 .TP
 \fB\-\-showmeta\fR
-Prints a complete metachar table for all programs
+Print a metacharacters table featuring all the programs.
 
 .TP
-\fB\-\-version\fR
-Prints the program version and quit
+\fB\-V\fR, \fB\-\-version\fR
+Print the program version and quit. Note that the GitHub code always
+shows version zero. The real version is set only when using
+\fBmake install\fR.
 
 .TP
 \fB\-\-whitebg\fR
-Colors adjusted to white background terminals
+Adjust colors for white background terminals.
 
-.P
-By default, all options are turned OFF. Just call it with no options
-to launch the default interactive interface.
-.SH DETAILS
-.P
-\fB\-\-all\fR is cool but requires lots of lines (~35)
-.P
-\fB\-\-nocolor\fR is strong, so it kills \-\-whitebg
-.P
-\fB\-\-showmeta\fR rules, try it
-.P
-\fB\-\-showinfo\fR uses reverse video output, \-\-nocolor turns it off
-.P
-\fB\-\-history\fR is getting useful, stay tunned
-.P
-\fB\-\-make\fR is a remedy for headaches
-.P
-\fB\-\-prog\fR is nice to use your favorite programs, mix it with \-\-make and \-\-history
 .SH EXAMPLES
 
 .TP
-Calling the program on the default interactive interface
+Using it as a wizard (interactive interface):
+
 
 .nf
-$ txt2regex
+txt2regex
 .fi
 
 
 
 .TP
-Calling the program on a white terminal
+Specify a custom selection of programs for the wizard:
+
 
 .nf
-$ xterm -fg black -bg white ; txt2regex --whitebg
+txt2regex --prog perl,python,php,javascript
 .fi
 
 
 
 .TP
-Getting information
+Getting an extensive metacharacters table:
+
 
 .nf
-$ txt2regex --showmeta
+txt2regex --showmeta
 .fi
 
 
 
 .TP
-Getting specific information
+Getting regex\-related information about sed:
+
 
 .nf
-$ txt2regex --showinfo sed
+txt2regex --showinfo sed
 .fi
 
 
 
 .TP
-Calling it for specific programs
+Replay a regex by using history data:
+
 
 .nf
-$ txt2regex --prog vim,sed,grep,python
+txt2regex --history '16421¤:01¤:'
 .fi
 
 
 
 .TP
-Applying a history data
+Getting handy ready\-to\-use regexes for common patterns:
+
 
 .nf
-$ txt2regex --history '16421¤:01¤:'
+txt2regex --make hour
+txt2regex --make number3 --prog perl
+txt2regex --make date2 --all
 .fi
 
 
 
-.TP
-Getting ready regexes!
+.SH WIZARD INTERFACE
 
 .nf
-$ txt2regex --make hour
-$ txt2regex --make number3 --prog perl
-$ txt2regex --make date2 --all
++---------------------------------------+
+| Top menu                              |
+| Group menu                            |
+|                                       |
+| Regexes of the selected programs      |
+| ...                                   |
+| ...                                   |
+|                                       |
+| History                               |
+| Prompt                                |
+|                                       |
+| The question                          |
+| The answers                           |
+| ...                                   |
+| ...                                   |
++---------------------------------------+
 .fi
 
 
-
-.SH INTERFACE
-.P
-The program interface is simple and easy to use. This is its contents:
-
-.nf
-    +---------------------------------------+
-    | -> Top menu                           |
-    | -> Group menu                         |
-    |                                       |
-    | -> Regexes of the programs selected   |
-    |    ...                                |
-    |    ...                                |
-    |                                       |
-    | -> History                            |
-    | -> Your prompt                        |
-    |                                       |
-    | -> The question                       |
-    | -> The answers                        |
-    |    ...                                |
-    |    ...                                |
-    +---------------------------------------+
-.fi
-
-
-.P
-All the basic commands can be used on the numeric pad on the keyboard,
-but remember to turn ON the NumLock key.
+.SH WIZARD COMMANDS
 
 .TS
-center, tab(^); cl.
- \fBCommand\fR^\fBDescription\fR
+tab(^); cl.
  \fB.\fR^Quit the program (with confirmation)
- \fB0\fR^Reset the Regular Expression
+ \fB0\fR^Reset the regular expression
  \fB1\-9\fR^Answers the questions
  \fB*\fR^Toggles color ON/OFF
- \fB/\fR^Add/remove programs on/from the list
+ \fB/\fR^Add/remove programs
  \fB|\fR^Insert an alternation (where allowed)
  \fB(\fR^Open a new group (where allowed)
  \fB)\fR^Close the opened group (if any)
@@ -198,19 +177,13 @@ center, tab(^); cl.
 
 .SH BUGS
 .P
-Bug reports and contributions are VERY welcome!
-Please use the GitHub issues system:
 https://github.com/aureliojargas/txt2regex/issues
 .SH AUTHOR
 .P
-Written and maintained by Aurelio Jargas <verde@aurelio.net>
+Aurelio Jargas <verde@aurelio.net>
 .SH COPYRIGHT
 .P
-Copyright © 2000\-2020 Aurelio Jargas
-.P
-This is free software; see the source for copying conditions. There is
-NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.
+Copyright © 2001\-2020 Aurelio Jargas, GNU GPL v2
 
 .\" man code generated by txt2tags 3.4 (http://txt2tags.org)
 .\" cmdline: txt2tags -t man man/txt2regex.t2t
