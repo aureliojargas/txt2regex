@@ -26,7 +26,7 @@ clean:
 
 check: clitest.sh
 	shellcheck $(SHSKEL) tools/*.sh
-	bash ./clitest.sh --first --progress none cmdline.md
+	bash ./clitest.sh --progress none cmdline.md
 
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
