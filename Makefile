@@ -55,7 +55,7 @@ pot:
 		printf '"%s"\n' 'PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n'; \
 		printf '"%s"\n' 'Last-Translator: FULL NAME <EMAIL@ADDRESS>\n'; \
 		printf '"%s"\n' 'MIME-Version: 1.0\n'; \
-		printf '"%s"\n' 'Content-Type: text/plain; charset=utf-8\n'; \
+		printf '"%s"\n' 'Content-Type: text/plain; charset=UTF-8\n'; \
 		printf '"%s"\n' 'Content-Transfer-Encoding: 8bit\n'; \
 		bash --dump-po-strings $(SHSKEL); \
 	) > $(POTFILE); \
@@ -64,7 +64,7 @@ pot:
 po: pot
 	@for pofile in $(PODIR)/*.po; do \
 		printf "Merging %s..." "$$pofile"; \
-		msgmerge --update $$pofile $(POTFILE); \
+		msgmerge --update --no-wrap $$pofile $(POTFILE); \
 	done; \
 	printf 'Remember to grep for the fuzzy messages in all .po files\n'
 
