@@ -118,6 +118,8 @@ $ txt2regex --showinfo | sed 1q | cut -d : -f 1
 usage
 $ txt2regex --showinfo foo
 ERROR: unknown program: foo
+$ txt2regex --showinfo sed,python
+ERROR: unknown program: sed,python
 $
 ```
 
