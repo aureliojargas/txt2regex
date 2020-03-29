@@ -24,7 +24,7 @@ table.center {margin-left:auto; margin-right:auto;}
 <header>
 <hgroup>
 <h1>TXT2REGEX</h1>
-<h3>September, 28th - 2004</h3>
+<h3>March, 29th - 2020</h3>
 </hgroup>
 </header>
 <article>
@@ -35,7 +35,7 @@ table.center {margin-left:auto; margin-right:auto;}
 <h1>NAME</h1>
 
 <p>
-txt2regex - the console Regular Expression Wizard
+<strong>txt2regex</strong> -- console regular expression wizard
 </p>
 
 </section>
@@ -43,19 +43,19 @@ txt2regex - the console Regular Expression Wizard
 <h1>SYNOPSIS</h1>
 
 <p>
-<strong>txt2regex</strong> [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+<strong>txt2regex</strong> [<strong>--nocolor</strong>|<strong>--whitebg</strong>] [<strong>--all</strong>|<strong>--prog</strong> <em>programs</em>]
 </p>
 <p>
-<strong>txt2regex</strong> --showmeta
+<strong>txt2regex</strong> <strong>--showmeta</strong>
 </p>
 <p>
-<strong>txt2regex</strong> --showinfo PROGRAM [ --nocolor ]
+<strong>txt2regex</strong> <strong>--showinfo</strong> <em>program</em> [<strong>--nocolor</strong>]
 </p>
 <p>
-<strong>txt2regex</strong> --history VALUE [ --all | --prog PROGRAMS ]
+<strong>txt2regex</strong> <strong>--history</strong> <em>value</em> [<strong>--all</strong>|<strong>--prog</strong> <em>programs</em>]
 </p>
 <p>
-<strong>txt2regex</strong> --make LABEL [ --all | --prog PROGRAMS ]
+<strong>txt2regex</strong> <strong>--make</strong> <em>label</em> [<strong>--all</strong>|<strong>--prog</strong> <em>programs</em>]
 </p>
 
 </section>
@@ -63,21 +63,15 @@ txt2regex - the console Regular Expression Wizard
 <h1>DESCRIPTION</h1>
 
 <p>
-<strong>txt2regex</strong> is a Regular Expression Wizard that converts human
+<strong>txt2regex</strong> is a regular expression wizard that converts human
 sentences to regexes.
 </p>
 <p>
-In a simple interactive console interface, the user answer questions
-and the program build the regexes for more than 20 programs, like Vim,
-Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
+In a simple interactive console interface, the user answer questions and
+<strong>txt2regex</strong> builds the regexes for more than 20 programs.
 </p>
 <p>
-It is a Shell Script 100% written with Bash builtin commands. No
-compilation or extra commands are needed, just download and run.
-</p>
-<p>
-Please visit the program homepage at
-<em>https://aurelio.net/projects/txt2regex/</em>.
+<em>https://aurelio.net/projects/txt2regex/</em>
 </p>
 
 </section>
@@ -86,129 +80,107 @@ Please visit the program homepage at
 
 <dl>
 <dt><strong>--all</strong></dt><dd>
-Works with all registered programs
+Select all the available programs. Be aware that the list of available
+programs is long. You will need a terminal window with more than 40
+lines for the user interface to fit. Also make sure that the <strong>$LINES</strong>
+shell variable is exported, so <strong>txt2regex</strong> can detect the current
+number of available lines.
 <p></p>
 </dd>
-<dt><strong>--help</strong></dt><dd>
-Prints the help message and quit
+<dt><strong>-h</strong>, <strong>--help</strong></dt><dd>
+Print the help message and quit.
 <p></p>
 </dd>
 <dt><strong>--history &lt;value&gt;</strong></dt><dd>
-Prints to STDOUT a regex from a history data
+Print a regex from the given history data. The history value is shown in
+the last screen of the wizard, when you quit.
 <p></p>
 </dd>
-<dt><strong>--make &lt;target&gt;</strong></dt><dd>
-Prints a ready regex for a common pattern
+<dt><strong>--make &lt;label&gt;</strong></dt><dd>
+Print a ready regex for the specified label. Inform an empty label to
+see the list of available labels.
 <p></p>
 </dd>
 <dt><strong>--nocolor</strong></dt><dd>
-Self-explanatory
+Do not use colors.
 <p></p>
 </dd>
-<dt><strong>--prog &lt;p1,p2,...&gt;</strong></dt><dd>
-Choose which programs to use (separated by commas)
+<dt><strong>--prog &lt;program1,program2,...&gt;</strong></dt><dd>
+Specify which programs to use, separated by commas. Use <strong>--showmeta</strong>
+to see the complete list of available programs.
 <p></p>
 </dd>
 <dt><strong>--showinfo &lt;program&gt;</strong></dt><dd>
-Prints regex info about the program
+Print regex-related info about the specified program. Use <strong>--nocolor</strong>
+to have a text-only output (no control characters).
 <p></p>
 </dd>
 <dt><strong>--showmeta</strong></dt><dd>
-Prints a complete metachar table for all programs
+Print a metacharacters table featuring all the programs.
 <p></p>
 </dd>
-<dt><strong>--version</strong></dt><dd>
-Prints the program version and quit
+<dt><strong>-V</strong>, <strong>--version</strong></dt><dd>
+Print the program version and quit. Note that the GitHub code always
+shows version zero. The real version is set only when using
+<strong>make install</strong>.
 <p></p>
 </dd>
 <dt><strong>--whitebg</strong></dt><dd>
-Colors adjusted to white background terminals
+Adjust colors for white background terminals.
 </dd>
 </dl>
-
-<p>
-By default, all options are turned OFF. Just call it with no options
-to launch the default interactive interface.
-</p>
-
-</section>
-<section>
-<h1>DETAILS</h1>
-
-<p>
-<strong>--all</strong> is cool but requires lots of lines (~35)
-</p>
-<p>
-<strong>--nocolor</strong> is strong, so it kills --whitebg
-</p>
-<p>
-<strong>--showmeta</strong> rules, try it
-</p>
-<p>
-<strong>--showinfo</strong> uses reverse video output, --nocolor turns it off
-</p>
-<p>
-<strong>--history</strong> is getting useful, stay tunned
-</p>
-<p>
-<strong>--make</strong> is a remedy for headaches
-</p>
-<p>
-<strong>--prog</strong> is nice to use your favorite programs, mix it with --make and --history
-</p>
 
 </section>
 <section>
 <h1>EXAMPLES</h1>
 
 <dl>
-<dt>Calling the program on the default interactive interface</dt><dd>
+<dt>Using it as a wizard (interactive interface):</dt><dd>
+<p></p>
 <pre>
-$ txt2regex
+txt2regex
 </pre>
 
 <p></p>
 </dd>
-<dt>Calling the program on a white terminal</dt><dd>
+<dt>Specify a custom selection of programs for the wizard:</dt><dd>
+<p></p>
 <pre>
-$ xterm -fg black -bg white ; txt2regex --whitebg
+txt2regex --prog perl,python,php,javascript
 </pre>
 
 <p></p>
 </dd>
-<dt>Getting information</dt><dd>
+<dt>Getting an extensive metacharacters table:</dt><dd>
+<p></p>
 <pre>
-$ txt2regex --showmeta
+txt2regex --showmeta
 </pre>
 
 <p></p>
 </dd>
-<dt>Getting specific information</dt><dd>
+<dt>Getting regex-related information about sed:</dt><dd>
+<p></p>
 <pre>
-$ txt2regex --showinfo sed
+txt2regex --showinfo sed
 </pre>
 
 <p></p>
 </dd>
-<dt>Calling it for specific programs</dt><dd>
+<dt>Replay a regex by using history data:</dt><dd>
+<p></p>
 <pre>
-$ txt2regex --prog vim,sed,grep,python
+txt2regex --history '16421¤:01¤:'
 </pre>
 
 <p></p>
 </dd>
-<dt>Applying a history data</dt><dd>
-<pre>
-$ txt2regex --history '16421¤:01¤:'
-</pre>
-
+<dt>Getting handy ready-to-use regexes for common patterns:</dt><dd>
 <p></p>
-</dd>
-<dt>Getting ready regexes!</dt><dd>
 <pre>
-$ txt2regex --make hour
-$ txt2regex --make number3 --prog perl
-$ txt2regex --make date2 --all
+txt2regex --make hour
+txt2regex --make number3 --prog perl
+txt2regex --make date2 --all
 </pre>
 
 </dd>
@@ -216,48 +188,39 @@ $ txt2regex --make date2 --all
 
 </section>
 <section>
-<h1>INTERFACE</h1>
-
-<p>
-The program interface is simple and easy to use. This is its contents:
-</p>
+<h1>WIZARD INTERFACE</h1>
 
 <pre>
-    +---------------------------------------+
-    | -&gt; Top menu                           |
-    | -&gt; Group menu                         |
-    |                                       |
-    | -&gt; Regexes of the programs selected   |
-    |    ...                                |
-    |    ...                                |
-    |                                       |
-    | -&gt; History                            |
-    | -&gt; Your prompt                        |
-    |                                       |
-    | -&gt; The question                       |
-    | -&gt; The answers                        |
-    |    ...                                |
-    |    ...                                |
-    +---------------------------------------+
++---------------------------------------+
+| Top menu                              |
+| Group menu                            |
+|                                       |
+| Regexes of the selected programs      |
+| ...                                   |
+| ...                                   |
+|                                       |
+| History                               |
+| Prompt                                |
+|                                       |
+| The question                          |
+| The answers                           |
+| ...                                   |
+| ...                                   |
++---------------------------------------+
 </pre>
 
-<p>
-All the basic commands can be used on the numeric pad on the keyboard,
-but remember to turn ON the NumLock key.
-</p>
+</section>
+<section>
+<h1>WIZARD COMMANDS</h1>
 
-<table style="margin-left: auto; margin-right: auto;">
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
+<table>
 <tr>
 <td class="center"><strong>.</strong></td>
 <td>Quit the program (with confirmation)</td>
 </tr>
 <tr>
 <td class="center"><strong>0</strong></td>
-<td>Reset the Regular Expression</td>
+<td>Reset the regular expression</td>
 </tr>
 <tr>
 <td class="center"><strong>1-9</strong></td>
@@ -269,7 +232,7 @@ but remember to turn ON the NumLock key.
 </tr>
 <tr>
 <td class="center"><strong>/</strong></td>
-<td>Add/remove programs on/from the list</td>
+<td>Add/remove programs</td>
 </tr>
 <tr>
 <td class="center"><strong>|</strong></td>
@@ -290,8 +253,6 @@ but remember to turn ON the NumLock key.
 <h1>BUGS</h1>
 
 <p>
-Bug reports and contributions are VERY welcome!
-Please use the GitHub issues system:
 <a href="https://github.com/aureliojargas/txt2regex/issues">https://github.com/aureliojargas/txt2regex/issues</a>
 </p>
 
@@ -300,7 +261,7 @@ Please use the GitHub issues system:
 <h1>AUTHOR</h1>
 
 <p>
-Written and maintained by Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
+Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
 </p>
 
 </section>
@@ -308,12 +269,7 @@ Written and maintained by Aurelio Jargas &lt;&lt;verde (a) aurelio net&gt;&gt;
 <h1>COPYRIGHT</h1>
 
 <p>
-Copyright © 2000-2020 Aurelio Jargas
-</p>
-<p>
-This is free software; see the source for copying conditions. There is
-NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.
+Copyright © 2001-2020 Aurelio Jargas, GNU GPL v2
 </p>
 </section>
 </div>

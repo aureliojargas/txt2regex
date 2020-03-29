@@ -1,6 +1,6 @@
 TXT2REGEX
 
-September, 28th - 2004
+March, 29th - 2020
 
 %!target: man
 %!options(man) : -o txt2regex.man
@@ -8,166 +8,144 @@ September, 28th - 2004
 
 = NAME =
 
-txt2regex - the console Regular Expression Wizard
+**txt2regex** -- console regular expression wizard
 
 = SYNOPSIS =
 
-**txt2regex** [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+**txt2regex** [**""--nocolor""**|**""--whitebg""**] ""[""**""--all""**|**""--prog""** //programs//]
 
-**txt2regex** --showmeta
+**txt2regex** **--showmeta**
 
-**txt2regex** --showinfo PROGRAM [ --nocolor ]
+**txt2regex** **--showinfo** //program// [**""--nocolor""**]
 
-**txt2regex** --history VALUE [ --all | --prog PROGRAMS ]
+**txt2regex** **--history** //value// ""[""**""--all""**|**""--prog""** //programs//]
 
-**txt2regex** --make LABEL [ --all | --prog PROGRAMS ]
+**txt2regex** **--make** //label// ""[""**""--all""**|**""--prog""** //programs//]
 
 = DESCRIPTION =
 
-**txt2regex** is a Regular Expression Wizard that converts human
+**txt2regex** is a regular expression wizard that converts human
 sentences to regexes.
 
-In a simple interactive console interface, the user answer questions
-and the program build the regexes for more than 20 programs, like Vim,
-Emacs, Perl, PHP, Python, Procmail and OpenOffice.org.
+In a simple interactive console interface, the user answer questions and
+**txt2regex** builds the regexes for more than 20 programs.
 
-It is a Shell Script 100% written with Bash builtin commands. No
-compilation or extra commands are needed, just download and run.
-
-Please visit the program homepage at
-//""https://aurelio.net/projects/txt2regex/""//.
+//""https://aurelio.net/projects/txt2regex/""//
 
 = OPTIONS =
 
 : **--all**
-Works with all registered programs
+Select all the available programs. Be aware that the list of available
+programs is long. You will need a terminal window with more than 40
+lines for the user interface to fit. Also make sure that the **$LINES**
+shell variable is exported, so **txt2regex** can detect the current
+number of available lines.
 
-: **--help**
-Prints the help message and quit
+: **-h**, **--help**
+Print the help message and quit.
 
 : **--history <value>**
-Prints to STDOUT a regex from a history data
+Print a regex from the given history data. The history value is shown in
+the last screen of the wizard, when you quit.
 
-: **--make <target>**
-Prints a ready regex for a common pattern
+: **--make <label>**
+Print a ready regex for the specified label. Inform an empty label to
+see the list of available labels.
 
 : **--nocolor**
-Self-explanatory
+Do not use colors.
 
-: **--prog <p1,p2,...>**
-Choose which programs to use (separated by commas)
+: **--prog <program1,program2,...>**
+Specify which programs to use, separated by commas. Use **--showmeta**
+to see the complete list of available programs.
 
 : **--showinfo <program>**
-Prints regex info about the program
+Print regex-related info about the specified program. Use **--nocolor**
+to have a text-only output (no control characters).
 
 : **--showmeta**
-Prints a complete metachar table for all programs
+Print a metacharacters table featuring all the programs.
 
-: **--version**
-Prints the program version and quit
+: **-V**, **--version**
+Print the program version and quit. Note that the GitHub code always
+shows version zero. The real version is set only when using
+**make install**.
 
 : **--whitebg**
-Colors adjusted to white background terminals
-
-
-By default, all options are turned OFF. Just call it with no options
-to launch the default interactive interface.
-
-= DETAILS =
-
-**--all** is cool but requires lots of lines (~35)
-
-**--nocolor** is strong, so it kills --whitebg
-
-**--showmeta** rules, try it
-
-**--showinfo** uses reverse video output, --nocolor turns it off
-
-**--history** is getting useful, stay tunned
-
-**--make** is a remedy for headaches
-
-**--prog** is nice to use your favorite programs, mix it with --make and --history
+Adjust colors for white background terminals.
 
 
 = EXAMPLES =
 
-: Calling the program on the default interactive interface
-``` $ txt2regex
+: Using it as a wizard (interactive interface):
 
-: Calling the program on a white terminal
-``` $ xterm -fg black -bg white ; txt2regex --whitebg
+``` txt2regex
 
-: Getting information
-``` $ txt2regex --showmeta
+: Specify a custom selection of programs for the wizard:
 
-: Getting specific information
-``` $ txt2regex --showinfo sed
+``` txt2regex --prog perl,python,php,javascript
 
-: Calling it for specific programs
-``` $ txt2regex --prog vim,sed,grep,python
+: Getting an extensive metacharacters table:
 
-: Applying a history data
-``` $ txt2regex --history '16421¤:01¤:'
+``` txt2regex --showmeta
 
-: Getting ready regexes!
-```
-$ txt2regex --make hour
-$ txt2regex --make number3 --prog perl
-$ txt2regex --make date2 --all
-```
+: Getting regex-related information about sed:
 
+``` txt2regex --showinfo sed
 
-= INTERFACE =
+: Replay a regex by using history data:
 
-The program interface is simple and easy to use. This is its contents:
+``` txt2regex --history '16421¤:01¤:'
+
+: Getting handy ready-to-use regexes for common patterns:
 
 ```
-    +---------------------------------------+
-    | -> Top menu                           |
-    | -> Group menu                         |
-    |                                       |
-    | -> Regexes of the programs selected   |
-    |    ...                                |
-    |    ...                                |
-    |                                       |
-    | -> History                            |
-    | -> Your prompt                        |
-    |                                       |
-    | -> The question                       |
-    | -> The answers                        |
-    |    ...                                |
-    |    ...                                |
-    +---------------------------------------+
+txt2regex --make hour
+txt2regex --make number3 --prog perl
+txt2regex --make date2 --all
 ```
 
-All the basic commands can be used on the numeric pad on the keyboard,
-but remember to turn ON the NumLock key.
 
-  ||  Command  | Description
-  |   **.**    | Quit the program (with confirmation)
-  |   **0**    | Reset the Regular Expression
-  |  **1-9**   | Answers the questions
-  |   *****    | Toggles color ON/OFF
-  |   **/**    | Add/remove programs on/from the list
-  |   **|**    | Insert an alternation (where allowed)
-  |   **(**    | Open a new group (where allowed)
-  |   **)**    | Close the opened group (if any)
+= WIZARD INTERFACE =
+
+```
++---------------------------------------+
+| Top menu                              |
+| Group menu                            |
+|                                       |
+| Regexes of the selected programs      |
+| ...                                   |
+| ...                                   |
+|                                       |
+| History                               |
+| Prompt                                |
+|                                       |
+| The question                          |
+| The answers                           |
+| ...                                   |
+| ...                                   |
++---------------------------------------+
+```
+
+= WIZARD COMMANDS =
+
+|   **.**    | Quit the program (with confirmation)
+|   **0**    | Reset the regular expression
+|  **1-9**   | Answers the questions
+|   *****    | Toggles color ON/OFF
+|   **/**    | Add/remove programs
+|   **|**    | Insert an alternation (where allowed)
+|   **(**    | Open a new group (where allowed)
+|   **)**    | Close the opened group (if any)
 
 = BUGS =
 
-Bug reports and contributions are VERY welcome!
-Please use the GitHub issues system:
 https://github.com/aureliojargas/txt2regex/issues
 
 = AUTHOR =
 
-Written and maintained by Aurelio Jargas <verde@aurelio.net>
+Aurelio Jargas <verde@aurelio.net>
 
 = COPYRIGHT =
 
-Copyright © 2000-2020 Aurelio Jargas
-
-This is free software; see the source for copying conditions. There is
-NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.
+Copyright © 2001-2020 Aurelio Jargas, GNU GPL v2
