@@ -31,8 +31,6 @@ check: clitest.sh
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
 	@python ./txt2tags.py -t html man/txt2regex.t2t
-	@python ./txt2tags.py -t man  man/pt_BR/txt2regex.t2t
-	@python ./txt2tags.py -t html man/pt_BR/txt2regex.t2t
 
 clitest.sh:
 	curl -s -L -o $@ \

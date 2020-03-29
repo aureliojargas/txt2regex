@@ -14,7 +14,6 @@ v0.9 beta (unreleased):
   - Now the "!! not supported" legend only appears when there are
     unsupported metacharacters in the current regex
   - Improved --help message
-  - Added Brazilian Portuguese translation for the man page
   - Added Turkish translations provided by erayalakese
   - Added Catalan translations provided by Carles (ChAoS)
     <chaos ct (a) gmail com>
