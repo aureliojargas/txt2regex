@@ -371,10 +371,10 @@ Error handling:
 ```console
 $ txt2regex --make
 ERROR: --make: "": invalid argument
-valid names are: date date2 date3 hour hour2 hour3 number number2 number3
+valid names: date date2 date3 hour hour2 hour3 number number2 number3
 $ txt2regex --make foo
 ERROR: --make: "foo": invalid argument
-valid names are: date date2 date3 hour hour2 hour3 number number2 number3
+valid names: date date2 date3 hour hour2 hour3 number number2 number3
 $ txt2regex --make date --prog foo
 
 ### date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999

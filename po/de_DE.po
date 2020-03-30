@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.5\n"
-"POT-Creation-Date: 2020-03-31 00:00 CEST\n"
+"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
 "PO-Revision-Date: 2001-08-29 09:55+0100\n"
 "Last-Translator: Jan Parthey <parthey@web.de>\n"
 "Language-Team: txt2regex German team <parthey@web.de>\n"
@@ -78,259 +78,259 @@ msgstr ""
 msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
-#: txt2regex.sh:215
+#: txt2regex.sh:224
 msgid "unknown program"
 msgstr "unbekanntes Programm"
 
-#: txt2regex.sh:245
+#: txt2regex.sh:253
 msgid "invalid argument"
 msgstr ""
 
-#: txt2regex.sh:246
-msgid "valid names are:"
+#: txt2regex.sh:254
+msgid "valid names:"
 msgstr ""
 
-#: txt2regex.sh:293
+#: txt2regex.sh:296
 msgid "invalid option"
 msgstr ""
 
-#: txt2regex.sh:307
+#: txt2regex.sh:310
 msgid "start to match"
 msgstr "Beginn der Übereinstimmung"
 
-#: txt2regex.sh:308
+#: txt2regex.sh:311
 msgid "on the line beginning"
 msgstr "am Zeilenanfang"
 
-#: txt2regex.sh:309
+#: txt2regex.sh:312
 msgid "in any part of the line"
 msgstr "irgendwo in der Zeile"
 
-#: txt2regex.sh:313
+#: txt2regex.sh:316
 msgid "followed by"
 msgstr "gefolgt von"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:317
 msgid "any character"
 msgstr "einem beliebigen Zeichen"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:318
 msgid "a specific character"
 msgstr "einem bestimmten Zeichen"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:319
 msgid "a literal string"
 msgstr "einer Buchstabenfolge"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:320
 msgid "an allowed characters list"
 msgstr "einer Liste erlaubter Zeichen"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:321
 msgid "a forbidden characters list"
 msgstr "einer Liste verbotener Zeichen"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:322
 msgid "a special combination"
 msgstr "einer speziellen Kombination"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:323
 msgid "a POSIX combination (locale aware)"
 msgstr "einer POSIX Kombination (lokale Einstellungen beachten)"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:324
 msgid "a ready regex (not implemented)"
 msgstr "einer fertigen regex (noch nicht implementiert)"
 
-#: txt2regex.sh:322
+#: txt2regex.sh:325
 msgid "anything"
 msgstr "etwas Beliebigen"
 
-#: txt2regex.sh:326
+#: txt2regex.sh:329
 msgid "how many times (repetition)"
 msgstr "wie oft (Wiederholung)"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:330
 msgid "one"
 msgstr "einmal"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:331
 msgid "zero or one (optional)"
 msgstr "null oder einmal (wahlweise)"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:332
 msgid "zero or more"
 msgstr "null oder mehrmals"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:333
 msgid "one or more"
 msgstr "einmmal oder mehrmals"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:334
 msgid "exactly N"
 msgstr "exakt N mal"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:335
 msgid "up to N"
 msgstr "bis zu N mal"
 
-#: txt2regex.sh:333
+#: txt2regex.sh:336
 msgid "at least N"
 msgstr "weniger als N mal"
 
-#: txt2regex.sh:337
+#: txt2regex.sh:340
 msgid "uppercase letters"
 msgstr "Großbuchstaben"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:341
 msgid "lowercase letters"
 msgstr "Kleinbuchstaben"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:342
 msgid "numbers"
 msgstr "Zahlen"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:343
 msgid "underscore"
 msgstr "Unterstrich"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:344
 msgid "space"
 msgstr "Leerzeichen"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:345
 msgid "TAB"
 msgstr "TAB"
 
-#: txt2regex.sh:347
+#: txt2regex.sh:350
 msgid "letters"
 msgstr "Buchstaben"
 
-#: txt2regex.sh:351
+#: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "Buchstaben und Zahlen"
 
-#: txt2regex.sh:352
+#: txt2regex.sh:355
 msgid "hexadecimal numbers"
 msgstr "Hexadezimalzahlen"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:356
 msgid "whitespaces (space and TAB)"
 msgstr "Zwischenraum (Leerzeichen und TAB)"
 
-#: txt2regex.sh:354
+#: txt2regex.sh:357
 msgid "graphic chars (not-whitespace)"
 msgstr "grafische Zeichen (keine Leerzeichen)"
 
-#: txt2regex.sh:359
+#: txt2regex.sh:362
 msgid "quit"
 msgstr "verlassen"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:363
 msgid "reset"
 msgstr "zurückstellen"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:364
 msgid "color"
 msgstr "Farbe"
 
-#: txt2regex.sh:362
+#: txt2regex.sh:365
 msgid "programs"
 msgstr "Programme"
 
-#: txt2regex.sh:368
+#: txt2regex.sh:371
 msgid "or"
 msgstr "oder"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:372
 msgid "open group"
 msgstr "öffne Gruppe"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:373
 msgid "close group"
 msgstr "schließe Gruppe"
 
-#: txt2regex.sh:371
+#: txt2regex.sh:374
 msgid "not supported"
 msgstr "nicht unterstützt"
 
-#: txt2regex.sh:522
+#: txt2regex.sh:525
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr "Anmerkung: . [] [^] und * bedeuten das selbe bei allen Programmen"
 
-#: txt2regex.sh:526
+#: txt2regex.sh:529
 msgid "NO"
 msgstr "NEIN"
 
-#: txt2regex.sh:535
+#: txt2regex.sh:538
 msgid "YES"
 msgstr "JA"
 
-#: txt2regex.sh:550
+#: txt2regex.sh:553
 msgid "program"
 msgstr "Programm"
 
-#: txt2regex.sh:551
+#: txt2regex.sh:554
 msgid "metas"
 msgstr "metas"
 
-#: txt2regex.sh:552
+#: txt2regex.sh:555
 msgid "esc meta"
 msgstr "esc meta"
 
-#: txt2regex.sh:553
+#: txt2regex.sh:556
 msgid "need esc"
 msgstr "need esc"
 
-#: txt2regex.sh:554
+#: txt2regex.sh:557
 msgid "\\t in []"
 msgstr "\\t in []"
 
-#: txt2regex.sh:555
+#: txt2regex.sh:558
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:606
+#: txt2regex.sh:609
 msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."
 msgstr ""
 
-#: txt2regex.sh:610
+#: txt2regex.sh:613
 msgid "Increase the number of lines or select less programs using --prog."
 msgstr ""
 
-#: txt2regex.sh:611
+#: txt2regex.sh:614
 msgid "If this line number detection is incorrect, export the LINES variable."
 msgstr ""
 
-#: txt2regex.sh:800
+#: txt2regex.sh:803
 msgid "which one?"
 msgstr "welches?"
 
-#: txt2regex.sh:819
+#: txt2regex.sh:822
 msgid "which?"
 msgstr "welche?"
 
-#: txt2regex.sh:1121
+#: txt2regex.sh:1124
 msgid "exit"
 msgstr "beenden"
 
-#: txt2regex.sh:1122
+#: txt2regex.sh:1125
 msgid "press the letters to (un)select the items"
 msgstr "drücken Sie den Buchstaben um das Feld (an/ab)zuwählen"
 
-#: txt2regex.sh:1309
+#: txt2regex.sh:1312
 msgid "repeated"
 msgstr "wiederholt"
 
-#: txt2regex.sh:1311
+#: txt2regex.sh:1314
 msgid "times"
 msgstr " "
 
-#: txt2regex.sh:1320
+#: txt2regex.sh:1323
 msgid "Really quit?"
 msgstr "Wirklich beenden?"
 
-#: txt2regex.sh:1346
+#: txt2regex.sh:1349
 msgid "no regex"
 msgstr "keine regex"
 

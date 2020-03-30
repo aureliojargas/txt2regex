@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2020-03-31 00:00 CEST\n"
+"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
 "PO-Revision-Date: 2004-05-10 00:00+000\n"
 "Last-Translator: Robert Gheorghe <robert...@yahoo.ca>\n"
 "Language-Team: Romanian team\n"
@@ -79,264 +79,264 @@ msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
 # #duplicated##: ../txt2regex-0.7.sh:399
-#: txt2regex.sh:215
+#: txt2regex.sh:224
 msgid "unknown program"
 msgstr "program necunoscut"
 
-#: txt2regex.sh:245
+#: txt2regex.sh:253
 msgid "invalid argument"
 msgstr "argument invalid"
 
-#: txt2regex.sh:246
-msgid "valid names are:"
+#: txt2regex.sh:254
+msgid "valid names:"
 msgstr "nume valide:"
 
 # #duplicated##: ../txt2regex-0.7.sh:188
-#: txt2regex.sh:293
+#: txt2regex.sh:296
 msgid "invalid option"
 msgstr "optiune invalida"
 
-#: txt2regex.sh:307
+#: txt2regex.sh:310
 msgid "start to match"
 msgstr "incepe cautarea"
 
-#: txt2regex.sh:308
+#: txt2regex.sh:311
 msgid "on the line beginning"
 msgstr "la inceputul liniei"
 
-#: txt2regex.sh:309
+#: txt2regex.sh:312
 msgid "in any part of the line"
 msgstr "oriunde pe linie"
 
-#: txt2regex.sh:313
+#: txt2regex.sh:316
 msgid "followed by"
 msgstr "urmat(a) de"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:317
 msgid "any character"
 msgstr "orice caracter"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:318
 msgid "a specific character"
 msgstr "un caracter specific"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:319
 msgid "a literal string"
 msgstr "un sir de caractere"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:320
 msgid "an allowed characters list"
 msgstr "o lista de caractere permise"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:321
 msgid "a forbidden characters list"
 msgstr "a lista de caractere interzise"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:322
 msgid "a special combination"
 msgstr "o combinatie speciala"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:323
 msgid "a POSIX combination (locale aware)"
 msgstr "o combinatie POSIX (locale aware)"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:324
 msgid "a ready regex (not implemented)"
 msgstr "o expresie regulata existenta (optine ne-implementata)"
 
-#: txt2regex.sh:322
+#: txt2regex.sh:325
 msgid "anything"
 msgstr "orice"
 
-#: txt2regex.sh:326
+#: txt2regex.sh:329
 msgid "how many times (repetition)"
 msgstr "de cate ori (repetitii)"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:330
 msgid "one"
 msgstr "o data"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:331
 msgid "zero or one (optional)"
 msgstr "niciodata sau o data (camp optional)"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:332
 msgid "zero or more"
 msgstr "zero sau mai multe"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:333
 msgid "one or more"
 msgstr "unu sau mai multe"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:334
 msgid "exactly N"
 msgstr "de exact N ori"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:335
 msgid "up to N"
 msgstr "de pana la N ori"
 
-#: txt2regex.sh:333
+#: txt2regex.sh:336
 msgid "at least N"
 msgstr "cel putin N ori"
 
-#: txt2regex.sh:337
+#: txt2regex.sh:340
 msgid "uppercase letters"
 msgstr "litere mari"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:341
 msgid "lowercase letters"
 msgstr "litere mici"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:342
 msgid "numbers"
 msgstr "numere"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:343
 msgid "underscore"
 msgstr "underscore"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:344
 msgid "space"
 msgstr "spatiu"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:345
 msgid "TAB"
 msgstr "caracterul TAB"
 
-#: txt2regex.sh:347
+#: txt2regex.sh:350
 msgid "letters"
 msgstr "litere"
 
 # #duplicated##: ../txt2regex-0.7.sh:249
 # #duplicated##: ../txt2regex-0.7.sh:250
 # #duplicated##: ../txt2regex-0.7.sh:251
-#: txt2regex.sh:351
+#: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "litere si numere"
 
-#: txt2regex.sh:352
+#: txt2regex.sh:355
 msgid "hexadecimal numbers"
 msgstr "numere hexadecimale"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:356
 msgid "whitespaces (space and TAB)"
 msgstr "spatii albe (spatii si TAB-uri)"
 
-#: txt2regex.sh:354
+#: txt2regex.sh:357
 msgid "graphic chars (not-whitespace)"
 msgstr "caractere grafice (care nu sunt spatii albe)"
 
-#: txt2regex.sh:359
+#: txt2regex.sh:362
 msgid "quit"
 msgstr "renunta"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:363
 msgid "reset"
 msgstr "reporneste"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:364
 msgid "color"
 msgstr "culoare"
 
-#: txt2regex.sh:362
+#: txt2regex.sh:365
 msgid "programs"
 msgstr "programe"
 
-#: txt2regex.sh:368
+#: txt2regex.sh:371
 msgid "or"
 msgstr "sau"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:372
 msgid "open group"
 msgstr "deschide grupare"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:373
 msgid "close group"
 msgstr "inchide grupare"
 
-#: txt2regex.sh:371
+#: txt2regex.sh:374
 msgid "not supported"
 msgstr "nu e suportata"
 
-#: txt2regex.sh:522
+#: txt2regex.sh:525
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr "NOTA: . [] [^] si * sunt aceleasi in toate programele."
 
-#: txt2regex.sh:526
+#: txt2regex.sh:529
 msgid "NO"
 msgstr "NU"
 
-#: txt2regex.sh:535
+#: txt2regex.sh:538
 msgid "YES"
 msgstr "DA"
 
 # #duplicated##: ../txt2regex-0.7.sh:410
-#: txt2regex.sh:550
+#: txt2regex.sh:553
 msgid "program"
 msgstr "program"
 
-#: txt2regex.sh:551
+#: txt2regex.sh:554
 msgid "metas"
 msgstr "meta caractere"
 
-#: txt2regex.sh:552
+#: txt2regex.sh:555
 msgid "esc meta"
 msgstr "meta-caractere escapate"
 
-#: txt2regex.sh:553
+#: txt2regex.sh:556
 msgid "need esc"
 msgstr "necesita esc"
 
-#: txt2regex.sh:554
+#: txt2regex.sh:557
 msgid "\\t in []"
 msgstr "\\t in []"
 
-#: txt2regex.sh:555
+#: txt2regex.sh:558
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:606
+#: txt2regex.sh:609
 msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."
 msgstr ""
 
-#: txt2regex.sh:610
+#: txt2regex.sh:613
 msgid "Increase the number of lines or select less programs using --prog."
 msgstr ""
 
-#: txt2regex.sh:611
+#: txt2regex.sh:614
 msgid "If this line number detection is incorrect, export the LINES variable."
 msgstr ""
 
-#: txt2regex.sh:800
+#: txt2regex.sh:803
 msgid "which one?"
 msgstr "care din ele?"
 
-#: txt2regex.sh:819
+#: txt2regex.sh:822
 msgid "which?"
 msgstr "care?"
 
-#: txt2regex.sh:1121
+#: txt2regex.sh:1124
 msgid "exit"
 msgstr "iesire"
 
-#: txt2regex.sh:1122
+#: txt2regex.sh:1125
 msgid "press the letters to (un)select the items"
 msgstr "apasa literele ca sa (de)selectezi elementele"
 
-#: txt2regex.sh:1309
+#: txt2regex.sh:1312
 msgid "repeated"
 msgstr "repetata"
 
-#: txt2regex.sh:1311
+#: txt2regex.sh:1314
 msgid "times"
 msgstr "ori"
 
-#: txt2regex.sh:1320
+#: txt2regex.sh:1323
 msgid "Really quit?"
 msgstr "Esti sigur(a) ca vrei sa renunti?"
 
-#: txt2regex.sh:1346
+#: txt2regex.sh:1349
 msgid "no regex"
 msgstr ""
 
