@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2020-03-30 23:46 CEST\n"
+"POT-Creation-Date: 2020-03-31 00:00 CEST\n"
 "PO-Revision-Date: 2004-05-10 00:00+000\n"
 "Last-Translator: Robert Gheorghe <robert...@yahoo.ca>\n"
 "Language-Team: Romanian team\n"
@@ -296,49 +296,60 @@ msgstr "\\t in []"
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:605
-msgid ""
-"error:\n"
-"  your screen has %s lines and should have at least %s to this\n"
-"  program fit on it. increase the number of lines or select\n"
-"  less programs to show the regex.\\n\\n"
+#: txt2regex.sh:606
+msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."
 msgstr ""
-"eroare:\n"
-"  ecranul tau are %s linii si trebuie sa aiba cel putin %s pentru ca\n"
-"  acest(e) program(e) sa incapa in el. Mareste numarul de linii sau alege\n"
-"  mai putine programe pentru care sa arat expresiile regulate.\\n\\n"
 
-#: txt2regex.sh:798
+#: txt2regex.sh:610
+msgid "Increase the number of lines or select less programs using --prog."
+msgstr ""
+
+#: txt2regex.sh:611
+msgid "If this line number detection is incorrect, export the LINES variable."
+msgstr ""
+
+#: txt2regex.sh:800
 msgid "which one?"
 msgstr "care din ele?"
 
-#: txt2regex.sh:817
+#: txt2regex.sh:819
 msgid "which?"
 msgstr "care?"
 
-#: txt2regex.sh:1119
+#: txt2regex.sh:1121
 msgid "exit"
 msgstr "iesire"
 
-#: txt2regex.sh:1120
+#: txt2regex.sh:1122
 msgid "press the letters to (un)select the items"
 msgstr "apasa literele ca sa (de)selectezi elementele"
 
-#: txt2regex.sh:1307
+#: txt2regex.sh:1309
 msgid "repeated"
 msgstr "repetata"
 
-#: txt2regex.sh:1309
+#: txt2regex.sh:1311
 msgid "times"
 msgstr "ori"
 
-#: txt2regex.sh:1318
+#: txt2regex.sh:1320
 msgid "Really quit?"
 msgstr "Esti sigur(a) ca vrei sa renunti?"
 
-#: txt2regex.sh:1344
+#: txt2regex.sh:1346
 msgid "no regex"
 msgstr ""
+
+#~ msgid ""
+#~ "error:\n"
+#~ "  your screen has %s lines and should have at least %s to this\n"
+#~ "  program fit on it. increase the number of lines or select\n"
+#~ "  less programs to show the regex.\\n\\n"
+#~ msgstr ""
+#~ "eroare:\n"
+#~ "  ecranul tau are %s linii si trebuie sa aiba cel putin %s pentru ca\n"
+#~ "  acest(e) program(e) sa incapa in el. Mareste numarul de linii sau alege\n"
+#~ "  mai putine programe pentru care sa arat expresiile regulate.\\n\\n"
 
 #~ msgid ""
 #~ "usage: txt2regex [--nocolor|--whitebg|--all]\n"

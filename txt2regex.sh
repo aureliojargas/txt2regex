@@ -602,11 +602,13 @@ ScreenSize(){
     #TODO automatic check when selecting programs
     if [ "$is_interactive" -eq 1 ] && [ $LINES -lt "$y_max" ]
     then
-        printf $"error:
-  your screen has %s lines and should have at least %s to this
-  program fit on it. increase the number of lines or select
-  less programs to show the regex.\n\n" "$LINES" "$y_max"
-        exit 1
+        printError '\n%s\n%s\n%s\n' \
+        "$(printf \
+            $"Your terminal has %d lines, but txt2regex needs at least %d lines." \
+            "$LINES" "$y_max" \
+        )" \
+        $"Increase the number of lines or select less programs using --prog." \
+        $"If this line number detection is incorrect, export the LINES variable."
     fi
 }
 

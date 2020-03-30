@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-03-30 23:46 CEST\n"
+"POT-Creation-Date: 2020-03-31 00:00 CEST\n"
 "PO-Revision-Date: 2001-09-03 18:43-0300\n"
 "Last-Translator: Aurelio Jargas <verde@aurelio.net>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
@@ -290,48 +290,47 @@ msgstr "\\t em []"
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:605
-#, fuzzy
-msgid ""
-"error:\n"
-"  your screen has %s lines and should have at least %s to this\n"
-"  program fit on it. increase the number of lines or select\n"
-"  less programs to show the regex.\\n\\n"
+#: txt2regex.sh:606
+msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."
 msgstr ""
-"erro:\n"
-"  sua tela tem %s linhas e deve ter no mínimo %s para que\n"
-"  este programa caiba nela. aumente o número de linhas ou\n"
-"  desative alguns programas para mostrar a RegEx.\\n\\n"
 
-#: txt2regex.sh:798
+#: txt2regex.sh:610
+msgid "Increase the number of lines or select less programs using --prog."
+msgstr ""
+
+#: txt2regex.sh:611
+msgid "If this line number detection is incorrect, export the LINES variable."
+msgstr ""
+
+#: txt2regex.sh:800
 msgid "which one?"
 msgstr "qual?"
 
-#: txt2regex.sh:817
+#: txt2regex.sh:819
 msgid "which?"
 msgstr "quais?"
 
-#: txt2regex.sh:1119
+#: txt2regex.sh:1121
 msgid "exit"
 msgstr "sair"
 
-#: txt2regex.sh:1120
+#: txt2regex.sh:1122
 msgid "press the letters to (un)select the items"
 msgstr "escolha as letras para (des)ativar os itens"
 
-#: txt2regex.sh:1307
+#: txt2regex.sh:1309
 msgid "repeated"
 msgstr "repetido"
 
-#: txt2regex.sh:1309
+#: txt2regex.sh:1311
 msgid "times"
 msgstr "vezes"
 
-#: txt2regex.sh:1318
+#: txt2regex.sh:1320
 msgid "Really quit?"
 msgstr "Vai sair mesmo?"
 
-#: txt2regex.sh:1344
+#: txt2regex.sh:1346
 msgid "no regex"
 msgstr "nenhuma regex"
 
