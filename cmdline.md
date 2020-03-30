@@ -17,28 +17,27 @@ $
 
 ```console
 $ txt2regex --help | tee help.txt
-usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]
+usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]
        txt2regex --showmeta
-       txt2regex --showinfo PROGRAM [ --nocolor ]
-       txt2regex --history VALUE [ --all | --prog PROGRAMS ]
-       txt2regex --make LABEL [ --all | --prog PROGRAMS ]
+       txt2regex --showinfo PROGRAM [--nocolor]
+       txt2regex --history VALUE [--all|--prog PROGRAMS]
+       txt2regex --make LABEL [--all|--prog PROGRAMS]
 
-OPTIONS (they are default OFF):
+OPTIONS:
 
-  --all               Works with all registered programs
-  --nocolor           Don't use colors
-  --whitebg           Colors adjusted for white background terminals
-  --prog PROGRAMS     Choose which programs to use, separated by commas
+  --all               Select all the available programs
+  --nocolor           Do not use colors
+  --whitebg           Adjust colors for white background terminals
+  --prog PROGRAMS     Specify which programs to use, separated by commas
 
-  --showmeta          Prints a metacharacters table with all programs
-  --showinfo PROGRAM  Prints regex info about the specified program
-  --history VALUE     Prints a regex from the given history data
-  --make LABEL        Prints the default regex for the specified label
+  --showmeta          Print a metacharacters table featuring all the programs
+  --showinfo PROGRAM  Print regex-related info about the specified program
+  --history VALUE     Print a regex from the given history data
+  --make LABEL        Print a ready regex for the specified label
 
-  -V, --version       Prints the program version and quit
-  -h, --help          Prints the help message and quit
+  -V, --version       Print the program version and quit
+  -h, --help          Print the help message and quit
 
-Please read the program Man Page for more information.
 $ txt2regex -h > h.txt
 $ diff help.txt h.txt
 $ rm help.txt h.txt
