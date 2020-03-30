@@ -173,24 +173,33 @@ allversions=(
     'Nvi 1.79 (10/23/96)'
     'VIM - Vi IMproved 5.8 (2001 May 31)'
 )
-ready_date=('26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4'
-            'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999')
-ready_date2=('24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3'
-            'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999')
-ready_date3=('2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3'
-            'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999')
-ready_hour=('2652165¤:2¤2¤:¤:2¤2'
-            'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99')
-ready_hour2=('24161214161¤012¤:2¤:¤012345¤:2'
-            'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59')
-ready_hour3=('2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2'
-            'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59')
-ready_number=('24264¤-+¤:2'
-            'number LEVEL 1: integer, positive and negative')
-ready_number2=('24264(2165)2¤-+¤:2¤.¤:2¤2'
-            'number LEVEL 2: level 1 plus optional float point')
-ready_number3=('24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'
-            'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90')
+
+label_names=(date date2 date3 hour hour2 hour3 number number2 number3)
+label_descriptions=(
+    'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999'
+    'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999'
+    'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999'
+    'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99'
+    'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59'
+    'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59'
+    'number LEVEL 1: integer, positive and negative'
+    'number LEVEL 2: level 1 plus optional float point'
+    'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90'
+)
+label_data=(
+    # date
+    '26521652165¤:2¤2¤/¤:2¤2¤/¤:2¤4'
+    '24161214161214165¤01¤:2¤/¤0123¤:2¤/¤12¤:2¤3'
+    '2(2161|2141)121(2161|4161|2141)1214165¤0¤:2¤1¤012¤/¤0¤:2¤12¤:2¤3¤01¤/¤12¤:2¤3'
+    # hour
+    '2652165¤:2¤2¤:¤:2¤2'
+    '24161214161¤012¤:2¤:¤012345¤:2'
+    '2(4161|2141)1214161¤01¤:2¤2¤0123¤:¤012345¤:2'
+    # number
+    '24264¤-+¤:2'
+    '24264(2165)2¤-+¤:2¤.¤:2¤2'
+    '24266(2165)3(2165)2¤-+¤:2¤3¤,¤:2¤3¤.¤:2¤2'
+)
 #date3  : perl: (0[0-9]|1[012])/(0[0-9]|[12][0-9]|3[01])/[12][0-9]{3}
 #hour3  : perl: ([01][0-9]|2[0123]):[012345][0-9]
 #number3: perl: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
@@ -235,27 +244,21 @@ do
             shift
             is_interactive=0
             use_colors=0
-            arg="${1%1}"  # final 1 is optional
+            label_name="${1%1}"  # final 1 is optional (date1 == date)
+            label_index=$(getItemIndex "$label_name" "${label_names[@]}")
 
             # Sanity check
-            valid=${!ready_*}
-            valid=" ${valid//ready_/} "
-            [ "$valid" == "${valid#* $arg }" ] &&
-                printError '%s: "%s": %s\n%s%s\n' \
+            [ -z "$label_index" ] &&
+                printError '%s: "%s": %s\n%s %s\n' \
                     '--make' "$1" $"invalid argument" \
-                    $"valid names are:" "${valid% }"
+                    $"valid names are:" "${label_names[*]}"
 
-            # Data setting
-            hist="ready_${arg}[0]"
-            hist=${!hist}
-
-            txt="ready_${arg}[1]"
-            txt=${!txt}
-
+            # Set history data
+            hist="${label_data[$label_index]}"
             hists="0${hist%%¤*}"
             histargs="¤${hist#*¤}"
 
-            printf '\n### %s\n\n' "$txt"
+            printf '\n### %s\n\n' "${label_descriptions[$label_index]}"
         ;;
         --prog)
             [ -z "$2" ] && Usage 1
