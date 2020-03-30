@@ -102,28 +102,27 @@ case "$BASH_VERSION" in
 esac
 
 Usage(){
-    printf '%s\n' $"usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
+    printf '%s\n' $"usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
     printf '%s\n' $"       txt2regex --showmeta"
-    printf '%s\n' $"       txt2regex --showinfo PROGRAM [ --nocolor ]"
-    printf '%s\n' $"       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
-    printf '%s\n' $"       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
+    printf '%s\n' $"       txt2regex --showinfo PROGRAM [--nocolor]"
+    printf '%s\n' $"       txt2regex --history VALUE [--all|--prog PROGRAMS]"
+    printf '%s\n' $"       txt2regex --make LABEL [--all|--prog PROGRAMS]"
     printf '\n'
-    printf '%s\n' $"OPTIONS (they are default OFF):"
+    printf '%s:\n' $"OPTIONS"
     printf '\n'
-    printf '%s\n' $"  --all               Works with all registered programs"
-    printf '%s\n' $"  --nocolor           Don't use colors"
-    printf '%s\n' $"  --whitebg           Colors adjusted for white background terminals"
-    printf '%s\n' $"  --prog PROGRAMS     Choose which programs to use, separated by commas"
+    printf '%s\n' $"  --all               Select all the available programs"
+    printf '%s\n' $"  --nocolor           Do not use colors"
+    printf '%s\n' $"  --whitebg           Adjust colors for white background terminals"
+    printf '%s\n' $"  --prog PROGRAMS     Specify which programs to use, separated by commas"
     printf '\n'
-    printf '%s\n' $"  --showmeta          Prints a metacharacters table with all programs"
-    printf '%s\n' $"  --showinfo PROGRAM  Prints regex info about the specified program"
-    printf '%s\n' $"  --history VALUE     Prints a regex from the given history data"
-    printf '%s\n' $"  --make LABEL        Prints the default regex for the specified label"
+    printf '%s\n' $"  --showmeta          Print a metacharacters table featuring all the programs"
+    printf '%s\n' $"  --showinfo PROGRAM  Print regex-related info about the specified program"
+    printf '%s\n' $"  --history VALUE     Print a regex from the given history data"
+    printf '%s\n' $"  --make LABEL        Print a ready regex for the specified label"
     printf '\n'
-    printf '%s\n' $"  -V, --version       Prints the program version and quit"
-    printf '%s\n' $"  -h, --help          Prints the help message and quit"
+    printf '%s\n' $"  -V, --version       Print the program version and quit"
+    printf '%s\n' $"  -h, --help          Print the help message and quit"
     printf '\n'
-    printf '%s\n' $"Please read the program Man Page for more information."
     exit "${1:-0}"  # $1 is the exit code (default is 0)
 }
 

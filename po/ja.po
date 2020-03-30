@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-03-29 23:50 CEST\n"
+"POT-Creation-Date: 2020-03-30 23:39 CEST\n"
 "PO-Revision-Date: 2001-09-15 10:53+0900\n"
 "Last-Translator: Koichi OIKE <daichi1@gol.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: txt2regex.sh:105
-msgid "usage: txt2regex [ --nocolor | --whitebg ] [ --all | --prog PROGRAMS ]"
+msgid "usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
 msgstr ""
 
 #: txt2regex.sh:106
@@ -19,283 +19,279 @@ msgid "       txt2regex --showmeta"
 msgstr ""
 
 #: txt2regex.sh:107
-msgid "       txt2regex --showinfo PROGRAM [ --nocolor ]"
+msgid "       txt2regex --showinfo PROGRAM [--nocolor]"
 msgstr ""
 
 #: txt2regex.sh:108
-msgid "       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
+msgid "       txt2regex --history VALUE [--all|--prog PROGRAMS]"
 msgstr ""
 
 #: txt2regex.sh:109
-msgid "       txt2regex --make LABEL [ --all | --prog PROGRAMS ]"
+msgid "       txt2regex --make LABEL [--all|--prog PROGRAMS]"
 msgstr ""
 
 #: txt2regex.sh:111
-msgid "OPTIONS (they are default OFF):"
+msgid "OPTIONS"
 msgstr ""
 
 #: txt2regex.sh:113
-msgid "  --all               Works with all registered programs"
+msgid "  --all               Select all the available programs"
 msgstr ""
 
 #: txt2regex.sh:114
-msgid "  --nocolor           Don't use colors"
+msgid "  --nocolor           Do not use colors"
 msgstr ""
 
 #: txt2regex.sh:115
-msgid "  --whitebg           Colors adjusted for white background terminals"
+msgid "  --whitebg           Adjust colors for white background terminals"
 msgstr ""
 
 #: txt2regex.sh:116
-msgid "  --prog PROGRAMS     Choose which programs to use, separated by commas"
+msgid "  --prog PROGRAMS     Specify which programs to use, separated by commas"
 msgstr ""
 
 #: txt2regex.sh:118
-msgid "  --showmeta          Prints a metacharacters table with all programs"
+msgid "  --showmeta          Print a metacharacters table featuring all the programs"
 msgstr ""
 
 #: txt2regex.sh:119
-msgid "  --showinfo PROGRAM  Prints regex info about the specified program"
+msgid "  --showinfo PROGRAM  Print regex-related info about the specified program"
 msgstr ""
 
 #: txt2regex.sh:120
-msgid "  --history VALUE     Prints a regex from the given history data"
+msgid "  --history VALUE     Print a regex from the given history data"
 msgstr ""
 
 #: txt2regex.sh:121
-msgid "  --make LABEL        Prints the default regex for the specified label"
+msgid "  --make LABEL        Print a ready regex for the specified label"
 msgstr ""
 
 #: txt2regex.sh:123
-msgid "  -V, --version       Prints the program version and quit"
+msgid "  -V, --version       Print the program version and quit"
 msgstr ""
 
 #: txt2regex.sh:124
-msgid "  -h, --help          Prints the help message and quit"
-msgstr ""
-
-#: txt2regex.sh:126
-msgid "Please read the program Man Page for more information."
+msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
 # #duplicated##: ../txt2regex-0.6.sh:356
-#: txt2regex.sh:216
+#: txt2regex.sh:214
 msgid "unknown program"
 msgstr ""
 
-#: txt2regex.sh:246
+#: txt2regex.sh:244
 msgid "invalid argument"
 msgstr ""
 
-#: txt2regex.sh:247
+#: txt2regex.sh:245
 msgid "valid names are:"
 msgstr ""
 
-#: txt2regex.sh:294
+#: txt2regex.sh:292
 msgid "invalid option"
 msgstr ""
 
-#: txt2regex.sh:308
+#: txt2regex.sh:306
 msgid "start to match"
 msgstr "マッチを始めるのは"
 
-#: txt2regex.sh:309
+#: txt2regex.sh:307
 msgid "on the line beginning"
 msgstr "行の先頭から"
 
-#: txt2regex.sh:310
+#: txt2regex.sh:308
 msgid "in any part of the line"
 msgstr "行の任意の部分から"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:312
 msgid "followed by"
 msgstr "それに続いて"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:313
 msgid "any character"
 msgstr "任意の文字"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:314
 msgid "a specific character"
 msgstr "(そのままの)文字"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:315
 msgid "a literal string"
 msgstr "(そのままの)文字列"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:316
 msgid "an allowed characters list"
 msgstr "文字クラス"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:317
 msgid "a forbidden characters list"
 msgstr "否定文字クラス"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:318
 msgid "a special combination"
 msgstr "特定の文字の組合せ"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:319
 msgid "a POSIX combination (locale aware)"
 msgstr "POSIX文字クラス(ロケール対応)"
 
-#: txt2regex.sh:322
+#: txt2regex.sh:320
 msgid "a ready regex (not implemented)"
 msgstr "準備済みの正規表現(未実装)"
 
-#: txt2regex.sh:323
+#: txt2regex.sh:321
 msgid "anything"
 msgstr "(0文字以上の)任意の文字列"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:325
 msgid "how many times (repetition)"
 msgstr "何回繰り返しますか"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:326
 msgid "one"
 msgstr "1"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:327
 msgid "zero or one (optional)"
 msgstr "0または1"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:328
 msgid "zero or more"
 msgstr "少なくとも0"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:329
 msgid "one or more"
 msgstr "少なくとも1"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:330
 msgid "exactly N"
 msgstr "正確にN"
 
-#: txt2regex.sh:333
+#: txt2regex.sh:331
 msgid "up to N"
 msgstr "1からN"
 
-#: txt2regex.sh:334
+#: txt2regex.sh:332
 msgid "at least N"
 msgstr "少なくともN"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:336
 msgid "uppercase letters"
 msgstr "大文字アルファベット"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:337
 msgid "lowercase letters"
 msgstr "小文字アルファベット"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:338
 msgid "numbers"
 msgstr "数字"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:339
 msgid "underscore"
 msgstr "下線(_)"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:340
 msgid "space"
 msgstr "スペース"
 
-#: txt2regex.sh:343
+#: txt2regex.sh:341
 msgid "TAB"
 msgstr "タブ"
 
-#: txt2regex.sh:348
+#: txt2regex.sh:346
 msgid "letters"
 msgstr "アルファベット"
 
 # #duplicated##: ../txt2regex-0.6.sh:201
 # #duplicated##: ../txt2regex-0.6.sh:202
 # #duplicated##: ../txt2regex-0.6.sh:203
-#: txt2regex.sh:352
+#: txt2regex.sh:350
 msgid "letters and numbers"
 msgstr "アルファベットと数字"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:351
 msgid "hexadecimal numbers"
 msgstr "16進数字"
 
-#: txt2regex.sh:354
+#: txt2regex.sh:352
 msgid "whitespaces (space and TAB)"
 msgstr "空白文字(スペースとタブ)"
 
-#: txt2regex.sh:355
+#: txt2regex.sh:353
 msgid "graphic chars (not-whitespace)"
 msgstr "非空白文字"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:358
 msgid "quit"
 msgstr "終了"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:359
 msgid "reset"
 msgstr "リセット"
 
-#: txt2regex.sh:362
+#: txt2regex.sh:360
 msgid "color"
 msgstr "色"
 
-#: txt2regex.sh:363
+#: txt2regex.sh:361
 msgid "programs"
 msgstr "プログラム"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:367
 msgid "or"
 msgstr "または"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:368
 msgid "open group"
 msgstr "グループ化開始"
 
-#: txt2regex.sh:371
+#: txt2regex.sh:369
 msgid "close group"
 msgstr "グループ化終了"
 
-#: txt2regex.sh:372
+#: txt2regex.sh:370
 msgid "not supported"
 msgstr "未サポート部分"
 
-#: txt2regex.sh:523
+#: txt2regex.sh:521
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr ""
 
-#: txt2regex.sh:527
+#: txt2regex.sh:525
 msgid "NO"
 msgstr ""
 
-#: txt2regex.sh:536
+#: txt2regex.sh:534
 msgid "YES"
 msgstr ""
 
 # #duplicated##: ../txt2regex-0.6.sh:367
-#: txt2regex.sh:551
+#: txt2regex.sh:549
 msgid "program"
 msgstr ""
 
-#: txt2regex.sh:552
+#: txt2regex.sh:550
 msgid "metas"
 msgstr ""
 
-#: txt2regex.sh:553
+#: txt2regex.sh:551
 msgid "esc meta"
 msgstr ""
 
-#: txt2regex.sh:554
+#: txt2regex.sh:552
 msgid "need esc"
 msgstr ""
 
-#: txt2regex.sh:555
+#: txt2regex.sh:553
 msgid "\\t in []"
 msgstr ""
 
-#: txt2regex.sh:556
+#: txt2regex.sh:554
 msgid "[:POSIX:]"
 msgstr ""
 
-#: txt2regex.sh:606
+#: txt2regex.sh:604
 msgid ""
 "error:\n"
 "  your screen has %s lines and should have at least %s to this\n"
@@ -303,34 +299,34 @@ msgid ""
 "  less programs to show the regex.\\n\\n"
 msgstr ""
 
-#: txt2regex.sh:799
+#: txt2regex.sh:797
 msgid "which one?"
 msgstr "どの文字?"
 
-#: txt2regex.sh:818
+#: txt2regex.sh:816
 msgid "which?"
 msgstr "どのような?"
 
-#: txt2regex.sh:1120
+#: txt2regex.sh:1118
 msgid "exit"
 msgstr "戻る"
 
-#: txt2regex.sh:1121
+#: txt2regex.sh:1119
 msgid "press the letters to (un)select the items"
 msgstr "文字を入力して項目を選択(解除)してください"
 
-#: txt2regex.sh:1308
+#: txt2regex.sh:1306
 msgid "repeated"
 msgstr "繰り返しは"
 
-#: txt2regex.sh:1310
+#: txt2regex.sh:1308
 msgid "times"
 msgstr "回"
 
-#: txt2regex.sh:1319
+#: txt2regex.sh:1317
 msgid "Really quit?"
 msgstr ""
 
-#: txt2regex.sh:1345
+#: txt2regex.sh:1343
 msgid "no regex"
 msgstr "正規表現はありません"
