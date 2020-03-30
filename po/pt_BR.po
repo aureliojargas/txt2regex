@@ -12,71 +12,71 @@ msgstr ""
 
 #: txt2regex.sh:88
 msgid "ERROR"
-msgstr ""
+msgstr "ERRO"
 
 #: txt2regex.sh:105
 msgid "usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
-msgstr ""
+msgstr "uso:   txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMAS]"
 
 #: txt2regex.sh:106
 msgid "       txt2regex --showmeta"
-msgstr ""
+msgstr "       txt2regex --showmeta"
 
 #: txt2regex.sh:107
 msgid "       txt2regex --showinfo PROGRAM [--nocolor]"
-msgstr ""
+msgstr "       txt2regex --showinfo PROGRAMA [--nocolor]"
 
 #: txt2regex.sh:108
 msgid "       txt2regex --history VALUE [--all|--prog PROGRAMS]"
-msgstr ""
+msgstr "       txt2regex --history VALOR [--all|--prog PROGRAMAS]"
 
 #: txt2regex.sh:109
 msgid "       txt2regex --make LABEL [--all|--prog PROGRAMS]"
-msgstr ""
+msgstr "       txt2regex --make NOME [--all|--prog PROGRAMAS]"
 
 #: txt2regex.sh:111
 msgid "OPTIONS"
-msgstr ""
+msgstr "OPÇÕES"
 
 #: txt2regex.sh:113
 msgid "  --all               Select all the available programs"
-msgstr ""
+msgstr "  --all               Ativa todos os programas disponíveis"
 
 #: txt2regex.sh:114
 msgid "  --nocolor           Do not use colors"
-msgstr ""
+msgstr "  --nocolor           Não usar cores"
 
 #: txt2regex.sh:115
 msgid "  --whitebg           Adjust colors for white background terminals"
-msgstr ""
+msgstr "  --whitebg           Ajuste as cores para terminais de fundo branco"
 
 #: txt2regex.sh:116
 msgid "  --prog PROGRAMS     Specify which programs to use, separated by commas"
-msgstr ""
+msgstr "  --prog PROGRAMAS    Informe quais programas usar, separados por vírgulas"
 
 #: txt2regex.sh:118
 msgid "  --showmeta          Print a metacharacters table featuring all the programs"
-msgstr ""
+msgstr "  --showmeta          Mostre uma tabela com os metacaracteres de todos os programas"
 
 #: txt2regex.sh:119
 msgid "  --showinfo PROGRAM  Print regex-related info about the specified program"
-msgstr ""
+msgstr "  --showinfo PROGRAMA Mostra informações sobre o programa informado"
 
 #: txt2regex.sh:120
 msgid "  --history VALUE     Print a regex from the given history data"
-msgstr ""
+msgstr "  --history VALOR     Mostra uma regex a partir dos dados de histórico informados"
 
 #: txt2regex.sh:121
 msgid "  --make LABEL        Print a ready regex for the specified label"
-msgstr ""
+msgstr "  --make NOME         Mostra uma regex já pronta"
 
 #: txt2regex.sh:123
 msgid "  -V, --version       Print the program version and quit"
-msgstr ""
+msgstr "  -V, --version       Mostra a versão do programa e sai"
 
 #: txt2regex.sh:124
 msgid "  -h, --help          Print the help message and quit"
-msgstr ""
+msgstr "  -h, --help          Mostra a mensagem de ajuda e sai"
 
 #: txt2regex.sh:224
 msgid "unknown program"
@@ -292,15 +292,15 @@ msgstr "[:POSIX:]"
 
 #: txt2regex.sh:609
 msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."
-msgstr ""
+msgstr "O seu terminal tem %d linhas, mas o txt2regex precisa de ao menos %d."
 
 #: txt2regex.sh:613
 msgid "Increase the number of lines or select less programs using --prog."
-msgstr ""
+msgstr "Aumente o número de linhas ou escolha menos programas com --prog."
 
 #: txt2regex.sh:614
 msgid "If this line number detection is incorrect, export the LINES variable."
-msgstr ""
+msgstr "Se esta detecção de linhas estiver incorreta, exporte a variável LINES."
 
 #: txt2regex.sh:803
 msgid "which one?"
@@ -333,48 +333,3 @@ msgstr "Vai sair mesmo?"
 #: txt2regex.sh:1349
 msgid "no regex"
 msgstr "nenhuma regex"
-
-#~ msgid ""
-#~ "usage: txt2regex [--nocolor|--whitebg|--all]\n"
-#~ "       txt2regex --showmeta|--showinfo <program>\n"
-#~ "       txt2regex [--all|--prog <p1,p2>] --make <target>\n"
-#~ "       txt2regex --history <value>\n"
-#~ "\n"
-#~ "OPTIONS (they are default OFF):\n"
-#~ "\n"
-#~ "  --all                 works with all registered programs\n"
-#~ "  --nocolor             self-explanatory\n"
-#~ "  --whitebg             colors adjusted to white background terminals\n"
-#~ "  --showmeta            prints a complete metachar table for all programs\n"
-#~ "  --showinfo <program>  prints regex info about the program\n"
-#~ "\n"
-#~ "  --history <value>     prints to STDOUT a RegEx from a history data\n"
-#~ "  --make <target>       prints a ready RegEx for a common pattern\n"
-#~ "  --prog <p1,p2,...>    choose which programs to use (separated by commas)\n"
-#~ "\n"
-#~ "  --version             prints the program version and quit\n"
-#~ "  --help                prints the help message and quit\n"
-#~ "\n"
-#~ "for more details about the options, read the README file."
-#~ msgstr ""
-#~ "uso: txt2regex [--nocolor|--whitebg|--all]\n"
-#~ "     txt2regex --showmeta|--showinfo <programa>\n"
-#~ "     txt2regex [--all|--prog <p1,p2>] --make <tipo>\n"
-#~ "     txt2regex --history <valor>\n"
-#~ "\n"
-#~ "OPÇõES (o padrão é DESLIGADO):\n"
-#~ "\n"
-#~ "  --all                  funciona com todos os programas registrados\n"
-#~ "  --nocolor              não usar cores\n"
-#~ "  --whitebg              cores ajustadas para terminais de fundo branco\n"
-#~ "  --showmeta             mostra tabela com os metas de todos os programas\n"
-#~ "  --showinfo <programa>  mostra informações sobre as RegEx do programa\n"
-#~ "\n"
-#~ "  --history <valor>      mostra na STDOUT uma RegEx de um histórico\n"
-#~ "  --make <target>        mostra uma RegEx pronta para usar\n"
-#~ "  --prog <p1,p2,...>     escolha de quais programas usar\n"
-#~ "\n"
-#~ "  --version              mostra a versão do programa e sai\n"
-#~ "  --help                 mostra a tela de ajuda e sai\n"
-#~ "\n"
-#~ "para mais detalhes, leia o arquivo README."
