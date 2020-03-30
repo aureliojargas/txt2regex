@@ -46,7 +46,7 @@
 # 20010613 v0.3
 # 20010620 -- seq command (not bash), ++ sek()
 # 20010613 v0.3.1
-# 20010731 ++ Reset: "RegEx prog  :" with automatically length
+# 20010731 ++ Reset: "RegEx prog  :" with automatic length
 #          ++ new progs: postgres, javascript, vbscript, procmail
 #          ++ ax_prog: new item: escape char - escape is ok now
 #          ++ improved meta knowledge on perl, tcl and gawk
