@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.9\n"
-"POT-Creation-Date: 2020-03-30 23:31 CEST\n"
+"POT-Creation-Date: 2020-03-30 23:46 CEST\n"
 "PO-Revision-Date: 2004-11-16 10:52+0100\n"
 "Last-Translator: ChAOS ChAoS@gmail.com\n"
 "Language-Team: Catalan team\n"
@@ -10,6 +10,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
+
+#: txt2regex.sh:88
+msgid "ERROR"
+msgstr ""
 
 #: txt2regex.sh:105
 msgid "usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
@@ -78,224 +82,224 @@ msgid "  -h, --help          Print the help message and quit"
 msgstr "  -h, --help          Imprimeix el missatge d'ajuda i surt"
 
 # #duplicated##: ../txt2regex-0.9.sh:406
-#: txt2regex.sh:214
+#: txt2regex.sh:215
 msgid "unknown program"
 msgstr "programa desconegut"
 
-#: txt2regex.sh:244
+#: txt2regex.sh:245
 msgid "invalid argument"
 msgstr "Argument invàl·lid"
 
-#: txt2regex.sh:245
+#: txt2regex.sh:246
 msgid "valid names are:"
 msgstr "els noms vàl·lids són:"
 
 # #duplicated##: ../txt2regex-0.9.sh:192
-#: txt2regex.sh:292
+#: txt2regex.sh:293
 msgid "invalid option"
 msgstr "opció invàl·lida"
 
-#: txt2regex.sh:306
+#: txt2regex.sh:307
 msgid "start to match"
 msgstr "començar a casar"
 
-#: txt2regex.sh:307
+#: txt2regex.sh:308
 msgid "on the line beginning"
 msgstr "a principi de línia"
 
-#: txt2regex.sh:308
+#: txt2regex.sh:309
 msgid "in any part of the line"
 msgstr "a qualsevol part de la línia"
 
-#: txt2regex.sh:312
+#: txt2regex.sh:313
 msgid "followed by"
 msgstr "seguit de"
 
-#: txt2regex.sh:313
+#: txt2regex.sh:314
 msgid "any character"
 msgstr "qualsevol caràcter"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:315
 msgid "a specific character"
 msgstr "un caracter específic"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:316
 msgid "a literal string"
 msgstr "una cadena literal"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:317
 msgid "an allowed characters list"
 msgstr "una llista de caràcters permesos"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:318
 msgid "a forbidden characters list"
 msgstr "una llista de caràcters prohibits"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:319
 msgid "a special combination"
 msgstr "una combinació especial"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:320
 msgid "a POSIX combination (locale aware)"
 msgstr "una combinació POSIX (subjecte a localització)"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:321
 msgid "a ready regex (not implemented)"
 msgstr "una regex preparada (sense implementar)"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:322
 msgid "anything"
 msgstr "qualsevol cosa"
 
-#: txt2regex.sh:325
+#: txt2regex.sh:326
 msgid "how many times (repetition)"
 msgstr "quantes vegades (repetició)"
 
-#: txt2regex.sh:326
+#: txt2regex.sh:327
 msgid "one"
 msgstr "una"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:328
 msgid "zero or one (optional)"
 msgstr "una o cap (opcional)"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:329
 msgid "zero or more"
 msgstr "cap o més"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:330
 msgid "one or more"
 msgstr "una o més"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:331
 msgid "exactly N"
 msgstr "exactament N"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:332
 msgid "up to N"
 msgstr "fins a N"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:333
 msgid "at least N"
 msgstr "almenys N"
 
-#: txt2regex.sh:336
+#: txt2regex.sh:337
 msgid "uppercase letters"
 msgstr "lletres majúscules"
 
-#: txt2regex.sh:337
+#: txt2regex.sh:338
 msgid "lowercase letters"
 msgstr "lletres minúscules"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:339
 msgid "numbers"
 msgstr "nombres"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:340
 msgid "underscore"
 msgstr "barra baixa"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:341
 msgid "space"
 msgstr "espai"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:342
 msgid "TAB"
 msgstr "Tabulador (TAB)"
 
-#: txt2regex.sh:346
+#: txt2regex.sh:347
 msgid "letters"
 msgstr "lletres"
 
 # #duplicated##: ../txt2regex-0.9.sh:254
 # #duplicated##: ../txt2regex-0.9.sh:255
 # #duplicated##: ../txt2regex-0.9.sh:256
-#: txt2regex.sh:350
+#: txt2regex.sh:351
 msgid "letters and numbers"
 msgstr "lletres i nombres"
 
-#: txt2regex.sh:351
+#: txt2regex.sh:352
 msgid "hexadecimal numbers"
 msgstr "nombres hexadecimals"
 
-#: txt2regex.sh:352
+#: txt2regex.sh:353
 msgid "whitespaces (space and TAB)"
 msgstr "espais en blanc (espais i tabuladors)"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:354
 msgid "graphic chars (not-whitespace)"
 msgstr "caràcters gràfics (no espais en blanc)"
 
-#: txt2regex.sh:358
+#: txt2regex.sh:359
 msgid "quit"
 msgstr "sortir"
 
-#: txt2regex.sh:359
+#: txt2regex.sh:360
 msgid "reset"
 msgstr "reiniciar"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:361
 msgid "color"
 msgstr "color"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:362
 msgid "programs"
 msgstr "programes"
 
-#: txt2regex.sh:367
+#: txt2regex.sh:368
 msgid "or"
 msgstr "o"
 
-#: txt2regex.sh:368
+#: txt2regex.sh:369
 msgid "open group"
 msgstr "obrir grup"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:370
 msgid "close group"
 msgstr "tancar grup"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:371
 msgid "not supported"
 msgstr "sense suport"
 
-#: txt2regex.sh:521
+#: txt2regex.sh:522
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr "NOTA: . [] [^] i * són el mateix en tots els programes."
 
-#: txt2regex.sh:525
+#: txt2regex.sh:526
 msgid "NO"
 msgstr "NO"
 
-#: txt2regex.sh:534
+#: txt2regex.sh:535
 msgid "YES"
 msgstr "SÍ"
 
 # #duplicated##: ../txt2regex-0.9.sh:417
-#: txt2regex.sh:549
+#: txt2regex.sh:550
 msgid "program"
 msgstr "programa"
 
-#: txt2regex.sh:550
+#: txt2regex.sh:551
 msgid "metas"
 msgstr "metes"
 
-#: txt2regex.sh:551
+#: txt2regex.sh:552
 msgid "esc meta"
 msgstr "esc meta"
 
-#: txt2regex.sh:552
+#: txt2regex.sh:553
 msgid "need esc"
 msgstr "esc necessari"
 
-#: txt2regex.sh:553
+#: txt2regex.sh:554
 msgid "\\t in []"
 msgstr "\\t a []"
 
-#: txt2regex.sh:554
+#: txt2regex.sh:555
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:604
+#: txt2regex.sh:605
 msgid ""
 "error:\n"
 "  your screen has %s lines and should have at least %s to this\n"
@@ -307,34 +311,34 @@ msgstr ""
 "  poder-hi encabir aquest programa. amplïi'n el nombre o seleccioni\n"
 "  menys programes a mostrar les regex.\\n\\n"
 
-#: txt2regex.sh:797
+#: txt2regex.sh:798
 msgid "which one?"
 msgstr "quin?"
 
-#: txt2regex.sh:816
+#: txt2regex.sh:817
 msgid "which?"
 msgstr "quin?"
 
-#: txt2regex.sh:1118
+#: txt2regex.sh:1119
 msgid "exit"
 msgstr "sortir"
 
-#: txt2regex.sh:1119
+#: txt2regex.sh:1120
 msgid "press the letters to (un)select the items"
 msgstr "pressioni les lletres per (des)seleccionar "
 
-#: txt2regex.sh:1306
+#: txt2regex.sh:1307
 msgid "repeated"
 msgstr "repetit"
 
-#: txt2regex.sh:1308
+#: txt2regex.sh:1309
 msgid "times"
 msgstr "vegades"
 
-#: txt2regex.sh:1317
+#: txt2regex.sh:1318
 msgid "Really quit?"
 msgstr "Realment vols sortir?"
 
-#: txt2regex.sh:1343
+#: txt2regex.sh:1344
 msgid "no regex"
 msgstr "sense regex"

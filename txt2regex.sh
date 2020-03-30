@@ -85,7 +85,7 @@ TEXTDOMAINDIR=po
 VERSION=0
 
 printError(){
-    printf 'ERROR: '
+    printf '%s: ' $"ERROR"
     # shellcheck disable=SC2059
     printf "$@"
     exit 1

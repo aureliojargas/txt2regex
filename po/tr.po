@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 23:31 CEST\n"
+"POT-Creation-Date: 2020-03-30 23:46 CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Loco-Source-Locale: tr_TR\n"
 "X-Loco-Parser: loco_parse_po\n"
 "X-Generator: Loco - https://localise.biz/\n"
+
+#: txt2regex.sh:88
+msgid "ERROR"
+msgstr ""
 
 #: txt2regex.sh:105
 msgid "usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
@@ -84,219 +88,219 @@ msgstr "  -V, --version       Program versiyonunu yazdırır ve çıkar"
 msgid "  -h, --help          Print the help message and quit"
 msgstr "  -h, --help          Yardım mesajı yazdırır ve çıkar"
 
-#: txt2regex.sh:214
+#: txt2regex.sh:215
 msgid "unknown program"
 msgstr ""
 
-#: txt2regex.sh:244
+#: txt2regex.sh:245
 msgid "invalid argument"
 msgstr "geçersiz parametre"
 
-#: txt2regex.sh:245
+#: txt2regex.sh:246
 msgid "valid names are:"
 msgstr "geçerli isimler:"
 
-#: txt2regex.sh:292
+#: txt2regex.sh:293
 msgid "invalid option"
 msgstr "geçersiz seçenek"
 
-#: txt2regex.sh:306
+#: txt2regex.sh:307
 msgid "start to match"
 msgstr "eşleştirmeye başla"
 
-#: txt2regex.sh:307
+#: txt2regex.sh:308
 msgid "on the line beginning"
 msgstr "sayfanın başında"
 
-#: txt2regex.sh:308
+#: txt2regex.sh:309
 msgid "in any part of the line"
 msgstr "sayfanın herhangi bir yerinde"
 
-#: txt2regex.sh:312
+#: txt2regex.sh:313
 msgid "followed by"
 msgstr ""
 
-#: txt2regex.sh:313
+#: txt2regex.sh:314
 msgid "any character"
 msgstr "herhangi bir karakter"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:315
 msgid "a specific character"
 msgstr "belli bir karakter"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:316
 msgid "a literal string"
 msgstr "belli bir ifade (string)"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:317
 msgid "an allowed characters list"
 msgstr "izin verilen karakterler listesi"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:318
 msgid "a forbidden characters list"
 msgstr "yasaklı karakterler listesi"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:319
 msgid "a special combination"
 msgstr "özel bir kombinasyon"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:320
 msgid "a POSIX combination (locale aware)"
 msgstr "POSIX kombinasyonu"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:321
 msgid "a ready regex (not implemented)"
 msgstr "hazır bir REGEX (henüz implement edilmedi)"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:322
 msgid "anything"
 msgstr "herşey"
 
-#: txt2regex.sh:325
+#: txt2regex.sh:326
 msgid "how many times (repetition)"
 msgstr "kaç kere (tekrar)"
 
-#: txt2regex.sh:326
+#: txt2regex.sh:327
 msgid "one"
 msgstr "bir"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:328
 msgid "zero or one (optional)"
 msgstr "sıfır ya da bir (isteğe bağlı)"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:329
 msgid "zero or more"
 msgstr "sıfır ya da daha fazla"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:330
 msgid "one or more"
 msgstr "bir ya da daha fazla"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:331
 msgid "exactly N"
 msgstr "N tane"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:332
 msgid "up to N"
 msgstr "N'e kadar"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:333
 msgid "at least N"
 msgstr "en az N tane"
 
-#: txt2regex.sh:336
+#: txt2regex.sh:337
 msgid "uppercase letters"
 msgstr "büyük harfler"
 
-#: txt2regex.sh:337
+#: txt2regex.sh:338
 msgid "lowercase letters"
 msgstr "küçük harfler"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:339
 msgid "numbers"
 msgstr "sayılar"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:340
 msgid "underscore"
 msgstr "altçizgi"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:341
 msgid "space"
 msgstr "boşluk"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:342
 msgid "TAB"
 msgstr ""
 
-#: txt2regex.sh:346
+#: txt2regex.sh:347
 msgid "letters"
 msgstr "harfler"
 
-#: txt2regex.sh:350
+#: txt2regex.sh:351
 msgid "letters and numbers"
 msgstr "harfler ve sayılar"
 
-#: txt2regex.sh:351
+#: txt2regex.sh:352
 msgid "hexadecimal numbers"
 msgstr "heksadesimal sayılar"
 
-#: txt2regex.sh:352
+#: txt2regex.sh:353
 msgid "whitespaces (space and TAB)"
 msgstr "boşluklar (space ve TAB)"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:354
 msgid "graphic chars (not-whitespace)"
 msgstr ""
 
-#: txt2regex.sh:358
+#: txt2regex.sh:359
 msgid "quit"
 msgstr "çık"
 
-#: txt2regex.sh:359
+#: txt2regex.sh:360
 msgid "reset"
 msgstr "sıfırla"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:361
 msgid "color"
 msgstr "renk"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:362
 msgid "programs"
 msgstr ""
 
-#: txt2regex.sh:367
+#: txt2regex.sh:368
 msgid "or"
 msgstr "veya"
 
-#: txt2regex.sh:368
+#: txt2regex.sh:369
 msgid "open group"
 msgstr "grup aç"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:370
 msgid "close group"
 msgstr "grubu kapat"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:371
 msgid "not supported"
 msgstr "desteklenmiyor"
 
-#: txt2regex.sh:521
+#: txt2regex.sh:522
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr ""
 
-#: txt2regex.sh:525
+#: txt2regex.sh:526
 msgid "NO"
 msgstr "HAYIR"
 
-#: txt2regex.sh:534
+#: txt2regex.sh:535
 msgid "YES"
 msgstr "EVET"
 
-#: txt2regex.sh:549
+#: txt2regex.sh:550
 msgid "program"
 msgstr ""
 
-#: txt2regex.sh:550
+#: txt2regex.sh:551
 msgid "metas"
 msgstr ""
 
-#: txt2regex.sh:551
+#: txt2regex.sh:552
 msgid "esc meta"
 msgstr ""
 
-#: txt2regex.sh:552
+#: txt2regex.sh:553
 msgid "need esc"
 msgstr ""
 
-#: txt2regex.sh:553
+#: txt2regex.sh:554
 msgid "\\t in []"
 msgstr ""
 
-#: txt2regex.sh:554
+#: txt2regex.sh:555
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:604
+#: txt2regex.sh:605
 msgid ""
 "error:\n"
 "  your screen has %s lines and should have at least %s to this\n"
@@ -304,34 +308,34 @@ msgid ""
 "  less programs to show the regex.\\n\\n"
 msgstr ""
 
-#: txt2regex.sh:797
+#: txt2regex.sh:798
 msgid "which one?"
 msgstr "hangisi?"
 
-#: txt2regex.sh:816
+#: txt2regex.sh:817
 msgid "which?"
 msgstr "hangisi?"
 
-#: txt2regex.sh:1118
+#: txt2regex.sh:1119
 msgid "exit"
 msgstr "çık"
 
-#: txt2regex.sh:1119
+#: txt2regex.sh:1120
 msgid "press the letters to (un)select the items"
 msgstr "seçimi değiştirmek için harflere basın"
 
-#: txt2regex.sh:1306
+#: txt2regex.sh:1307
 msgid "repeated"
 msgstr "tekrar edildi"
 
-#: txt2regex.sh:1308
+#: txt2regex.sh:1309
 msgid "times"
 msgstr "kere"
 
-#: txt2regex.sh:1317
+#: txt2regex.sh:1318
 msgid "Really quit?"
 msgstr "Gerçekten çıkmak istiyor musunuz?"
 
-#: txt2regex.sh:1343
+#: txt2regex.sh:1344
 msgid "no regex"
 msgstr "regex yok"

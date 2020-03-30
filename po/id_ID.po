@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.3\n"
-"POT-Creation-Date: 2020-03-30 23:39 CEST\n"
+"POT-Creation-Date: 2020-03-30 23:46 CEST\n"
 "PO-Revision-Date: 2001-06-18 11:45+0700\n"
 "Last-Translator: Muhamad Faizal <faizal@mfaizal.net>\n"
 "Language-Team: Bahasa txt2regex LangTeam <faizal@mfaizal.net>\n"
@@ -9,6 +9,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: txt2regex.sh:88
+msgid "ERROR"
+msgstr ""
 
 #: txt2regex.sh:105
 msgid "usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
@@ -74,219 +78,219 @@ msgstr ""
 msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
-#: txt2regex.sh:214
+#: txt2regex.sh:215
 msgid "unknown program"
 msgstr "aplikasi tidak dikenal"
 
-#: txt2regex.sh:244
+#: txt2regex.sh:245
 msgid "invalid argument"
 msgstr ""
 
-#: txt2regex.sh:245
+#: txt2regex.sh:246
 msgid "valid names are:"
 msgstr ""
 
-#: txt2regex.sh:292
+#: txt2regex.sh:293
 msgid "invalid option"
 msgstr ""
 
-#: txt2regex.sh:306
+#: txt2regex.sh:307
 msgid "start to match"
 msgstr "yang ingin ditemukan"
 
-#: txt2regex.sh:307
+#: txt2regex.sh:308
 msgid "on the line beginning"
 msgstr "di awal baris"
 
-#: txt2regex.sh:308
+#: txt2regex.sh:309
 msgid "in any part of the line"
 msgstr "di sembarang tempat"
 
-#: txt2regex.sh:312
+#: txt2regex.sh:313
 msgid "followed by"
 msgstr "diikuti oleh"
 
-#: txt2regex.sh:313
+#: txt2regex.sh:314
 msgid "any character"
 msgstr "sembarang karakter"
 
-#: txt2regex.sh:314
+#: txt2regex.sh:315
 msgid "a specific character"
 msgstr "karakter tertentu"
 
-#: txt2regex.sh:315
+#: txt2regex.sh:316
 msgid "a literal string"
 msgstr "kalimat"
 
-#: txt2regex.sh:316
+#: txt2regex.sh:317
 msgid "an allowed characters list"
 msgstr "daftar karakter yang dicari"
 
-#: txt2regex.sh:317
+#: txt2regex.sh:318
 msgid "a forbidden characters list"
 msgstr "daftar karakter yang tidak dicari"
 
-#: txt2regex.sh:318
+#: txt2regex.sh:319
 msgid "a special combination"
 msgstr "kombinasi khusus"
 
-#: txt2regex.sh:319
+#: txt2regex.sh:320
 msgid "a POSIX combination (locale aware)"
 msgstr "kombinasi POSIX (dapat memanfaatkan aplikasi locale)"
 
-#: txt2regex.sh:320
+#: txt2regex.sh:321
 msgid "a ready regex (not implemented)"
 msgstr "regex yang sudah ada (belum diimplementasikan)"
 
-#: txt2regex.sh:321
+#: txt2regex.sh:322
 msgid "anything"
 msgstr "apapun"
 
-#: txt2regex.sh:325
+#: txt2regex.sh:326
 msgid "how many times (repetition)"
 msgstr "banyaknya pengulangan"
 
-#: txt2regex.sh:326
+#: txt2regex.sh:327
 msgid "one"
 msgstr "satu"
 
-#: txt2regex.sh:327
+#: txt2regex.sh:328
 msgid "zero or one (optional)"
 msgstr "nol atau satu"
 
-#: txt2regex.sh:328
+#: txt2regex.sh:329
 msgid "zero or more"
 msgstr "lebih dari atau sama dengan nol"
 
-#: txt2regex.sh:329
+#: txt2regex.sh:330
 msgid "one or more"
 msgstr "lebih dari atau sama dengan satu"
 
-#: txt2regex.sh:330
+#: txt2regex.sh:331
 msgid "exactly N"
 msgstr "sejumlah N"
 
-#: txt2regex.sh:331
+#: txt2regex.sh:332
 msgid "up to N"
 msgstr "sampai dengan N"
 
-#: txt2regex.sh:332
+#: txt2regex.sh:333
 msgid "at least N"
 msgstr "paling sedikit N"
 
-#: txt2regex.sh:336
+#: txt2regex.sh:337
 msgid "uppercase letters"
 msgstr "huruf kapital"
 
-#: txt2regex.sh:337
+#: txt2regex.sh:338
 msgid "lowercase letters"
 msgstr "huruf biasa"
 
-#: txt2regex.sh:338
+#: txt2regex.sh:339
 msgid "numbers"
 msgstr "bilangan"
 
-#: txt2regex.sh:339
+#: txt2regex.sh:340
 msgid "underscore"
 msgstr "garis bawah"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:341
 msgid "space"
 msgstr "spasi"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:342
 msgid "TAB"
 msgstr "TAB"
 
-#: txt2regex.sh:346
+#: txt2regex.sh:347
 msgid "letters"
 msgstr "huruf"
 
-#: txt2regex.sh:350
+#: txt2regex.sh:351
 msgid "letters and numbers"
 msgstr "huruf dan bilangan"
 
-#: txt2regex.sh:351
+#: txt2regex.sh:352
 msgid "hexadecimal numbers"
 msgstr "bilangan heksadesimal"
 
-#: txt2regex.sh:352
+#: txt2regex.sh:353
 msgid "whitespaces (space and TAB)"
 msgstr "spasi kosong (spasi dan TAB)"
 
-#: txt2regex.sh:353
+#: txt2regex.sh:354
 msgid "graphic chars (not-whitespace)"
 msgstr "karakter grafis (bukan spasi kosong)"
 
-#: txt2regex.sh:358
+#: txt2regex.sh:359
 msgid "quit"
 msgstr "keluar"
 
-#: txt2regex.sh:359
+#: txt2regex.sh:360
 msgid "reset"
 msgstr "reset"
 
-#: txt2regex.sh:360
+#: txt2regex.sh:361
 msgid "color"
 msgstr "warna"
 
-#: txt2regex.sh:361
+#: txt2regex.sh:362
 msgid "programs"
 msgstr "aplikasi"
 
-#: txt2regex.sh:367
+#: txt2regex.sh:368
 msgid "or"
 msgstr "atau"
 
-#: txt2regex.sh:368
+#: txt2regex.sh:369
 msgid "open group"
 msgstr "buka grup"
 
-#: txt2regex.sh:369
+#: txt2regex.sh:370
 msgid "close group"
 msgstr "tutup grup"
 
-#: txt2regex.sh:370
+#: txt2regex.sh:371
 msgid "not supported"
 msgstr "tidak didukung"
 
-#: txt2regex.sh:521
+#: txt2regex.sh:522
 msgid "NOTE: . [] [^] and * are the same on all programs."
 msgstr "CATATAN: . [] [^] dan * sama untuk semua aplikasi."
 
-#: txt2regex.sh:525
+#: txt2regex.sh:526
 msgid "NO"
 msgstr "TIDAK"
 
-#: txt2regex.sh:534
+#: txt2regex.sh:535
 msgid "YES"
 msgstr "YA"
 
-#: txt2regex.sh:549
+#: txt2regex.sh:550
 msgid "program"
 msgstr "aplikasi"
 
-#: txt2regex.sh:550
+#: txt2regex.sh:551
 msgid "metas"
 msgstr "karakter meta"
 
-#: txt2regex.sh:551
+#: txt2regex.sh:552
 msgid "esc meta"
 msgstr "karakter meta esc"
 
-#: txt2regex.sh:552
+#: txt2regex.sh:553
 msgid "need esc"
 msgstr "perlu karakter esc"
 
-#: txt2regex.sh:553
+#: txt2regex.sh:554
 msgid "\\t in []"
 msgstr "\\t di []"
 
-#: txt2regex.sh:554
+#: txt2regex.sh:555
 msgid "[:POSIX:]"
 msgstr "[:POSIX:]"
 
-#: txt2regex.sh:604
+#: txt2regex.sh:605
 #, fuzzy
 msgid ""
 "error:\n"
@@ -299,35 +303,35 @@ msgstr ""
 "  memiliki %s baris agar program ini dapat berjalan dengan baik.\n"
 "  tambahkan jumlah baris atau kurangi aplikasi yang akan ditampilkan.\\n\\n"
 
-#: txt2regex.sh:797
+#: txt2regex.sh:798
 msgid "which one?"
 msgstr "yang mana?"
 
-#: txt2regex.sh:816
+#: txt2regex.sh:817
 msgid "which?"
 msgstr "yang mana?"
 
-#: txt2regex.sh:1118
+#: txt2regex.sh:1119
 msgid "exit"
 msgstr "keluar"
 
-#: txt2regex.sh:1119
+#: txt2regex.sh:1120
 msgid "press the letters to (un)select the items"
 msgstr "tekan huruf untuk memilih aplikasi"
 
-#: txt2regex.sh:1306
+#: txt2regex.sh:1307
 msgid "repeated"
 msgstr "pengulangan"
 
-#: txt2regex.sh:1308
+#: txt2regex.sh:1309
 msgid "times"
 msgstr "kali"
 
-#: txt2regex.sh:1317
+#: txt2regex.sh:1318
 msgid "Really quit?"
 msgstr "Anda yakin mau keluar?"
 
-#: txt2regex.sh:1343
+#: txt2regex.sh:1344
 msgid "no regex"
 msgstr "tidak ada regex"
 
