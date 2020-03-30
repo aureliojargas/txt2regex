@@ -393,6 +393,17 @@ usage
 $
 ```
 
+## Not enough lines to draw the UI
+
+```console
+$ LINES=10 txt2regex --prog sed | cat -v | sed 's/ *$//'
+^[cERROR:
+Your terminal has 10 lines, but txt2regex needs at least 19 lines.
+Increase the number of lines or select less programs using --prog.
+If this line number detection is incorrect, export the LINES variable.
+$
+```
+
 ## On quit, show --history and regex textual description
 
 This is the same stress test used in the previous `--history` test, but this time feeding the commands via STDIN (simulating the user interaction) and checking only the last 3 lines of the final result.
