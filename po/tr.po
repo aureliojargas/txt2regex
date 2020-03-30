@@ -76,14 +76,12 @@ msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr ""
 
 #: txt2regex.sh:123
-#, fuzzy
 msgid "  -V, --version       Prints the program version and quit"
-msgstr "  --version           Program versiyonunu yazdırır ve çıkar"
+msgstr "  -V, --version       Program versiyonunu yazdırır ve çıkar"
 
 #: txt2regex.sh:124
-#, fuzzy
 msgid "  -h, --help          Prints the help message and quit"
-msgstr "  --help              Yardım mesajı yazdırır ve çıkar"
+msgstr "  -h, --help          Yardım mesajı yazdırır ve çıkar"
 
 #: txt2regex.sh:126
 msgid "Please read the program Man Page for more information."
@@ -299,7 +297,7 @@ msgstr ""
 
 #: txt2regex.sh:556
 msgid "[:POSIX:]"
-msgstr ""
+msgstr "[:POSIX:]"
 
 #: txt2regex.sh:606
 msgid ""

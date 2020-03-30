@@ -72,14 +72,12 @@ msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr "  --make NOM            Afficher la regex correspondant à cette présélection"
 
 #: txt2regex.sh:123
-#, fuzzy
 msgid "  -V, --version       Prints the program version and quit"
-msgstr "  --version             Afficher le nom et la version du logiciel puis quitter"
+msgstr "  -V, --version         Afficher le nom et la version du logiciel puis quitter"
 
 #: txt2regex.sh:124
-#, fuzzy
 msgid "  -h, --help          Prints the help message and quit"
-msgstr "  --help                Afficher l'aide puis quitter"
+msgstr "  -h, --help            Afficher l'aide puis quitter"
 
 #: txt2regex.sh:126
 msgid "Please read the program Man Page for more information."

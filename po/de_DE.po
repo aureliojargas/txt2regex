@@ -139,9 +139,8 @@ msgid "a POSIX combination (locale aware)"
 msgstr "einer POSIX Kombination (lokale Einstellungen beachten)"
 
 #: txt2regex.sh:322
-#, fuzzy
 msgid "a ready regex (not implemented)"
-msgstr "einer fertigen RegEx (noch nicht implementiert)"
+msgstr "einer fertigen regex (noch nicht implementiert)"
 
 #: txt2regex.sh:323
 msgid "anything"
@@ -333,9 +332,8 @@ msgid "Really quit?"
 msgstr "Wirklich beenden?"
 
 #: txt2regex.sh:1345
-#, fuzzy
 msgid "no regex"
-msgstr "keine RegEx"
+msgstr "keine regex"
 
 #, fuzzy
 #~ msgid ""
