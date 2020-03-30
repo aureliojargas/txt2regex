@@ -140,7 +140,6 @@ msgid "a POSIX combination (locale aware)"
 msgstr "POSIX文字クラス(ロケール対応)"
 
 #: txt2regex.sh:322
-#, fuzzy
 msgid "a ready regex (not implemented)"
 msgstr "準備済みの正規表現(未実装)"
 
@@ -333,6 +332,5 @@ msgid "Really quit?"
 msgstr ""
 
 #: txt2regex.sh:1345
-#, fuzzy
 msgid "no regex"
 msgstr "正規表現はありません"

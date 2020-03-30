@@ -16,12 +16,11 @@ msgstr "użycie: txt2regex [ -- nocolor | --whitebg ] [ --all | --prog PROGRAMY 
 
 #: txt2regex.sh:106
 msgid "       txt2regex --showmeta"
-msgstr ""
+msgstr "       txt2regex --showmeta"
 
 #: txt2regex.sh:107
-#, fuzzy
 msgid "       txt2regex --showinfo PROGRAM [ --nocolor ]"
-msgstr "       txt2regex --history WARTOŚĆ [ --all | --prog PROGRAMY ]"
+msgstr "       txt2regex --showinfo PROGRAM [ --nocolor ]"
 
 #: txt2regex.sh:108
 msgid "       txt2regex --history VALUE [ --all | --prog PROGRAMS ]"
@@ -68,14 +67,12 @@ msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr "  --make ETYKIETA        Wyświetla domyślny regex dla wyszczególnionej etykiety"
 
 #: txt2regex.sh:123
-#, fuzzy
 msgid "  -V, --version       Prints the program version and quit"
-msgstr "  --version           Wyświetla wersję programu i zamyka go"
+msgstr "  -V, --version       Wyświetla wersję programu i zamyka go"
 
 #: txt2regex.sh:124
-#, fuzzy
 msgid "  -h, --help          Prints the help message and quit"
-msgstr "  --help              Wyświetla pomoc i zamyka program"
+msgstr "  -h, --help          Wyświetla pomoc i zamyka program"
 
 #: txt2regex.sh:126
 msgid "Please read the program Man Page for more information."
@@ -142,7 +139,6 @@ msgid "a POSIX combination (locale aware)"
 msgstr "POSIX kombinacja (świadoma lokalizacja)"
 
 #: txt2regex.sh:322
-#, fuzzy
 msgid "a ready regex (not implemented)"
 msgstr "gotowy regex (nie zaimplementowana)"
 
@@ -336,7 +332,6 @@ msgid "Really quit?"
 msgstr "Na pewno chcesz wyjść ?"
 
 #: txt2regex.sh:1345
-#, fuzzy
 msgid "no regex"
 msgstr "nie regex"
 

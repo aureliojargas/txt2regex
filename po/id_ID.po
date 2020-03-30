@@ -139,9 +139,8 @@ msgid "a POSIX combination (locale aware)"
 msgstr "kombinasi POSIX (dapat memanfaatkan aplikasi locale)"
 
 #: txt2regex.sh:322
-#, fuzzy
 msgid "a ready regex (not implemented)"
-msgstr "RegEx yang sudah ada (belum diimplementasikan)"
+msgstr "regex yang sudah ada (belum diimplementasikan)"
 
 #: txt2regex.sh:323
 msgid "anything"
@@ -333,9 +332,8 @@ msgid "Really quit?"
 msgstr "Anda yakin mau keluar?"
 
 #: txt2regex.sh:1345
-#, fuzzy
 msgid "no regex"
-msgstr "tidak ada RegEx"
+msgstr "tidak ada regex"
 
 #, fuzzy
 #~ msgid ""

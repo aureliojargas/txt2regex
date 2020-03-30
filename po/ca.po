@@ -68,14 +68,12 @@ msgid "  --make LABEL        Prints the default regex for the specified label"
 msgstr "  --make ETIQUETA        Imprimeix el regex per defecte per l'etiqueta especificada"
 
 #: txt2regex.sh:123
-#, fuzzy
 msgid "  -V, --version       Prints the program version and quit"
-msgstr "  --version           Imprimeix la versió del programa i surt"
+msgstr "  -V, --version       Imprimeix la versió del programa i surt"
 
 #: txt2regex.sh:124
-#, fuzzy
 msgid "  -h, --help          Prints the help message and quit"
-msgstr "  --help              Imprimeix el missatge d'ajuda i surt"
+msgstr "  -h, --help          Imprimeix el missatge d'ajuda i surt"
 
 #: txt2regex.sh:126
 msgid "Please read the program Man Page for more information."
@@ -292,7 +290,6 @@ msgid "need esc"
 msgstr "esc necessari"
 
 #: txt2regex.sh:555
-#, fuzzy
 msgid "\\t in []"
 msgstr "\\t a []"
 
