@@ -7,7 +7,7 @@
 - First release: 2001-02-23
 - Website: https://aurelio.net/projects/txt2regex/
 
-Txt2regex is a Regular Expression Wizard that converts human sentences
+Txt2regex is a regular expression wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
 questions and the program builds the regexes for more than 20 programs
 like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice. It is a
