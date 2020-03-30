@@ -40,7 +40,7 @@ msgstr ""
 
 #: txt2regex.sh:111
 msgid "OPTIONS"
-msgstr ""
+msgstr "OPZIONI"
 
 #: txt2regex.sh:113
 msgid "  --all               Select all the available programs"
