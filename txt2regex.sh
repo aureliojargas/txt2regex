@@ -251,7 +251,7 @@ do
             [ -z "$label_index" ] &&
                 printError '%s: "%s": %s\n%s %s\n' \
                     '--make' "$1" $"invalid argument" \
-                    $"valid names are:" "${label_names[*]}"
+                    $"valid names:" "${label_names[*]}"
 
             # Set history data
             hist="${label_data[$label_index]}"
