@@ -88,17 +88,16 @@ msgstr "programa desconegut"
 
 #: txt2regex.sh:253
 msgid "invalid argument"
-msgstr "Argument invàl·lid"
+msgstr "argument invàlid"
 
 #: txt2regex.sh:254
-#, fuzzy
 msgid "valid names:"
-msgstr "els noms vàl·lids són:"
+msgstr "noms vàlids:"
 
 # #duplicated##: ../txt2regex-0.9.sh:192
 #: txt2regex.sh:296
 msgid "invalid option"
-msgstr "opció invàl·lida"
+msgstr "opció no vàlida"
 
 #: txt2regex.sh:310
 msgid "start to match"
