@@ -39,8 +39,8 @@ msgid "       txt2regex --make LABEL [--all|--prog PROGRAMS]"
 msgstr ""
 
 #: txt2regex.sh:111
-msgid "OPTIONS"
-msgstr "OPZIONI"
+msgid "OPTIONS:"
+msgstr "OPZIONI:"
 
 #: txt2regex.sh:113
 msgid "  --all               Select all the available programs"

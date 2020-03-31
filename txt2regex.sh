@@ -108,7 +108,7 @@ Usage(){
     printf '%s\n' $"       txt2regex --history VALUE [--all|--prog PROGRAMS]"
     printf '%s\n' $"       txt2regex --make LABEL [--all|--prog PROGRAMS]"
     printf '\n'
-    printf '%s:\n' $"OPTIONS"
+    printf '%s\n' $"OPTIONS:"
     printf '\n'
     printf '%s\n' $"  --all               Select all the available programs"
     printf '%s\n' $"  --nocolor           Do not use colors"
