@@ -337,7 +337,6 @@ msgstr "Na pewno chcesz wyjść ?"
 msgid "no regex"
 msgstr "nie regex"
 
-#, fuzzy
 #~ msgid ""
 #~ "usage: txt2regex [--nocolor|--whitebg|--all]\n"
 #~ "       txt2regex --showmeta|--showinfo <program>\n"

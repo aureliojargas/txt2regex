@@ -334,7 +334,6 @@ msgstr "Anda yakin mau keluar?"
 msgid "no regex"
 msgstr "tidak ada regex"
 
-#, fuzzy
 #~ msgid ""
 #~ "usage: txt2regex [--nocolor|--whitebg|--all]\n"
 #~ "       txt2regex --showmeta|--showinfo <program>\n"

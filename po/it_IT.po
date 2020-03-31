@@ -92,9 +92,8 @@ msgid "invalid argument"
 msgstr "argomento non corretto"
 
 #: txt2regex.sh:254
-#, fuzzy
 msgid "valid names:"
-msgstr "nomi validi sono:"
+msgstr "nomi validi:"
 
 # #duplicated##: ../txt2regex-0.7.sh:188
 #: txt2regex.sh:296
