@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2002-03-12 20:03-0000\n"
 "Last-Translator: Diego Moya Velázquez <diego.moya@madrid.com>\n"
 "Language-Team: \n"
@@ -178,15 +178,15 @@ msgstr "como mucho N"
 msgid "at least N"
 msgstr "como mínimo N"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "letras mayúsculas"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "letras minúsculas"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "cifras"
 
@@ -262,7 +262,7 @@ msgstr "NOTA: . [] [^] y * son iguales para todos los programas."
 msgid "NO"
 msgstr "NO"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "SI"
 

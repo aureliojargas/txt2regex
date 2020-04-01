@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.9b\n"
-"POT-Creation-Date: 2020-04-01 07:52 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"

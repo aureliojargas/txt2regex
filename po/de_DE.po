@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.5\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2001-08-29 09:55+0100\n"
 "Last-Translator: Jan Parthey <parthey@web.de>\n"
 "Language-Team: txt2regex German team <parthey@web.de>\n"
@@ -178,15 +178,15 @@ msgstr "bis zu N mal"
 msgid "at least N"
 msgstr "weniger als N mal"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "Großbuchstaben"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "Kleinbuchstaben"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "Zahlen"
 
@@ -262,7 +262,7 @@ msgstr "Anmerkung: . [] [^] und * bedeuten das selbe bei allen Programmen"
 msgid "NO"
 msgstr "NEIN"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "JA"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.9\n"
-"POT-Creation-Date: 2020-03-31 08:09 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2016-06-06 23:42+0300\n"
 "Last-Translator: erayalakese\n"
 "MIME-Version: 1.0\n"
@@ -183,15 +183,15 @@ msgstr "N'e kadar"
 msgid "at least N"
 msgstr "en az N tane"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "büyük harfler"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "küçük harfler"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "sayılar"
 
@@ -267,7 +267,7 @@ msgstr ""
 msgid "NO"
 msgstr "HAYIR"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "EVET"
 
