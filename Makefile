@@ -60,7 +60,8 @@ pot:
 		printf '"%s"\n' 'Content-Type: text/plain; charset=UTF-8\n'; \
 		printf '"%s"\n' 'Content-Transfer-Encoding: 8bit\n'; \
 		bash --dump-po-strings $(SHSKEL); \
-	) | msguniq --no-wrap --sort-by-file -o $(POTFILE);
+	) | msguniq --no-wrap --sort-by-file -o $(POTFILE); \
+	printf '%s was generated\n' $(POTFILE)
 
 po: pot
 	@for pofile in $(PODIR)/*.po; do \
