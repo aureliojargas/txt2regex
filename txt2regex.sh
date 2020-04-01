@@ -105,11 +105,16 @@ Usage(){
     # Ugly code, but isolates in $"..." only the strings that need
     # translation and tries to keep the option descriptions aligned even
     # when long words are used as meta vars.
-    printf '%s txt2regex [--nocolor|--whitebg] [--all|--prog %s]\n' $"usage:" $"PROGRAMS"
-    printf '       txt2regex --showmeta\n'
-    printf '       txt2regex --showinfo %s [--nocolor]\n' $"PROGRAM"
-    printf '       txt2regex --history %s [--all|--prog %s]\n' $"VALUE" $"PROGRAMS"
-    printf '       txt2regex --make %s [--all|--prog %s]\n' $"LABEL" $"PROGRAMS"
+    printf '%s txt2regex [--nocolor|--whitebg] [--all|--prog %s]\n' \
+                $"usage:" $"PROGRAMS"
+    printf '%s txt2regex --showmeta\n' \
+                $"usage:"
+    printf '%s txt2regex --showinfo %s [--nocolor]\n' \
+                $"usage:" $"PROGRAM"
+    printf '%s txt2regex --history %s [--all|--prog %s]\n' \
+                $"usage:" $"VALUE" $"PROGRAMS"
+    printf '%s txt2regex --make %s [--all|--prog %s]\n' \
+                $"usage:" $"LABEL" $"PROGRAMS"
     printf '\n'
     printf '%s\n' $"Options:"
     printf '  %-22s%s\n' '--all' \
