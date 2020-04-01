@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-04-02 00:33 CEST\n"
+"POT-Creation-Date: 2020-04-02 00:37 CEST\n"
 "PO-Revision-Date: 2001-09-03 18:43-0300\n"
 "Last-Translator: Aurelio Jargas <verde@aurelio.net>\n"
 "Language: pt_BR\n"
@@ -285,10 +285,6 @@ msgstr "precisa escapar"
 #: txt2regex.sh:574
 msgid "\\t in []"
 msgstr "\\t em []"
-
-#: txt2regex.sh:575
-msgid "[:POSIX:]"
-msgstr "[:POSIX:]"
 
 #: txt2regex.sh:626
 msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."

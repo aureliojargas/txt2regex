@@ -572,7 +572,7 @@ ShowInfo(){
     t3=$"esc meta"
     t4=$"need esc"
     t5=$"\t in []"
-    t6=$"[:POSIX:]"
+    t6='[:POSIX:]'
     data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
     txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
 
