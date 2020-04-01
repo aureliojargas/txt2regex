@@ -78,7 +78,6 @@ msgstr ""
 msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
-# #duplicated##: ../txt2regex-0.6.sh:356
 #: txt2regex.sh:224
 msgid "unknown program"
 msgstr ""
@@ -207,9 +206,6 @@ msgstr "タブ"
 msgid "letters"
 msgstr "アルファベット"
 
-# #duplicated##: ../txt2regex-0.6.sh:201
-# #duplicated##: ../txt2regex-0.6.sh:202
-# #duplicated##: ../txt2regex-0.6.sh:203
 #: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "アルファベットと数字"
@@ -270,7 +266,6 @@ msgstr ""
 msgid "YES"
 msgstr ""
 
-# #duplicated##: ../txt2regex-0.6.sh:367
 #: txt2regex.sh:553
 msgid "program"
 msgstr ""

@@ -81,7 +81,6 @@ msgstr "  -V, --version       Imprimeix la versió del programa i surt"
 msgid "  -h, --help          Print the help message and quit"
 msgstr "  -h, --help          Imprimeix el missatge d'ajuda i surt"
 
-# #duplicated##: ../txt2regex-0.9.sh:406
 #: txt2regex.sh:224
 msgid "unknown program"
 msgstr "programa desconegut"
@@ -94,7 +93,6 @@ msgstr "argument invàlid"
 msgid "valid names:"
 msgstr "noms vàlids:"
 
-# #duplicated##: ../txt2regex-0.9.sh:192
 #: txt2regex.sh:296
 msgid "invalid option"
 msgstr "opció no vàlida"
@@ -211,9 +209,6 @@ msgstr "Tabulador (TAB)"
 msgid "letters"
 msgstr "lletres"
 
-# #duplicated##: ../txt2regex-0.9.sh:254
-# #duplicated##: ../txt2regex-0.9.sh:255
-# #duplicated##: ../txt2regex-0.9.sh:256
 #: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "lletres i nombres"
@@ -274,7 +269,6 @@ msgstr "NO"
 msgid "YES"
 msgstr "SÍ"
 
-# #duplicated##: ../txt2regex-0.9.sh:417
 #: txt2regex.sh:553
 msgid "program"
 msgstr "programa"
