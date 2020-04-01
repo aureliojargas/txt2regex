@@ -85,7 +85,6 @@ msgstr "  -V, --version         Afficher le nom et la version du logiciel puis q
 msgid "  -h, --help          Print the help message and quit"
 msgstr "  -h, --help            Afficher l'aide puis quitter"
 
-# #duplicated##: ../txt2regex-0.7.sh:399
 #: txt2regex.sh:224
 msgid "unknown program"
 msgstr "programme inconnu"
@@ -98,7 +97,6 @@ msgstr "argument invalide"
 msgid "valid names:"
 msgstr "noms possibles :"
 
-# #duplicated##: ../txt2regex-0.7.sh:188
 #: txt2regex.sh:296
 msgid "invalid option"
 msgstr "option invalide"
@@ -215,9 +213,6 @@ msgstr "TAB"
 msgid "letters"
 msgstr "lettres"
 
-# #duplicated##: ../txt2regex-0.7.sh:249
-# #duplicated##: ../txt2regex-0.7.sh:250
-# #duplicated##: ../txt2regex-0.7.sh:251
 #: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "lettres et nombres"
@@ -278,7 +273,6 @@ msgstr "NON"
 msgid "YES"
 msgstr "OUI"
 
-# #duplicated##: ../txt2regex-0.7.sh:410
 #: txt2regex.sh:553
 msgid "program"
 msgstr "programme"

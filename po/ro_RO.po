@@ -78,7 +78,6 @@ msgstr ""
 msgid "  -h, --help          Print the help message and quit"
 msgstr ""
 
-# #duplicated##: ../txt2regex-0.7.sh:399
 #: txt2regex.sh:224
 msgid "unknown program"
 msgstr "program necunoscut"
@@ -91,7 +90,6 @@ msgstr "argument invalid"
 msgid "valid names:"
 msgstr "nume valide:"
 
-# #duplicated##: ../txt2regex-0.7.sh:188
 #: txt2regex.sh:296
 msgid "invalid option"
 msgstr "optiune invalida"
@@ -208,9 +206,6 @@ msgstr "caracterul TAB"
 msgid "letters"
 msgstr "litere"
 
-# #duplicated##: ../txt2regex-0.7.sh:249
-# #duplicated##: ../txt2regex-0.7.sh:250
-# #duplicated##: ../txt2regex-0.7.sh:251
 #: txt2regex.sh:354
 msgid "letters and numbers"
 msgstr "litere si numere"
@@ -271,7 +266,6 @@ msgstr "NU"
 msgid "YES"
 msgstr "DA"
 
-# #duplicated##: ../txt2regex-0.7.sh:410
 #: txt2regex.sh:553
 msgid "program"
 msgstr "program"
