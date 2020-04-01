@@ -7,7 +7,7 @@ PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
 FILES = Changelog.txt cmdline.md COPYRIGHT Makefile man NEWS $(PODIR) \
-        README.japanese README.md $(SHSKEL) test-suite TODO tools
+        README.japanese README.md $(SHSKEL) test-suite TODO
 
 DESTDIR =
 BINDIR = $(DESTDIR)/usr/bin
@@ -25,7 +25,7 @@ clean:
 	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
 
 check: clitest.sh
-	shellcheck $(SHSKEL) tools/*.sh
+	shellcheck $(SHSKEL)
 	bash ./clitest.sh --progress none cmdline.md
 
 doc: txt2tags.py
@@ -58,8 +58,7 @@ pot:
 		printf '"%s"\n' 'Content-Type: text/plain; charset=UTF-8\n'; \
 		printf '"%s"\n' 'Content-Transfer-Encoding: 8bit\n'; \
 		bash --dump-po-strings $(SHSKEL); \
-	) > $(POTFILE); \
-	tools/bashdump-rmdup.sh $(POTFILE)
+	) | msguniq --no-wrap --sort-by-file -o $(POTFILE);
 
 po: pot
 	@for pofile in $(PODIR)/*.po; do \
