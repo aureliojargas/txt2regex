@@ -313,8 +313,8 @@ do
             printf '%s: %s\n\n' "$1" $"invalid option"
             Usage 1
         ;;
-   esac
-   shift
+    esac
+    shift
 done
 
 set -o noglob
