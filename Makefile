@@ -65,7 +65,7 @@ pot:
 po: pot
 	@for pofile in $(PODIR)/*.po; do \
 		printf 'Merging %s...' $$pofile; \
-		msgmerge --update --no-wrap $$pofile $(POTFILE); \
+		msgmerge --update --sort-by-file --no-wrap $$pofile $(POTFILE); \
 	done; \
 	printf 'Remember to grep for the fuzzy messages in all .po files\n'
 

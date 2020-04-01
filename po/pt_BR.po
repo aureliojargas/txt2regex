@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2001-09-03 18:43-0300\n"
 "Last-Translator: Aurelio Jargas <verde@aurelio.net>\n"
 "Language: pt_BR\n"
@@ -177,15 +177,15 @@ msgstr "até N"
 msgid "at least N"
 msgstr "no mínimo N"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "letras maiúsculas"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "letras minúsculas"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "números"
 
@@ -261,7 +261,7 @@ msgstr "NOTA: . [] [^] e * são iguais para todos."
 msgid "NO"
 msgstr "NÃO"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "SIM"
 

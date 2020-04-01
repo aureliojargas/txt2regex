@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.3\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2001-06-18 11:45+0700\n"
 "Last-Translator: Muhamad Faizal <faizal@mfaizal.net>\n"
 "Language-Team: Bahasa txt2regex LangTeam <faizal@mfaizal.net>\n"
@@ -178,15 +178,15 @@ msgstr "sampai dengan N"
 msgid "at least N"
 msgstr "paling sedikit N"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "huruf kapital"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "huruf biasa"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "bilangan"
 
@@ -262,7 +262,7 @@ msgstr "CATATAN: . [] [^] dan * sama untuk semua aplikasi."
 msgid "NO"
 msgstr "TIDAK"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "YA"
 

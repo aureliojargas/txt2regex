@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:32 CEST\n"
 "PO-Revision-Date: 2004-05-10 00:00+000\n"
 "Last-Translator: Robert Gheorghe <robert...@yahoo.ca>\n"
 "Language-Team: Romanian team\n"
@@ -180,15 +180,15 @@ msgstr "de pana la N ori"
 msgid "at least N"
 msgstr "cel putin N ori"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "litere mari"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "litere mici"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "numere"
 
@@ -267,7 +267,7 @@ msgstr "NOTA: . [] [^] si * sunt aceleasi in toate programele."
 msgid "NO"
 msgstr "NU"
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr "DA"
 
@@ -339,17 +339,6 @@ msgstr "Esti sigur(a) ca vrei sa renunti?"
 #: txt2regex.sh:1349
 msgid "no regex"
 msgstr ""
-
-#~ msgid ""
-#~ "error:\n"
-#~ "  your screen has %s lines and should have at least %s to this\n"
-#~ "  program fit on it. increase the number of lines or select\n"
-#~ "  less programs to show the regex.\\n\\n"
-#~ msgstr ""
-#~ "eroare:\n"
-#~ "  ecranul tau are %s linii si trebuie sa aiba cel putin %s pentru ca\n"
-#~ "  acest(e) program(e) sa incapa in el. Mareste numarul de linii sau alege\n"
-#~ "  mai putine programe pentru care sa arat expresiile regulate.\\n\\n"
 
 #~ msgid ""
 #~ "usage: txt2regex [--nocolor|--whitebg|--all]\n"

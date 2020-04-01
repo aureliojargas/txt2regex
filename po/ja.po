@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-03-31 00:11 CEST\n"
+"POT-Creation-Date: 2020-04-01 08:29 CEST\n"
 "PO-Revision-Date: 2001-09-15 10:53+0900\n"
 "Last-Translator: Koichi OIKE <daichi1@gol.com>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -179,15 +179,15 @@ msgstr "1からN"
 msgid "at least N"
 msgstr "少なくともN"
 
-#: txt2regex.sh:340
+#: txt2regex.sh:340 txt2regex.sh:352
 msgid "uppercase letters"
 msgstr "大文字アルファベット"
 
-#: txt2regex.sh:341
+#: txt2regex.sh:341 txt2regex.sh:351
 msgid "lowercase letters"
 msgstr "小文字アルファベット"
 
-#: txt2regex.sh:342
+#: txt2regex.sh:342 txt2regex.sh:353
 msgid "numbers"
 msgstr "数字"
 
@@ -266,7 +266,7 @@ msgstr ""
 msgid "NO"
 msgstr ""
 
-#: txt2regex.sh:538
+#: txt2regex.sh:538 txt2regex.sh:539
 msgid "YES"
 msgstr ""
 
