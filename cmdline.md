@@ -18,10 +18,10 @@ $
 ```console
 $ txt2regex --help | tee help.txt
 usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]
-       txt2regex --showmeta
-       txt2regex --showinfo PROGRAM [--nocolor]
-       txt2regex --history VALUE [--all|--prog PROGRAMS]
-       txt2regex --make LABEL [--all|--prog PROGRAMS]
+usage: txt2regex --showmeta
+usage: txt2regex --showinfo PROGRAM [--nocolor]
+usage: txt2regex --history VALUE [--all|--prog PROGRAMS]
+usage: txt2regex --make LABEL [--all|--prog PROGRAMS]
 
 Options:
   --all                 Select all the available programs
