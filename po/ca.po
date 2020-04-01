@@ -35,8 +35,8 @@ msgid "       txt2regex --make LABEL [--all|--prog PROGRAMS]"
 msgstr "       txt2regex --make ETIQUETA [--all|--prog PROGRAMES]"
 
 #: txt2regex.sh:111
-msgid "OPTIONS:"
-msgstr "OPCIONS:"
+msgid "Options:"
+msgstr "Opcions:"
 
 #: txt2regex.sh:113
 #, fuzzy

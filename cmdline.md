@@ -23,8 +23,7 @@ usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]
        txt2regex --history VALUE [--all|--prog PROGRAMS]
        txt2regex --make LABEL [--all|--prog PROGRAMS]
 
-OPTIONS:
-
+Options:
   --all               Select all the available programs
   --nocolor           Do not use colors
   --whitebg           Adjust colors for white background terminals
