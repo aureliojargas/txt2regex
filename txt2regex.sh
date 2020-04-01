@@ -102,25 +102,38 @@ case "$BASH_VERSION" in
 esac
 
 Usage(){
-    printf '%s\n' $"usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]"
-    printf '%s\n' $"       txt2regex --showmeta"
-    printf '%s\n' $"       txt2regex --showinfo PROGRAM [--nocolor]"
-    printf '%s\n' $"       txt2regex --history VALUE [--all|--prog PROGRAMS]"
-    printf '%s\n' $"       txt2regex --make LABEL [--all|--prog PROGRAMS]"
+    # Ugly code, but isolates in $"..." only the strings that need
+    # translation and tries to keep the option descriptions aligned even
+    # when long words are used as meta vars.
+    printf '%s txt2regex [--nocolor|--whitebg] [--all|--prog %s]\n' $"usage:" $"PROGRAMS"
+    printf '       txt2regex --showmeta\n'
+    printf '       txt2regex --showinfo %s [--nocolor]\n' $"PROGRAM"
+    printf '       txt2regex --history %s [--all|--prog %s]\n' $"VALUE" $"PROGRAMS"
+    printf '       txt2regex --make %s [--all|--prog %s]\n' $"LABEL" $"PROGRAMS"
     printf '\n'
     printf '%s\n' $"Options:"
-    printf '%s\n' $"  --all               Select all the available programs"
-    printf '%s\n' $"  --nocolor           Do not use colors"
-    printf '%s\n' $"  --whitebg           Adjust colors for white background terminals"
-    printf '%s\n' $"  --prog PROGRAMS     Specify which programs to use, separated by commas"
+    printf '  %-22s%s\n' '--all' \
+                        $"Select all the available programs"
+    printf '  %-22s%s\n' '--nocolor' \
+                        $"Do not use colors"
+    printf '  %-22s%s\n' '--whitebg' \
+                        $"Adjust colors for white background terminals"
+    printf '  %-22s%s\n' '--prog '$"PROGRAMS" \
+                        $"Specify which programs to use, separated by commas"
     printf '\n'
-    printf '%s\n' $"  --showmeta          Print a metacharacters table featuring all the programs"
-    printf '%s\n' $"  --showinfo PROGRAM  Print regex-related info about the specified program"
-    printf '%s\n' $"  --history VALUE     Print a regex from the given history data"
-    printf '%s\n' $"  --make LABEL        Print a ready regex for the specified label"
+    printf '  %-22s%s\n' '--showmeta' \
+                        $"Print a metacharacters table featuring all the programs"
+    printf '  %-22s%s\n' '--showinfo '$"PROGRAM" \
+                        $"Print regex-related info about the specified program"
+    printf '  %-22s%s\n' '--history '$"VALUE" \
+                        $"Print a regex from the given history data"
+    printf '  %-22s%s\n' '--make '$"LABEL" \
+                        $"Print a ready regex for the specified label"
     printf '\n'
-    printf '%s\n' $"  -V, --version       Print the program version and quit"
-    printf '%s\n' $"  -h, --help          Print the help message and quit"
+    printf '  %-22s%s\n' '-V, --version' \
+                        $"Print the program version and quit"
+    printf '  %-22s%s\n' '-h, --help' \
+                        $"Print the help message and quit"
     printf '\n'
     exit "${1:-0}"  # $1 is the exit code (default is 0)
 }

@@ -24,18 +24,18 @@ usage: txt2regex [--nocolor|--whitebg] [--all|--prog PROGRAMS]
        txt2regex --make LABEL [--all|--prog PROGRAMS]
 
 Options:
-  --all               Select all the available programs
-  --nocolor           Do not use colors
-  --whitebg           Adjust colors for white background terminals
-  --prog PROGRAMS     Specify which programs to use, separated by commas
+  --all                 Select all the available programs
+  --nocolor             Do not use colors
+  --whitebg             Adjust colors for white background terminals
+  --prog PROGRAMS       Specify which programs to use, separated by commas
 
-  --showmeta          Print a metacharacters table featuring all the programs
-  --showinfo PROGRAM  Print regex-related info about the specified program
-  --history VALUE     Print a regex from the given history data
-  --make LABEL        Print a ready regex for the specified label
+  --showmeta            Print a metacharacters table featuring all the programs
+  --showinfo PROGRAM    Print regex-related info about the specified program
+  --history VALUE       Print a regex from the given history data
+  --make LABEL          Print a ready regex for the specified label
 
-  -V, --version       Print the program version and quit
-  -h, --help          Print the help message and quit
+  -V, --version         Print the program version and quit
+  -h, --help            Print the help message and quit
 
 $ txt2regex -h > h.txt
 $ diff help.txt h.txt
