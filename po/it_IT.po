@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.7\n"
-"POT-Creation-Date: 2020-04-02 00:33 CEST\n"
+"POT-Creation-Date: 2020-04-02 00:37 CEST\n"
 "PO-Revision-Date: 2003-02-20 13:24+0100\n"
 "Last-Translator: Marco Pagnanini\n"
 "Language: it_IT\n"
@@ -297,10 +297,6 @@ msgstr "abbisognano di esc"
 #: txt2regex.sh:574
 msgid "\\t in []"
 msgstr "\\t in []"
-
-#: txt2regex.sh:575
-msgid "[:POSIX:]"
-msgstr "[:POSIX:]"
 
 #: txt2regex.sh:626
 msgid "Your terminal has %d lines, but txt2regex needs at least %d lines."

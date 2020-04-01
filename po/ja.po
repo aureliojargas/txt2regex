@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: txt2regex 0.6\n"
-"POT-Creation-Date: 2020-04-02 00:33 CEST\n"
+"POT-Creation-Date: 2020-04-02 00:37 CEST\n"
 "PO-Revision-Date: 2001-09-15 10:53+0900\n"
 "Last-Translator: Koichi OIKE <daichi1@gol.com>\n"
 "Language: ja\n"
@@ -284,10 +284,6 @@ msgstr ""
 
 #: txt2regex.sh:574
 msgid "\\t in []"
-msgstr ""
-
-#: txt2regex.sh:575
-msgid "[:POSIX:]"
 msgstr ""
 
 #: txt2regex.sh:626
