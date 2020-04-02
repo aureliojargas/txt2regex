@@ -80,6 +80,11 @@
 # 20051229 <> fixed bug on bash3 for eval contents (thanks Marcus Habermehl)
 # 20121221 ** moved to GitHub, please see the Git history from now on
 
+# Every command in this script is a Bash builtin. This is by design.
+# Make sure we don't break that rule in future code by strictly
+# disallowing any system command.
+export PATH=
+
 TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
 VERSION=0
