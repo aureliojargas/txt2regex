@@ -14,7 +14,8 @@ BINDIR = $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
-.PHONY: check clean doc tgz install install-bin install-mo check-po po pot mo
+.PHONY: bashate check clean doc tgz install install-bin install-mo \
+        check-po po pot mo
 
 #-----------------------------------------------------------------------
 # Dev
@@ -26,11 +27,15 @@ clean:
 
 check: clitest.sh
 	shellcheck $(SHSKEL)
+	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 	bash ./clitest.sh --progress none cmdline.md
 
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
 	@python ./txt2tags.py -t html man/txt2regex.t2t
+
+bashate:
+	@command -v $@ || pip3 install --user $@
 
 clitest.sh:
 	curl -s -L -o $@ \
