@@ -1,2 +1,9 @@
-language: shell
-script: make check
+language: python
+addons:
+  apt:
+    packages:
+      - shellcheck
+install:
+  - pip install -q bashate
+script:
+  - make check
