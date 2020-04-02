@@ -578,7 +578,14 @@ ShowInfo(){
     t4=$"need esc"
     t5=$"\t in []"
     t6='[:POSIX:]'
-    data=("$prog: $ver" "$metas" "$escmeta" "${needesc//[ ,]/}" "$tabinlist" "$posix")
+    data=(
+        "$prog: $ver"
+        "$metas"
+        "$escmeta"
+        "${needesc//[ ,]/}"
+        "$tabinlist"
+        "$posix"
+    )
     txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
 
     # Show me! show me! show me!
@@ -793,7 +800,9 @@ Menu(){
             ;;
             [\(\)\|])
                 [ "$STATUS" -ne 1 ] && continue
-                [ "$REPLY" == ')' ] && { [ $GRP1 -gt 0 ] && [ $GRP1 -eq $GRP2 ] || [ $GRP1 -eq 0 ]; } && continue
+                [ "$REPLY" == ')' ] &&
+                    { [ $GRP1 -gt 0 ] && [ $GRP1 -eq $GRP2 ] || [ $GRP1 -eq 0 ]; } &&
+                    continue
                 [ "$REPLY" == ')' ] && STATUS=2
                 ok=1
                 REPLIES="$REPLIES$REPLY"
@@ -1057,7 +1066,8 @@ Reset(){
     maxprogname=$(getLargestItem "${progs[@]}")  # global var
     for p in ${progs[*]}
     do
-        [ "$is_interactive" -eq 1 ] && printf " Regex %-${#maxprogname}s: %s\n" "$p" "$_eol"
+        [ "$is_interactive" -eq 1 ] &&
+            printf " Regex %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
 }
 
@@ -1093,7 +1103,8 @@ showRegex(){
             ;;
         esac
 
-        [ "$is_interactive" -eq 1 ] && printf " Regex %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+        [ "$is_interactive" -eq 1 ] &&
+            printf " Regex %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
         uin="$save"
     done
     unset uin USERINPUT F_ESCCHAR F_ESCCHARLIST F_GETTAB F_POSIX
@@ -1194,7 +1205,8 @@ Choice(){
 
                 # Showing the change
                 [ -z "${opts[alf]}" ] && continue
-                ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" "${stat[$alf]}" "${opts[$alf]}"
+                ChoiceRefresh "${optxy[$alf]}" "${alpha[$alf]}" \
+                    "${stat[$alf]}" "${opts[$alf]}"
             ;;
             .)
                 # Getting the user choices and exiting
@@ -1375,7 +1387,8 @@ do
             else
                 for ((i=0; i<${#progs[@]}; i++))  # for each program
                 do
-                    printf " Regex %-${#maxprogname}s: %s\n" "${progs[$i]}" "${Regex[$i]}"
+                    printf " Regex %-${#maxprogname}s: %s\n" \
+                        "${progs[$i]}" "${Regex[$i]}"
                 done
                 printf '\n'
             fi
