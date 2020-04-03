@@ -4,7 +4,7 @@
 # Website : https://aurelio.net/projects/txt2regex/
 # Author  : Aurelio Jargas (verde@aurelio.net)
 # License : GPL
-# Requires: bash >= 2.04
+# Requires: bash >= 2.05
 #
 # shellcheck disable=SC1117,SC1003,SC2034
 #   SC1117 because it was obsoleted in shellcheck >0.5
@@ -96,13 +96,12 @@ printError(){
     exit 1
 }
 
-# We _need_ bash>=2.04
 case "$BASH_VERSION" in
-    2.0[4-9]*|2.[1-9]*|[3-9].*)
+    2.0[5-9]*|2.[1-9]*|[3-9].*)
         :  # do nothing
     ;;
     *)
-        printError 'bash version >=2.04 required, but you have %s\n' "$BASH_VERSION"
+        printError 'Bash version >=2.05 required, but you have %s\n' "$BASH_VERSION"
     ;;
 esac
 
