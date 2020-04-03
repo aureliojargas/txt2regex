@@ -395,9 +395,8 @@ $
 ## Not enough lines to draw the UI
 
 ```console
-$ LINES=10 txt2regex --prog sed | cat -v | sed 's/ *$//'
-^[cERROR:
-Your terminal has 10 lines, but txt2regex needs at least 19 lines.
+$ LINES=10 txt2regex --all | tail -n 3 | sed '1s/ [0-9][0-9]* / NN /g'
+Your terminal has NN lines, but txt2regex needs at least NN lines.
 Increase the number of lines or select less programs using --prog.
 If this line number detection is incorrect, export the LINES variable.
 $
