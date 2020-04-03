@@ -5,6 +5,7 @@
 - Author: [Aurelio Jargas](https://aurelio.net/about.html)
 - License: GPL
 - First release: 2001-02-23
+- Requires: Bash >= 2.05
 - Website: https://aurelio.net/projects/txt2regex/
 
 Txt2regex is a regular expression wizard that converts human sentences
@@ -38,8 +39,6 @@ command to properly install it in your system:
 
 **Note 1:** Play with `BINDIR`, `LOCALEDIR` and `DESTDIR` variables to
 change the default install paths.
-
-**Note 2:** Txt2regex only works in Bash version >= 2.04.
 
 
 ## Tested programs versions
@@ -109,9 +108,7 @@ A: To have coding fun &:)
 A: Basically, for me to learn the new bash2 concepts as arrays, i18n
 and advanced variable expansion. They rule!
 
-### Q: My screen has more than 25 lines, I'm serious!
-### Q: Why it only uses 80 columns if my screen has more?
-### Q: I've changed the xterm window size, why it didn't notice that?
+### Q: Why it's not detecting the correct number of lines or columns in my terminal?
 
 A: The program do use the Bash environment variables `$LINES` and
 `$COLUMNS` to get the actual screen size. Those **MUST** be exported
@@ -124,7 +121,6 @@ If you don't get the screen size, do:
     echo export COLUMNS LINES >> ~/.bash_profile
 
 ### Q: Why my bash version is not recognized correctly?
-### Q: Here `bash --version` is >=2.04. Why the program gets other?
 
 A: The program uses the `$BASH_VERSION`
 environment variable, that is available in all Bash versions,
