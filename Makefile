@@ -20,15 +20,15 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 #-----------------------------------------------------------------------
 # Dev
 
-clean:
-	rm -f clitest.sh $(NAME) txt2tags.py
-	rm -f messages.mo $(PODIR)/{messages,*.mo,*.tmp,*~}
-	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
-
 check: clitest.sh
 	shellcheck $(SHSKEL)
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 	bash ./clitest.sh --progress none cmdline.md
+
+clean:
+	rm -f clitest.sh $(NAME) txt2tags.py
+	rm -f messages.mo $(PODIR)/{messages,*.mo,*.tmp,*~}
+	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
 
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
