@@ -166,8 +166,30 @@ progs=(python egrep grep sed vim)
 
 ### IMPORTANT DATA ###
 allprogs=(
-    awk ed egrep emacs expect find gawk grep javascript lex lisp mawk mysql ooo
-    perl php postgres procmail python sed tcl vbscript vi vim
+    awk
+    ed
+    egrep
+    emacs
+    expect
+    find
+    gawk
+    grep
+    javascript
+    lex
+    lisp
+    mawk
+    mysql
+    ooo
+    perl
+    php
+    postgres
+    procmail
+    python
+    sed
+    tcl
+    vbscript
+    vi
+    vim
 )
 allversions=(
     ''  # awk
@@ -196,14 +218,28 @@ allversions=(
     'VIM - Vi IMproved 5.8 (2001 May 31)'
 )
 
-label_names=(date date2 date3 hour hour2 hour3 number number2 number3)
+label_names=(
+    date
+    date2
+    date3
+
+    hour
+    hour2
+    hour3
+
+    number
+    number2
+    number3
+)
 label_descriptions=(
     'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999'
     'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999'
     'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999'
+
     'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99'
     'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59'
     'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59'
+
     'number LEVEL 1: integer, positive and negative'
     'number LEVEL 2: level 1 plus optional float point'
     'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90'
@@ -327,80 +363,144 @@ set -o noglob
 
 ### The Regex show
 
-# NOTE: texts on vars because i18n inside arrays is not possible (sux)
+S0_txt=(
+    $"start to match"
+    $"on the line beginning"
+    $"in any part of the line"
+)
+S0_re=(
+    ''
+    '^'
+    ''
+)
 
-zz0=$"start to match"
-zz1=$"on the line beginning"
-zz2=$"in any part of the line"
-S0_txt=("$zz0" "$zz1" "$zz2")
-S0_re=('' '^' '')
+S1_txt=(
+    $"followed by"
+    $"any character"
+    $"a specific character"
+    $"a literal string"
+    $"an allowed characters list"
+    $"a forbidden characters list"
+    $"a special combination"
+    $"a POSIX combination (locale aware)"
+    $"a ready regex (not implemented)"
+    $"anything"
+)
+S1_re=(
+    ''
+    '.'
+    ''
+    ''
+    ''
+    ''
+    ''
+    ''
+    ''
+    '.*'
+)
 
-zz0=$"followed by"
-zz1=$"any character"
-zz2=$"a specific character"
-zz3=$"a literal string"
-zz4=$"an allowed characters list"
-zz5=$"a forbidden characters list"
-zz6=$"a special combination"
-zz7=$"a POSIX combination (locale aware)"
-zz8=$"a ready regex (not implemented)"
-zz9=$"anything"
-S1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7" "$zz8" "$zz9")
-S1_re=('' '.' '' '' '' '' '' '' '' '.*')
-
-zz0=$"how many times (repetition)"
-zz1=$"one"
-zz2=$"zero or one (optional)"
-zz3=$"zero or more"
-zz4=$"one or more"
-zz5=$"exactly N"
-zz6=$"up to N"
-zz7=$"at least N"
-S2_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
+S2_txt=(
+    $"how many times (repetition)"
+    $"one"
+    $"zero or one (optional)"
+    $"zero or more"
+    $"one or more"
+    $"exactly N"
+    $"up to N"
+    $"at least N"
+)
 
 # COMBO
-zz0=$"uppercase letters"
-zz1=$"lowercase letters"
-zz2=$"numbers"
-zz3=$"underscore"
-zz4=$"space"
-zz5=$"TAB"
-combo_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5")
-combo_re=('A-Z' 'a-z' '0-9' '_' ' ' '@')
+combo_txt=(
+    $"uppercase letters"
+    $"lowercase letters"
+    $"numbers"
+    $"underscore"
+    $"space"
+    $"TAB"
+)
+combo_re=(
+    'A-Z'
+    'a-z'
+    '0-9'
+    '_'
+    ' '
+    '@'
+)
 
 #TODO use all posix components?
-zz0=$"letters"
-zz1=$"lowercase letters"
-zz2=$"uppercase letters"
-zz3=$"numbers"
-zz4=$"letters and numbers"
-zz5=$"hexadecimal numbers"
-zz6=$"whitespaces (space and TAB)"
-zz7=$"graphic chars (not-whitespace)"
-posix_txt=("$zz0" "$zz1" "$zz2" "$zz3" "$zz4" "$zz5" "$zz6" "$zz7")
-posix_re=('alpha' 'lower' 'upper' 'digit' 'alnum' 'xdigit' 'blank' 'graph')
+posix_txt=(
+    $"letters"
+    $"lowercase letters"
+    $"uppercase letters"
+    $"numbers"
+    $"letters and numbers"
+    $"hexadecimal numbers"
+    $"whitespaces (space and TAB)"
+    $"graphic chars (not-whitespace)"
+)
+posix_re=(
+    'alpha'
+    'lower'
+    'upper'
+    'digit'
+    'alnum'
+    'xdigit'
+    'blank'
+    'graph'
+)
 
 # Title (line 1)
-zz0=$"quit"
-zz1=$"reset"
-zz2=$"color"
-zz3=$"programs"
-zz9='^txt2regex$'
-tit1_txt=("$zz0" "$zz1" "$zz2" "$zz3" "" "" "" "" "" "$zz9")
-tit1_cmd=('.' '0' '*' '/' '' '' '' '' '' '')
+tit1_txt=(
+    $"quit"
+    $"reset"
+    $"color"
+    $"programs"
+    ''
+    ''
+    ''
+    ''
+    ''
+    '^txt2regex$'
+)
+tit1_cmd=(
+    '.'
+    '0'
+    '*'
+    '/'
+    ''
+    ''
+    ''
+    ''
+    ''
+    ''
+)
 
 # Title (line 2-3)
-zz0=$"or"
-zz1=$"open group"
-zz2=$"close group"
-zz9=$"not supported"
-tit2_txt=("$zz0" "$zz1" "$zz2" "" "" "" "" "" "" "$zz9")
-tit2_cmd=('|' '(' ')' '' '' '' '' '' '' '!!')
-
-# Remove all zz* temporary vars
-# shellcheck disable=SC2086
-unset ${!zz*}
-
+tit2_txt=(
+    $"or"
+    $"open group"
+    $"close group"
+    ''
+    ''
+    ''
+    ''
+    ''
+    ''
+    $"not supported"
+)
+tit2_cmd=(
+    '|'
+    '('
+    ')'
+    ''
+    ''
+    ''
+    ''
+    ''
+    ''
+    '!!'
+)
 
 # Here's all the quantifiers
 S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
@@ -572,12 +672,14 @@ ShowInfo(){
     )"
 
     # Populating cool i18n arrays
-    t1=$"program"
-    t2=$"metas"
-    t3=$"esc meta"
-    t4=$"need esc"
-    t5=$"\t in []"
-    t6='[:POSIX:]'
+    txt=(
+        $"program"
+        $"metas"
+        $"esc meta"
+        $"need esc"
+        $"\t in []"
+        '[:POSIX:]'
+    )
     data=(
         "$prog: $ver"
         "$metas"
@@ -586,7 +688,6 @@ ShowInfo(){
         "$tabinlist"
         "$posix"
     )
-    txt=("$t1" "$t2" "$t3" "$t4" "$t5" "$t6")
 
     # Show me! show me! show me!
     ColorOnOff
