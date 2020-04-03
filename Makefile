@@ -79,7 +79,7 @@ po: pot
 mo:
 	@for pofile in $(PODIR)/*.po; do \
 		printf 'Compiling %s... ' $$pofile; \
-		msgfmt -o $${pofile/.po/.mo} $$pofile && \
+		msgfmt -o $${pofile%.po}.mo $$pofile && \
 		echo ok; \
 	done
 
@@ -107,7 +107,7 @@ install-mo: mo
 		moinstalldir=$(LOCALEDIR)/`basename $$mofile .mo`/LC_MESSAGES; \
 		test -d $$moinstalldir || mkdir -p $$moinstalldir; \
 		install -m644 $$mofile $$moinstalldir/$(NAME).mo; \
-	done; \
+	done
 
 install-bin:
 	test -d $(BINDIR) || mkdir -p $(BINDIR); \
