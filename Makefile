@@ -14,15 +14,19 @@ BINDIR = $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
-.PHONY: bashate check clean doc tgz install install-bin install-mo \
-        check-po po pot mo
+.PHONY: bashate check check-po clean doc install install-bin install-mo \
+        lint mo po pot test tgz
 
 #-----------------------------------------------------------------------
 # Dev
 
-check: clitest.sh
+check: lint test
+
+lint:
 	shellcheck $(SHSKEL)
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
+
+test: clitest.sh
 	bash ./clitest.sh --progress none cmdline.md
 
 clean:
