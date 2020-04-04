@@ -1,5 +1,6 @@
 NAME = txt2regex
 VERSION = 0.9b
+BASHVERSIONS = 3.0 3.1 3.2 4.0 4.1 4.2 4.3 4.4 5.0
 
 SHSKEL = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -15,7 +16,7 @@ LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
 .PHONY: bashate check check-po clean doc install install-bin install-mo \
-        lint mo po pot test tgz
+        lint mo po pot test test-all tgz
 
 #-----------------------------------------------------------------------
 # Dev
@@ -28,6 +29,14 @@ lint:
 
 test: clitest.sh
 	bash ./clitest.sh --progress none cmdline.md
+
+# Run the tests in multiple Bash versions (each Docker image is ~10MB)
+test-all: clitest.sh
+	@for v in $(BASHVERSIONS); do \
+		printf 'Testing in Bash version %s\n' $$v; \
+		docker run -v $$PWD:/code -w /code bash:$$v \
+			sh clitest.sh -P none cmdline.md; \
+	done
 
 clean:
 	rm -f clitest.sh $(NAME) txt2tags.py

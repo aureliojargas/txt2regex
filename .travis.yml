@@ -7,14 +7,4 @@ install:
   - pip install -q bashate
 script:
   - make check
-
-  # Run the tests in multiple Bash versions (each image is ~10MB)
-  - docker run -v $PWD:/code -w /code bash:3.0 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:3.1 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:3.2 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:4.0 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:4.1 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:4.2 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:4.3 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:4.4 sh clitest.sh -P none cmdline.md
-  - docker run -v $PWD:/code -w /code bash:5.0 sh clitest.sh -P none cmdline.md
+  - make test-all
