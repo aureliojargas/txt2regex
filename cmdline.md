@@ -84,7 +84,7 @@ javascript       +       ?      {}       |      ()
        sed      \+      \?    \{\}      \|    \(\)
        tcl       +       ?               |      ()
   vbscript       +       ?      {}       |      ()
-        vi   \{1\}  \{01\}    \{\}            \(\)
+        vi                    \{\}            \(\)
        vim      \+      \=     \{}      \|    \(\)
 
 NOTE: . [] [^] and * are the same on all programs.
