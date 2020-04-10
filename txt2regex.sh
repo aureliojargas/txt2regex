@@ -629,23 +629,20 @@ getMeta(){
 }
 
 ShowMeta(){
-    local i j g1 g2 prog progsize
+    local i g1 g2 prog progsize
     progsize=$(getLargestItem "${allprogs[@]}")
     for ((i=0; i<${#allprogs[@]}; i++))
     do
         prog=${allprogs[$i]}
-        printf "\n%${#progsize}s" "$prog"
-
-        for j in 4 2 5
-        do
-            printf '%8s' "$(getMeta "S2_$prog" $j)"
-        done
-
-        printf '%8s' "$(getMeta "ax_$prog" 1)"  # or
-
         g1=$(getMeta "ax_$prog" 2)
         g2=$(getMeta "ax_$prog" 3)
-        printf '%8s' "$g1$g2"               # group
+
+        printf "\n%${#progsize}s" "$prog"       # name
+        printf '%8s' "$(getMeta "S2_$prog" 4)"  # +
+        printf '%8s' "$(getMeta "S2_$prog" 2)"  # ?
+        printf '%8s' "$(getMeta "S2_$prog" 5)"  # {}
+        printf '%8s' "$(getMeta "ax_$prog" 1)"  # |
+        printf '%8s' "$g1$g2"                   # ()
         # printf ' %s: %s' "$prog" "${allversions[$i]}"  # DEBUG
     done
     printf '\n\n%s\n\n' $"NOTE: . [] [^] and * are the same on all programs."
