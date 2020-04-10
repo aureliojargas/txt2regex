@@ -620,7 +620,12 @@ getMeta(){
     local m="$1[$2]"
     m=${!m}
     m=${m//[@!,_]/}
-    printf '%s\n' "${m//\\\\{[01]*}"  # needed for vi
+
+    # Remove when getting '?' or '+' for 'vi', since they are unsupported
+    # and the current values are workarounds using '{}'
+    [ "$1" == S2_vi ] && { [ "$2" -eq 2 ] || [ "$2" -eq 4 ]; } && m=""
+
+    printf '%s\n' "$m"
 }
 
 ShowMeta(){
