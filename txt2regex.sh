@@ -638,12 +638,12 @@ ShowMeta(){
         g2=$(getMeta "ax_$prog" 3)
 
         printf "\n%${#progsize}s" "$prog"       # name
-        printf '%8s' "$(getMeta "S2_$prog" 4)"  # +
-        printf '%8s' "$(getMeta "S2_$prog" 2)"  # ?
-        printf '%8s' "$(getMeta "S2_$prog" 5)"  # {}
-        printf '%8s' "$(getMeta "ax_$prog" 1)"  # |
+        printf '%7s' "$(getMeta "S2_$prog" 4)"  # +
+        printf '%7s' "$(getMeta "S2_$prog" 2)"  # ?
+        printf '%7s' "$(getMeta "S2_$prog" 5)"  # {}
+        printf '%7s' "$(getMeta "ax_$prog" 1)"  # |
         printf '%8s' "$g1$g2"                   # ()
-        # printf ' %s: %s' "$prog" "${allversions[$i]}"  # DEBUG
+        printf '    %s' "${allversions[$i]}"    # version
     done
     printf '\n\n%s\n\n' $"NOTE: . [] [^] and * are the same on all programs."
 }
