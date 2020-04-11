@@ -28,13 +28,21 @@
 #    Invalid regexp "^("
 #
 
-[ "$1" ] || { echo "usage: $0 regex [text]"; exit 1; }
-tmpfile=`mktemp /tmp/procmail-re-test.sh.XXXXXX`
-regex="$1"; shift; txt="$*"
-[ "$txt" ] || txt="`cat /dev/stdin`" # $* or stdin
-{ echo -e "VERBOSE=y\nLOGFILE=/tmp\nDEFAULT=/dev/null\n:0"
-  echo "* $regex" ; echo /dev/null ; } > $tmpfile
+[ "$1" ] || {
+    echo "usage: $0 regex [text]"
+    exit 1
+}
+tmpfile=$(mktemp /tmp/procmail-re-test.sh.XXXXXX)
+regex="$1"
+shift
+txt="$*"
+[ "$txt" ] || txt="$(cat /dev/stdin)" # $* or stdin
+{
+    echo -e "VERBOSE=y\nLOGFILE=/tmp\nDEFAULT=/dev/null\n:0"
+    echo "* $regex"
+    echo /dev/null
+} >$tmpfile
 echo "$txt" | procmail $tmpfile 2>&1 |
-sed -n -e '/^procmail: Invalid regexp/{s/^[^ ]* //p;q;}' \
-       -e 's/^procmail: \(\(No m\|M\)atch\) .*/\1/p'
+    sed -n -e '/^procmail: Invalid regexp/{s/^[^ ]* //p;q;}' \
+        -e 's/^procmail: \(\(No m\|M\)atch\) .*/\1/p'
 rm $tmpfile
