@@ -5,15 +5,7 @@
 
 #TODO php breaks line in error
 
-#color=1
 set -o noglob
-
-if [ ${color:=0} -eq 1 ]; then
-    cN=$(echo -ne "\033[m")     # normal
-    cY=$(echo -ne "\033[1;33m") # yellow
-else
-    unset cN cW
-fi
 
 ms='] .{ .} ( ) .| + ? \] \{ \} \( \) \| \+ \? .^ .\^ $. \$. [\] [\\] ^[[:print:]] \t [\t]'
 re='_$[]{}()|+?^\	_'
@@ -32,7 +24,7 @@ delesc4tabtest() {
 }
 
 echoprog() {
-    echo -n "$cY$1$cN: "
+    echo -n "$1: "
 }
 
 echometa() {
@@ -64,7 +56,7 @@ er_Xwk() {
                     sed q
             else
                 echo -n "$re" |
-                    $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 |
+                    $a "{print gensub(/$m/, \"·\", \"g\")}" 2>&1 |
                     sed 2q
             fi
             echo
@@ -81,7 +73,7 @@ er_sed() {
 
     for m in $(echo $ms); do
         echometa "$m"
-        echo -n "$re" | sed -n "s/$m/$cY·$cN/gp" 2>&1
+        echo -n "$re" | sed -n "s/$m/·/gp" 2>&1
         echo
     done | sed '/^$/d'
     echo $line
@@ -112,7 +104,7 @@ er_php() {
 
     for m in $(echo $ms); do
         echometa "$m"
-        echo "<? \$r=ereg_replace('$m','$cY·$cN','$re');if(\$r!='$re')echo \"\$r\";?>" |
+        echo "<? \$r=ereg_replace('$m','·','$re');if(\$r!='$re')echo \"\$r\";?>" |
             php 2>&1 | sed '1,3d;/^<br>/d;s/<[^>]\+>//g'
         echo
     done | sed '/^ *$/d'
@@ -190,7 +182,7 @@ er_perl() {
 
     for m in $(echo $ms); do
         echometa "$m"
-        echo -n "$re" | perl -pe "s/$m/$cY·$cN/g" 2>&1
+        echo -n "$re" | perl -pe "s/$m/·/g" 2>&1
         echo
     done | sed '/^$/d'
     echo $line
@@ -207,8 +199,7 @@ er_tcl() {
         echometa "$m"
         # we need the tmpfile because it hangs on the 1st error on ...$res" | tclsh
         echo "regsub -all {${m}} \"$re\" \"·\" res; puts \$res" >tmp
-        tclsh tmp 2>&1 |
-            sed "s/·/$cY&$cN/g;q"
+        tclsh tmp 2>&1 | sed 'q'
     done
     rm -f tmp
     echo $line
