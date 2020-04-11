@@ -3,10 +3,7 @@
 # 20001026 <verde@aurelio.net> debut
 # 20010802 ++ lots of changes
 
-#TODO php quebra linha em erro.
-
-# all this code smells like shit
-# someday i'll clean it
+#TODO php breaks line in error
 
 #color=1
 set -o noglob
@@ -21,14 +18,26 @@ fi
 ms='] .{ .} ( ) .| + ? \] \{ \} \( \) \| \+ \? .^ .\^ $. \$. [\] [\\] ^[[:print:]] \t [\t]'
 re='_$[]{}()|+?^\	_'
 line='------------------------'
+
 echo $line
 echo $ms
 echo $line
 
-escesc() { echo "$*" | sed 's/\\/\\\\/g'; }
-delesc4tabtest() { re="${re/\\\\/}"; }
-echoprog() { echo -n "$cY$1$cN: "; }
-echometa() { printf '%-13s' "$1"; }
+escesc() {
+    echo "$*" | sed 's/\\/\\\\/g'
+}
+
+delesc4tabtest() {
+    re="${re/\\\\/}"
+}
+
+echoprog() {
+    echo -n "$cY$1$cN: "
+}
+
+echometa() {
+    printf '%-13s' "$1"
+}
 
 er_ed() {
     echoprog ed
@@ -42,15 +51,21 @@ er_Xwk() {
 
     for a in mawk gawk; do
         echoprog "$a"
+
         [ "$a" == 'mawk' ] && ver='-W version'
         $a $ver 2>&- | sed 's/,.*//;q'
+
         for m in $(echo $ms); do
             echometa "$m"
             if [ "$a" == 'mawk' ]; then
                 [ "$m" == '[\t]' ] && delesc4tabtest
-                echo -n "$re" | $a "/$m/{print}" 2>&1 | sed q
+                echo -n "$re" |
+                    $a "/$m/{print}" 2>&1 |
+                    sed q
             else
-                echo -n "$re" | $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 | sed 2q
+                echo -n "$re" |
+                    $a "{print gensub(/$m/, \"$cY·$cN\", \"g\")}" 2>&1 |
+                    sed 2q
             fi
             echo
         done | sed '/^$/d'
@@ -60,8 +75,10 @@ er_Xwk() {
 
 er_sed() {
     local m
+
     echoprog sed
     sed --version | sed 1q
+
     for m in $(echo $ms); do
         echometa "$m"
         echo -n "$re" | sed -n "s/$m/$cY·$cN/gp" 2>&1
@@ -72,9 +89,11 @@ er_sed() {
 
 er_Xgrep() {
     local m
+
     for a in grep egrep; do
         echoprog "$a"
         $a --version | sed 1q
+
         for m in $(echo $ms); do
             echometa "$m"
             [ "$m" == '[\t]' ] && delesc4tabtest
@@ -87,6 +106,7 @@ er_Xgrep() {
 
 er_php() {
     local m
+
     echoprog php
     echo "<? echo phpversion().\"\n\" ; ?>" | php | sed 1,3d
 
@@ -101,8 +121,10 @@ er_php() {
 
 er_find() {
     local m
+
     echoprog find
     find --version
+
     touch "$re"
     for m in $(echo $ms); do
         echometa "$m"
@@ -119,15 +141,19 @@ er_find() {
 # TIP: DB must be runnig!
 er_postgres() {
     local m
+
     echoprog postgres
     psql --version | sed q
+
     # wow. + needs to be \\+, but \t is ok and \\t is wrong...
     for m in $(echo $ms); do
         [ "${m#[}" != "$m" -o "$m" == '\t' ] 2>/dev/null || m=$(escesc $m)
         echometa "$m"
         [ "$m" == '[\t]' ] && delesc4tabtest
-        echo select usu from teste where usu \~ \'$m\' | psql -e teste 2>&1 |
-            sed '1d;s/^ //' | sed '/^ERROR/!{3!d;}'
+        echo "select usu from teste where usu ~ '$m'" |
+            psql -e teste 2>&1 |
+            sed '1d;s/^ //' |
+            sed '/^ERROR/!{3!d;}'
     done
     echo $line
 }
@@ -136,10 +162,11 @@ er_postgres() {
 er_javascript() {
     echoprog javascript
     # rpm -q --qf 'netscape-%{VERSION}\n' netscape-navigator
+
     re2=$(escesc "$re") # double escaping escaped metas
-    echo '<!DOCTYPE html>' >javascript.html
-    echo '<html lang="en"><head><meta charset="UTF-8"></head>' >>javascript.html
-    echo '<body style="font-size:25px;"><pre><script>' >>javascript.html
+    echo '<!DOCTYPE html>' > javascript.html
+    echo '<html lang="en"><head><meta charset="UTF-8"></head>' >> javascript.html
+    echo '<body style="font-size:25px;"><pre><script>' >> javascript.html
     echo "var er = \"$re2\";" | tee -a javascript.html
     for m in $(echo $ms); do
         m=$(escesc "$m")
@@ -149,7 +176,7 @@ er_javascript() {
         # first sed avoid fatal error on .{, ( and [\]
         # second sed puts a . on the [\\] cause \ cannot be the last list item
     done | tee -a javascript.html
-    echo '</script></pre></body></html>' >>javascript.html
+    echo '</script></pre></body></html>' >> javascript.html
     echo
     echo "Check javascript.html in your browser."
     echo $line
@@ -157,8 +184,10 @@ er_javascript() {
 
 er_perl() {
     local m
+
     echoprog perl
     perl --version | sed -n '2s/.*, //p'
+
     for m in $(echo $ms); do
         echometa "$m"
         echo -n "$re" | perl -pe "s/$m/$cY·$cN/g" 2>&1
@@ -169,8 +198,10 @@ er_perl() {
 
 er_tcl() {
     local m
+
     echoprog tcl
     echo 'puts $tcl_version' | tclsh
+
     re=$(escesc "$re")
     for m in $(echo $ms); do
         echometa "$m"
@@ -192,8 +223,10 @@ er_vim() {
 
 er_procmail() {
     local m
+
     echoprog procmail
     procmail -v 2>&1 | sed q
+
     for m in $(echo $ms); do
         echometa "$m"
         [ "$m" == '[\t]' ] && delesc4tabtest
