@@ -60,32 +60,32 @@ The original code always shows version zero. The real version is set only when u
 A handy table showing all the metacharacters for all the programs txt2regex knows about. Nice for comparisons or for a quick memory refresh.
 
 ```console
-$ txt2regex --showmeta
+$ txt2regex --showmeta | sed 's/  *$//'
 
-       awk       +       ?               |      ()
-        ed      \+      \?    \{\}      \|    \(\)
-     egrep       +       ?      {}       |      ()
-     emacs       +       ?              \|    \(\)
-    expect       +       ?               |      ()
-      find       +       ?              \|    \(\)
-      gawk       +       ?      {}       |      ()
-      grep      \+      \?    \{\}      \|    \(\)
-javascript       +       ?      {}       |      ()
-       lex       +       ?      {}       |      ()
-      lisp       +       ?             \\|  \\(\\)
-      mawk       +       ?               |      ()
-     mysql       +       ?      {}       |      ()
-       ooo       +       ?      {}       |      ()
-      perl       +       ?      {}       |      ()
-       php       +       ?      {}       |      ()
-  postgres       +       ?      {}       |      ()
-  procmail       +       ?               |      ()
-    python       +       ?      {}       |      ()
-       sed      \+      \?    \{\}      \|    \(\)
-       tcl       +       ?               |      ()
-  vbscript       +       ?      {}       |      ()
-        vi                    \{\}            \(\)
-       vim      \+      \=     \{}      \|    \(\)
+       awk      +      ?             |      ()
+        ed     \+     \?   \{\}     \|    \(\)    GNU ed version 0.2
+     egrep      +      ?     {}      |      ()    egrep (GNU grep) 2.4.2
+     emacs      +      ?            \|    \(\)
+    expect      +      ?             |      ()
+      find      +      ?            \|    \(\)    GNU find version 4.1
+      gawk      +      ?     {}      |      ()    GNU Awk 3.0.6
+      grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 2.4.2
+javascript      +      ?     {}      |      ()    netscape-4.77
+       lex      +      ?     {}      |      ()
+      lisp      +      ?           \\|  \\(\\)
+      mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
+     mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
+       ooo      +      ?     {}      |      ()    OpenOffice.org 1.1.0
+      perl      +      ?     {}      |      ()    v5.6.0 built for i386-linux
+       php      +      ?     {}      |      ()    4.0.6
+  postgres      +      ?     {}      |      ()    psql (PostgreSQL) 7.1.2
+  procmail      +      ?             |      ()    procmail v3.15.1 2001/01/08
+    python      +      ?     {}      |      ()    Python 2.1
+       sed     \+     \?   \{\}     \|    \(\)    GNU sed version 3.02.80
+       tcl      +      ?             |      ()    8.3
+  vbscript      +      ?     {}      |      ()
+        vi                 \{\}           \(\)    Nvi 1.79 (10/23/96)
+       vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 5.8 (2001 May 31)
 
 NOTE: . [] [^] and * are the same on all programs.
 

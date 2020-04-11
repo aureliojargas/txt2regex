@@ -6,6 +6,7 @@ v0.9 beta (unreleased):
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
   - Minimal required Bash version was bumped from 2.04 to 2.05
   - Changed the default programs: +egrep +grep -perl -php -postgres
+  - Now --showmeta also shows the version for each program
   - Added short options -h (for --help) and -V (for --version)
   - Now the "!! not supported" legend only appears when there are
     unsupported metacharacters in the current regex
