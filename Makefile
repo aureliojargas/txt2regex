@@ -15,7 +15,7 @@ BINDIR = $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
-.PHONY: bashate check check-po clean doc fmt install install-bin \
+.PHONY: check check-po clean doc fmt install install-bin \
         install-mo lint mo po pot test test-bash test-regex \
         test-regex-build test-regex-shell tgz
 
@@ -25,12 +25,11 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 check: lint test
 
 fmt:
-	shfmt -w -i 4 -ci -sr tests/regex-tester.sh
+	shfmt -w -i 4 -ci -sr $(SHSKEL) tests/regex-tester.sh
 
 lint:
 	shellcheck $(SHSKEL) tests/regex-tester.sh
 	shfmt -d -i 4 -ci -sr tests/regex-tester.sh
-	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 
 test: clitest.sh
 	sh clitest.sh --progress none README.md tests/*.md
@@ -67,9 +66,6 @@ clean:
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
 	@python ./txt2tags.py -t html man/txt2regex.t2t
-
-bashate:
-	@command -v $@ || pip3 install --user $@
 
 clitest.sh:
 	curl -s -L -o $@ \
