@@ -7,8 +7,8 @@ DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
-FILES = Changelog.txt cmdline.md COPYRIGHT Makefile man NEWS $(PODIR) \
-        README.japanese README.md $(SHSKEL) test-suite TODO
+FILES = Changelog.txt COPYRIGHT Makefile man NEWS $(PODIR) \
+        README.japanese README.md $(SHSKEL) test-suite tests TODO
 
 DESTDIR =
 BINDIR = $(DESTDIR)/usr/bin
@@ -28,14 +28,14 @@ lint:
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 
 test: clitest.sh
-	bash ./clitest.sh --progress none cmdline.md
+	bash ./clitest.sh --progress none tests/cmdline.md
 
 # Run the tests in multiple Bash versions (each Docker image is ~10MB)
 test-all: clitest.sh
 	@for v in $(BASHVERSIONS); do \
 		printf 'Testing in Bash version %s\n' $$v; \
 		docker run -v $$PWD:/code -w /code bash:$$v \
-			sh clitest.sh -P none cmdline.md; \
+			sh clitest.sh -P none tests/cmdline.md; \
 	done
 
 clean:

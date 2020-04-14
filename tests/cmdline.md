@@ -2,7 +2,7 @@
 
 This is file is both documentation and a test file, showing the available command line options for txt2regex and the expected result when using them.
 
-The [clitest](https://github.com/aureliojargas/clitest) tool can identify and run all the commands listed here and check if their actual output matches the expected one. Just run `clitest cmdline.md`.
+The [clitest](https://github.com/aureliojargas/clitest) tool can identify and run all the commands listed here and check if their actual output matches the expected one. Just run `clitest tests/cmdline.md`.
 
 ## Setup
 
