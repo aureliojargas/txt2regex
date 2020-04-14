@@ -11,8 +11,7 @@ v0.9 beta (unreleased):
   - Now the "!! not supported" legend only appears when there are
     unsupported metacharacters in the current regex
   - Converted everything (code, docs, translations) to UTF-8
-  - Improved the source code formatting, now it is readable
-  - Now using shellcheck to improve code quality
+  - Improved the source code quality (shellcheck) and formatting (shfmt)
   - New tests for all the command line options (cmdline.md)
   - New regex tester that runs the supported programs with specially
     crafted regexes, verifying how they behave in "real life", instead
