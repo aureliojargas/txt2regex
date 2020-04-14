@@ -16,7 +16,7 @@ LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
 .PHONY: bashate check check-po clean doc install install-bin install-mo \
-        lint mo po pot test test-all tgz
+        lint mo po pot test test-bash tgz
 
 #-----------------------------------------------------------------------
 # Dev
@@ -31,7 +31,7 @@ test: clitest.sh
 	bash ./clitest.sh --progress none tests/cmdline.md
 
 # Run the tests in multiple Bash versions (each Docker image is ~10MB)
-test-all: clitest.sh
+test-bash: clitest.sh
 	@for v in $(BASHVERSIONS); do \
 		printf 'Testing in Bash version %s\n' $$v; \
 		docker run -v $$PWD:/code -w /code bash:$$v \
