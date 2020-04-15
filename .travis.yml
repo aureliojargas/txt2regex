@@ -3,6 +3,7 @@ addons:
   apt:
     packages:
       - shellcheck
+      # shfmt is already available
 install:
   - pip install -q bashate
 script:
