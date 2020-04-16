@@ -28,14 +28,14 @@ lint:
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 
 test: clitest.sh
-	bash ./clitest.sh --progress none tests/cmdline.md
+	bash ./clitest.sh --progress none tests/*.md
 
 # Run the tests in multiple Bash versions (each Docker image is ~10MB)
 test-bash: clitest.sh
 	@for v in $(BASHVERSIONS); do \
-		printf 'Testing in Bash version %s\n' $$v; \
+		printf '\nTesting in Bash version %s\n' $$v; \
 		docker run --rm -v $$PWD:/code -w /code bash:$$v \
-			sh clitest.sh -P none tests/cmdline.md; \
+			sh clitest.sh -P none tests/*.md; \
 	done
 
 clean:
