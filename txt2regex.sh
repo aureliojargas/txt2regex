@@ -1138,50 +1138,17 @@ getHasPosix(){
     [ "${!x}" == ',' ] && uin='!!'
 }
 
-# escape userinput chars as .,*,[ and friends
+# Escape possible metachars in user input so they will be matched literally
 escChar(){
-    local c x x2 z i esc ui="$uin"
+    local index="$1"
 
-    # Get escape char
-    esc="ax_${progs[$1]}[4]"
-    esc=${!esc}
+    local escape_metachar
+    local special_chars
 
-    # List of escapable chars
-    x="ax_${progs[$1]}[5]"
-    x=${!x}
+    escape_metachar=$(getMeta "ax_${progs[$index]}" 4)
+    special_chars=$(getMeta "ax_${progs[$index]}" 5)
 
-    # , and space are trash
-    x="${x//[, ]/}"
-
-    # Test for speed up
-    if [ "${ui/[\\\\$x]/}" != "$ui" ]
-    then
-        for ((i=0; i<${#ui}; i++))  # for each user char
-        do
-            c="${ui:$i:1}"
-            # Disabling because of the } in the second case option
-            # shellcheck disable=SC1083
-            case "$c" in  # special bash chars
-                [?*#%])
-                    x2="${x/[$c]/}"
-                ;;
-                [/}])
-                    x2="${x/\\$c/}"
-                ;;
-                [\\])
-                    x2="${x/$c$c/}"
-                ;;
-                *)
-                    x2="${x/$c/}"
-                ;;
-            esac
-
-            # escaping
-            [ "$x2" != "$x" ] && c="$esc$c"
-            z="$z$c"
-        done
-        uin="$z"  # ah, the escaped string
-    fi
+    uin=$(escapeChars "$special_chars" "$uin" "$escape_metachar")
 }
 
 # Escape user input: maybe '\' inside [] needs to be escaped
