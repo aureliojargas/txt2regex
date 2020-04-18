@@ -1141,19 +1141,15 @@ escChar(){
     fi
 }
 
+# Escape user input: maybe '\' inside [] needs to be escaped
 escCharList(){
-    local esc x
+    local escape_metachar
 
-    # need escape on []
-    x="ax_${progs[$1]}[6]"
-    x=${!x}
-
-    # escape char
-    esc="ax_${progs[$1]}[4]"
-    esc=${!esc}
-
-    # escaping escape
-    [ "$x" == '\' ] && uin="${uin/\\\\/$esc$esc}"
+    if [ "$(getMeta "ax_${progs[$1]}" 6)" == '\' ]
+    then
+        escape_metachar=$(getMeta "ax_${progs[$1]}" 4)
+        uin="${uin/\\\\/$escape_metachar$escape_metachar}"
+    fi
 }
 
 Reset(){
