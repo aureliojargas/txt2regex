@@ -34,7 +34,7 @@ test: clitest.sh
 test-bash: clitest.sh
 	@for v in $(BASHVERSIONS); do \
 		printf 'Testing in Bash version %s\n' $$v; \
-		docker run -v $$PWD:/code -w /code bash:$$v \
+		docker run --rm -v $$PWD:/code -w /code bash:$$v \
 			sh clitest.sh -P none tests/cmdline.md; \
 	done
 
