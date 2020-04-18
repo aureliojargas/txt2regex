@@ -1148,7 +1148,7 @@ escCharList(){
     if [ "$(getMeta "ax_${progs[$1]}" 6)" == '\' ]
     then
         escape_metachar=$(getMeta "ax_${progs[$1]}" 4)
-        uin="${uin/\\\\/$escape_metachar$escape_metachar}"
+        uin="${uin/\\/$escape_metachar$escape_metachar}"
     fi
 }
 

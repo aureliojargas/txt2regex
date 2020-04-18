@@ -61,34 +61,32 @@ $
 
 In some programs, it's required to escape the '\' character when using it inside `[]` lists, making it `\\` or even `\\\\`.
 
-FIXME: This feature is currently broken :(
-
 ```console
 $ txt2regex --all --history '241¤\'
- Regex awk       : [\]
+ Regex awk       : [\\]
  Regex ed        : [\]
  Regex egrep     : [\]
  Regex emacs     : [\]
  Regex expect    : [\]
  Regex find      : [\]
- Regex gawk      : [\]
+ Regex gawk      : [\\]
  Regex grep      : [\]
- Regex javascript: [\]
+ Regex javascript: [\\]
  Regex lex       : [\]
  Regex lisp      : [\]
- Regex mawk      : [\]
- Regex mysql     : [\]
+ Regex mawk      : [\\]
+ Regex mysql     : [\\\\]
  Regex ooo       : [\]
- Regex perl      : [\]
+ Regex perl      : [\\]
  Regex php       : [\]
- Regex postgres  : [\]
+ Regex postgres  : [\\\\]
  Regex procmail  : [\]
- Regex python    : [\]
+ Regex python    : [\\]
  Regex sed       : [\]
- Regex tcl       : [\]
- Regex vbscript  : [\]
+ Regex tcl       : [\\]
+ Regex vbscript  : [\\]
  Regex vi        : [\]
- Regex vim       : [\]
+ Regex vim       : [\\]
 
 $
 ```
