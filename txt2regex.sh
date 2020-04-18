@@ -1124,10 +1124,15 @@ getREady(){
 # convert [@] -> [\t] or [<TAB>] based on ax_*[8] value
 # TODO expand this to all "gettable" fields: @
 getListTab(){
-    local x="ax_${progs[$1]}[8]"
+    local x
 
-    x=${!x}
-    { [ "$x" == ',' ] || [ "$x" == ' ' ]; } && x='<TAB>'
+    if [ "$(getMeta "ax_${progs[$1]}" 8)" == '\t' ]
+    then
+        x='\t'
+    else
+        x='<TAB>'
+    fi
+
     uin="${uin/@/$x}"
 }
 
