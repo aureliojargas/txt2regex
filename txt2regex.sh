@@ -616,10 +616,14 @@ getLargestItem(){
     printf '%s\n' "$mjr"
 }
 
-getMeta(){
+# Used to get values from the S2_* and ax_* metachar arrays
+getMeta(){  # var-name index
     local m="$1[$2]"
     m=${!m}
-    m=${m//[@!,_]/}
+
+    # Remove all non-metacharacters: @ ! , space
+    # Those are used internally by txt2tags as markers
+    m=${m//[@!, ]/}
 
     # Remove when getting '?' or '+' for 'vi', since they are unsupported
     # and the current values are workarounds using '{}'
