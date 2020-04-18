@@ -606,6 +606,45 @@ sek(){
     done
 }
 
+# Is the $1 char present in the $2 text?
+charInText(){
+    local char="$1"
+    local text="$2"
+    local i
+
+    for ((i=0; i<${#text}; i++))
+    do
+        [ "${text:$i:1}" == "$char" ] && return 0
+    done
+    return 1
+}
+
+# Escape each $1 in $2 using $3
+escapeChars(){
+    local special_chars="$1"
+    local text="$2"
+    local escape_char="${3:-\\}"
+
+    local escaped_text
+    local i
+    local j
+    local must_escape
+    local this_char
+
+    for ((i=0; i<${#text}; i++))
+    do
+        this_char=${text:$i:1}
+
+        if charInText "$this_char" "$special_chars"
+        then
+            escaped_text="$escaped_text$escape_char$this_char"
+        else
+            escaped_text="$escaped_text$this_char"
+        fi
+    done
+    echo "$escaped_text"
+}
+
 getLargestItem(){
     local mjr
     while [ -n "$1" ]
