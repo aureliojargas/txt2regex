@@ -1106,8 +1106,9 @@ getCombo(){
         SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
     done
 
-    #TODO change this to if [ "$rpl" -eq 5 ]
-    [ "$cmb" != "${cmb/@/}" ] && F_GETTAB=1
+    # In this menu, @ is used as a placeholder for the tab char
+    # It will have to be replaced later, so let's set the flag
+    charInText @ "$cmb" && F_GETTAB=1
 
     SUBHUMAN=${SUBHUMAN#, }
 
