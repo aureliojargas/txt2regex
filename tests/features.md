@@ -48,8 +48,8 @@ $ txt2regex --prog egrep --history '24¤a]bc'  # move ] to the 1st position
 $ txt2regex --prog egrep --history '24¤a[bc'  # [ is not special
  Regex egrep: [a[bc]
 
-$ txt2regex --prog egrep --history '24¤a[]bc'
- Regex egrep: []a[bc]
+$ txt2regex --prog egrep --history '24¤^a[b-c]'  # everything together
+ Regex egrep: []a[bc^-]
 
 $
 ```
