@@ -1103,7 +1103,7 @@ getCombo(){
     for rpl in $CHOICEREPLY
     do
         cmb="$cmb${combo_re[$rpl]}"
-        SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]/ (*)/}"
+        SUBHUMAN="$SUBHUMAN, ${combo_txt[$rpl]}"
     done
 
     # In this menu, @ is used as a placeholder for the tab char
