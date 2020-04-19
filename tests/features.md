@@ -25,18 +25,17 @@ $
 When informing literal characters to be put inside a `[]` list, some special cases have to be handled:
 
 - `^` must not be the first char, otherwise it would mean a negated list
-  - FIXME: txt2regex currently always move it to end, even if it is not the first char.
 - `-` must not be between two other chars, otherwise it would mean a range.
   - FIXME: txt2regex currently always move it to end, even if it is the first char (which is a valid position to be a literal).
 - `]` must be the very first char, otherwise it would end the list prematurely.
 - `[` is not special since the list is already opened, nothing to be done in this case.
 
 ```console
-$ txt2regex --prog egrep --history '24¤^abc'
+$ txt2regex --prog egrep --history '24¤^abc'  # move ^ to the last position
  Regex egrep: [abc^]
 
-$ txt2regex --prog egrep --history '24¤a^bc'
- Regex egrep: [abc^]
+$ txt2regex --prog egrep --history '24¤a^bc'  # ^ is not special in the 2nd position
+ Regex egrep: [a^bc]
 
 $ txt2regex --prog egrep --history '24¤a-bc'
  Regex egrep: [abc-]
