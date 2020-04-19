@@ -26,7 +26,6 @@ When informing literal characters to be put inside a `[]` list, some special cas
 
 - `^` must not be the first char, otherwise it would mean a negated list
 - `-` must not be between two other chars, otherwise it would mean a range.
-  - FIXME: txt2regex currently always move it to end, even if it is the first char (which is a valid position to be a literal).
 - `]` must be the very first char, otherwise it would end the list prematurely.
 - `[` is not special since the list is already opened, nothing to be done in this case.
 
@@ -37,11 +36,11 @@ $ txt2regex --prog egrep --history '24¤^abc'  # move ^ to the last position
 $ txt2regex --prog egrep --history '24¤a^bc'  # ^ is not special in the 2nd position
  Regex egrep: [a^bc]
 
-$ txt2regex --prog egrep --history '24¤a-bc'
+$ txt2regex --prog egrep --history '24¤a-bc'  # move - to the last position
  Regex egrep: [abc-]
 
-$ txt2regex --prog egrep --history '24¤-abc'
- Regex egrep: [abc-]
+$ txt2regex --prog egrep --history '24¤-abc'  # - is not special in the 1st position
+ Regex egrep: [-abc]
 
 $ txt2regex --prog egrep --history '24¤a]bc'  # move ] to the 1st position
  Regex egrep: []abc]
