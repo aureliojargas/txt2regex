@@ -1007,7 +1007,6 @@ getCharList(){
     # putting not special chars in not special places: [][^-]
     [ "${uin/^//}" != "$uin" ] && uin="${uin/^/}^"
     [ "${uin/-//}" != "$uin" ] && uin="${uin/-/}-"
-    [ "${uin/[//}" != "$uin" ] && uin="[${uin/[/}"
     [ "${uin/]//}" != "$uin" ] && uin="]${uin/]/}"
 
     # if any $1, negated list
