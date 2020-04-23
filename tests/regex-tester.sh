@@ -42,6 +42,7 @@ find            match
 gawk            replace
 grep            match
 javascript      replace
+lex             match
 mawk            replace
 perl            replace
 php             replace
@@ -210,6 +211,29 @@ test_grep() { # regex string
 test_javascript() { # regex string
     node --eval "'$2'.replace(/$1/, 'x')" --print 2>&1 |
         head -n 1
+}
+
+# http://matt.might.net/articles/standalone-lexers-with-lex/
+test_lex() { # regex string
+    {
+        # lex commands to just print the matched text
+        # Got from: https://en.wikipedia.org/wiki/Lex_(software)
+        printf '%s\n' '%{'
+        printf '%s\n' '#include <stdio.h>'
+        printf '%s\n' '%}'
+        printf '%s\n' '%option noyywrap'
+        printf '%s\n' '%%'
+        printf '%s %s\n' "$1" '{printf("%s\n", yytext);}'
+        printf '%s\n' '.|\n {}'
+        printf '%s\n' '%%'
+        printf '%s\n' 'int main(void){ yylex(); return 0; }'
+    } > tmp.lex.$$.l
+    {
+        flex -o tmp.lex.$$.yy.c tmp.lex.$$.l &&
+            gcc -o tmp.lex.$$.run tmp.lex.$$.yy.c &&
+            printf '%s\n' "$2" | ./tmp.lex.$$.run
+    } 2>&1 | head -n 1
+    rm -f tmp.lex.$$.*
 }
 
 test_mawk() { # regex string
@@ -396,6 +420,9 @@ show_version() {
         find)
             # shellcheck disable=SC2185
             find --version
+            ;;
+        lex)
+            flex --version
             ;;
         gawk)
             gawk --version | sed 's/,.*//'
