@@ -712,6 +712,95 @@ javascript    ax6       a[\\\\]b            a\b       FAIL a
 javascript    ax7       a[[:alpha:]]        ab        FAIL ab
 javascript    ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+lex version: flex 2.6.4
+lex           -         ^ab                 ab        OK
+lex           -         ab$                 ab        OK
+lex           -         a.                  ab        OK
+lex           -         [a]b                ab        OK
+lex           -         [^b]b               ab        OK
+lex           S2        abx?                ab        OK
+lex           S2        abx\?               ab        FAIL
+lex           S2        abx\\?              ab        FAIL
+lex           S2        abx*                ab        OK
+lex           S2        abx\*               ab        FAIL
+lex           S2        abx\\*              ab        FAIL
+lex           S2        ab+                 abb       OK
+lex           S2        ab\+                abb       FAIL
+lex           S2        ab\\+               abb       FAIL
+lex           S2        ab{1}               ab        OK
+lex           S2        ab\{1}              ab        FAIL tmp.lex.1.l:6: unrecognized rule
+lex           S2        ab\{1\}             ab        FAIL
+lex           S2        ab\\{1\\}           ab        FAIL tmp.lex.1.l:6: bad character inside {}'s
+lex           S2        ab{1,}              abb       OK
+lex           S2        ab\{1,}             abb       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           S2        ab\{1,\}            abb       FAIL
+lex           S2        ab\\{1,\\}          abb       FAIL tmp.lex.1.l:6: bad character inside {}'s
+lex           S2        ab{1,2}             abb       OK
+lex           S2        ab\{1,2}            abb       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           S2        ab\{1,2\}           abb       FAIL
+lex           S2        ab\\{1,2\\}         abb       FAIL tmp.lex.1.l:6: bad character inside {}'s
+lex           ax123     a(b)                ab        OK
+lex           ax123     a\(b\)              ab        FAIL
+lex           ax123     a\\(b\\)            ab        FAIL
+lex           ax123     (x|ab)              ab        OK
+lex           ax123     \(x\|ab\)           ab        FAIL
+lex           ax123     \\(x\\|ab\\)        ab        FAIL
+lex           ax5       ^a\b                a\b       FAIL
+lex           ax5       ^a\\b               a\b       OK
+lex           ax5       ^a\\\\b             a\b       FAIL
+lex           ax5       ^a\.b               a.b       OK
+lex           ax5       ^a\\.b              a.b       FAIL
+lex           ax5       ^a*b                a*b       FAIL
+lex           ax5       ^a\*b               a*b       OK
+lex           ax5       ^a\\*b              a*b       FAIL
+lex           ax5       ^a[b                a[b       FAIL tmp.lex.1.l:6: bad character class
+lex           ax5       ^a\[b               a[b       OK
+lex           ax5       ^a\\[b              a[b       FAIL tmp.lex.1.l:6: bad character class
+lex           ax5       ^a]b                a]b       OK
+lex           ax5       ^a\]b               a]b       OK
+lex           ax5       ^a\\]b              a]b       FAIL
+lex           ax5       ^a{b                a{b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a\{b               a{b       OK
+lex           ax5       ^a\\{b              a{b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a}b                a}b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a\}b               a}b       OK
+lex           ax5       ^a\\}b              a}b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a{5}b              a{5}b     FAIL
+lex           ax5       ^a\{5\}b            a{5}b     OK
+lex           ax5       ^a\\{5\\}b          a{5}b     FAIL tmp.lex.1.l:6: bad character inside {}'s
+lex           ax5       ^a(b                a(b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a\(b               a(b       OK
+lex           ax5       ^a\\(b              a(b       FAIL tmp.lex.1.l:6: unrecognized rule
+lex           ax5       ^a)b                a)b       FAIL tmp.lex.1.l:6: unbalanced parenthesis
+lex           ax5       ^a\)b               a)b       OK
+lex           ax5       ^a\\)b              a)b       FAIL tmp.lex.1.l:6: unbalanced parenthesis
+lex           ax5       ^a|b                a|b       FAIL a
+lex           ax5       ^a\|b               a|b       OK
+lex           ax5       ^a\\|b              a|b       FAIL
+lex           ax5       ^a+b                a+b       FAIL
+lex           ax5       ^a\+b               a+b       OK
+lex           ax5       ^a\\+b              a+b       FAIL
+lex           ax5       ^a?b                a?b       FAIL
+lex           ax5       ^a\?b               a?b       OK
+lex           ax5       ^a\\?b              a?b       FAIL
+lex           ax5       ^a^b                a^b       OK
+lex           ax5       ^a\^b               a^b       OK
+lex           ax5       ^a\\^b              a^b       FAIL
+lex           ax5       ^ab                 ^ab       FAIL
+lex           ax5       \^ab                ^ab       OK
+lex           ax5       \\^ab               ^ab       FAIL
+lex           ax5       ^a$b                a$b       OK
+lex           ax5       ^a\$b               a$b       OK
+lex           ax5       ^a\\$b              a$b       FAIL
+lex           ax5       ^ab$                ab$       FAIL
+lex           ax5       ^ab\$               ab$       OK
+lex           ax5       ^ab\\$              ab$       FAIL
+lex           ax6       a[\]b               a\b       FAIL tmp.lex.1.l:6: bad character class
+lex           ax6       a[\\]b              a\b       OK
+lex           ax6       a[\\\\]b            a\b       OK
+lex           ax7       a[[:alpha:]]        ab        OK
+lex           ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 mawk version: mawk 1.3.3 Nov 1996
 mawk          -         ^ab                 ab        OK
 mawk          -         ab$                 ab        OK

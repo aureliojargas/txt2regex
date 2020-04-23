@@ -58,6 +58,7 @@ clean:
 	rm -f clitest.sh $(NAME) txt2tags.py
 	rm -f messages.mo $(PODIR)/{messages,*.mo,*.tmp,*~}
 	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
+	rm -f tmp.lex.*.{l,run,yy.c}
 
 doc: txt2tags.py
 	@python ./txt2tags.py -t man  man/txt2regex.t2t
