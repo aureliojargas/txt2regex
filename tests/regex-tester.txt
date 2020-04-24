@@ -266,6 +266,95 @@ egrep         ax6       a[\\\\]b            a\b       OK
 egrep         ax7       a[[:alpha:]]        ab        OK
 egrep         ax8       a[\t]b              a<tab>b   FAIL
 ----------------------------------------------------------
+expect version: expect version 5.45.4
+expect        -         ^ab                 ab        OK
+expect        -         ab$                 ab        OK
+expect        -         a.                  ab        OK
+expect        -         [a]b                ab        OK
+expect        -         [^b]b               ab        OK
+expect        S2        abx?                ab        OK
+expect        S2        abx\?               ab        FAIL
+expect        S2        abx\\?              ab        FAIL
+expect        S2        abx*                ab        OK
+expect        S2        abx\*               ab        FAIL
+expect        S2        abx\\*              ab        FAIL
+expect        S2        ab+                 abb       OK
+expect        S2        ab\+                abb       FAIL
+expect        S2        ab\\+               abb       FAIL
+expect        S2        ab{1}               ab        OK
+expect        S2        ab\{1}              ab        FAIL extra characters after close-brace
+expect        S2        ab\{1\}             ab        FAIL
+expect        S2        ab\\{1\\}           ab        FAIL couldn't compile regular expression pattern: invalid repetition count(s)
+expect        S2        ab{1,}              abb       OK
+expect        S2        ab\{1,}             abb       FAIL extra characters after close-brace
+expect        S2        ab\{1,\}            abb       FAIL
+expect        S2        ab\\{1,\\}          abb       FAIL couldn't compile regular expression pattern: invalid repetition count(s)
+expect        S2        ab{1,2}             abb       OK
+expect        S2        ab\{1,2}            abb       FAIL extra characters after close-brace
+expect        S2        ab\{1,2\}           abb       FAIL
+expect        S2        ab\\{1,2\\}         abb       FAIL couldn't compile regular expression pattern: invalid repetition count(s)
+expect        ax123     a(b)                ab        OK
+expect        ax123     a\(b\)              ab        FAIL
+expect        ax123     a\\(b\\)            ab        FAIL
+expect        ax123     (x|ab)              ab        OK
+expect        ax123     \(x\|ab\)           ab        FAIL
+expect        ax123     \\(x\\|ab\\)        ab        FAIL
+expect        ax5       ^a\b                a\b       FAIL
+expect        ax5       ^a\\b               a\b       OK
+expect        ax5       ^a\\\\b             a\b       FAIL
+expect        ax5       ^a\.b               a.b       OK
+expect        ax5       ^a\\.b              a.b       FAIL
+expect        ax5       ^a*b                a*b       FAIL
+expect        ax5       ^a\*b               a*b       OK
+expect        ax5       ^a\\*b              a*b       FAIL
+expect        ax5       ^a[b                a[b       FAIL couldn't compile regular expression pattern: brackets [] not balanced
+expect        ax5       ^a\[b               a[b       OK
+expect        ax5       ^a\\[b              a[b       FAIL couldn't compile regular expression pattern: brackets [] not balanced
+expect        ax5       ^a]b                a]b       OK
+expect        ax5       ^a\]b               a]b       OK
+expect        ax5       ^a\\]b              a]b       FAIL
+expect        ax5       ^a{b                a{b       FAIL missing close-brace
+expect        ax5       ^a\{b               a{b       OK
+expect        ax5       ^a\\{b              a{b       FAIL missing close-brace
+expect        ax5       ^a}b                a}b       FAIL extra characters after close-brace
+expect        ax5       ^a\}b               a}b       OK
+expect        ax5       ^a\\}b              a}b       FAIL extra characters after close-brace
+expect        ax5       ^a{5}b              a{5}b     FAIL
+expect        ax5       ^a\{5\}b            a{5}b     OK
+expect        ax5       ^a\\{5\\}b          a{5}b     FAIL couldn't compile regular expression pattern: invalid repetition count(s)
+expect        ax5       ^a(b                a(b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
+expect        ax5       ^a\(b               a(b       OK
+expect        ax5       ^a\\(b              a(b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
+expect        ax5       ^a)b                a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
+expect        ax5       ^a\)b               a)b       OK
+expect        ax5       ^a\\)b              a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
+expect        ax5       ^a|b                a|b       FAIL a
+expect        ax5       ^a\|b               a|b       OK
+expect        ax5       ^a\\|b              a|b       FAIL b
+expect        ax5       ^a+b                a+b       FAIL
+expect        ax5       ^a\+b               a+b       OK
+expect        ax5       ^a\\+b              a+b       FAIL
+expect        ax5       ^a?b                a?b       FAIL
+expect        ax5       ^a\?b               a?b       OK
+expect        ax5       ^a\\?b              a?b       FAIL
+expect        ax5       ^a^b                a^b       FAIL
+expect        ax5       ^a\^b               a^b       OK
+expect        ax5       ^a\\^b              a^b       FAIL
+expect        ax5       ^ab                 ^ab       FAIL
+expect        ax5       \^ab                ^ab       OK
+expect        ax5       \\^ab               ^ab       FAIL
+expect        ax5       ^a$b                a$b       FAIL
+expect        ax5       ^a\$b               a$b       OK
+expect        ax5       ^a\\$b              a$b       FAIL
+expect        ax5       ^ab$                ab$       FAIL
+expect        ax5       ^ab\$               ab$       OK
+expect        ax5       ^ab\\$              ab$       FAIL
+expect        ax6       a[\]b               a\b       FAIL couldn't compile regular expression pattern: brackets [] not balanced
+expect        ax6       a[\\]b              a\b       OK
+expect        ax6       a[\\\\]b            a\b       OK
+expect        ax7       a[[:alpha:]]        ab        OK
+expect        ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 find version: find (GNU findutils) 4.7.0-git
 find          -         ^ab                 ab        OK
 find          -         ab$                 ab        OK
