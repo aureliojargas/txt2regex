@@ -501,7 +501,10 @@ tit2_cmd=(
     '!!'
 )
 
-# Here's all the quantifiers
+# The list of quantifiers (to be used when STATUS=2)
+# To update this data:
+#   make test-regex
+#   grep ' S2 .*OK$' tests/regex-tester.txt
 S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_grep=(      '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
@@ -526,25 +529,33 @@ S2_lisp=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_tcl=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_expect=(    '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
 S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
-#63# cause on table 6-1 it seems that the vi part is wrong
 
-### Mastering Regular Expressions pages:
-# egrep 29 1-3
-# .* 182 6-1
-# grep 183 6-2
-# *awk 184 6-3
-# tcl 189 6-4
-# emacs 194 6-7
-# perl 201 7-1
-### Other:
-# php 4.0.3pl1 docs (POSIX 1003.2 extended regular expressions)
-
-
-# tst: \/_$[]{}()|+?^_/p , [gm]awk=egrep, lisp=emacs
-# [[:abc:]]: Invalid character class name
-#details,grouping,alternatives,escape meta,escape normal,escape inside [],[:POSIX:],TAB inside []
-#                              \.*[]{}()|+?^$   ,=tested  space=pending
-
+# Content for all the following ax_* arrays:
+# [0] Unused
+# [1] Which is the metacharacter for alternatives?
+# [2,3] Which are the metacharacters for grouping?
+# [4] Which is the escape metacharacter?
+# [5] Which chars of \.*[]{}()|+?^$ need to be escaped to be matched as
+#     literals? Note that txt2regex has menus to insert all of those as
+#     metacharacters (except $), so in user input they will always be
+#     literal. For ^ and $, some tools consider them literal when not in
+#     their special start/end position (marked here as commas).
+# [6] To match '\' inside [], do you need to escape it? If yes, use '\'.
+# [7] Has support for [[:POSIX:]] character classes? If yes, use 'P'.
+# [8] Does \t inside [] match a tab? If yes, use '\t'.
+#
+# To check how this data is used in this source code, search for
+# something like 'ax_.*5'.
+#
+# To update this data:
+#   make test-regex
+#   grep -E ' ax123 .+OK$' tests/regex-tester.txt  # 1,2,3
+#   grep -E   ' a\.b +OK$' tests/regex-tester.txt  # 4
+#   grep -E   ' ax5 .+OK$' tests/regex-tester.txt  # 5
+#   grep -E   ' ax6 '      tests/regex-tester.txt  # 6
+#   grep -E   ' ax7 '      tests/regex-tester.txt  # 7
+#
+# Legend: ,=tested  space=pending         \.*[]{}()|+?^$
 ax_sed=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
 ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
 ax_grep=(      ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
@@ -569,11 +580,6 @@ ax_lisp=(      '' '\\|' '\\(' '\\)' '\\' '\.*[      +?  ' ',' ',' ',' )
 ax_tcl=(       ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?^$' '\' ',' '\t')
 ax_expect=(    ''   '|'   '(' ')'   '\'  '\.*[   ( |+?  ' ' ' ' ' ' ' )
 ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[          ' ',' 'P' ',' )
-#194# emacs: a backslash ... it is not special
-#78#  emacs: it uses \s for special "syntax classes"
-#189# tcl: withing a class, a backslash is not special
-# man procmailrc: does not support named character classes.
-
 
 ColorOnOff(){
     # The colors: Normal, Prompt, Bold, Important

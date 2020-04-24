@@ -14,7 +14,9 @@ v0.9 beta (unreleased):
   - Improved the source code formatting, now it is readable
   - Now using shellcheck to improve code quality
   - New tests for all the command line options (cmdline.md)
-  - Added new tests for JavaScript
+  - New regex tester that runs the supported programs with specially
+    crafted regexes, verifying how they behave in "real life", instead
+    of relying in documentation (regex-tester.sh)
   - Simplified the man page
   - Improved --help message
   - Added Turkish translations provided by erayalakese

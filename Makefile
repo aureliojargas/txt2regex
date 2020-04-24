@@ -8,7 +8,7 @@ PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
 FILES = Changelog.txt COPYRIGHT Makefile man NEWS $(PODIR) \
-        README.japanese README.md $(SHSKEL) test-suite tests TODO
+        README.japanese README.md $(SHSKEL) tests TODO
 
 DESTDIR =
 BINDIR = $(DESTDIR)/usr/bin
@@ -16,7 +16,8 @@ LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
 .PHONY: bashate check check-po clean doc install install-bin install-mo \
-        lint mo po pot test test-bash tgz
+        lint mo po pot test test-bash test-regex test-regex-build \
+        test-regex-shell tgz
 
 #-----------------------------------------------------------------------
 # Dev
@@ -24,7 +25,7 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 check: lint test
 
 lint:
-	shellcheck $(SHSKEL)
+	shellcheck $(SHSKEL) tests/regex-tester.sh
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 
 test: clitest.sh
@@ -37,6 +38,17 @@ test-bash: clitest.sh
 		docker run --rm -v $$PWD:/code -w /code bash:$$v \
 			sh clitest.sh --progress none tests/*.md; \
 	done
+
+# Run regex tests for the supported programs, inside a Docker container
+test-regex: test-regex-build
+	docker run --rm -v "$$PWD":/code -w /code regex-tester \
+		tests/regex-tester.sh > tests/regex-tester.txt 2>&1
+
+test-regex-shell: test-regex-build
+	docker run --rm -v "$$PWD":/code -w /code -it regex-tester
+
+test-regex-build:
+	docker build -t regex-tester tests/
 
 clean:
 	rm -f clitest.sh $(NAME) txt2tags.py
