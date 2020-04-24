@@ -44,7 +44,7 @@ change the default install paths.
 ## Tested programs versions
 
 All the regexes and rules were extensively tested by hand or by the
-`test-suite.sh` script. When the program couldn't be executed on my
+`regex-tester.sh` script. When the program couldn't be executed on my
 machine, the rules were taken:
 
 - from the program own documentation, or
