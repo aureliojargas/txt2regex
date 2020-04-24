@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-suggests --no-install-recommends \
     gawk \
     nodejs \
+    original-awk \
     php7.2-cli \
     postgresql \
     procmail \
