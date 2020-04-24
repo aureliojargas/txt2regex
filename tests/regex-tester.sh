@@ -35,6 +35,7 @@ debug=0
 # name, test_type
 program_data='
 awk             replace
+ed              replace
 egrep           match
 find            match
 gawk            replace
@@ -161,6 +162,13 @@ ax8         a[\t]b          a<tab>b
 test_awk() { # regex string
     printf '%s\n' "$2" |
         original-awk "{ sub(/$1/, \"x\") ; print }" 2>&1 |
+        head -n 1
+}
+
+test_ed() { # regex string
+    # Open empty file, insert the string, replace, print, quit
+    printf '%s\n' 0a "$2" . "1s/$1/x/" 1p Q |
+        ed -s 2>&1 |
         head -n 1
 }
 
@@ -343,6 +351,9 @@ show_version() {
     case "$program" in
         awk)
             original-awk --version
+            ;;
+        ed)
+            ed --version
             ;;
         egrep)
             grep -E --version
