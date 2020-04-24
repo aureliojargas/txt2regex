@@ -45,6 +45,7 @@ perl            replace
 php             replace
 postgres        replace
 procmail        match
+python          replace
 sed             replace
 tcl             replace
 '
@@ -255,6 +256,13 @@ test_procmail() { # regex string
     rm tmp.procmail.$$
 }
 
+test_python() { # regex string
+    printf "%s\n%s\n%s\n" \
+        'import re' \
+        "try: print(re.sub(r'$1', 'x', r'$2'))" \
+        'except Exception as e: print(e)' | python3
+}
+
 test_sed() { # regex string
     printf '%s\n' "$2" | sed -e "s/$1/x/"
 }
@@ -366,6 +374,9 @@ show_version() {
             ;;
         postgres)
             psql --version | sed 's/ (Ubuntu.*//'
+            ;;
+        python)
+            python3 --version
             ;;
         sed)
             sed --version

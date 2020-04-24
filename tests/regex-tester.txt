@@ -979,6 +979,95 @@ procmail      ax6       a[\\\\]b            a\b       OK
 procmail      ax7       a[[:alpha:]]        ab        FAIL No match on "a[[:alpha:]]"
 procmail      ax8       a[\t]b              a<tab>b   FAIL No match on "a[\t]b"
 ----------------------------------------------------------
+python version: Python 3.6.9
+python        -         ^ab                 ab        OK
+python        -         ab$                 ab        OK
+python        -         a.                  ab        OK
+python        -         [a]b                ab        OK
+python        -         [^b]b               ab        OK
+python        S2        abx?                ab        OK
+python        S2        abx\?               ab        FAIL ab
+python        S2        abx\\?              ab        FAIL ab
+python        S2        abx*                ab        OK
+python        S2        abx\*               ab        FAIL ab
+python        S2        abx\\*              ab        FAIL ab
+python        S2        ab+                 abb       OK
+python        S2        ab\+                abb       FAIL abb
+python        S2        ab\\+               abb       FAIL abb
+python        S2        ab{1}               ab        OK
+python        S2        ab\{1}              ab        FAIL ab
+python        S2        ab\{1\}             ab        FAIL ab
+python        S2        ab\\{1\\}           ab        FAIL ab
+python        S2        ab{1,}              abb       OK
+python        S2        ab\{1,}             abb       FAIL abb
+python        S2        ab\{1,\}            abb       FAIL abb
+python        S2        ab\\{1,\\}          abb       FAIL abb
+python        S2        ab{1,2}             abb       OK
+python        S2        ab\{1,2}            abb       FAIL abb
+python        S2        ab\{1,2\}           abb       FAIL abb
+python        S2        ab\\{1,2\\}         abb       FAIL abb
+python        ax123     a(b)                ab        OK
+python        ax123     a\(b\)              ab        FAIL ab
+python        ax123     a\\(b\\)            ab        FAIL ab
+python        ax123     (x|ab)              ab        OK
+python        ax123     \(x\|ab\)           ab        FAIL ab
+python        ax123     \\(x\\|ab\\)        ab        FAIL ab
+python        ax5       ^a\b                a\b       FAIL x\b
+python        ax5       ^a\\b               a\b       OK
+python        ax5       ^a\\\\b             a\b       FAIL a\b
+python        ax5       ^a\.b               a.b       OK
+python        ax5       ^a\\.b              a.b       FAIL a.b
+python        ax5       ^a*b                a*b       FAIL a*b
+python        ax5       ^a\*b               a*b       OK
+python        ax5       ^a\\*b              a*b       FAIL a*b
+python        ax5       ^a[b                a[b       FAIL unterminated character set at position 2
+python        ax5       ^a\[b               a[b       OK
+python        ax5       ^a\\[b              a[b       FAIL unterminated character set at position 4
+python        ax5       ^a]b                a]b       OK
+python        ax5       ^a\]b               a]b       OK
+python        ax5       ^a\\]b              a]b       FAIL a]b
+python        ax5       ^a{b                a{b       OK
+python        ax5       ^a\{b               a{b       OK
+python        ax5       ^a\\{b              a{b       FAIL a{b
+python        ax5       ^a}b                a}b       OK
+python        ax5       ^a\}b               a}b       OK
+python        ax5       ^a\\}b              a}b       FAIL a}b
+python        ax5       ^a{5}b              a{5}b     FAIL a{5}b
+python        ax5       ^a\{5\}b            a{5}b     OK
+python        ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
+python        ax5       ^a(b                a(b       FAIL missing ), unterminated subpattern at position 2
+python        ax5       ^a\(b               a(b       OK
+python        ax5       ^a\\(b              a(b       FAIL missing ), unterminated subpattern at position 4
+python        ax5       ^a)b                a)b       FAIL unbalanced parenthesis at position 2
+python        ax5       ^a\)b               a)b       OK
+python        ax5       ^a\\)b              a)b       FAIL unbalanced parenthesis at position 4
+python        ax5       ^a|b                a|b       FAIL x|x
+python        ax5       ^a\|b               a|b       OK
+python        ax5       ^a\\|b              a|b       FAIL a|x
+python        ax5       ^a+b                a+b       FAIL a+b
+python        ax5       ^a\+b               a+b       OK
+python        ax5       ^a\\+b              a+b       FAIL a+b
+python        ax5       ^a?b                a?b       FAIL a?b
+python        ax5       ^a\?b               a?b       OK
+python        ax5       ^a\\?b              a?b       FAIL a?b
+python        ax5       ^a^b                a^b       FAIL a^b
+python        ax5       ^a\^b               a^b       OK
+python        ax5       ^a\\^b              a^b       FAIL a^b
+python        ax5       ^ab                 ^ab       FAIL ^ab
+python        ax5       \^ab                ^ab       OK
+python        ax5       \\^ab               ^ab       FAIL ^ab
+python        ax5       ^a$b                a$b       FAIL a$b
+python        ax5       ^a\$b               a$b       OK
+python        ax5       ^a\\$b              a$b       FAIL a$b
+python        ax5       ^ab$                ab$       FAIL ab$
+python        ax5       ^ab\$               ab$       OK
+python        ax5       ^ab\\$              ab$       FAIL ab$
+python        ax6       a[\]b               a\b       FAIL unterminated character set at position 1
+python        ax6       a[\\]b              a\b       OK
+python        ax6       a[\\\\]b            a\b       OK
+python        ax7       a[[:alpha:]]        ab        FAIL ab
+python        ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 sed version: sed (GNU sed) 4.4
 sed           -         ^ab                 ab        OK
 sed           -         ab$                 ab        OK
