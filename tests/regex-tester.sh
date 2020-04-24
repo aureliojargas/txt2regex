@@ -34,6 +34,7 @@ debug=0
 
 # name, test_type
 program_data='
+awk             replace
 egrep           match
 find            match
 gawk            replace
@@ -155,6 +156,12 @@ ax7         a[[:alpha:]]    ab
 # Note that <tab> will be replaced by a real tab character later
 ax8         a[\t]b          a<tab>b
 '
+
+test_awk() { # regex string
+    printf '%s\n' "$2" |
+        original-awk "{ sub(/$1/, \"x\") ; print }" 2>&1 |
+        head -n 1
+}
 
 test_egrep() { # regex string
     printf '%s\n' "$2" | grep -E -o "$1"
@@ -326,6 +333,9 @@ show_version() {
     local program="$1"
 
     case "$program" in
+        awk)
+            original-awk --version
+            ;;
         egrep)
             grep -E --version
             ;;
