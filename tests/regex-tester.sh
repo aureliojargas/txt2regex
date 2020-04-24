@@ -414,10 +414,23 @@ show_version() {
 }
 
 main() {
-    local user_program="${1:-}"
-
     local program
+    local skip=
     local test_type
+    local user_program=
+
+    while test $# -gt 0; do
+        case "$1" in
+            --skip)
+                skip="$2"
+                shift
+                ;;
+            *)
+                user_program="$1"
+                ;;
+        esac
+        shift
+    done
 
     # Restrict the available programs to the user's choice
     test -n "$user_program" &&
@@ -425,6 +438,9 @@ main() {
 
     # Show version and test results for all the available programs
     echo "$program_data" | grep . | while read -r program test_type; do
+
+        test "$program" = "$skip" && continue
+
         printf '%s version: ' "$program"
         show_version "$program" || true
 
