@@ -87,6 +87,95 @@ awk           ax6       a[\\\\]b            a\b       OK
 awk           ax7       a[[:alpha:]]        ab        OK
 awk           ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+ed version: GNU Ed 1.10
+ed            -         ^ab                 ab        OK
+ed            -         ab$                 ab        OK
+ed            -         a.                  ab        OK
+ed            -         [a]b                ab        OK
+ed            -         [^b]b               ab        OK
+ed            S2        abx?                ab        FAIL ?
+ed            S2        abx\?               ab        OK
+ed            S2        abx\\?              ab        FAIL ?
+ed            S2        abx*                ab        OK
+ed            S2        abx\*               ab        FAIL ?
+ed            S2        abx\\*              ab        FAIL ?
+ed            S2        ab+                 abb       FAIL ?
+ed            S2        ab\+                abb       OK
+ed            S2        ab\\+               abb       FAIL ?
+ed            S2        ab{1}               ab        FAIL ?
+ed            S2        ab\{1}              ab        FAIL ?
+ed            S2        ab\{1\}             ab        OK
+ed            S2        ab\\{1\\}           ab        FAIL ?
+ed            S2        ab{1,}              abb       FAIL ?
+ed            S2        ab\{1,}             abb       FAIL ?
+ed            S2        ab\{1,\}            abb       OK
+ed            S2        ab\\{1,\\}          abb       FAIL ?
+ed            S2        ab{1,2}             abb       FAIL ?
+ed            S2        ab\{1,2}            abb       FAIL ?
+ed            S2        ab\{1,2\}           abb       OK
+ed            S2        ab\\{1,2\\}         abb       FAIL ?
+ed            ax123     a(b)                ab        FAIL ?
+ed            ax123     a\(b\)              ab        OK
+ed            ax123     a\\(b\\)            ab        FAIL ?
+ed            ax123     (x|ab)              ab        FAIL ?
+ed            ax123     \(x\|ab\)           ab        OK
+ed            ax123     \\(x\\|ab\\)        ab        FAIL ?
+ed            ax5       ^a\b                a\b       FAIL x\b
+ed            ax5       ^a\\b               a\b       OK
+ed            ax5       ^a\\\\b             a\b       FAIL ?
+ed            ax5       ^a\.b               a.b       OK
+ed            ax5       ^a\\.b              a.b       FAIL ?
+ed            ax5       ^a*b                a*b       FAIL ?
+ed            ax5       ^a\*b               a*b       OK
+ed            ax5       ^a\\*b              a*b       FAIL ?
+ed            ax5       ^a[b                a[b       FAIL ?
+ed            ax5       ^a\[b               a[b       OK
+ed            ax5       ^a\\[b              a[b       FAIL ?
+ed            ax5       ^a]b                a]b       OK
+ed            ax5       ^a\]b               a]b       OK
+ed            ax5       ^a\\]b              a]b       FAIL ?
+ed            ax5       ^a{b                a{b       OK
+ed            ax5       ^a\{b               a{b       FAIL ?
+ed            ax5       ^a\\{b              a{b       FAIL ?
+ed            ax5       ^a}b                a}b       OK
+ed            ax5       ^a\}b               a}b       OK
+ed            ax5       ^a\\}b              a}b       FAIL ?
+ed            ax5       ^a{5}b              a{5}b     OK
+ed            ax5       ^a\{5\}b            a{5}b     FAIL ?
+ed            ax5       ^a\\{5\\}b          a{5}b     FAIL ?
+ed            ax5       ^a(b                a(b       OK
+ed            ax5       ^a\(b               a(b       FAIL ?
+ed            ax5       ^a\\(b              a(b       FAIL ?
+ed            ax5       ^a)b                a)b       OK
+ed            ax5       ^a\)b               a)b       FAIL ?
+ed            ax5       ^a\\)b              a)b       FAIL ?
+ed            ax5       ^a|b                a|b       OK
+ed            ax5       ^a\|b               a|b       FAIL x|b
+ed            ax5       ^a\\|b              a|b       FAIL ?
+ed            ax5       ^a+b                a+b       OK
+ed            ax5       ^a\+b               a+b       FAIL ?
+ed            ax5       ^a\\+b              a+b       FAIL ?
+ed            ax5       ^a?b                a?b       OK
+ed            ax5       ^a\?b               a?b       FAIL ?
+ed            ax5       ^a\\?b              a?b       FAIL ?
+ed            ax5       ^a^b                a^b       OK
+ed            ax5       ^a\^b               a^b       OK
+ed            ax5       ^a\\^b              a^b       FAIL ?
+ed            ax5       ^ab                 ^ab       FAIL ?
+ed            ax5       \^ab                ^ab       OK
+ed            ax5       \\^ab               ^ab       FAIL ?
+ed            ax5       ^a$b                a$b       OK
+ed            ax5       ^a\$b               a$b       OK
+ed            ax5       ^a\\$b              a$b       FAIL ?
+ed            ax5       ^ab$                ab$       FAIL ?
+ed            ax5       ^ab\$               ab$       OK
+ed            ax5       ^ab\\$              ab$       FAIL ?
+ed            ax6       a[\]b               a\b       OK
+ed            ax6       a[\\]b              a\b       OK
+ed            ax6       a[\\\\]b            a\b       OK
+ed            ax7       a[[:alpha:]]        ab        OK
+ed            ax8       a[\t]b              a<tab>b   FAIL ?
+----------------------------------------------------------
 egrep version: grep (GNU grep) 3.1
 egrep         -         ^ab                 ab        OK
 egrep         -         ab$                 ab        OK
