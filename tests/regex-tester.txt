@@ -87,6 +87,95 @@ awk           ax6       a[\\\\]b            a\b       OK
 awk           ax7       a[[:alpha:]]        ab        OK
 awk           ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+chicken version: CHICKEN 4.12.0
+chicken       -         ^ab                 ab        OK
+chicken       -         ab$                 ab        OK
+chicken       -         a.                  ab        OK
+chicken       -         [a]b                ab        OK
+chicken       -         [^b]b               ab        OK
+chicken       S2        abx?                ab        OK
+chicken       S2        abx\?               ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\?
+chicken       S2        abx\\?              ab        FAIL
+chicken       S2        abx*                ab        OK
+chicken       S2        abx\*               ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\*
+chicken       S2        abx\\*              ab        FAIL
+chicken       S2        ab+                 abb       OK
+chicken       S2        ab\+                abb       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\+
+chicken       S2        ab\\+               abb       FAIL
+chicken       S2        ab{1}               ab        OK
+chicken       S2        ab\{1}              ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\{1\}             ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\\{1\\}           ab        FAIL
+chicken       S2        ab{1,}              abb       OK
+chicken       S2        ab\{1,}             abb       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\{1,\}            abb       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\\{1,\\}          abb       FAIL
+chicken       S2        ab{1,2}             abb       OK
+chicken       S2        ab\{1,2}            abb       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\{1,2\}           abb       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       S2        ab\\{1,2\\}         abb       FAIL
+chicken       ax123     a(b)                ab        OK
+chicken       ax123     a\(b\)              ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
+chicken       ax123     a\\(b\\)            ab        FAIL
+chicken       ax123     (x|ab)              ab        OK
+chicken       ax123     \(x\|ab\)           ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
+chicken       ax123     \\(x\\|ab\\)        ab        FAIL
+chicken       ax5       ^a\b                a\b       OK
+chicken       ax5       ^a\\b               a\b       FAIL
+chicken       ax5       ^a\\\\b             a\b       FAIL
+chicken       ax5       ^a\.b               a.b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\.
+chicken       ax5       ^a\\.b              a.b       OK
+chicken       ax5       ^a*b                a*b       FAIL
+chicken       ax5       ^a\*b               a*b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\*
+chicken       ax5       ^a\\*b              a*b       OK
+chicken       ax5       ^a[b                a[b       FAIL Error: incomplete char set
+chicken       ax5       ^a\[b               a[b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\[
+chicken       ax5       ^a\\[b              a[b       OK
+chicken       ax5       ^a]b                a]b       OK
+chicken       ax5       ^a\]b               a]b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\]
+chicken       ax5       ^a\\]b              a]b       OK
+chicken       ax5       ^a{b                a{b       OK
+chicken       ax5       ^a\{b               a{b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       ax5       ^a\\{b              a{b       OK
+chicken       ax5       ^a}b                a}b       OK
+chicken       ax5       ^a\}b               a}b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\}
+chicken       ax5       ^a\\}b              a}b       OK
+chicken       ax5       ^a{5}b              a{5}b     FAIL
+chicken       ax5       ^a\{5\}b            a{5}b     FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
+chicken       ax5       ^a\\{5\\}b          a{5}b     OK
+chicken       ax5       ^a(b                a(b       FAIL Error: unterminated parenthesis in regexp: "^a(b"
+chicken       ax5       ^a\(b               a(b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
+chicken       ax5       ^a\\(b              a(b       OK
+chicken       ax5       ^a)b                a)b       FAIL Error: too many )'s in regexp: "^a)b"
+chicken       ax5       ^a\)b               a)b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\)
+chicken       ax5       ^a\\)b              a)b       OK
+chicken       ax5       ^a|b                a|b       FAIL
+chicken       ax5       ^a\|b               a|b       FAIL
+chicken       ax5       ^a\\|b              a|b       OK
+chicken       ax5       ^a+b                a+b       FAIL
+chicken       ax5       ^a\+b               a+b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\+
+chicken       ax5       ^a\\+b              a+b       OK
+chicken       ax5       ^a?b                a?b       FAIL
+chicken       ax5       ^a\?b               a?b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\?
+chicken       ax5       ^a\\?b              a?b       OK
+chicken       ax5       ^a^b                a^b       FAIL
+chicken       ax5       ^a\^b               a^b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\^
+chicken       ax5       ^a\\^b              a^b       OK
+chicken       ax5       ^ab                 ^ab       FAIL
+chicken       ax5       \^ab                ^ab       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\^
+chicken       ax5       \\^ab               ^ab       OK
+chicken       ax5       ^a$b                a$b       FAIL
+chicken       ax5       ^a\$b               a$b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\$
+chicken       ax5       ^a\\$b              a$b       OK
+chicken       ax5       ^ab$                ab$       FAIL
+chicken       ax5       ^ab\$               ab$       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\$
+chicken       ax5       ^ab\\$              ab$       OK
+chicken       ax6       a[\]b               a\b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\]
+chicken       ax6       a[\\]b              a\b       FAIL Error: incomplete char set
+chicken       ax6       a[\\\\]b            a\b       FAIL
+chicken       ax7       a[[:alpha:]]        ab        OK
+chicken       ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 ed version: GNU Ed 1.10
 ed            -         ^ab                 ab        OK
 ed            -         ab$                 ab        OK
