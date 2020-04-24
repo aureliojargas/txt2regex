@@ -1,3 +1,92 @@
+awk version: awk version 20121220
+awk           -         ^ab                 ab        OK
+awk           -         ab$                 ab        OK
+awk           -         a.                  ab        OK
+awk           -         [a]b                ab        OK
+awk           -         [^b]b               ab        OK
+awk           S2        abx?                ab        OK
+awk           S2        abx\?               ab        FAIL ab
+awk           S2        abx\\?              ab        FAIL ab
+awk           S2        abx*                ab        OK
+awk           S2        abx\*               ab        FAIL ab
+awk           S2        abx\\*              ab        FAIL ab
+awk           S2        ab+                 abb       OK
+awk           S2        ab\+                abb       FAIL abb
+awk           S2        ab\\+               abb       FAIL abb
+awk           S2        ab{1}               ab        FAIL ab
+awk           S2        ab\{1}              ab        FAIL ab
+awk           S2        ab\{1\}             ab        FAIL ab
+awk           S2        ab\\{1\\}           ab        FAIL ab
+awk           S2        ab{1,}              abb       FAIL abb
+awk           S2        ab\{1,}             abb       FAIL abb
+awk           S2        ab\{1,\}            abb       FAIL abb
+awk           S2        ab\\{1,\\}          abb       FAIL abb
+awk           S2        ab{1,2}             abb       FAIL abb
+awk           S2        ab\{1,2}            abb       FAIL abb
+awk           S2        ab\{1,2\}           abb       FAIL abb
+awk           S2        ab\\{1,2\\}         abb       FAIL abb
+awk           ax123     a(b)                ab        OK
+awk           ax123     a\(b\)              ab        FAIL ab
+awk           ax123     a\\(b\\)            ab        FAIL ab
+awk           ax123     (x|ab)              ab        OK
+awk           ax123     \(x\|ab\)           ab        FAIL ab
+awk           ax123     \\(x\\|ab\\)        ab        FAIL ab
+awk           ax5       ^a\b                a\b       FAIL a\b
+awk           ax5       ^a\\b               a\b       OK
+awk           ax5       ^a\\\\b             a\b       FAIL a\b
+awk           ax5       ^a\.b               a.b       OK
+awk           ax5       ^a\\.b              a.b       FAIL a.b
+awk           ax5       ^a*b                a*b       FAIL a*b
+awk           ax5       ^a\*b               a*b       OK
+awk           ax5       ^a\\*b              a*b       FAIL a*b
+awk           ax5       ^a[b                a[b       FAIL original-awk: nonterminated character class ^a[b
+awk           ax5       ^a\[b               a[b       OK
+awk           ax5       ^a\\[b              a[b       FAIL original-awk: nonterminated character class ^a\\[b
+awk           ax5       ^a]b                a]b       OK
+awk           ax5       ^a\]b               a]b       OK
+awk           ax5       ^a\\]b              a]b       FAIL a]b
+awk           ax5       ^a{b                a{b       OK
+awk           ax5       ^a\{b               a{b       OK
+awk           ax5       ^a\\{b              a{b       FAIL a{b
+awk           ax5       ^a}b                a}b       OK
+awk           ax5       ^a\}b               a}b       OK
+awk           ax5       ^a\\}b              a}b       FAIL a}b
+awk           ax5       ^a{5}b              a{5}b     OK
+awk           ax5       ^a\{5\}b            a{5}b     OK
+awk           ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
+awk           ax5       ^a(b                a(b       FAIL original-awk: syntax error in regular expression ^a(b at 
+awk           ax5       ^a\(b               a(b       OK
+awk           ax5       ^a\\(b              a(b       FAIL original-awk: syntax error in regular expression ^a\\(b at 
+awk           ax5       ^a)b                a)b       FAIL original-awk: syntax error in regular expression ^a)b at b
+awk           ax5       ^a\)b               a)b       OK
+awk           ax5       ^a\\)b              a)b       FAIL original-awk: syntax error in regular expression ^a\\)b at b
+awk           ax5       ^a|b                a|b       FAIL x|b
+awk           ax5       ^a\|b               a|b       OK
+awk           ax5       ^a\\|b              a|b       FAIL a|x
+awk           ax5       ^a+b                a+b       FAIL a+b
+awk           ax5       ^a\+b               a+b       OK
+awk           ax5       ^a\\+b              a+b       FAIL a+b
+awk           ax5       ^a?b                a?b       FAIL a?b
+awk           ax5       ^a\?b               a?b       OK
+awk           ax5       ^a\\?b              a?b       FAIL a?b
+awk           ax5       ^a^b                a^b       FAIL original-awk: syntax error in regular expression ^a^b at b
+awk           ax5       ^a\^b               a^b       OK
+awk           ax5       ^a\\^b              a^b       FAIL original-awk: syntax error in regular expression ^a\\^b at b
+awk           ax5       ^ab                 ^ab       FAIL ^ab
+awk           ax5       \^ab                ^ab       OK
+awk           ax5       \\^ab               ^ab       FAIL original-awk: syntax error in regular expression \\^ab at ab
+awk           ax5       ^a$b                a$b       FAIL a$b
+awk           ax5       ^a\$b               a$b       OK
+awk           ax5       ^a\\$b              a$b       FAIL a$b
+awk           ax5       ^ab$                ab$       FAIL ab$
+awk           ax5       ^ab\$               ab$       OK
+awk           ax5       ^ab\\$              ab$       FAIL ab$
+awk           ax6       a[\]b               a\b       FAIL original-awk: nonterminated character class a[\]b
+awk           ax6       a[\\]b              a\b       OK
+awk           ax6       a[\\\\]b            a\b       OK
+awk           ax7       a[[:alpha:]]        ab        OK
+awk           ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 egrep version: grep (GNU grep) 3.1
 egrep         -         ^ab                 ab        OK
 egrep         -         ab$                 ab        OK
