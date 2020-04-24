@@ -49,6 +49,7 @@ procmail        match
 python          replace
 sed             replace
 tcl             replace
+vim             replace
 '
 
 # shellcheck disable=SC2016
@@ -282,6 +283,12 @@ test_tcl() { # regex string
         head -n 1
 }
 
+test_vim() { # regex string
+    # Open empty file, insert the string, replace, print, quit
+    printf '%s\n' 0a "$2" . "1s/$1/x/" 1p q! |
+        vim --clean -n -e -s
+}
+
 test_program() {
     local program="$1"
     local test_type="$2"
@@ -395,6 +402,9 @@ show_version() {
         tcl)
             # shellcheck disable=SC2016
             printf 'puts $tcl_version' | tclsh | sed 's/^/tcl /'
+            ;;
+        vim)
+            vim --version | sed 's/,.*/)/'
             ;;
         *)
             printf 'show_version(): Unknown program "%s"\n' "$program"
