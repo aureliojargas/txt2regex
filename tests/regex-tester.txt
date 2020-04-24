@@ -1335,3 +1335,92 @@ tcl           ax6       a[\\\\]b            a\b       FAIL a
 tcl           ax7       a[[:alpha:]]        ab        OK
 tcl           ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+vim version: VIM - Vi IMproved 8.0 (2016 Sep 12)
+vim           -         ^ab                 ab        OK
+vim           -         ab$                 ab        OK
+vim           -         a.                  ab        OK
+vim           -         [a]b                ab        OK
+vim           -         [^b]b               ab        OK
+vim           S2        abx?                ab        FAIL ab
+vim           S2        abx\?               ab        OK
+vim           S2        abx\\?              ab        FAIL ab
+vim           S2        abx*                ab        OK
+vim           S2        abx\*               ab        FAIL ab
+vim           S2        abx\\*              ab        FAIL ab
+vim           S2        ab+                 abb       FAIL abb
+vim           S2        ab\+                abb       OK
+vim           S2        ab\\+               abb       FAIL abb
+vim           S2        ab{1}               ab        FAIL ab
+vim           S2        ab\{1}              ab        OK
+vim           S2        ab\{1\}             ab        OK
+vim           S2        ab\\{1\\}           ab        FAIL ab
+vim           S2        ab{1,}              abb       FAIL abb
+vim           S2        ab\{1,}             abb       OK
+vim           S2        ab\{1,\}            abb       OK
+vim           S2        ab\\{1,\\}          abb       FAIL abb
+vim           S2        ab{1,2}             abb       FAIL abb
+vim           S2        ab\{1,2}            abb       OK
+vim           S2        ab\{1,2\}           abb       OK
+vim           S2        ab\\{1,2\\}         abb       FAIL abb
+vim           ax123     a(b)                ab        FAIL ab
+vim           ax123     a\(b\)              ab        OK
+vim           ax123     a\\(b\\)            ab        FAIL ab
+vim           ax123     (x|ab)              ab        FAIL ab
+vim           ax123     \(x\|ab\)           ab        OK
+vim           ax123     \\(x\\|ab\\)        ab        FAIL ab
+vim           ax5       ^a\b                a\b       FAIL a\b
+vim           ax5       ^a\\b               a\b       OK
+vim           ax5       ^a\\\\b             a\b       FAIL a\b
+vim           ax5       ^a\.b               a.b       OK
+vim           ax5       ^a\\.b              a.b       FAIL a.b
+vim           ax5       ^a*b                a*b       FAIL a*b
+vim           ax5       ^a\*b               a*b       OK
+vim           ax5       ^a\\*b              a*b       FAIL a*b
+vim           ax5       ^a[b                a[b       FAIL a[b
+vim           ax5       ^a\[b               a[b       OK
+vim           ax5       ^a\\[b              a[b       FAIL a[b
+vim           ax5       ^a]b                a]b       OK
+vim           ax5       ^a\]b               a]b       OK
+vim           ax5       ^a\\]b              a]b       FAIL a]b
+vim           ax5       ^a{b                a{b       OK
+vim           ax5       ^a\{b               a{b       FAIL a{b
+vim           ax5       ^a\\{b              a{b       FAIL a{b
+vim           ax5       ^a}b                a}b       OK
+vim           ax5       ^a\}b               a}b       OK
+vim           ax5       ^a\\}b              a}b       FAIL a}b
+vim           ax5       ^a{5}b              a{5}b     OK
+vim           ax5       ^a\{5\}b            a{5}b     FAIL a{5}b
+vim           ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
+vim           ax5       ^a(b                a(b       OK
+vim           ax5       ^a\(b               a(b       FAIL a(b
+vim           ax5       ^a\\(b              a(b       FAIL a(b
+vim           ax5       ^a)b                a)b       OK
+vim           ax5       ^a\)b               a)b       FAIL a)b
+vim           ax5       ^a\\)b              a)b       FAIL a)b
+vim           ax5       ^a|b                a|b       OK
+vim           ax5       ^a\|b               a|b       FAIL x|b
+vim           ax5       ^a\\|b              a|b       FAIL a|b
+vim           ax5       ^a+b                a+b       OK
+vim           ax5       ^a\+b               a+b       FAIL a+b
+vim           ax5       ^a\\+b              a+b       FAIL a+b
+vim           ax5       ^a?b                a?b       OK
+vim           ax5       ^a\?b               a?b       FAIL a?b
+vim           ax5       ^a\\?b              a?b       FAIL a?b
+vim           ax5       ^a^b                a^b       OK
+vim           ax5       ^a\^b               a^b       OK
+vim           ax5       ^a\\^b              a^b       FAIL a^b
+vim           ax5       ^ab                 ^ab       FAIL ^ab
+vim           ax5       \^ab                ^ab       OK
+vim           ax5       \\^ab               ^ab       FAIL ^ab
+vim           ax5       ^a$b                a$b       OK
+vim           ax5       ^a\$b               a$b       OK
+vim           ax5       ^a\\$b              a$b       FAIL a$b
+vim           ax5       ^ab$                ab$       FAIL ab$
+vim           ax5       ^ab\$               ab$       OK
+vim           ax5       ^ab\\$              ab$       FAIL ab$
+vim           ax6       a[\]b               a\b       FAIL a\b
+vim           ax6       a[\\]b              a\b       OK
+vim           ax6       a[\\\\]b            a\b       OK
+vim           ax7       a[[:alpha:]]        ab        OK
+vim           ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------

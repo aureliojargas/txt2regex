@@ -17,4 +17,5 @@ RUN apt-get update && \
     procmail \
     python3-minimal \
     tcl \
+    vim \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
