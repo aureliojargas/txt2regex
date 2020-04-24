@@ -42,7 +42,11 @@ test-bash: clitest.sh
 # Run regex tests for the supported programs, inside a Docker container
 test-regex: test-regex-build
 	docker run --rm -v "$$PWD":/code -w /code regex-tester \
-		tests/regex-tester.sh > tests/regex-tester.txt 2>&1
+		tests/regex-tester.sh --skip vi > tests/regex-tester.txt 2>&1
+	# vi: no stderr redirect to avoid "inappropriate ioctl for device"
+	# vi: docker run -t adds a trailing \r to every line :/
+	docker run --rm -v "$$PWD":/code -w /code -t regex-tester \
+		tests/regex-tester.sh vi | tr -d '\r' >> tests/regex-tester.txt
 
 test-regex-shell: test-regex-build
 	docker run --rm -v "$$PWD":/code -w /code -it regex-tester

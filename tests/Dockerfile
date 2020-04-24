@@ -11,6 +11,7 @@ RUN apt-get update && \
     ed \
     gawk \
     nodejs \
+    nvi \
     original-awk \
     php7.2-cli \
     postgresql \
