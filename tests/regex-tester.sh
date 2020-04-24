@@ -37,6 +37,7 @@ program_data='
 awk             replace
 ed              replace
 egrep           match
+emacs           replace
 expect          match
 find            match
 gawk            replace
@@ -174,6 +175,11 @@ test_ed() { # regex string
     printf '%s\n' 0a "$2" . "1s/$1/x/" 1p Q |
         ed -s 2>&1 |
         head -n 1
+}
+
+test_emacs() { # regex string
+    emacs -Q -batch --eval \
+        "(message (replace-regexp-in-string \"$1\" \"x\" \"$2\"))"
 }
 
 test_expect() { # regex string
@@ -413,6 +419,9 @@ show_version() {
             ;;
         egrep)
             grep -E --version
+            ;;
+        emacs)
+            emacs --version | head -n 1
             ;;
         expect)
             expect -v
