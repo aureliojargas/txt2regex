@@ -1424,3 +1424,92 @@ vim           ax6       a[\\\\]b            a\b       OK
 vim           ax7       a[[:alpha:]]        ab        OK
 vim           ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+vi version: nvi 1.81.6-13
+vi            -         ^ab                 ab        OK
+vi            -         ab$                 ab        OK
+vi            -         a.                  ab        OK
+vi            -         [a]b                ab        OK
+vi            -         [^b]b               ab        OK
+vi            S2        abx?                ab        FAIL script, 2: No match found
+vi            S2        abx\?               ab        FAIL script, 2: No match found
+vi            S2        abx\\?              ab        FAIL script, 2: No match found
+vi            S2        abx*                ab        OK
+vi            S2        abx\*               ab        FAIL script, 2: No match found
+vi            S2        abx\\*              ab        FAIL script, 2: No match found
+vi            S2        ab+                 abb       FAIL script, 2: No match found
+vi            S2        ab\+                abb       FAIL script, 2: No match found
+vi            S2        ab\\+               abb       FAIL script, 2: No match found
+vi            S2        ab{1}               ab        FAIL script, 2: No match found
+vi            S2        ab\{1}              ab        FAIL script, 2: RE error: braces not balanced
+vi            S2        ab\{1\}             ab        OK
+vi            S2        ab\\{1\\}           ab        FAIL script, 2: No match found
+vi            S2        ab{1,}              abb       FAIL script, 2: No match found
+vi            S2        ab\{1,}             abb       FAIL script, 2: RE error: braces not balanced
+vi            S2        ab\{1,\}            abb       OK
+vi            S2        ab\\{1,\\}          abb       FAIL script, 2: No match found
+vi            S2        ab{1,2}             abb       FAIL script, 2: No match found
+vi            S2        ab\{1,2}            abb       FAIL script, 2: RE error: braces not balanced
+vi            S2        ab\{1,2\}           abb       OK
+vi            S2        ab\\{1,2\\}         abb       FAIL script, 2: No match found
+vi            ax123     a(b)                ab        FAIL script, 2: No match found
+vi            ax123     a\(b\)              ab        OK
+vi            ax123     a\\(b\\)            ab        FAIL script, 2: No match found
+vi            ax123     (x|ab)              ab        FAIL script, 2: No match found
+vi            ax123     \(x\|ab\)           ab        FAIL script, 2: No match found
+vi            ax123     \\(x\\|ab\\)        ab        FAIL script, 2: No match found
+vi            ax5       ^a\b                a\b       FAIL script, 2: No match found
+vi            ax5       ^a\\b               a\b       OK
+vi            ax5       ^a\\\\b             a\b       FAIL script, 2: No match found
+vi            ax5       ^a\.b               a.b       OK
+vi            ax5       ^a\\.b              a.b       FAIL script, 2: No match found
+vi            ax5       ^a*b                a*b       FAIL script, 2: No match found
+vi            ax5       ^a\*b               a*b       OK
+vi            ax5       ^a\\*b              a*b       FAIL script, 2: No match found
+vi            ax5       ^a[b                a[b       FAIL script, 2: RE error: brackets ([ ]) not balanced
+vi            ax5       ^a\[b               a[b       OK
+vi            ax5       ^a\\[b              a[b       FAIL script, 2: RE error: brackets ([ ]) not balanced
+vi            ax5       ^a]b                a]b       OK
+vi            ax5       ^a\]b               a]b       OK
+vi            ax5       ^a\\]b              a]b       FAIL script, 2: No match found
+vi            ax5       ^a{b                a{b       OK
+vi            ax5       ^a\{b               a{b       FAIL script, 2: RE error: invalid repetition count(s)
+vi            ax5       ^a\\{b              a{b       FAIL script, 2: No match found
+vi            ax5       ^a}b                a}b       OK
+vi            ax5       ^a\}b               a}b       FAIL script, 2: RE error: parentheses not balanced
+vi            ax5       ^a\\}b              a}b       FAIL script, 2: No match found
+vi            ax5       ^a{5}b              a{5}b     OK
+vi            ax5       ^a\{5\}b            a{5}b     FAIL script, 2: No match found
+vi            ax5       ^a\\{5\\}b          a{5}b     FAIL script, 2: No match found
+vi            ax5       ^a(b                a(b       OK
+vi            ax5       ^a\(b               a(b       FAIL script, 2: RE error: parentheses not balanced
+vi            ax5       ^a\\(b              a(b       FAIL script, 2: No match found
+vi            ax5       ^a)b                a)b       OK
+vi            ax5       ^a\)b               a)b       FAIL script, 2: RE error: parentheses not balanced
+vi            ax5       ^a\\)b              a)b       FAIL script, 2: No match found
+vi            ax5       ^a|b                a|b       OK
+vi            ax5       ^a\|b               a|b       OK
+vi            ax5       ^a\\|b              a|b       FAIL script, 2: No match found
+vi            ax5       ^a+b                a+b       OK
+vi            ax5       ^a\+b               a+b       OK
+vi            ax5       ^a\\+b              a+b       FAIL script, 2: No match found
+vi            ax5       ^a?b                a?b       OK
+vi            ax5       ^a\?b               a?b       OK
+vi            ax5       ^a\\?b              a?b       FAIL script, 2: No match found
+vi            ax5       ^a^b                a^b       OK
+vi            ax5       ^a\^b               a^b       OK
+vi            ax5       ^a\\^b              a^b       FAIL script, 2: No match found
+vi            ax5       ^ab                 ^ab       FAIL script, 2: No match found
+vi            ax5       \^ab                ^ab       OK
+vi            ax5       \\^ab               ^ab       FAIL script, 2: No match found
+vi            ax5       ^a$b                a$b       OK
+vi            ax5       ^a\$b               a$b       OK
+vi            ax5       ^a\\$b              a$b       FAIL script, 2: No match found
+vi            ax5       ^ab$                ab$       FAIL script, 2: No match found
+vi            ax5       ^ab\$               ab$       OK
+vi            ax5       ^ab\\$              ab$       FAIL script, 2: No match found
+vi            ax6       a[\]b               a\b       OK
+vi            ax6       a[\\]b              a\b       OK
+vi            ax6       a[\\\\]b            a\b       OK
+vi            ax7       a[[:alpha:]]        ab        OK
+vi            ax8       a[\t]b              a<tab>b   FAIL script, 2: No match found
+----------------------------------------------------------
