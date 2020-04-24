@@ -49,6 +49,7 @@ procmail        match
 python          replace
 sed             replace
 tcl             replace
+vi              replace
 vim             replace
 '
 
@@ -283,6 +284,13 @@ test_tcl() { # regex string
         head -n 1
 }
 
+test_vi() { # regex string
+    # Open empty file, insert the string, replace, print, quit
+    printf '%s\n' 0a "$2" . "1s/$1/x/" 1p q! |
+        nvi -e -s |
+        head -n 1
+}
+
 test_vim() { # regex string
     # Open empty file, insert the string, replace, print, quit
     printf '%s\n' 0a "$2" . "1s/$1/x/" 1p q! |
@@ -329,7 +337,16 @@ test_program() {
         esac
 
         # Run the match test in $program
-        result=$("test_$program" "$regex" "$string" 2>&1 || true)
+        case "$program" in
+            vi)
+                # Cannot redirect stderr when testing vi, otherwise it
+                # raises the "inappropriate ioctl for device" error
+                result=$("test_$program" "$regex" "$string" || true)
+                ;;
+            *)
+                result=$("test_$program" "$regex" "$string" 2>&1 || true)
+                ;;
+        esac
 
         if test "$debug" -eq 1; then
             printf '"%s" = "%s" ' "$result" "$expected"
@@ -402,6 +419,9 @@ show_version() {
         tcl)
             # shellcheck disable=SC2016
             printf 'puts $tcl_version' | tclsh | sed 's/^/tcl /'
+            ;;
+        vi)
+            dpkg-query --showformat='${Package} ${Version}\n' --show nvi
             ;;
         vim)
             vim --version | sed 's/,.*/)/'
