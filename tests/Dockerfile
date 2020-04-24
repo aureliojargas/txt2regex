@@ -14,5 +14,6 @@ RUN apt-get update && \
     php7.2-cli \
     postgresql \
     procmail \
+    python3-minimal \
     tcl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
