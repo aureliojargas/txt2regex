@@ -35,6 +35,7 @@ debug=0
 # name, test_type
 program_data='
 awk             replace
+chicken         replace
 ed              replace
 egrep           match
 emacs           replace
@@ -167,6 +168,13 @@ ax8         a[\t]b          a<tab>b
 test_awk() { # regex string
     printf '%s\n' "$2" |
         original-awk "{ sub(/$1/, \"x\") ; print }" 2>&1 |
+        head -n 1
+}
+
+test_chicken() { # regex string
+    csi -R irregex -e \
+        "(print (irregex-replace \"$1\" \"$2\" \"x\"))" 2>&1 |
+        grep -E '^Error:|^Warning:|^x$' |
         head -n 1
 }
 
@@ -413,6 +421,9 @@ show_version() {
     case "$program" in
         awk)
             original-awk --version
+            ;;
+        chicken)
+            csi -release | sed 's/^/CHICKEN /'
             ;;
         ed)
             ed --version

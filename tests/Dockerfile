@@ -9,6 +9,7 @@ FROM ubuntu:18.04
 # flex: gcc libc6-dev
 RUN apt-get update && \
     apt-get install -y --no-install-suggests --no-install-recommends \
+    chicken-bin \
     ed \
     emacs-nox \
     expect \
