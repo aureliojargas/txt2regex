@@ -37,6 +37,7 @@ program_data='
 awk             replace
 ed              replace
 egrep           match
+expect          match
 find            match
 gawk            replace
 grep            match
@@ -171,6 +172,13 @@ test_ed() { # regex string
     # Open empty file, insert the string, replace, print, quit
     printf '%s\n' 0a "$2" . "1s/$1/x/" 1p Q |
         ed -s 2>&1 |
+        head -n 1
+}
+
+test_expect() { # regex string
+    # https://stackoverflow.com/q/37252842/
+    printf '%s' "$2" | # Important: no \n here so ab$ will match
+        expect -c "expect -re {$1} {puts \$expect_out(0,string)}" 2>&1 |
         head -n 1
 }
 
@@ -381,6 +389,9 @@ show_version() {
             ;;
         egrep)
             grep -E --version
+            ;;
+        expect)
+            expect -v
             ;;
         find)
             # shellcheck disable=SC2185
