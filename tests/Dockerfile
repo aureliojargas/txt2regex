@@ -6,6 +6,9 @@
 
 FROM ubuntu:18.04
 
+# To avoid "Configuring tzdata" prompt
+ARG DEBIAN_FRONTEND=noninteractive
+
 # flex: gcc libc6-dev
 RUN apt-get update && \
     apt-get install -y --no-install-suggests --no-install-recommends \
@@ -17,6 +20,7 @@ RUN apt-get update && \
     gawk \
     gcc \
     libc6-dev \
+    mysql-server \
     nodejs \
     nvi \
     original-awk \
