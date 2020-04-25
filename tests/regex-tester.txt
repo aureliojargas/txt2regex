@@ -1068,6 +1068,95 @@ mawk          ax6       a[\\\\]b            a\b       OK
 mawk          ax7       a[[:alpha:]]        ab        FAIL ab
 mawk          ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
+mysql version: mysql  Ver 14.14 Distrib 5.7.29
+mysql         -         ^ab                 ab        OK
+mysql         -         ab$                 ab        OK
+mysql         -         a.                  ab        OK
+mysql         -         [a]b                ab        OK
+mysql         -         [^b]b               ab        OK
+mysql         S2        abx?                ab        OK
+mysql         S2        abx\?               ab        OK
+mysql         S2        abx\\?              ab        FAIL 0
+mysql         S2        abx*                ab        OK
+mysql         S2        abx\*               ab        OK
+mysql         S2        abx\\*              ab        FAIL 0
+mysql         S2        ab+                 abb       OK
+mysql         S2        ab\+                abb       OK
+mysql         S2        ab\\+               abb       FAIL 0
+mysql         S2        ab{1}               ab        OK
+mysql         S2        ab\{1}              ab        OK
+mysql         S2        ab\{1\}             ab        OK
+mysql         S2        ab\\{1\\}           ab        FAIL 0
+mysql         S2        ab{1,}              abb       OK
+mysql         S2        ab\{1,}             abb       OK
+mysql         S2        ab\{1,\}            abb       OK
+mysql         S2        ab\\{1,\\}          abb       FAIL 0
+mysql         S2        ab{1,2}             abb       OK
+mysql         S2        ab\{1,2}            abb       OK
+mysql         S2        ab\{1,2\}           abb       OK
+mysql         S2        ab\\{1,2\\}         abb       FAIL 0
+mysql         ax123     a(b)                ab        OK
+mysql         ax123     a\(b\)              ab        OK
+mysql         ax123     a\\(b\\)            ab        FAIL 0
+mysql         ax123     (x|ab)              ab        OK
+mysql         ax123     \(x\|ab\)           ab        OK
+mysql         ax123     \\(x\\|ab\\)        ab        FAIL 0
+mysql         ax5       ^a\b                a\b       OK
+mysql         ax5       ^a\\b               a\b       FAIL 0
+mysql         ax5       ^a\\\\b             a\b       FAIL 0
+mysql         ax5       ^a\.b               a.b       OK
+mysql         ax5       ^a\\.b              a.b       OK
+mysql         ax5       ^a*b                a*b       FAIL 0
+mysql         ax5       ^a\*b               a*b       FAIL 0
+mysql         ax5       ^a\\*b              a*b       OK
+mysql         ax5       ^a[b                a[b       FAIL ERROR 1139 (42000) at line 1: Got error 'brackets ([ ]) not balanced' from regexp
+mysql         ax5       ^a\[b               a[b       FAIL ERROR 1139 (42000) at line 1: Got error 'brackets ([ ]) not balanced' from regexp
+mysql         ax5       ^a\\[b              a[b       OK
+mysql         ax5       ^a]b                a]b       OK
+mysql         ax5       ^a\]b               a]b       OK
+mysql         ax5       ^a\\]b              a]b       OK
+mysql         ax5       ^a{b                a{b       OK
+mysql         ax5       ^a\{b               a{b       OK
+mysql         ax5       ^a\\{b              a{b       OK
+mysql         ax5       ^a}b                a}b       OK
+mysql         ax5       ^a\}b               a}b       OK
+mysql         ax5       ^a\\}b              a}b       OK
+mysql         ax5       ^a{5}b              a{5}b     FAIL 0
+mysql         ax5       ^a\{5\}b            a{5}b     FAIL 0
+mysql         ax5       ^a\\{5\\}b          a{5}b     OK
+mysql         ax5       ^a(b                a(b       FAIL ERROR 1139 (42000) at line 1: Got error 'parentheses not balanced' from regexp
+mysql         ax5       ^a\(b               a(b       FAIL ERROR 1139 (42000) at line 1: Got error 'parentheses not balanced' from regexp
+mysql         ax5       ^a\\(b              a(b       OK
+mysql         ax5       ^a)b                a)b       OK
+mysql         ax5       ^a\)b               a)b       OK
+mysql         ax5       ^a\\)b              a)b       OK
+mysql         ax5       ^a|b                a|b       OK
+mysql         ax5       ^a\|b               a|b       OK
+mysql         ax5       ^a\\|b              a|b       OK
+mysql         ax5       ^a+b                a+b       FAIL 0
+mysql         ax5       ^a\+b               a+b       FAIL 0
+mysql         ax5       ^a\\+b              a+b       OK
+mysql         ax5       ^a?b                a?b       FAIL 0
+mysql         ax5       ^a\?b               a?b       FAIL 0
+mysql         ax5       ^a\\?b              a?b       OK
+mysql         ax5       ^a^b                a^b       FAIL 0
+mysql         ax5       ^a\^b               a^b       FAIL 0
+mysql         ax5       ^a\\^b              a^b       OK
+mysql         ax5       ^ab                 ^ab       FAIL 0
+mysql         ax5       \^ab                ^ab       FAIL 0
+mysql         ax5       \\^ab               ^ab       OK
+mysql         ax5       ^a$b                a$b       FAIL 0
+mysql         ax5       ^a\$b               a$b       FAIL 0
+mysql         ax5       ^a\\$b              a$b       OK
+mysql         ax5       ^ab$                ab$       FAIL 0
+mysql         ax5       ^ab\$               ab$       FAIL 0
+mysql         ax5       ^ab\\$              ab$       OK
+mysql         ax6       a[\]b               a\b       FAIL ERROR 1139 (42000) at line 1: Got error 'brackets ([ ]) not balanced' from regexp
+mysql         ax6       a[\\]b              a\b       FAIL 0
+mysql         ax6       a[\\\\]b            a\b       FAIL 0
+mysql         ax7       a[[:alpha:]]        ab        OK
+mysql         ax8       a[\t]b              a<tab>b   OK
+----------------------------------------------------------
 perl version: perl v5.26.1
 perl          -         ^ab                 ab        OK
 perl          -         ab$                 ab        OK

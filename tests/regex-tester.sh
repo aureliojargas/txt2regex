@@ -46,6 +46,7 @@ grep            match
 javascript      replace
 lex             match
 mawk            replace
+mysql           match
 perl            replace
 php             replace
 postgres        replace
@@ -256,6 +257,24 @@ test_mawk() { # regex string
         head -n 1
 }
 
+test_mysql() { # regex string
+    local result
+
+    # Using match because replace is only supported in MySQL 8.0+
+    # https://stackoverflow.com/a/49925597/
+    result=$(mysql --silent --execute "SELECT '$2' REGEXP '$1'")
+
+    case "$result" in
+        1)
+            # Matched, show the original string (test_type=match)
+            printf '%s\n' "$2"
+            ;;
+        *)
+            printf '%s\n' "$result"
+            ;;
+    esac
+}
+
 test_perl() { # regex string
     printf '%s\n' "$2" | perl -pe "s/$1/x/"
 }
@@ -355,6 +374,11 @@ test_program() {
 
     # Special pre-tests tasks
     case "$program" in
+        mysql)
+            # https://github.com/moby/moby/issues/34390
+            find /var/lib/mysql/mysql -exec touch -c -a {} +
+            service mysql start > /dev/null
+            ;;
         postgres)
             service postgresql start > /dev/null
             ;;
@@ -409,6 +433,9 @@ test_program() {
 
     # Special post-tests tasks
     case "$program" in
+        mysql)
+            service mysql stop > /dev/null
+            ;;
         postgres)
             service postgresql stop > /dev/null
             ;;
@@ -455,6 +482,9 @@ show_version() {
             ;;
         mawk)
             mawk -W version 2>&1 | grep ^mawk | sed 's/,.*//'
+            ;;
+        mysql)
+            mysql --version | sed 's/,.*//'
             ;;
         perl)
             perl --version | sed '2!d; s/).*//; s/.*(/perl /'
