@@ -29,7 +29,7 @@ lint:
 	bashate --ignore E011,E010 --max-line-length 88 $(SHSKEL)
 
 test: clitest.sh
-	sh clitest.sh --progress none tests/*.md
+	sh clitest.sh --progress none README.md tests/*.md
 
 # Run the tests in multiple Bash versions (each Docker image is ~10MB)
 test-bash: clitest.sh

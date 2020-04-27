@@ -41,36 +41,52 @@ command to properly install it in your system:
 change the default install paths.
 
 
-## Tested programs versions
+## Regex tester to gather "real life" data
 
-All the regexes and rules were extensively tested by hand or by the
-`regex-tester.sh` script. When the program couldn't be executed on my
-machine, the rules were taken:
+Txt2regex needs to know regex-related information for each program it
+supports. For example: the list of metacharacters, how to escape a
+metacharacter to match it literally and the availability of POSIX
+character classes.
 
-- from the program own documentation, or
-- from the "Mastering Regular Expressions" O'Reilly book, or
-- from the Internet (oh no!)
+Instead of relying in documentation to get that information, the
+[tests/regex-tester.sh](tests/regex-tester.sh) script calls the real
+programs with specially crafted regexes and sample texts, verifying how
+those programs behave in "real life".
 
-Programs I've tested here:
+To have a trackable and public record, the output of this tester is also
+saved to this repository, in a readable and grepable plain text file:
+[tests/regex-tester.txt](tests/regex-tester.txt). Future changes in
+behavior can be easily detected.
 
-- **ed**: GNU ed version 0.2
-- **mawk**: mawk 1.3.3 Nov 1996
-- **gawk**: GNU Awk 3.0.6
-- **grep**: grep (GNU grep) 2.4.2
-- **egrep**: egrep (GNU grep) 2.4.2
-- **find**: GNU find version 4.1
-- **javascript**: netscape-4.77
-- **mysql**: Ver 11.13 Distrib 3.23.36
-- **ooo**: OpenOffice.org 1.1.0
-- **perl**: v5.6.0 built for i386-linux
-- **php**: 4.0.6
-- **postgres**: psql (PostgreSQL) 7.1.2
-- **procmail**: procmail v3.15.1 2001/01/08
-- **python**: Python 2.1
-- **sed**: GNU sed version 3.02.80
-- **tcl**: 8.3
-- **vi**: Nvi 1.79 (10/23/96)
-- **vim**: VIM - Vi IMproved 5.8 (2001 May 31)
+
+## The current tested versions
+
+```console
+$ grep version: tests/regex-tester.txt | cut -d : -f 2-
+ awk version 20121220
+ CHICKEN 4.12.0
+ GNU Ed 1.10
+ grep (GNU grep) 3.1
+ GNU Emacs 25.2.2
+ expect version 5.45.4
+ find (GNU findutils) 4.7.0-git
+ GNU Awk 4.1.4
+ grep (GNU grep) 3.1
+ node v8.10.0
+ flex 2.6.4
+ mawk 1.3.3 Nov 1996
+ mysql  Ver 14.14 Distrib 5.7.29
+ perl v5.26.1
+ PHP 7.2.24-0ubuntu0.18.04.4
+ psql (PostgreSQL) 10.12
+ procmail v3.23pre 2001/09/13
+ Python 3.6.9
+ sed (GNU sed) 4.4
+ tcl 8.6
+ VIM - Vi IMproved 8.0 (2016 Sep 12)
+ nvi 1.81.6-13
+$
+```
 
 
 ## Translations maintainers
