@@ -100,9 +100,10 @@ ax123       \(x\|ab\)       ab
 ax123       \\(x\\|ab\\)    ab
 
 # Test for ax_*[5] values: escaping metacharacters to match them literally
-ax5         ^a\b            a\b
-ax5         ^a\\b           a\b
-ax5         ^a\\\\b         a\b
+# Avoid \b since it is special in most tools, use \_ instead
+ax5         ^a\_            a\_
+ax5         ^a\\_           a\_
+ax5         ^a\\\\_         a\_
 ax5         ^a\.b           a.b
 ax5         ^a\\.b          a.b
 ax5         ^a*b            a*b
@@ -154,9 +155,10 @@ ax5         ^ab\$           ab$
 ax5         ^ab\\$          ab$
 
 # Test for ax_*[6] values: must escape \ inside [] to match it literally?
-ax6         a[\]b           a\b
-ax6         a[\\]b          a\b
-ax6         a[\\\\]b        a\b
+# Avoid \b since it is special in most tools, use \_ instead
+ax6         a[\]_           a\_
+ax6         a[\\]_          a\_
+ax6         a[\\\\]_        a\_
 
 # Test for ax_*[7] values: POSIX support
 ax7         a[[:alpha:]]    ab
