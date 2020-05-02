@@ -32,6 +32,7 @@ set -o noglob
 # Set to 1 when debugging
 debug=0
 
+# Always prefer the "replace" type when the program supports both
 # name, test_type
 program_data='
 awk             replace
@@ -168,6 +169,40 @@ ax7         a[[:alpha:]]    ab
 ax8         a[\t]b          a<tab>b
 '
 
+escape() { # a\b\c -> a\\b\\c
+    printf '%s' "${1//\\/\\\\}"
+}
+
+# General tips for writing test_<program> functions
+#
+# - Avoid creating temporary files.
+# - The output must be only one line, even in case of errors.
+# - Always use printf, not echo.
+# - When test_type=replace, the regex must be replaced by a single "x"
+#   and the result is returned as the output.
+# - When test_type=match, the original "string" argument should be
+#   returned as the output when there's a match.
+# - Always use raw strings (think Python's r"...") for the "string"
+#   argument so things like "a\t" won't have the "\t" part expanded to a
+#   tab, for example.
+# - When raw strings are not available, use escape("$2") to make sure
+#   the program will get the correct "string" argument. For example,
+#   "a\t" will turn into "a\\t", which means "a", "\" and "t".
+# - Check the program's most common way of specifying regexes: as a
+#   string, as a raw string, inside slashes /.../, etc. The idea here is
+#   testing the exact regex that the user will normally type, in the
+#   most common way of doing it.
+# - Be careful on shell escaping, quoting and expansion. Using stdin is
+#   the safest (example: printf ... | program), since the shell will not
+#   touch the text coming from stdin. The second preferred form are
+#   inline arguments (example: program "..."). In both cases, pay
+#   attention to the "string" argument, which may require a call to
+#   escape() when there's no raw string support.
+# - The worst case is nested inlining, when a tool calls another and the
+#   argument may be processed twice. Avoid that, otherwise escape it.
+#   No: su -c "psql -A -t -c \"SELECT ...\"" postgres
+#   Yes: printf "SELECT ..." | su -c "psql -A -t" postgres
+
 test_awk() { # regex string
     printf '%s\n' "$2" |
         original-awk "{ sub(/$1/, \"x\") ; print }" 2>&1 |
@@ -175,8 +210,9 @@ test_awk() { # regex string
 }
 
 test_chicken() { # regex string
-    csi -R irregex -e \
-        "(print (irregex-replace \"$1\" \"$2\" \"x\"))" 2>&1 |
+    # No raw strings, this matches: (irregex-replace "a.b" "a\tb" "x")
+    printf '(print (irregex-replace "%s" "%s" "x"))' "$1" "$(escape "$2")" |
+        csi -quiet -R irregex 2>&1 |
         grep -E '^Error:|^Warning:|^x$' |
         head -n 1
 }
@@ -189,8 +225,9 @@ test_ed() { # regex string
 }
 
 test_emacs() { # regex string
+    # No raw strings, this matches: (replace-regexp-in-string "a.b" "x" "a\tb")
     emacs -Q -batch --eval \
-        "(message (replace-regexp-in-string \"$1\" \"x\" \"$2\"))"
+        "(message (replace-regexp-in-string \"$1\" \"x\" \"$(escape "$2")\"))"
 }
 
 test_expect() { # regex string
@@ -226,7 +263,7 @@ test_grep() { # regex string
 }
 
 test_javascript() { # regex string
-    node --eval "'$2'.replace(/$1/, 'x')" --print 2>&1 |
+    node --eval "String.raw\`$2\`.replace(/$1/, 'x')" --print 2>&1 |
         head -n 1
 }
 
@@ -264,7 +301,8 @@ test_mysql() { # regex string
 
     # Using match because replace is only supported in MySQL 8.0+
     # https://stackoverflow.com/a/49925597/
-    result=$(mysql --silent --execute "SELECT '$2' REGEXP '$1'")
+    # Strings are not raw, this matches: SELECT 'a\tb' REGEXP 'a.b'
+    result=$(mysql --silent --execute "SELECT '$(escape "$2")' REGEXP '$1'")
 
     case "$result" in
         1)
@@ -284,11 +322,15 @@ test_perl() { # regex string
 # https://www.php.net/manual/en/function.ereg-replace.php
 # https://www.php.net/manual/en/function.preg-replace.php
 test_php() { # regex string
-    php -r "echo preg_replace('/$1/', 'x', '$2');"
+    printf "<?php echo preg_replace('/%s/', 'x', '%s'); ?>" \
+        "$1" "$(escape "$2")" |
+        php
 }
 
 test_postgres() { # regex string
-    su -c "psql -A -t -c \"SELECT regexp_replace('$2', '$1', 'x')\"" postgres
+    # Strings are raw, this matches: SELECT 'a\tb' ~ 'a..b'
+    printf "SELECT regexp_replace('%s', '%s', 'x');" "$2" "$1" |
+        su -c "psql -A -t" postgres
 }
 
 test_procmail() { # regex string
@@ -334,7 +376,7 @@ test_procmail() { # regex string
 }
 
 test_python() { # regex string
-    printf "%s\n%s\n%s\n" \
+    printf '%s\n%s\n%s\n' \
         'import re' \
         "try: print(re.sub(r'$1', 'x', r'$2'))" \
         'except Exception as e: print(e)' | python3
@@ -346,7 +388,7 @@ test_sed() { # regex string
 
 test_tcl() { # regex string
     # shellcheck disable=SC2016
-    printf 'regsub -all {%s} "%s" "x" res; puts $res\n' "$1" "$2" |
+    printf 'regsub -all {%s} "%s" "x" res; puts $res\n' "$1" "$(escape "$2")" |
         tclsh 2>&1 |
         head -n 1
 }
