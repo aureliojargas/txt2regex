@@ -121,8 +121,8 @@ chicken       ax123     (x|ab)              ab        OK
 chicken       ax123     \(x\|ab\)           ab        FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
 chicken       ax123     \\(x\\|ab\\)        ab        FAIL
 chicken       ax5       ^a\_                a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\_
-chicken       ax5       ^a\\_               a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\_
-chicken       ax5       ^a\\\\_             a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\_
+chicken       ax5       ^a\\_               a\_       FAIL
+chicken       ax5       ^a\\\\_             a\_       OK
 chicken       ax5       ^a\.b               a.b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\.
 chicken       ax5       ^a\\.b              a.b       OK
 chicken       ax5       ^a*b                a*b       FAIL
@@ -171,8 +171,8 @@ chicken       ax5       ^ab$                ab$       FAIL
 chicken       ax5       ^ab\$               ab$       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\$
 chicken       ax5       ^ab\\$              ab$       OK
 chicken       ax6       a[\]_               a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\]
-chicken       ax6       a[\\]_              a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\_
-chicken       ax6       a[\\\\]_            a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\_
+chicken       ax6       a[\\]_              a\_       FAIL Error: incomplete char set
+chicken       ax6       a[\\\\]_            a\_       OK
 chicken       ax7       a[[:alpha:]]        ab        OK
 chicken       ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
@@ -388,9 +388,9 @@ emacs         ax123     a\\(b\\)            ab        OK
 emacs         ax123     (x|ab)              ab        FAIL ab
 emacs         ax123     \(x\|ab\)           ab        FAIL ab
 emacs         ax123     \\(x\\|ab\\)        ab        OK
-emacs         ax5       ^a\_                a\_       OK
+emacs         ax5       ^a\_                a\_       FAIL a\_
 emacs         ax5       ^a\\_               a\_       FAIL Invalid regexp: "Premature end of regular expression"
-emacs         ax5       ^a\\\\_             a\_       FAIL a_
+emacs         ax5       ^a\\\\_             a\_       OK
 emacs         ax5       ^a\.b               a.b       OK
 emacs         ax5       ^a\\.b              a.b       OK
 emacs         ax5       ^a*b                a*b       FAIL a*b
@@ -439,8 +439,8 @@ emacs         ax5       ^ab$                ab$       FAIL ab$
 emacs         ax5       ^ab\$               ab$       FAIL ab$
 emacs         ax5       ^ab\\$              ab$       OK
 emacs         ax6       a[\]_               a\_       FAIL Invalid regexp: "Unmatched [ or [^"
-emacs         ax6       a[\\]_              a\_       FAIL a_
-emacs         ax6       a[\\\\]_            a\_       FAIL a_
+emacs         ax6       a[\\]_              a\_       OK
+emacs         ax6       a[\\\\]_            a\_       OK
 emacs         ax7       a[[:alpha:]]        ab        OK
 emacs         ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
@@ -834,9 +834,9 @@ javascript    ax123     a\\(b\\)            ab        FAIL ab
 javascript    ax123     (x|ab)              ab        OK
 javascript    ax123     \(x\|ab\)           ab        FAIL ab
 javascript    ax123     \\(x\\|ab\\)        ab        FAIL ab
-javascript    ax5       ^a\_                a\_       OK
-javascript    ax5       ^a\\_               a\_       FAIL a_
-javascript    ax5       ^a\\\\_             a\_       FAIL a_
+javascript    ax5       ^a\_                a\_       FAIL a\_
+javascript    ax5       ^a\\_               a\_       OK
+javascript    ax5       ^a\\\\_             a\_       FAIL a\_
 javascript    ax5       ^a\.b               a.b       OK
 javascript    ax5       ^a\\.b              a.b       FAIL a.b
 javascript    ax5       ^a*b                a*b       FAIL a*b
@@ -885,8 +885,8 @@ javascript    ax5       ^ab$                ab$       FAIL ab$
 javascript    ax5       ^ab\$               ab$       OK
 javascript    ax5       ^ab\\$              ab$       FAIL ab$
 javascript    ax6       a[\]_               a\_       FAIL [eval]:1
-javascript    ax6       a[\\]_              a\_       FAIL a_
-javascript    ax6       a[\\\\]_            a\_       FAIL a_
+javascript    ax6       a[\\]_              a\_       OK
+javascript    ax6       a[\\\\]_            a\_       OK
 javascript    ax7       a[[:alpha:]]        ab        FAIL ab
 javascript    ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
@@ -1287,7 +1287,7 @@ php           ax5       ^a\\.b              a.b       OK
 php           ax5       ^a*b                a*b       FAIL a*b
 php           ax5       ^a\*b               a*b       OK
 php           ax5       ^a\\*b              a*b       OK
-php           ax5       ^a[b                a[b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 4 in Command line code on line 1
+php           ax5       ^a[b                a[b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 4 in Standard input code on line 1
 php           ax5       ^a\[b               a[b       OK
 php           ax5       ^a\\[b              a[b       OK
 php           ax5       ^a]b                a]b       OK
@@ -1302,10 +1302,10 @@ php           ax5       ^a\\}b              a}b       OK
 php           ax5       ^a{5}b              a{5}b     FAIL a{5}b
 php           ax5       ^a\{5\}b            a{5}b     OK
 php           ax5       ^a\\{5\\}b          a{5}b     OK
-php           ax5       ^a(b                a(b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing ) at offset 4 in Command line code on line 1
+php           ax5       ^a(b                a(b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing ) at offset 4 in Standard input code on line 1
 php           ax5       ^a\(b               a(b       OK
 php           ax5       ^a\\(b              a(b       OK
-php           ax5       ^a)b                a)b       FAIL PHP Warning:  preg_replace(): Compilation failed: unmatched parentheses at offset 2 in Command line code on line 1
+php           ax5       ^a)b                a)b       FAIL PHP Warning:  preg_replace(): Compilation failed: unmatched parentheses at offset 2 in Standard input code on line 1
 php           ax5       ^a\)b               a)b       OK
 php           ax5       ^a\\)b              a)b       OK
 php           ax5       ^a|b                a|b       FAIL x|x
@@ -1329,8 +1329,8 @@ php           ax5       ^a\\$b              a$b       OK
 php           ax5       ^ab$                ab$       FAIL ab$
 php           ax5       ^ab\$               ab$       OK
 php           ax5       ^ab\\$              ab$       OK
-php           ax6       a[\]_               a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Command line code on line 1
-php           ax6       a[\\]_              a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Command line code on line 1
+php           ax6       a[\]_               a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Standard input code on line 1
+php           ax6       a[\\]_              a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Standard input code on line 1
 php           ax6       a[\\\\]_            a\_       OK
 php           ax7       a[[:alpha:]]        ab        OK
 php           ax8       a[\t]b              a<tab>b   OK
@@ -1353,15 +1353,15 @@ postgres      S2        ab\\+               abb       FAIL abb
 postgres      S2        ab{1}               ab        OK
 postgres      S2        ab\{1}              ab        FAIL ab
 postgres      S2        ab\{1\}             ab        FAIL ab
-postgres      S2        ab\\{1\\}           ab        FAIL ab
+postgres      S2        ab\\{1\\}           ab        FAIL ERROR:  invalid regular expression: invalid repetition count(s)
 postgres      S2        ab{1,}              abb       OK
 postgres      S2        ab\{1,}             abb       FAIL abb
 postgres      S2        ab\{1,\}            abb       FAIL abb
-postgres      S2        ab\\{1,\\}          abb       FAIL abb
+postgres      S2        ab\\{1,\\}          abb       FAIL ERROR:  invalid regular expression: invalid repetition count(s)
 postgres      S2        ab{1,2}             abb       OK
 postgres      S2        ab\{1,2}            abb       FAIL abb
 postgres      S2        ab\{1,2\}           abb       FAIL abb
-postgres      S2        ab\\{1,2\\}         abb       FAIL abb
+postgres      S2        ab\\{1,2\\}         abb       FAIL ERROR:  invalid regular expression: invalid repetition count(s)
 postgres      ax123     a(b)                ab        OK
 postgres      ax123     a\(b\)              ab        FAIL ab
 postgres      ax123     a\\(b\\)            ab        FAIL ab
@@ -1369,57 +1369,57 @@ postgres      ax123     (x|ab)              ab        OK
 postgres      ax123     \(x\|ab\)           ab        FAIL ab
 postgres      ax123     \\(x\\|ab\\)        ab        FAIL ab
 postgres      ax5       ^a\_                a\_       FAIL a\_
-postgres      ax5       ^a\\_               a\_       FAIL a\_
-postgres      ax5       ^a\\\\_             a\_       OK
+postgres      ax5       ^a\\_               a\_       OK
+postgres      ax5       ^a\\\\_             a\_       FAIL a\_
 postgres      ax5       ^a\.b               a.b       OK
-postgres      ax5       ^a\\.b              a.b       OK
+postgres      ax5       ^a\\.b              a.b       FAIL a.b
 postgres      ax5       ^a*b                a*b       FAIL a*b
 postgres      ax5       ^a\*b               a*b       OK
-postgres      ax5       ^a\\*b              a*b       OK
+postgres      ax5       ^a\\*b              a*b       FAIL a*b
 postgres      ax5       ^a[b                a[b       FAIL ERROR:  invalid regular expression: brackets [] not balanced
 postgres      ax5       ^a\[b               a[b       OK
-postgres      ax5       ^a\\[b              a[b       OK
+postgres      ax5       ^a\\[b              a[b       FAIL ERROR:  invalid regular expression: brackets [] not balanced
 postgres      ax5       ^a]b                a]b       OK
 postgres      ax5       ^a\]b               a]b       OK
-postgres      ax5       ^a\\]b              a]b       OK
+postgres      ax5       ^a\\]b              a]b       FAIL a]b
 postgres      ax5       ^a{b                a{b       OK
 postgres      ax5       ^a\{b               a{b       OK
-postgres      ax5       ^a\\{b              a{b       OK
+postgres      ax5       ^a\\{b              a{b       FAIL a{b
 postgres      ax5       ^a}b                a}b       OK
 postgres      ax5       ^a\}b               a}b       OK
-postgres      ax5       ^a\\}b              a}b       OK
+postgres      ax5       ^a\\}b              a}b       FAIL a}b
 postgres      ax5       ^a{5}b              a{5}b     FAIL a{5}b
 postgres      ax5       ^a\{5\}b            a{5}b     OK
-postgres      ax5       ^a\\{5\\}b          a{5}b     OK
+postgres      ax5       ^a\\{5\\}b          a{5}b     FAIL ERROR:  invalid regular expression: invalid repetition count(s)
 postgres      ax5       ^a(b                a(b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
 postgres      ax5       ^a\(b               a(b       OK
-postgres      ax5       ^a\\(b              a(b       OK
+postgres      ax5       ^a\\(b              a(b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
 postgres      ax5       ^a)b                a)b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
 postgres      ax5       ^a\)b               a)b       OK
-postgres      ax5       ^a\\)b              a)b       OK
+postgres      ax5       ^a\\)b              a)b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
 postgres      ax5       ^a|b                a|b       FAIL x|b
 postgres      ax5       ^a\|b               a|b       OK
-postgres      ax5       ^a\\|b              a|b       OK
+postgres      ax5       ^a\\|b              a|b       FAIL a|x
 postgres      ax5       ^a+b                a+b       FAIL a+b
 postgres      ax5       ^a\+b               a+b       OK
-postgres      ax5       ^a\\+b              a+b       OK
+postgres      ax5       ^a\\+b              a+b       FAIL a+b
 postgres      ax5       ^a?b                a?b       FAIL a?b
 postgres      ax5       ^a\?b               a?b       OK
-postgres      ax5       ^a\\?b              a?b       OK
+postgres      ax5       ^a\\?b              a?b       FAIL a?b
 postgres      ax5       ^a^b                a^b       FAIL a^b
 postgres      ax5       ^a\^b               a^b       OK
-postgres      ax5       ^a\\^b              a^b       OK
+postgres      ax5       ^a\\^b              a^b       FAIL a^b
 postgres      ax5       ^ab                 ^ab       FAIL ^ab
 postgres      ax5       \^ab                ^ab       OK
-postgres      ax5       \\^ab               ^ab       OK
-postgres      ax5       ^a$b                a$b       OK
-postgres      ax5       ^a\$b               a$b       FAIL a
-postgres      ax5       ^a\\$b              a$b       FAIL ERROR:  invalid regular expression: invalid escape \ sequence
+postgres      ax5       \\^ab               ^ab       FAIL ^ab
+postgres      ax5       ^a$b                a$b       FAIL a$b
+postgres      ax5       ^a\$b               a$b       OK
+postgres      ax5       ^a\\$b              a$b       FAIL a$b
 postgres      ax5       ^ab$                ab$       FAIL ab$
-postgres      ax5       ^ab\$               ab$       FAIL ab$
-postgres      ax5       ^ab\\$              ab$       OK
+postgres      ax5       ^ab\$               ab$       OK
+postgres      ax5       ^ab\\$              ab$       FAIL ab$
 postgres      ax6       a[\]_               a\_       FAIL ERROR:  invalid regular expression: brackets [] not balanced
-postgres      ax6       a[\\]_              a\_       FAIL ERROR:  invalid regular expression: brackets [] not balanced
+postgres      ax6       a[\\]_              a\_       OK
 postgres      ax6       a[\\\\]_            a\_       OK
 postgres      ax7       a[[:alpha:]]        ab        OK
 postgres      ax8       a[\t]b              a<tab>b   OK
@@ -1724,9 +1724,9 @@ tcl           ax123     a\\(b\\)            ab        FAIL ab
 tcl           ax123     (x|ab)              ab        OK
 tcl           ax123     \(x\|ab\)           ab        FAIL ab
 tcl           ax123     \\(x\\|ab\\)        ab        FAIL ab
-tcl           ax5       ^a\_                a\_       OK
-tcl           ax5       ^a\\_               a\_       FAIL a_
-tcl           ax5       ^a\\\\_             a\_       FAIL a_
+tcl           ax5       ^a\_                a\_       FAIL a\_
+tcl           ax5       ^a\\_               a\_       OK
+tcl           ax5       ^a\\\\_             a\_       FAIL a\_
 tcl           ax5       ^a\.b               a.b       OK
 tcl           ax5       ^a\\.b              a.b       FAIL a.b
 tcl           ax5       ^a*b                a*b       FAIL a*b
@@ -1775,8 +1775,8 @@ tcl           ax5       ^ab$                ab$       FAIL ab$
 tcl           ax5       ^ab\$               ab$       OK
 tcl           ax5       ^ab\\$              ab$       FAIL ab$
 tcl           ax6       a[\]_               a\_       FAIL couldn't compile regular expression pattern: brackets [] not balanced
-tcl           ax6       a[\\]_              a\_       FAIL a_
-tcl           ax6       a[\\\\]_            a\_       FAIL a_
+tcl           ax6       a[\\]_              a\_       OK
+tcl           ax6       a[\\\\]_            a\_       OK
 tcl           ax7       a[[:alpha:]]        ab        OK
 tcl           ax8       a[\t]b              a<tab>b   OK
 ----------------------------------------------------------
