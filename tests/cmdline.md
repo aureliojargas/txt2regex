@@ -72,7 +72,6 @@ $ txt2regex --showmeta | sed 's/  *$//'
       grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 2.4.2
 javascript      +      ?     {}      |      ()    netscape-4.77
        lex      +      ?     {}      |      ()
-      lisp      +      ?           \\|  \\(\\)
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
        ooo      +      ?     {}      |      ()    OpenOffice.org 1.1.0
@@ -160,7 +159,6 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex grep      : ^a\+b\{5\}.*
  Regex javascript: ^a+b{5}.*
  Regex lex       : ^a+b{5}.*
- Regex lisp      : ^a+b!!.*
  Regex mawk      : ^a+b!!.*
  Regex mysql     : ^a+b{5}.*
  Regex ooo       : ^a+b{5}.*
@@ -279,7 +277,6 @@ $ txt2regex --make number2 --all
  Regex grep      : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
  Regex javascript: [+-]?[0-9]+(\.[0-9]{2})?
  Regex lex       : [+-]?[0-9]+(\.[0-9]{2})?
- Regex lisp      : [+-]?[0-9]+\\(\\.[0-9]!!\\)?
  Regex mawk      : [+-]?[0-9]+(\.[0-9]!!)?
  Regex mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex ooo       : [+-]?[0-9]+(\.[0-9]{2})?
