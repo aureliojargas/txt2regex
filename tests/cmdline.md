@@ -83,7 +83,6 @@ javascript      +      ?     {}      |      ()    netscape-4.77
     python      +      ?     {}      |      ()    Python 2.1
        sed     \+     \?   \{\}     \|    \(\)    GNU sed version 3.02.80
        tcl      +      ?             |      ()    8.3
-  vbscript      +      ?     {}      |      ()
         vi                 \{\}           \(\)    Nvi 1.79 (10/23/96)
        vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 5.8 (2001 May 31)
 
@@ -172,7 +171,6 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex python    : ^a+b{5}.*
  Regex sed       : ^a\+b\{5\}.*
  Regex tcl       : ^a+b!!.*
- Regex vbscript  : ^a+b{5}.*
  Regex vi        : ^a\{1,\}b\{5\}.*
  Regex vim       : ^a\+b\{5}.*
 
@@ -292,7 +290,6 @@ $ txt2regex --make number2 --all
  Regex python    : [+-]?[0-9]+(\.[0-9]{2})?
  Regex sed       : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
  Regex tcl       : [+-]?[0-9]+(\.[0-9]!!)?
- Regex vbscript  : [+-]?[0-9]+(\.[0-9]{2})?
  Regex vi        : [+-]\{0,1\}[0-9]\{1,\}\(\.[0-9]\{2\}\)\{0,1\}
  Regex vim       : [+-]\=[0-9]\+\(\.[0-9]\{2}\)\=
 
