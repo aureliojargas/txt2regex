@@ -60,9 +60,9 @@ awk           ax5       ^a\\(b              a(b       FAIL original-awk: syntax 
 awk           ax5       ^a)b                a)b       FAIL original-awk: syntax error in regular expression ^a)b at b
 awk           ax5       ^a\)b               a)b       OK
 awk           ax5       ^a\\)b              a)b       FAIL original-awk: syntax error in regular expression ^a\\)b at b
-awk           ax5       ^a|b                a|b       FAIL x|b
-awk           ax5       ^a\|b               a|b       OK
-awk           ax5       ^a\\|b              a|b       FAIL a|x
+awk           ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+awk           ax5       ^\(a\|b\)$          (a|b)     OK
+awk           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 awk           ax5       ^a+b                a+b       FAIL a+b
 awk           ax5       ^a\+b               a+b       OK
 awk           ax5       ^a\\+b              a+b       FAIL a+b
@@ -149,9 +149,9 @@ chicken       ax5       ^a\\(b              a(b       OK
 chicken       ax5       ^a)b                a)b       FAIL Error: too many )'s in regexp: "^a)b"
 chicken       ax5       ^a\)b               a)b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\)
 chicken       ax5       ^a\\)b              a)b       OK
-chicken       ax5       ^a|b                a|b       FAIL
-chicken       ax5       ^a\|b               a|b       FAIL
-chicken       ax5       ^a\\|b              a|b       OK
+chicken       ax5       ^(a|b)$             (a|b)     FAIL
+chicken       ax5       ^\(a\|b\)$          (a|b)     FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
+chicken       ax5       ^\\(a\\|b\\)$       (a|b)     OK
 chicken       ax5       ^a+b                a+b       FAIL
 chicken       ax5       ^a\+b               a+b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\+
 chicken       ax5       ^a\\+b              a+b       OK
@@ -238,9 +238,9 @@ ed            ax5       ^a\\(b              a(b       FAIL ?
 ed            ax5       ^a)b                a)b       OK
 ed            ax5       ^a\)b               a)b       FAIL ?
 ed            ax5       ^a\\)b              a)b       FAIL ?
-ed            ax5       ^a|b                a|b       OK
-ed            ax5       ^a\|b               a|b       FAIL x|b
-ed            ax5       ^a\\|b              a|b       FAIL ?
+ed            ax5       ^(a|b)$             (a|b)     OK
+ed            ax5       ^\(a\|b\)$          (a|b)     FAIL ?
+ed            ax5       ^\\(a\\|b\\)$       (a|b)     FAIL ?
 ed            ax5       ^a+b                a+b       OK
 ed            ax5       ^a\+b               a+b       FAIL ?
 ed            ax5       ^a\\+b              a+b       FAIL ?
@@ -327,10 +327,9 @@ egrep         ax5       ^a\\(b              a(b       FAIL grep: Unmatched ( or 
 egrep         ax5       ^a)b                a)b       OK
 egrep         ax5       ^a\)b               a)b       OK
 egrep         ax5       ^a\\)b              a)b       FAIL
-egrep         ax5       ^a|b                a|b       FAIL a
-b
-egrep         ax5       ^a\|b               a|b       OK
-egrep         ax5       ^a\\|b              a|b       FAIL b
+egrep         ax5       ^(a|b)$             (a|b)     FAIL
+egrep         ax5       ^\(a\|b\)$          (a|b)     OK
+egrep         ax5       ^\\(a\\|b\\)$       (a|b)     FAIL
 egrep         ax5       ^a+b                a+b       FAIL
 egrep         ax5       ^a\+b               a+b       OK
 egrep         ax5       ^a\\+b              a+b       FAIL
@@ -417,9 +416,9 @@ emacs         ax5       ^a\\(b              a(b       FAIL Invalid regexp: "Unma
 emacs         ax5       ^a)b                a)b       OK
 emacs         ax5       ^a\)b               a)b       OK
 emacs         ax5       ^a\\)b              a)b       FAIL Invalid regexp: "Unmatched ) or \\)"
-emacs         ax5       ^a|b                a|b       OK
-emacs         ax5       ^a\|b               a|b       OK
-emacs         ax5       ^a\\|b              a|b       FAIL x|x
+emacs         ax5       ^(a|b)$             (a|b)     OK
+emacs         ax5       ^\(a\|b\)$          (a|b)     OK
+emacs         ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 emacs         ax5       ^a+b                a+b       FAIL a+b
 emacs         ax5       ^a\+b               a+b       FAIL a+b
 emacs         ax5       ^a\\+b              a+b       OK
@@ -506,9 +505,9 @@ expect        ax5       ^a\\(b              a(b       FAIL couldn't compile regu
 expect        ax5       ^a)b                a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
 expect        ax5       ^a\)b               a)b       OK
 expect        ax5       ^a\\)b              a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
-expect        ax5       ^a|b                a|b       FAIL a
-expect        ax5       ^a\|b               a|b       OK
-expect        ax5       ^a\\|b              a|b       FAIL b
+expect        ax5       ^(a|b)$             (a|b)     FAIL
+expect        ax5       ^\(a\|b\)$          (a|b)     OK
+expect        ax5       ^\\(a\\|b\\)$       (a|b)     FAIL
 expect        ax5       ^a+b                a+b       FAIL
 expect        ax5       ^a\+b               a+b       OK
 expect        ax5       ^a\\+b              a+b       FAIL
@@ -595,9 +594,9 @@ find          ax5       ^a\\(b              a(b       FAIL a\\(b': Unmatched ( o
 find          ax5       ^a)b                a)b       OK
 find          ax5       ^a\)b               a)b       OK
 find          ax5       ^a\\)b              a)b       FAIL
-find          ax5       ^a|b                a|b       FAIL
-find          ax5       ^a\|b               a|b       OK
-find          ax5       ^a\\|b              a|b       FAIL
+find          ax5       ^(a|b)$             (a|b)     FAIL
+find          ax5       ^\(a\|b\)$          (a|b)     OK
+find          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL
 find          ax5       ^a+b                a+b       FAIL
 find          ax5       ^a\+b               a+b       OK
 find          ax5       ^a\\+b              a+b       FAIL
@@ -684,9 +683,9 @@ gawk          ax5       ^a\\(b              a(b       FAIL gawk: cmd. line:1: er
 gawk          ax5       ^a)b                a)b       OK
 gawk          ax5       ^a\)b               a)b       OK
 gawk          ax5       ^a\\)b              a)b       FAIL a)b
-gawk          ax5       ^a|b                a|b       FAIL x|b
-gawk          ax5       ^a\|b               a|b       OK
-gawk          ax5       ^a\\|b              a|b       FAIL a|x
+gawk          ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+gawk          ax5       ^\(a\|b\)$          (a|b)     OK
+gawk          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 gawk          ax5       ^a+b                a+b       FAIL a+b
 gawk          ax5       ^a\+b               a+b       OK
 gawk          ax5       ^a\\+b              a+b       FAIL a+b
@@ -773,10 +772,9 @@ grep          ax5       ^a\\(b              a(b       FAIL
 grep          ax5       ^a)b                a)b       OK
 grep          ax5       ^a\)b               a)b       FAIL grep: Unmatched ) or \)
 grep          ax5       ^a\\)b              a)b       FAIL
-grep          ax5       ^a|b                a|b       OK
-grep          ax5       ^a\|b               a|b       FAIL a
-b
-grep          ax5       ^a\\|b              a|b       FAIL
+grep          ax5       ^(a|b)$             (a|b)     OK
+grep          ax5       ^\(a\|b\)$          (a|b)     FAIL
+grep          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL
 grep          ax5       ^a+b                a+b       OK
 grep          ax5       ^a\+b               a+b       FAIL
 grep          ax5       ^a\\+b              a+b       FAIL
@@ -863,9 +861,9 @@ javascript    ax5       ^a\\(b              a(b       FAIL [eval]:1
 javascript    ax5       ^a)b                a)b       FAIL [eval]:1
 javascript    ax5       ^a\)b               a)b       OK
 javascript    ax5       ^a\\)b              a)b       FAIL [eval]:1
-javascript    ax5       ^a|b                a|b       FAIL x|b
-javascript    ax5       ^a\|b               a|b       OK
-javascript    ax5       ^a\\|b              a|b       FAIL a|x
+javascript    ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+javascript    ax5       ^\(a\|b\)$          (a|b)     OK
+javascript    ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 javascript    ax5       ^a+b                a+b       FAIL a+b
 javascript    ax5       ^a\+b               a+b       OK
 javascript    ax5       ^a\\+b              a+b       FAIL a+b
@@ -952,9 +950,9 @@ lex           ax5       ^a\\(b              a(b       FAIL tmp.lex.1.l:6: unreco
 lex           ax5       ^a)b                a)b       FAIL tmp.lex.1.l:6: unbalanced parenthesis
 lex           ax5       ^a\)b               a)b       OK
 lex           ax5       ^a\\)b              a)b       FAIL tmp.lex.1.l:6: unbalanced parenthesis
-lex           ax5       ^a|b                a|b       FAIL a
-lex           ax5       ^a\|b               a|b       OK
-lex           ax5       ^a\\|b              a|b       FAIL
+lex           ax5       ^(a|b)$             (a|b)     FAIL
+lex           ax5       ^\(a\|b\)$          (a|b)     OK
+lex           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL
 lex           ax5       ^a+b                a+b       FAIL
 lex           ax5       ^a\+b               a+b       OK
 lex           ax5       ^a\\+b              a+b       FAIL
@@ -1041,9 +1039,9 @@ mawk          ax5       ^a\\(b              a(b       FAIL mawk: line 1: regular
 mawk          ax5       ^a)b                a)b       FAIL mawk: line 1: regular expression compile failed (missing '(')
 mawk          ax5       ^a\)b               a)b       OK
 mawk          ax5       ^a\\)b              a)b       FAIL mawk: line 1: regular expression compile failed (missing '(')
-mawk          ax5       ^a|b                a|b       FAIL x|b
-mawk          ax5       ^a\|b               a|b       OK
-mawk          ax5       ^a\\|b              a|b       FAIL a|x
+mawk          ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+mawk          ax5       ^\(a\|b\)$          (a|b)     OK
+mawk          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 mawk          ax5       ^a+b                a+b       FAIL a+b
 mawk          ax5       ^a\+b               a+b       OK
 mawk          ax5       ^a\\+b              a+b       FAIL a+b
@@ -1130,9 +1128,9 @@ mysql         ax5       ^a\\(b              a(b       OK
 mysql         ax5       ^a)b                a)b       OK
 mysql         ax5       ^a\)b               a)b       OK
 mysql         ax5       ^a\\)b              a)b       OK
-mysql         ax5       ^a|b                a|b       OK
-mysql         ax5       ^a\|b               a|b       OK
-mysql         ax5       ^a\\|b              a|b       OK
+mysql         ax5       ^(a|b)$             (a|b)     FAIL 0
+mysql         ax5       ^\(a\|b\)$          (a|b)     FAIL 0
+mysql         ax5       ^\\(a\\|b\\)$       (a|b)     OK
 mysql         ax5       ^a+b                a+b       FAIL 0
 mysql         ax5       ^a\+b               a+b       FAIL 0
 mysql         ax5       ^a\\+b              a+b       OK
@@ -1219,9 +1217,9 @@ perl          ax5       ^a\\(b              a(b       FAIL Unmatched ( in regex;
 perl          ax5       ^a)b                a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a) <-- HERE b/ at -e line 1.
 perl          ax5       ^a\)b               a)b       OK
 perl          ax5       ^a\\)b              a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a\\) <-- HERE b/ at -e line 1.
-perl          ax5       ^a|b                a|b       FAIL x|b
-perl          ax5       ^a\|b               a|b       OK
-perl          ax5       ^a\\|b              a|b       FAIL a|x
+perl          ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+perl          ax5       ^\(a\|b\)$          (a|b)     OK
+perl          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 perl          ax5       ^a+b                a+b       FAIL a+b
 perl          ax5       ^a\+b               a+b       OK
 perl          ax5       ^a\\+b              a+b       FAIL a+b
@@ -1308,9 +1306,9 @@ php           ax5       ^a\\(b              a(b       OK
 php           ax5       ^a)b                a)b       FAIL PHP Warning:  preg_replace(): Compilation failed: unmatched parentheses at offset 2 in Standard input code on line 1
 php           ax5       ^a\)b               a)b       OK
 php           ax5       ^a\\)b              a)b       OK
-php           ax5       ^a|b                a|b       FAIL x|x
-php           ax5       ^a\|b               a|b       OK
-php           ax5       ^a\\|b              a|b       OK
+php           ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+php           ax5       ^\(a\|b\)$          (a|b)     OK
+php           ax5       ^\\(a\\|b\\)$       (a|b)     OK
 php           ax5       ^a+b                a+b       FAIL a+b
 php           ax5       ^a\+b               a+b       OK
 php           ax5       ^a\\+b              a+b       OK
@@ -1397,9 +1395,9 @@ postgres      ax5       ^a\\(b              a(b       FAIL ERROR:  invalid regul
 postgres      ax5       ^a)b                a)b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
 postgres      ax5       ^a\)b               a)b       OK
 postgres      ax5       ^a\\)b              a)b       FAIL ERROR:  invalid regular expression: parentheses () not balanced
-postgres      ax5       ^a|b                a|b       FAIL x|b
-postgres      ax5       ^a\|b               a|b       OK
-postgres      ax5       ^a\\|b              a|b       FAIL a|x
+postgres      ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+postgres      ax5       ^\(a\|b\)$          (a|b)     OK
+postgres      ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 postgres      ax5       ^a+b                a+b       FAIL a+b
 postgres      ax5       ^a\+b               a+b       OK
 postgres      ax5       ^a\\+b              a+b       FAIL a+b
@@ -1486,9 +1484,9 @@ procmail      ax5       ^a\\(b              a(b       FAIL Invalid regexp "^a\\(
 procmail      ax5       ^a)b                a)b       FAIL Invalid regexp "^a)b"
 procmail      ax5       ^a\)b               a)b       OK
 procmail      ax5       ^a\\)b              a)b       FAIL Invalid regexp "^a\\)b"
-procmail      ax5       ^a|b                a|b       OK
-procmail      ax5       ^a\|b               a|b       OK
-procmail      ax5       ^a\\|b              a|b       OK
+procmail      ax5       ^(a|b)$             (a|b)     FAIL No match on "^(a|b)$"
+procmail      ax5       ^\(a\|b\)$          (a|b)     OK
+procmail      ax5       ^\\(a\\|b\\)$       (a|b)     FAIL No match on "^\\(a\\|b\\)$"
 procmail      ax5       ^a+b                a+b       FAIL No match on "^a+b"
 procmail      ax5       ^a\+b               a+b       OK
 procmail      ax5       ^a\\+b              a+b       FAIL No match on "^a\\+b"
@@ -1575,9 +1573,9 @@ python        ax5       ^a\\(b              a(b       FAIL missing ), unterminat
 python        ax5       ^a)b                a)b       FAIL unbalanced parenthesis at position 2
 python        ax5       ^a\)b               a)b       OK
 python        ax5       ^a\\)b              a)b       FAIL unbalanced parenthesis at position 4
-python        ax5       ^a|b                a|b       FAIL x|x
-python        ax5       ^a\|b               a|b       OK
-python        ax5       ^a\\|b              a|b       FAIL a|x
+python        ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+python        ax5       ^\(a\|b\)$          (a|b)     OK
+python        ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 python        ax5       ^a+b                a+b       FAIL a+b
 python        ax5       ^a\+b               a+b       OK
 python        ax5       ^a\\+b              a+b       FAIL a+b
@@ -1664,9 +1662,9 @@ sed           ax5       ^a\\(b              a(b       FAIL a(b
 sed           ax5       ^a)b                a)b       OK
 sed           ax5       ^a\)b               a)b       FAIL sed: -e expression #1, char 10: Unmatched ) or \)
 sed           ax5       ^a\\)b              a)b       FAIL a)b
-sed           ax5       ^a|b                a|b       OK
-sed           ax5       ^a\|b               a|b       FAIL x|b
-sed           ax5       ^a\\|b              a|b       FAIL a|b
+sed           ax5       ^(a|b)$             (a|b)     OK
+sed           ax5       ^\(a\|b\)$          (a|b)     FAIL (a|b)
+sed           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 sed           ax5       ^a+b                a+b       OK
 sed           ax5       ^a\+b               a+b       FAIL a+b
 sed           ax5       ^a\\+b              a+b       FAIL a+b
@@ -1753,9 +1751,9 @@ tcl           ax5       ^a\\(b              a(b       FAIL couldn't compile regu
 tcl           ax5       ^a)b                a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
 tcl           ax5       ^a\)b               a)b       OK
 tcl           ax5       ^a\\)b              a)b       FAIL couldn't compile regular expression pattern: parentheses () not balanced
-tcl           ax5       ^a|b                a|b       FAIL x|x
-tcl           ax5       ^a\|b               a|b       OK
-tcl           ax5       ^a\\|b              a|b       FAIL a|x
+tcl           ax5       ^(a|b)$             (a|b)     FAIL (a|b)
+tcl           ax5       ^\(a\|b\)$          (a|b)     OK
+tcl           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 tcl           ax5       ^a+b                a+b       FAIL a+b
 tcl           ax5       ^a\+b               a+b       OK
 tcl           ax5       ^a\\+b              a+b       FAIL a+b
@@ -1842,9 +1840,9 @@ vim           ax5       ^a\\(b              a(b       FAIL a(b
 vim           ax5       ^a)b                a)b       OK
 vim           ax5       ^a\)b               a)b       FAIL a)b
 vim           ax5       ^a\\)b              a)b       FAIL a)b
-vim           ax5       ^a|b                a|b       OK
-vim           ax5       ^a\|b               a|b       FAIL x|b
-vim           ax5       ^a\\|b              a|b       FAIL a|b
+vim           ax5       ^(a|b)$             (a|b)     OK
+vim           ax5       ^\(a\|b\)$          (a|b)     FAIL (a|b)
+vim           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
 vim           ax5       ^a+b                a+b       OK
 vim           ax5       ^a\+b               a+b       FAIL a+b
 vim           ax5       ^a\\+b              a+b       FAIL a+b
@@ -1931,9 +1929,9 @@ vi            ax5       ^a\\(b              a(b       FAIL script, 2: No match f
 vi            ax5       ^a)b                a)b       OK
 vi            ax5       ^a\)b               a)b       FAIL script, 2: RE error: parentheses not balanced
 vi            ax5       ^a\\)b              a)b       FAIL script, 2: No match found
-vi            ax5       ^a|b                a|b       OK
-vi            ax5       ^a\|b               a|b       OK
-vi            ax5       ^a\\|b              a|b       FAIL script, 2: No match found
+vi            ax5       ^(a|b)$             (a|b)     OK
+vi            ax5       ^\(a\|b\)$          (a|b)     FAIL script, 2: No match found
+vi            ax5       ^\\(a\\|b\\)$       (a|b)     FAIL script, 2: No match found
 vi            ax5       ^a+b                a+b       OK
 vi            ax5       ^a\+b               a+b       OK
 vi            ax5       ^a\\+b              a+b       FAIL script, 2: No match found
