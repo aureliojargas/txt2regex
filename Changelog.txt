@@ -2,6 +2,7 @@ txt2regex changelog
 -------------------
 
 v0.9 beta (unreleased):
+  - Removed support for Lisp, OpenOffice.org, VBScript
   - Fixed to work properly in bash5 (tks Yanmarshus Bachtiar)
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)
   - Minimal required Bash version was bumped from 2.04 to 2.05

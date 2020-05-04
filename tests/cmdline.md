@@ -74,7 +74,6 @@ javascript      +      ?     {}      |      ()    netscape-4.77
        lex      +      ?     {}      |      ()
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
-       ooo      +      ?     {}      |      ()    OpenOffice.org 1.1.0
       perl      +      ?     {}      |      ()    v5.6.0 built for i386-linux
        php      +      ?     {}      |      ()    4.0.6
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 7.1.2
@@ -161,7 +160,6 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex lex       : ^a+b{5}.*
  Regex mawk      : ^a+b!!.*
  Regex mysql     : ^a+b{5}.*
- Regex ooo       : ^a+b{5}.*
  Regex perl      : ^a+b{5}.*
  Regex php       : ^a+b{5}.*
  Regex postgres  : ^a+b{5}.*
@@ -279,7 +277,6 @@ $ txt2regex --make number2 --all
  Regex lex       : [+-]?[0-9]+(\.[0-9]{2})?
  Regex mawk      : [+-]?[0-9]+(\.[0-9]!!)?
  Regex mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
- Regex ooo       : [+-]?[0-9]+(\.[0-9]{2})?
  Regex perl      : [+-]?[0-9]+(\.[0-9]{2})?
  Regex php       : [+-]?[0-9]+(\.[0-9]{2})?
  Regex postgres  : [+-]?[0-9]+(\\.[0-9]{2})?

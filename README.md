@@ -11,7 +11,7 @@
 Txt2regex is a regular expression wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
 questions and the program builds the regexes for more than 20 programs
-like Vim, Emacs, Perl, PHP, Python, Procmail and OpenOffice. It is a
+like grep, Vim, Emacs, JavaScript, PHP, Python, PostgreSQL. It is a
 Shell Script 100% written with Bash builtin commands. No compilation or
 extra commands are needed, just download it and run.
 
