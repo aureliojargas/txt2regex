@@ -63,111 +63,111 @@ vim             replace
 # txt2regex-id, regex, matches
 test_data='
 # Tests for metacharacters: ^ $ . [] ? * + {}
--           ^ab$             ab
--           ab$              ab
--           a.$              ab
--           [a]b$            ab
--           [^b]b$           ab
+-           ^ab$              ab
+-           ^ab$              ab
+-           ^a.$              ab
+-           ^[a]b$            ab
+-           ^[^b]b$           ab
 # False positive: "b\\?" matches "b" followed by zero "\", so we use "bx\\?"
-S2          abx?$            ab
-S2          abx\?$           ab
-S2          abx\\?$          ab
+S2          ^abx?$            ab
+S2          ^abx\?$           ab
+S2          ^abx\\?$          ab
 # False positive: "b\\*" matches "b" followed by zero "\", so we use "bx\\*"
-S2          abx*$            ab
-S2          abx\*$           ab
-S2          abx\\*$          ab
-S2          ab+$             abb
-S2          ab\+$            abb
-S2          ab\\+$           abb
-S2          ab{1}$           ab
-S2          ab\{1}$          ab
-S2          ab\{1\}$         ab
-S2          ab\\{1\\}$       ab
-S2          ab{1,}$          abb
-S2          ab\{1,}$         abb
-S2          ab\{1,\}$        abb
-S2          ab\\{1,\\}$      abb
-S2          ab{1,2}$         abb
-S2          ab\{1,2}$        abb
-S2          ab\{1,2\}$       abb
-S2          ab\\{1,2\\}$     abb
+S2          ^abx*$            ab
+S2          ^abx\*$           ab
+S2          ^abx\\*$          ab
+S2          ^ab+$             abb
+S2          ^ab\+$            abb
+S2          ^ab\\+$           abb
+S2          ^ab{1}$           ab
+S2          ^ab\{1}$          ab
+S2          ^ab\{1\}$         ab
+S2          ^ab\\{1\\}$       ab
+S2          ^ab{1,}$          abb
+S2          ^ab\{1,}$         abb
+S2          ^ab\{1,\}$        abb
+S2          ^ab\\{1,\\}$      abb
+S2          ^ab{1,2}$         abb
+S2          ^ab\{1,2}$        abb
+S2          ^ab\{1,2\}$       abb
+S2          ^ab\\{1,2\\}$     abb
 
 # Tests for ax_*[1,2,3] values: ( ) |
-ax123       a(b)$            ab
-ax123       a\(b\)$          ab
-ax123       a\\(b\\)$        ab
-ax123       (x|ab)$          ab
-ax123       \(x\|ab\)$       ab
-ax123       \\(x\\|ab\\)$    ab
+ax123       ^a(b)$            ab
+ax123       ^a\(b\)$          ab
+ax123       ^a\\(b\\)$        ab
+ax123       ^(x|ab)$          ab
+ax123       ^\(x\|ab\)$       ab
+ax123       ^\\(x\\|ab\\)$    ab
 
 # Test for ax_*[5] values: escaping metacharacters to match them literally
 # Avoid \b since it is special in most tools, use \_ instead
-ax5         ^a\_$            a\_
-ax5         ^a\\_$           a\_
-ax5         ^a\\\\_$         a\_
-ax5         ^a\.b$           a.b
-ax5         ^a\\.b$          a.b
-ax5         ^a*b$            a*b
-ax5         ^a\*b$           a*b
-ax5         ^a\\*b$          a*b
-ax5         ^a[b$            a[b
-ax5         ^a\[b$           a[b
-ax5         ^a\\[b$          a[b
-ax5         ^a]b$            a]b
-ax5         ^a\]b$           a]b
-ax5         ^a\\]b$          a]b
-ax5         ^a{b$            a{b
-ax5         ^a\{b$           a{b
-ax5         ^a\\{b$          a{b
-ax5         ^a}b$            a}b
-ax5         ^a\}b$           a}b
-ax5         ^a\\}b$          a}b
+ax5         ^a\_$             a\_
+ax5         ^a\\_$            a\_
+ax5         ^a\\\\_$          a\_
+ax5         ^a\.b$            a.b
+ax5         ^a\\.b$           a.b
+ax5         ^a*b$             a*b
+ax5         ^a\*b$            a*b
+ax5         ^a\\*b$           a*b
+ax5         ^a[b$             a[b
+ax5         ^a\[b$            a[b
+ax5         ^a\\[b$           a[b
+ax5         ^a]b$             a]b
+ax5         ^a\]b$            a]b
+ax5         ^a\\]b$           a]b
+ax5         ^a{b$             a{b
+ax5         ^a\{b$            a{b
+ax5         ^a\\{b$           a{b
+ax5         ^a}b$             a}b
+ax5         ^a\}b$            a}b
+ax5         ^a\\}b$           a}b
 # Extra tests for { and } together, which may give different results
-ax5         ^a{5}b$          a{5}b
-ax5         ^a\{5\}b$        a{5}b
-ax5         ^a\\{5\\}b$      a{5}b
-ax5         ^a(b$            a(b
-ax5         ^a\(b$           a(b
-ax5         ^a\\(b$          a(b
-ax5         ^a)b$            a)b
-ax5         ^a\)b$           a)b
-ax5         ^a\\)b$          a)b
+ax5         ^a{5}b$           a{5}b
+ax5         ^a\{5\}b$         a{5}b
+ax5         ^a\\{5\\}b$       a{5}b
+ax5         ^a(b$             a(b
+ax5         ^a\(b$            a(b
+ax5         ^a\\(b$           a(b
+ax5         ^a)b$             a)b
+ax5         ^a\)b$            a)b
+ax5         ^a\\)b$           a)b
 # Grouping because ^a|b matches ^a partially when test_type=match
-ax5         ^(a|b)$          (a|b)
-ax5         ^\(a\|b\)$       (a|b)
-ax5         ^\\(a\\|b\\)$    (a|b)
-ax5         ^a+b$            a+b
-ax5         ^a\+b$           a+b
-ax5         ^a\\+b$          a+b
-ax5         ^a?b$            a?b
-ax5         ^a\?b$           a?b
-ax5         ^a\\?b$          a?b
+ax5         ^(a|b)$           (a|b)
+ax5         ^\(a\|b\)$        (a|b)
+ax5         ^\\(a\\|b\\)$     (a|b)
+ax5         ^a+b$             a+b
+ax5         ^a\+b$            a+b
+ax5         ^a\\+b$           a+b
+ax5         ^a?b$             a?b
+ax5         ^a\?b$            a?b
+ax5         ^a\\?b$           a?b
 # Test ^ and $ being in the middle and at first/last position
-ax5         ^a^b$            a^b
-ax5         ^a\^b$           a^b
-ax5         ^a\\^b$          a^b
-ax5         ^ab$             ^ab
-ax5         \^ab$            ^ab
-ax5         \\^ab$           ^ab
-ax5         ^a$b$            a$b
-ax5         ^a\$b$           a$b
-ax5         ^a\\$b$          a$b
-ax5         ^ab$             ab$
-ax5         ^ab\$$           ab$
-ax5         ^ab\\$$          ab$
+ax5         ^a^b$             a^b
+ax5         ^a\^b$            a^b
+ax5         ^a\\^b$           a^b
+ax5         ^ab$              ^ab
+ax5         \^ab$             ^ab
+ax5         \\^ab$            ^ab
+ax5         ^a$b$             a$b
+ax5         ^a\$b$            a$b
+ax5         ^a\\$b$           a$b
+ax5         ^ab$              ab$
+ax5         ^ab\$$            ab$
+ax5         ^ab\\$$           ab$
 
 # Test for ax_*[6] values: must escape \ inside [] to match it literally?
 # Avoid \b since it is special in most tools, use \_ instead
-ax6         a[\]_$           a\_
-ax6         a[\\]_$          a\_
-ax6         a[\\\\]_$        a\_
+ax6         ^a[\]_$           a\_
+ax6         ^a[\\]_$          a\_
+ax6         ^a[\\\\]_$        a\_
 
 # Test for ax_*[7] values: POSIX support
-ax7         a[[:alpha:]]$    ab
+ax7         ^a[[:alpha:]]$    ab
 
 # Test for ax_*[8] values: \t inside [] matches a tab?
 # Note that <tab> will be replaced by a real tab character later
-ax8         a[\t]b$          a<tab>b
+ax8         ^a[\t]b$          a<tab>b
 '
 
 escape() { # a\b\c -> a\\b\\c
