@@ -132,9 +132,10 @@ ax5         ^a\\(b          a(b
 ax5         ^a)b            a)b
 ax5         ^a\)b           a)b
 ax5         ^a\\)b          a)b
-ax5         ^a|b            a|b
-ax5         ^a\|b           a|b
-ax5         ^a\\|b          a|b
+# Grouping because ^a|b matches ^a partially when test_type=match
+ax5         ^(a|b)$         (a|b)
+ax5         ^\(a\|b\)$      (a|b)
+ax5         ^\\(a\\|b\\)$   (a|b)
 ax5         ^a+b            a+b
 ax5         ^a\+b           a+b
 ax5         ^a\\+b          a+b
