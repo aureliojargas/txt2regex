@@ -72,7 +72,6 @@ $ txt2regex --all --history '241¤\'
  Regex lex       : [\]
  Regex mawk      : [\\]
  Regex mysql     : [\\\\]
- Regex ooo       : [\]
  Regex perl      : [\\]
  Regex php       : [\]
  Regex postgres  : [\\\\]
@@ -106,7 +105,6 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex lex       : \.\*\+\?\[]\{}\()\|^$\\
  Regex mawk      : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
- Regex ooo       : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex perl      : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex php       : \.\*\+\?\[]\{}\()\|\^\$\\
  Regex postgres  : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
@@ -169,7 +167,6 @@ $ txt2regex --all --history '27¤:0'
  Regex lex       : [[:alpha:]]
  Regex mawk      : !!
  Regex mysql     : [[:alpha:]]
- Regex ooo       : !!
  Regex perl      : [[:alpha:]]
  Regex php       : [[:alpha:]]
  Regex postgres  : [[:alpha:]]
@@ -203,7 +200,6 @@ $ txt2regex --all --history '26¤:5'
  Regex lex       : [<TAB>]
  Regex mawk      : [\t]
  Regex mysql     : [\t]
- Regex ooo       : [<TAB>]
  Regex perl      : [\t]
  Regex php       : [\t]
  Regex postgres  : [\t]
