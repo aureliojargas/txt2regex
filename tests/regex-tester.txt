@@ -39,9 +39,9 @@ awk           ax5       ^a\\.b              a.b       FAIL a.b
 awk           ax5       ^a*b                a*b       FAIL a*b
 awk           ax5       ^a\*b               a*b       OK
 awk           ax5       ^a\\*b              a*b       FAIL a*b
-awk           ax5       ^a[b                a[b       FAIL original-awk: nonterminated character class ^a[b
+awk           ax5       ^a[b                a[b       FAIL original-awk: nonterminated character class ^a[b$
 awk           ax5       ^a\[b               a[b       OK
-awk           ax5       ^a\\[b              a[b       FAIL original-awk: nonterminated character class ^a\\[b
+awk           ax5       ^a\\[b              a[b       FAIL original-awk: nonterminated character class ^a\\[b$
 awk           ax5       ^a]b                a]b       OK
 awk           ax5       ^a\]b               a]b       OK
 awk           ax5       ^a\\]b              a]b       FAIL a]b
@@ -54,12 +54,12 @@ awk           ax5       ^a\\}b              a}b       FAIL a}b
 awk           ax5       ^a{5}b              a{5}b     OK
 awk           ax5       ^a\{5\}b            a{5}b     OK
 awk           ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
-awk           ax5       ^a(b                a(b       FAIL original-awk: syntax error in regular expression ^a(b at 
+awk           ax5       ^a(b                a(b       FAIL original-awk: syntax error in regular expression ^a(b$ at 
 awk           ax5       ^a\(b               a(b       OK
-awk           ax5       ^a\\(b              a(b       FAIL original-awk: syntax error in regular expression ^a\\(b at 
-awk           ax5       ^a)b                a)b       FAIL original-awk: syntax error in regular expression ^a)b at b
+awk           ax5       ^a\\(b              a(b       FAIL original-awk: syntax error in regular expression ^a\\(b$ at 
+awk           ax5       ^a)b                a)b       FAIL original-awk: syntax error in regular expression ^a)b$ at b$
 awk           ax5       ^a\)b               a)b       OK
-awk           ax5       ^a\\)b              a)b       FAIL original-awk: syntax error in regular expression ^a\\)b at b
+awk           ax5       ^a\\)b              a)b       FAIL original-awk: syntax error in regular expression ^a\\)b$ at b$
 awk           ax5       ^(a|b)$             (a|b)     FAIL (a|b)
 awk           ax5       ^\(a\|b\)$          (a|b)     OK
 awk           ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
@@ -69,19 +69,19 @@ awk           ax5       ^a\\+b              a+b       FAIL a+b
 awk           ax5       ^a?b                a?b       FAIL a?b
 awk           ax5       ^a\?b               a?b       OK
 awk           ax5       ^a\\?b              a?b       FAIL a?b
-awk           ax5       ^a^b                a^b       FAIL original-awk: syntax error in regular expression ^a^b at b
+awk           ax5       ^a^b                a^b       FAIL original-awk: syntax error in regular expression ^a^b$ at b$
 awk           ax5       ^a\^b               a^b       OK
-awk           ax5       ^a\\^b              a^b       FAIL original-awk: syntax error in regular expression ^a\\^b at b
+awk           ax5       ^a\\^b              a^b       FAIL original-awk: syntax error in regular expression ^a\\^b$ at b$
 awk           ax5       ^ab                 ^ab       FAIL ^ab
 awk           ax5       \^ab                ^ab       OK
-awk           ax5       \\^ab               ^ab       FAIL original-awk: syntax error in regular expression \\^ab at ab
+awk           ax5       \\^ab               ^ab       FAIL original-awk: syntax error in regular expression \\^ab$ at ab$
 awk           ax5       ^a$b                a$b       FAIL a$b
 awk           ax5       ^a\$b               a$b       OK
 awk           ax5       ^a\\$b              a$b       FAIL a$b
 awk           ax5       ^ab$                ab$       FAIL ab$
 awk           ax5       ^ab\$               ab$       OK
 awk           ax5       ^ab\\$              ab$       FAIL ab$
-awk           ax6       a[\]_               a\_       FAIL original-awk: nonterminated character class a[\]_
+awk           ax6       a[\]_               a\_       FAIL original-awk: nonterminated character class a[\]_$
 awk           ax6       a[\\]_              a\_       OK
 awk           ax6       a[\\\\]_            a\_       OK
 awk           ax7       a[[:alpha:]]        ab        OK
@@ -143,10 +143,10 @@ chicken       ax5       ^a\\}b              a}b       OK
 chicken       ax5       ^a{5}b              a{5}b     FAIL
 chicken       ax5       ^a\{5\}b            a{5}b     FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\{
 chicken       ax5       ^a\\{5\\}b          a{5}b     OK
-chicken       ax5       ^a(b                a(b       FAIL Error: unterminated parenthesis in regexp: "^a(b"
+chicken       ax5       ^a(b                a(b       FAIL Error: unterminated parenthesis in regexp: "^a(b$"
 chicken       ax5       ^a\(b               a(b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\(
 chicken       ax5       ^a\\(b              a(b       OK
-chicken       ax5       ^a)b                a)b       FAIL Error: too many )'s in regexp: "^a)b"
+chicken       ax5       ^a)b                a)b       FAIL Error: too many )'s in regexp: "^a)b$"
 chicken       ax5       ^a\)b               a)b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\)
 chicken       ax5       ^a\\)b              a)b       OK
 chicken       ax5       ^(a|b)$             (a|b)     FAIL
@@ -388,7 +388,7 @@ emacs         ax123     (x|ab)              ab        FAIL ab
 emacs         ax123     \(x\|ab\)           ab        FAIL ab
 emacs         ax123     \\(x\\|ab\\)        ab        OK
 emacs         ax5       ^a\_                a\_       FAIL a\_
-emacs         ax5       ^a\\_               a\_       FAIL Invalid regexp: "Premature end of regular expression"
+emacs         ax5       ^a\\_               a\_       FAIL Invalid regexp: "Invalid regular expression"
 emacs         ax5       ^a\\\\_             a\_       OK
 emacs         ax5       ^a\.b               a.b       OK
 emacs         ax5       ^a\\.b              a.b       OK
@@ -550,15 +550,15 @@ find          S2        ab\\+               abb       FAIL
 find          S2        ab{1}               ab        OK
 find          S2        ab\{1}              ab        FAIL
 find          S2        ab\{1\}             ab        FAIL
-find          S2        ab\\{1\\}           ab        FAIL ab\\{1\\}': Invalid content of \{\}
+find          S2        ab\\{1\\}           ab        FAIL ab\\{1\\}$': Invalid content of \{\}
 find          S2        ab{1,}              abb       OK
 find          S2        ab\{1,}             abb       FAIL
 find          S2        ab\{1,\}            abb       FAIL
-find          S2        ab\\{1,\\}          abb       FAIL ab\\{1,\\}': Invalid content of \{\}
+find          S2        ab\\{1,\\}          abb       FAIL ab\\{1,\\}$': Invalid content of \{\}
 find          S2        ab{1,2}             abb       OK
 find          S2        ab\{1,2}            abb       FAIL
 find          S2        ab\{1,2\}           abb       FAIL
-find          S2        ab\\{1,2\\}         abb       FAIL ab\\{1,2\\}': Invalid content of \{\}
+find          S2        ab\\{1,2\\}         abb       FAIL ab\\{1,2\\}$': Invalid content of \{\}
 find          ax123     a(b)                ab        OK
 find          ax123     a\(b\)              ab        FAIL
 find          ax123     a\\(b\\)            ab        FAIL
@@ -573,24 +573,24 @@ find          ax5       ^a\\.b              a.b       FAIL
 find          ax5       ^a*b                a*b       FAIL
 find          ax5       ^a\*b               a*b       OK
 find          ax5       ^a\\*b              a*b       FAIL
-find          ax5       ^a[b                a[b       FAIL a[b': Unmatched [ or [^
+find          ax5       ^a[b                a[b       FAIL a[b$': Unmatched [ or [^
 find          ax5       ^a\[b               a[b       OK
-find          ax5       ^a\\[b              a[b       FAIL a\\[b': Unmatched [ or [^
+find          ax5       ^a\\[b              a[b       FAIL a\\[b$': Unmatched [ or [^
 find          ax5       ^a]b                a]b       OK
 find          ax5       ^a\]b               a]b       OK
 find          ax5       ^a\\]b              a]b       FAIL
-find          ax5       ^a{b                a{b       FAIL a{b': Unmatched \{
+find          ax5       ^a{b                a{b       FAIL a{b$': Unmatched \{
 find          ax5       ^a\{b               a{b       OK
-find          ax5       ^a\\{b              a{b       FAIL a\\{b': Unmatched \{
+find          ax5       ^a\\{b              a{b       FAIL a\\{b$': Unmatched \{
 find          ax5       ^a}b                a}b       OK
 find          ax5       ^a\}b               a}b       OK
 find          ax5       ^a\\}b              a}b       FAIL
 find          ax5       ^a{5}b              a{5}b     FAIL
 find          ax5       ^a\{5\}b            a{5}b     OK
-find          ax5       ^a\\{5\\}b          a{5}b     FAIL a\\{5\\}b': Invalid content of \{\}
-find          ax5       ^a(b                a(b       FAIL a(b': Unmatched ( or \(
+find          ax5       ^a\\{5\\}b          a{5}b     FAIL a\\{5\\}b$': Invalid content of \{\}
+find          ax5       ^a(b                a(b       FAIL a(b$': Unmatched ( or \(
 find          ax5       ^a\(b               a(b       OK
-find          ax5       ^a\\(b              a(b       FAIL a\\(b': Unmatched ( or \(
+find          ax5       ^a\\(b              a(b       FAIL a\\(b$': Unmatched ( or \(
 find          ax5       ^a)b                a)b       OK
 find          ax5       ^a\)b               a)b       OK
 find          ax5       ^a\\)b              a)b       FAIL
@@ -662,9 +662,9 @@ gawk          ax5       ^a\\.b              a.b       FAIL a.b
 gawk          ax5       ^a*b                a*b       FAIL a*b
 gawk          ax5       ^a\*b               a*b       OK
 gawk          ax5       ^a\\*b              a*b       FAIL a*b
-gawk          ax5       ^a[b                a[b       FAIL gawk: cmd. line:1: { sub(/^a[b/, "x") ; print }
+gawk          ax5       ^a[b                a[b       FAIL gawk: cmd. line:1: { sub(/^a[b$/, "x") ; print }
 gawk          ax5       ^a\[b               a[b       OK
-gawk          ax5       ^a\\[b              a[b       FAIL gawk: cmd. line:1: { sub(/^a\\[b/, "x") ; print }
+gawk          ax5       ^a\\[b              a[b       FAIL gawk: cmd. line:1: { sub(/^a\\[b$/, "x") ; print }
 gawk          ax5       ^a]b                a]b       OK
 gawk          ax5       ^a\]b               a]b       OK
 gawk          ax5       ^a\\]b              a]b       FAIL a]b
@@ -677,9 +677,9 @@ gawk          ax5       ^a\\}b              a}b       FAIL a}b
 gawk          ax5       ^a{5}b              a{5}b     FAIL a{5}b
 gawk          ax5       ^a\{5\}b            a{5}b     OK
 gawk          ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
-gawk          ax5       ^a(b                a(b       FAIL gawk: cmd. line:1: error: Unmatched ( or \(: /^a(b/
+gawk          ax5       ^a(b                a(b       FAIL gawk: cmd. line:1: error: Unmatched ( or \(: /^a(b$/
 gawk          ax5       ^a\(b               a(b       OK
-gawk          ax5       ^a\\(b              a(b       FAIL gawk: cmd. line:1: error: Unmatched ( or \(: /^a\\(b/
+gawk          ax5       ^a\\(b              a(b       FAIL gawk: cmd. line:1: error: Unmatched ( or \(: /^a\\(b$/
 gawk          ax5       ^a)b                a)b       OK
 gawk          ax5       ^a\)b               a)b       OK
 gawk          ax5       ^a\\)b              a)b       FAIL a)b
@@ -704,7 +704,7 @@ gawk          ax5       ^a\\$b              a$b       FAIL a$b
 gawk          ax5       ^ab$                ab$       FAIL ab$
 gawk          ax5       ^ab\$               ab$       OK
 gawk          ax5       ^ab\\$              ab$       FAIL ab$
-gawk          ax6       a[\]_               a\_       FAIL gawk: cmd. line:1: { sub(/a[\]_/, "x") ; print }
+gawk          ax6       a[\]_               a\_       FAIL gawk: cmd. line:1: { sub(/a[\]_$/, "x") ; print }
 gawk          ax6       a[\\]_              a\_       OK
 gawk          ax6       a[\\\\]_            a\_       OK
 gawk          ax7       a[[:alpha:]]        ab        OK
@@ -1173,15 +1173,15 @@ perl          S2        ab\\+               abb       FAIL abb
 perl          S2        ab{1}               ab        OK
 perl          S2        ab\{1}              ab        FAIL ab
 perl          S2        ab\{1\}             ab        FAIL ab
-perl          S2        ab\\{1\\}           ab        FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1\\}/ at -e line 1.
+perl          S2        ab\\{1\\}           ab        FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1\\}$/ at -e line 1.
 perl          S2        ab{1,}              abb       OK
 perl          S2        ab\{1,}             abb       FAIL abb
 perl          S2        ab\{1,\}            abb       FAIL abb
-perl          S2        ab\\{1,\\}          abb       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1,\\}/ at -e line 1.
+perl          S2        ab\\{1,\\}          abb       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1,\\}$/ at -e line 1.
 perl          S2        ab{1,2}             abb       OK
 perl          S2        ab\{1,2}            abb       FAIL abb
 perl          S2        ab\{1,2\}           abb       FAIL abb
-perl          S2        ab\\{1,2\\}         abb       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1,2\\}/ at -e line 1.
+perl          S2        ab\\{1,2\\}         abb       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/ab\\{ <-- HERE 1,2\\}$/ at -e line 1.
 perl          ax123     a(b)                ab        OK
 perl          ax123     a\(b\)              ab        FAIL ab
 perl          ax123     a\\(b\\)            ab        FAIL ab
@@ -1196,27 +1196,27 @@ perl          ax5       ^a\\.b              a.b       FAIL a.b
 perl          ax5       ^a*b                a*b       FAIL a*b
 perl          ax5       ^a\*b               a*b       OK
 perl          ax5       ^a\\*b              a*b       FAIL a*b
-perl          ax5       ^a[b                a[b       FAIL Unmatched [ in regex; marked by <-- HERE in m/^a[ <-- HERE b/ at -e line 1.
+perl          ax5       ^a[b                a[b       FAIL Unmatched [ in regex; marked by <-- HERE in m/^a[ <-- HERE b$/ at -e line 1.
 perl          ax5       ^a\[b               a[b       OK
-perl          ax5       ^a\\[b              a[b       FAIL Unmatched [ in regex; marked by <-- HERE in m/^a\\[ <-- HERE b/ at -e line 1.
+perl          ax5       ^a\\[b              a[b       FAIL Unmatched [ in regex; marked by <-- HERE in m/^a\\[ <-- HERE b$/ at -e line 1.
 perl          ax5       ^a]b                a]b       OK
 perl          ax5       ^a\]b               a]b       OK
 perl          ax5       ^a\\]b              a]b       FAIL a]b
-perl          ax5       ^a{b                a{b       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a{ <-- HERE b/ at -e line 1.
+perl          ax5       ^a{b                a{b       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a{ <-- HERE b$/ at -e line 1.
 perl          ax5       ^a\{b               a{b       OK
-perl          ax5       ^a\\{b              a{b       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a\\{ <-- HERE b/ at -e line 1.
+perl          ax5       ^a\\{b              a{b       FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a\\{ <-- HERE b$/ at -e line 1.
 perl          ax5       ^a}b                a}b       OK
 perl          ax5       ^a\}b               a}b       OK
 perl          ax5       ^a\\}b              a}b       FAIL a}b
 perl          ax5       ^a{5}b              a{5}b     FAIL a{5}b
 perl          ax5       ^a\{5\}b            a{5}b     OK
-perl          ax5       ^a\\{5\\}b          a{5}b     FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a\\{ <-- HERE 5\\}b/ at -e line 1.
-perl          ax5       ^a(b                a(b       FAIL Unmatched ( in regex; marked by <-- HERE in m/^a( <-- HERE b/ at -e line 1.
+perl          ax5       ^a\\{5\\}b          a{5}b     FAIL Unescaped left brace in regex is illegal here in regex; marked by <-- HERE in m/^a\\{ <-- HERE 5\\}b$/ at -e line 1.
+perl          ax5       ^a(b                a(b       FAIL Unmatched ( in regex; marked by <-- HERE in m/^a( <-- HERE b$/ at -e line 1.
 perl          ax5       ^a\(b               a(b       OK
-perl          ax5       ^a\\(b              a(b       FAIL Unmatched ( in regex; marked by <-- HERE in m/^a\\( <-- HERE b/ at -e line 1.
-perl          ax5       ^a)b                a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a) <-- HERE b/ at -e line 1.
+perl          ax5       ^a\\(b              a(b       FAIL Unmatched ( in regex; marked by <-- HERE in m/^a\\( <-- HERE b$/ at -e line 1.
+perl          ax5       ^a)b                a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a) <-- HERE b$/ at -e line 1.
 perl          ax5       ^a\)b               a)b       OK
-perl          ax5       ^a\\)b              a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a\\) <-- HERE b/ at -e line 1.
+perl          ax5       ^a\\)b              a)b       FAIL Unmatched ) in regex; marked by <-- HERE in m/^a\\) <-- HERE b$/ at -e line 1.
 perl          ax5       ^(a|b)$             (a|b)     FAIL (a|b)
 perl          ax5       ^\(a\|b\)$          (a|b)     OK
 perl          ax5       ^\\(a\\|b\\)$       (a|b)     FAIL (a|b)
@@ -1232,13 +1232,13 @@ perl          ax5       ^a\\^b              a^b       FAIL a^b
 perl          ax5       ^ab                 ^ab       FAIL ^ab
 perl          ax5       \^ab                ^ab       OK
 perl          ax5       \\^ab               ^ab       FAIL ^ab
-perl          ax5       ^a$b                a$b       FAIL x$b
+perl          ax5       ^a$b                a$b       FAIL a$b
 perl          ax5       ^a\$b               a$b       OK
 perl          ax5       ^a\\$b              a$b       FAIL a$b
 perl          ax5       ^ab$                ab$       FAIL ab$
 perl          ax5       ^ab\$               ab$       OK
 perl          ax5       ^ab\\$              ab$       FAIL ab$
-perl          ax6       a[\]_               a\_       FAIL Unmatched [ in regex; marked by <-- HERE in m/a[ <-- HERE \]_/ at -e line 1.
+perl          ax6       a[\]_               a\_       FAIL Unmatched [ in regex; marked by <-- HERE in m/a[ <-- HERE \]_$/ at -e line 1.
 perl          ax6       a[\\]_              a\_       OK
 perl          ax6       a[\\\\]_            a\_       OK
 perl          ax7       a[[:alpha:]]        ab        OK
@@ -1285,7 +1285,7 @@ php           ax5       ^a\\.b              a.b       OK
 php           ax5       ^a*b                a*b       FAIL a*b
 php           ax5       ^a\*b               a*b       OK
 php           ax5       ^a\\*b              a*b       OK
-php           ax5       ^a[b                a[b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 4 in Standard input code on line 1
+php           ax5       ^a[b                a[b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Standard input code on line 1
 php           ax5       ^a\[b               a[b       OK
 php           ax5       ^a\\[b              a[b       OK
 php           ax5       ^a]b                a]b       OK
@@ -1300,7 +1300,7 @@ php           ax5       ^a\\}b              a}b       OK
 php           ax5       ^a{5}b              a{5}b     FAIL a{5}b
 php           ax5       ^a\{5\}b            a{5}b     OK
 php           ax5       ^a\\{5\\}b          a{5}b     OK
-php           ax5       ^a(b                a(b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing ) at offset 4 in Standard input code on line 1
+php           ax5       ^a(b                a(b       FAIL PHP Warning:  preg_replace(): Compilation failed: missing ) at offset 5 in Standard input code on line 1
 php           ax5       ^a\(b               a(b       OK
 php           ax5       ^a\\(b              a(b       OK
 php           ax5       ^a)b                a)b       FAIL PHP Warning:  preg_replace(): Compilation failed: unmatched parentheses at offset 2 in Standard input code on line 1
@@ -1327,8 +1327,8 @@ php           ax5       ^a\\$b              a$b       OK
 php           ax5       ^ab$                ab$       FAIL ab$
 php           ax5       ^ab\$               ab$       OK
 php           ax5       ^ab\\$              ab$       OK
-php           ax6       a[\]_               a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Standard input code on line 1
-php           ax6       a[\\]_              a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 5 in Standard input code on line 1
+php           ax6       a[\]_               a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 6 in Standard input code on line 1
+php           ax6       a[\\]_              a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 6 in Standard input code on line 1
 php           ax6       a[\\\\]_            a\_       OK
 php           ax7       a[[:alpha:]]        ab        OK
 php           ax8       a[\t]b              a<tab>b   OK
@@ -1429,87 +1429,87 @@ procmail      -         a.                  ab        OK
 procmail      -         [a]b                ab        OK
 procmail      -         [^b]b               ab        OK
 procmail      S2        abx?                ab        OK
-procmail      S2        abx\?               ab        FAIL No match on "abx\?"
-procmail      S2        abx\\?              ab        FAIL No match on "abx\\?"
+procmail      S2        abx\?               ab        FAIL No match on "abx\?$"
+procmail      S2        abx\\?              ab        FAIL No match on "abx\\?$"
 procmail      S2        abx*                ab        OK
-procmail      S2        abx\*               ab        FAIL No match on "abx\*"
-procmail      S2        abx\\*              ab        FAIL No match on "abx\\*"
+procmail      S2        abx\*               ab        FAIL No match on "abx\*$"
+procmail      S2        abx\\*              ab        FAIL No match on "abx\\*$"
 procmail      S2        ab+                 abb       OK
-procmail      S2        ab\+                abb       FAIL No match on "ab\+"
-procmail      S2        ab\\+               abb       FAIL No match on "ab\\+"
-procmail      S2        ab{1}               ab        FAIL No match on "ab{1}"
-procmail      S2        ab\{1}              ab        FAIL No match on "ab\{1}"
-procmail      S2        ab\{1\}             ab        FAIL No match on "ab\{1\}"
-procmail      S2        ab\\{1\\}           ab        FAIL No match on "ab\\{1\\}"
-procmail      S2        ab{1,}              abb       FAIL No match on "ab{1,}"
-procmail      S2        ab\{1,}             abb       FAIL No match on "ab\{1,}"
-procmail      S2        ab\{1,\}            abb       FAIL No match on "ab\{1,\}"
-procmail      S2        ab\\{1,\\}          abb       FAIL No match on "ab\\{1,\\}"
-procmail      S2        ab{1,2}             abb       FAIL No match on "ab{1,2}"
-procmail      S2        ab\{1,2}            abb       FAIL No match on "ab\{1,2}"
-procmail      S2        ab\{1,2\}           abb       FAIL No match on "ab\{1,2\}"
-procmail      S2        ab\\{1,2\\}         abb       FAIL No match on "ab\\{1,2\\}"
+procmail      S2        ab\+                abb       FAIL No match on "ab\+$"
+procmail      S2        ab\\+               abb       FAIL No match on "ab\\+$"
+procmail      S2        ab{1}               ab        FAIL No match on "ab{1}$"
+procmail      S2        ab\{1}              ab        FAIL No match on "ab\{1}$"
+procmail      S2        ab\{1\}             ab        FAIL No match on "ab\{1\}$"
+procmail      S2        ab\\{1\\}           ab        FAIL No match on "ab\\{1\\}$"
+procmail      S2        ab{1,}              abb       FAIL No match on "ab{1,}$"
+procmail      S2        ab\{1,}             abb       FAIL No match on "ab\{1,}$"
+procmail      S2        ab\{1,\}            abb       FAIL No match on "ab\{1,\}$"
+procmail      S2        ab\\{1,\\}          abb       FAIL No match on "ab\\{1,\\}$"
+procmail      S2        ab{1,2}             abb       FAIL No match on "ab{1,2}$"
+procmail      S2        ab\{1,2}            abb       FAIL No match on "ab\{1,2}$"
+procmail      S2        ab\{1,2\}           abb       FAIL No match on "ab\{1,2\}$"
+procmail      S2        ab\\{1,2\\}         abb       FAIL No match on "ab\\{1,2\\}$"
 procmail      ax123     a(b)                ab        OK
-procmail      ax123     a\(b\)              ab        FAIL No match on "a\(b\)"
-procmail      ax123     a\\(b\\)            ab        FAIL No match on "a\\(b\\)"
+procmail      ax123     a\(b\)              ab        FAIL No match on "a\(b\)$"
+procmail      ax123     a\\(b\\)            ab        FAIL No match on "a\\(b\\)$"
 procmail      ax123     (x|ab)              ab        OK
-procmail      ax123     \(x\|ab\)           ab        FAIL Invalid regexp "(x\|ab\)"
-procmail      ax123     \\(x\\|ab\\)        ab        FAIL Invalid regexp "\(x\\|ab\\)"
-procmail      ax5       ^a\_                a\_       FAIL No match on "^a\_"
+procmail      ax123     \(x\|ab\)           ab        FAIL Invalid regexp "(x\|ab\)$"
+procmail      ax123     \\(x\\|ab\\)        ab        FAIL Invalid regexp "\(x\\|ab\\)$"
+procmail      ax5       ^a\_                a\_       FAIL No match on "^a\_$"
 procmail      ax5       ^a\\_               a\_       OK
-procmail      ax5       ^a\\\\_             a\_       FAIL No match on "^a\\\\_"
+procmail      ax5       ^a\\\\_             a\_       FAIL No match on "^a\\\\_$"
 procmail      ax5       ^a\.b               a.b       OK
-procmail      ax5       ^a\\.b              a.b       FAIL No match on "^a\\.b"
-procmail      ax5       ^a*b                a*b       FAIL No match on "^a*b"
+procmail      ax5       ^a\\.b              a.b       FAIL No match on "^a\\.b$"
+procmail      ax5       ^a*b                a*b       FAIL No match on "^a*b$"
 procmail      ax5       ^a\*b               a*b       OK
-procmail      ax5       ^a\\*b              a*b       FAIL No match on "^a\\*b"
-procmail      ax5       ^a[b                a[b       FAIL No match on "^a[b"
+procmail      ax5       ^a\\*b              a*b       FAIL No match on "^a\\*b$"
+procmail      ax5       ^a[b                a[b       FAIL No match on "^a[b$"
 procmail      ax5       ^a\[b               a[b       OK
-procmail      ax5       ^a\\[b              a[b       FAIL No match on "^a\\[b"
+procmail      ax5       ^a\\[b              a[b       FAIL No match on "^a\\[b$"
 procmail      ax5       ^a]b                a]b       OK
 procmail      ax5       ^a\]b               a]b       OK
-procmail      ax5       ^a\\]b              a]b       FAIL No match on "^a\\]b"
+procmail      ax5       ^a\\]b              a]b       FAIL No match on "^a\\]b$"
 procmail      ax5       ^a{b                a{b       OK
 procmail      ax5       ^a\{b               a{b       OK
-procmail      ax5       ^a\\{b              a{b       FAIL No match on "^a\\{b"
+procmail      ax5       ^a\\{b              a{b       FAIL No match on "^a\\{b$"
 procmail      ax5       ^a}b                a}b       OK
 procmail      ax5       ^a\}b               a}b       OK
-procmail      ax5       ^a\\}b              a}b       FAIL No match on "^a\\}b"
+procmail      ax5       ^a\\}b              a}b       FAIL No match on "^a\\}b$"
 procmail      ax5       ^a{5}b              a{5}b     OK
 procmail      ax5       ^a\{5\}b            a{5}b     OK
-procmail      ax5       ^a\\{5\\}b          a{5}b     FAIL No match on "^a\\{5\\}b"
-procmail      ax5       ^a(b                a(b       FAIL Invalid regexp "^a(b"
+procmail      ax5       ^a\\{5\\}b          a{5}b     FAIL No match on "^a\\{5\\}b$"
+procmail      ax5       ^a(b                a(b       FAIL Invalid regexp "^a(b$"
 procmail      ax5       ^a\(b               a(b       OK
-procmail      ax5       ^a\\(b              a(b       FAIL Invalid regexp "^a\\(b"
-procmail      ax5       ^a)b                a)b       FAIL Invalid regexp "^a)b"
+procmail      ax5       ^a\\(b              a(b       FAIL Invalid regexp "^a\\(b$"
+procmail      ax5       ^a)b                a)b       FAIL Invalid regexp "^a)b$"
 procmail      ax5       ^a\)b               a)b       OK
-procmail      ax5       ^a\\)b              a)b       FAIL Invalid regexp "^a\\)b"
+procmail      ax5       ^a\\)b              a)b       FAIL Invalid regexp "^a\\)b$"
 procmail      ax5       ^(a|b)$             (a|b)     FAIL No match on "^(a|b)$"
 procmail      ax5       ^\(a\|b\)$          (a|b)     OK
 procmail      ax5       ^\\(a\\|b\\)$       (a|b)     FAIL No match on "^\\(a\\|b\\)$"
-procmail      ax5       ^a+b                a+b       FAIL No match on "^a+b"
+procmail      ax5       ^a+b                a+b       FAIL No match on "^a+b$"
 procmail      ax5       ^a\+b               a+b       OK
-procmail      ax5       ^a\\+b              a+b       FAIL No match on "^a\\+b"
-procmail      ax5       ^a?b                a?b       FAIL No match on "^a?b"
+procmail      ax5       ^a\\+b              a+b       FAIL No match on "^a\\+b$"
+procmail      ax5       ^a?b                a?b       FAIL No match on "^a?b$"
 procmail      ax5       ^a\?b               a?b       OK
-procmail      ax5       ^a\\?b              a?b       FAIL No match on "^a\\?b"
-procmail      ax5       ^a^b                a^b       FAIL No match on "^a^b"
+procmail      ax5       ^a\\?b              a?b       FAIL No match on "^a\\?b$"
+procmail      ax5       ^a^b                a^b       FAIL No match on "^a^b$"
 procmail      ax5       ^a\^b               a^b       OK
-procmail      ax5       ^a\\^b              a^b       FAIL No match on "^a\\^b"
-procmail      ax5       ^ab                 ^ab       FAIL No match on "^ab"
-procmail      ax5       \^ab                ^ab       FAIL No match on "\^ab"
+procmail      ax5       ^a\\^b              a^b       FAIL No match on "^a\\^b$"
+procmail      ax5       ^ab                 ^ab       FAIL No match on "^ab$"
+procmail      ax5       \^ab                ^ab       FAIL No match on "\^ab$"
 procmail      ax5       \\^ab               ^ab       OK
-procmail      ax5       ^a$b                a$b       FAIL No match on "^a$b"
+procmail      ax5       ^a$b                a$b       FAIL No match on "^a$b$"
 procmail      ax5       ^a\$b               a$b       OK
-procmail      ax5       ^a\\$b              a$b       FAIL No match on "^a\\$b"
+procmail      ax5       ^a\\$b              a$b       FAIL No match on "^a\\$b$"
 procmail      ax5       ^ab$                ab$       FAIL No match on "^ab$"
 procmail      ax5       ^ab\$               ab$       OK
 procmail      ax5       ^ab\\$              ab$       FAIL No match on "^ab\\$"
 procmail      ax6       a[\]_               a\_       OK
 procmail      ax6       a[\\]_              a\_       OK
 procmail      ax6       a[\\\\]_            a\_       OK
-procmail      ax7       a[[:alpha:]]        ab        FAIL No match on "a[[:alpha:]]"
-procmail      ax8       a[\t]b              a<tab>b   FAIL No match on "a[\t]b"
+procmail      ax7       a[[:alpha:]]        ab        FAIL No match on "a[[:alpha:]]$"
+procmail      ax8       a[\t]b              a<tab>b   FAIL No match on "a[\t]b$"
 ----------------------------------------------------------
 python version: Python 3.6.9
 python        -         ^ab                 ab        OK
@@ -1616,15 +1616,15 @@ sed           S2        ab+                 abb       FAIL abb
 sed           S2        ab\+                abb       OK
 sed           S2        ab\\+               abb       FAIL abb
 sed           S2        ab{1}               ab        FAIL ab
-sed           S2        ab\{1}              ab        FAIL sed: -e expression #1, char 11: Unmatched \{
+sed           S2        ab\{1}              ab        FAIL sed: -e expression #1, char 12: Unmatched \{
 sed           S2        ab\{1\}             ab        OK
 sed           S2        ab\\{1\\}           ab        FAIL ab
 sed           S2        ab{1,}              abb       FAIL abb
-sed           S2        ab\{1,}             abb       FAIL sed: -e expression #1, char 12: Unmatched \{
+sed           S2        ab\{1,}             abb       FAIL sed: -e expression #1, char 13: Unmatched \{
 sed           S2        ab\{1,\}            abb       OK
 sed           S2        ab\\{1,\\}          abb       FAIL abb
 sed           S2        ab{1,2}             abb       FAIL abb
-sed           S2        ab\{1,2}            abb       FAIL sed: -e expression #1, char 13: Unmatched \{
+sed           S2        ab\{1,2}            abb       FAIL sed: -e expression #1, char 14: Unmatched \{
 sed           S2        ab\{1,2\}           abb       OK
 sed           S2        ab\\{1,2\\}         abb       FAIL abb
 sed           ax123     a(b)                ab        FAIL ab
@@ -1641,14 +1641,14 @@ sed           ax5       ^a\\.b              a.b       FAIL a.b
 sed           ax5       ^a*b                a*b       FAIL a*b
 sed           ax5       ^a\*b               a*b       OK
 sed           ax5       ^a\\*b              a*b       FAIL a*b
-sed           ax5       ^a[b                a[b       FAIL sed: -e expression #1, char 9: unterminated `s' command
+sed           ax5       ^a[b                a[b       FAIL sed: -e expression #1, char 10: unterminated `s' command
 sed           ax5       ^a\[b               a[b       OK
-sed           ax5       ^a\\[b              a[b       FAIL sed: -e expression #1, char 11: unterminated `s' command
+sed           ax5       ^a\\[b              a[b       FAIL sed: -e expression #1, char 12: unterminated `s' command
 sed           ax5       ^a]b                a]b       OK
 sed           ax5       ^a\]b               a]b       OK
 sed           ax5       ^a\\]b              a]b       FAIL a]b
 sed           ax5       ^a{b                a{b       OK
-sed           ax5       ^a\{b               a{b       FAIL sed: -e expression #1, char 10: Unmatched \{
+sed           ax5       ^a\{b               a{b       FAIL sed: -e expression #1, char 11: Unmatched \{
 sed           ax5       ^a\\{b              a{b       FAIL a{b
 sed           ax5       ^a}b                a}b       OK
 sed           ax5       ^a\}b               a}b       OK
@@ -1657,10 +1657,10 @@ sed           ax5       ^a{5}b              a{5}b     OK
 sed           ax5       ^a\{5\}b            a{5}b     FAIL a{5}b
 sed           ax5       ^a\\{5\\}b          a{5}b     FAIL a{5}b
 sed           ax5       ^a(b                a(b       OK
-sed           ax5       ^a\(b               a(b       FAIL sed: -e expression #1, char 10: Unmatched ( or \(
+sed           ax5       ^a\(b               a(b       FAIL sed: -e expression #1, char 11: Unmatched ( or \(
 sed           ax5       ^a\\(b              a(b       FAIL a(b
 sed           ax5       ^a)b                a)b       OK
-sed           ax5       ^a\)b               a)b       FAIL sed: -e expression #1, char 10: Unmatched ) or \)
+sed           ax5       ^a\)b               a)b       FAIL sed: -e expression #1, char 11: Unmatched ) or \)
 sed           ax5       ^a\\)b              a)b       FAIL a)b
 sed           ax5       ^(a|b)$             (a|b)     OK
 sed           ax5       ^\(a\|b\)$          (a|b)     FAIL (a|b)

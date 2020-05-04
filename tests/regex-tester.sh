@@ -432,6 +432,9 @@ test_program() {
     echo "$test_data" | grep -v '^#' | grep . | while read -r id regex string; do
         printf '%-14s%-10s%-20s%-10s' "$program" "$id" "$regex" "$string"
 
+        # Always perform full matches (avoids partial match gotchas)
+        regex="${regex%$}$"
+
         # Use a real tab character instead of the <tab> marker
         string="${string/<tab>/$tab}"
 
