@@ -1,6 +1,4 @@
 awk version: awk version 20121220
-awk           -         ^ab$                ab        OK
-awk           -         ^ab$                ab        OK
 awk           -         ^a.$                ab        OK
 awk           -         ^[a]b$              ab        OK
 awk           -         ^[^b]b$             ab        OK
@@ -72,15 +70,9 @@ awk           ax5       ^a\\?b$             a?b       FAIL a?b
 awk           ax5       ^a^b$               a^b       FAIL original-awk: syntax error in regular expression ^a^b$ at b$
 awk           ax5       ^a\^b$              a^b       OK
 awk           ax5       ^a\\^b$             a^b       FAIL original-awk: syntax error in regular expression ^a\\^b$ at b$
-awk           ax5       ^ab$                ^ab       FAIL ^ab
-awk           ax5       \^ab$               ^ab       OK
-awk           ax5       \\^ab$              ^ab       FAIL original-awk: syntax error in regular expression \\^ab$ at ab$
 awk           ax5       ^a$b$               a$b       FAIL a$b
 awk           ax5       ^a\$b$              a$b       OK
 awk           ax5       ^a\\$b$             a$b       FAIL a$b
-awk           ax5       ^ab$                ab$       FAIL ab$
-awk           ax5       ^ab\$$              ab$       OK
-awk           ax5       ^ab\\$$             ab$       FAIL ab$
 awk           ax6       ^a[\]_$             a\_       FAIL original-awk: nonterminated character class ^a[\]_$
 awk           ax6       ^a[\\]_$            a\_       OK
 awk           ax6       ^a[\\\\]_$          a\_       OK
@@ -88,8 +80,6 @@ awk           ax7       ^a[[:alpha:]]$      ab        OK
 awk           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 chicken version: CHICKEN 4.12.0
-chicken       -         ^ab$                ab        OK
-chicken       -         ^ab$                ab        OK
 chicken       -         ^a.$                ab        OK
 chicken       -         ^[a]b$              ab        OK
 chicken       -         ^[^b]b$             ab        OK
@@ -161,15 +151,9 @@ chicken       ax5       ^a\\?b$             a?b       OK
 chicken       ax5       ^a^b$               a^b       FAIL
 chicken       ax5       ^a\^b$              a^b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\^
 chicken       ax5       ^a\\^b$             a^b       OK
-chicken       ax5       ^ab$                ^ab       FAIL
-chicken       ax5       \^ab$               ^ab       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\^
-chicken       ax5       \\^ab$              ^ab       OK
 chicken       ax5       ^a$b$               a$b       FAIL
 chicken       ax5       ^a\$b$              a$b       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\$
 chicken       ax5       ^a\\$b$             a$b       OK
-chicken       ax5       ^ab$                ab$       FAIL
-chicken       ax5       ^ab\$$              ab$       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\$
-chicken       ax5       ^ab\\$$             ab$       OK
 chicken       ax6       ^a[\]_$             a\_       FAIL Warning: undefined escape sequence in string - probably forgot backslash: #\]
 chicken       ax6       ^a[\\]_$            a\_       FAIL Error: incomplete char set
 chicken       ax6       ^a[\\\\]_$          a\_       OK
@@ -177,8 +161,6 @@ chicken       ax7       ^a[[:alpha:]]$      ab        OK
 chicken       ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 ed version: GNU Ed 1.10
-ed            -         ^ab$                ab        OK
-ed            -         ^ab$                ab        OK
 ed            -         ^a.$                ab        OK
 ed            -         ^[a]b$              ab        OK
 ed            -         ^[^b]b$             ab        OK
@@ -250,15 +232,9 @@ ed            ax5       ^a\\?b$             a?b       FAIL ?
 ed            ax5       ^a^b$               a^b       OK
 ed            ax5       ^a\^b$              a^b       OK
 ed            ax5       ^a\\^b$             a^b       FAIL ?
-ed            ax5       ^ab$                ^ab       FAIL ?
-ed            ax5       \^ab$               ^ab       OK
-ed            ax5       \\^ab$              ^ab       FAIL ?
 ed            ax5       ^a$b$               a$b       OK
 ed            ax5       ^a\$b$              a$b       OK
 ed            ax5       ^a\\$b$             a$b       FAIL ?
-ed            ax5       ^ab$                ab$       FAIL ?
-ed            ax5       ^ab\$$              ab$       OK
-ed            ax5       ^ab\\$$             ab$       FAIL ?
 ed            ax6       ^a[\]_$             a\_       OK
 ed            ax6       ^a[\\]_$            a\_       OK
 ed            ax6       ^a[\\\\]_$          a\_       OK
@@ -266,8 +242,6 @@ ed            ax7       ^a[[:alpha:]]$      ab        OK
 ed            ax8       ^a[\t]b$            a<tab>b   FAIL ?
 ----------------------------------------------------------
 egrep version: grep (GNU grep) 3.1
-egrep         -         ^ab$                ab        OK
-egrep         -         ^ab$                ab        OK
 egrep         -         ^a.$                ab        OK
 egrep         -         ^[a]b$              ab        OK
 egrep         -         ^[^b]b$             ab        OK
@@ -339,15 +313,9 @@ egrep         ax5       ^a\\?b$             a?b       FAIL
 egrep         ax5       ^a^b$               a^b       FAIL
 egrep         ax5       ^a\^b$              a^b       OK
 egrep         ax5       ^a\\^b$             a^b       FAIL
-egrep         ax5       ^ab$                ^ab       FAIL
-egrep         ax5       \^ab$               ^ab       OK
-egrep         ax5       \\^ab$              ^ab       FAIL
 egrep         ax5       ^a$b$               a$b       FAIL
 egrep         ax5       ^a\$b$              a$b       OK
 egrep         ax5       ^a\\$b$             a$b       FAIL
-egrep         ax5       ^ab$                ab$       FAIL
-egrep         ax5       ^ab\$$              ab$       OK
-egrep         ax5       ^ab\\$$             ab$       FAIL
 egrep         ax6       ^a[\]_$             a\_       OK
 egrep         ax6       ^a[\\]_$            a\_       OK
 egrep         ax6       ^a[\\\\]_$          a\_       OK
@@ -355,8 +323,6 @@ egrep         ax7       ^a[[:alpha:]]$      ab        OK
 egrep         ax8       ^a[\t]b$            a<tab>b   FAIL
 ----------------------------------------------------------
 emacs version: GNU Emacs 25.2.2
-emacs         -         ^ab$                ab        OK
-emacs         -         ^ab$                ab        OK
 emacs         -         ^a.$                ab        OK
 emacs         -         ^[a]b$              ab        OK
 emacs         -         ^[^b]b$             ab        OK
@@ -428,15 +394,9 @@ emacs         ax5       ^a\\?b$             a?b       OK
 emacs         ax5       ^a^b$               a^b       OK
 emacs         ax5       ^a\^b$              a^b       FAIL a^b
 emacs         ax5       ^a\\^b$             a^b       OK
-emacs         ax5       ^ab$                ^ab       FAIL ^ab
-emacs         ax5       \^ab$               ^ab       FAIL ^ab
-emacs         ax5       \\^ab$              ^ab       OK
 emacs         ax5       ^a$b$               a$b       OK
 emacs         ax5       ^a\$b$              a$b       OK
 emacs         ax5       ^a\\$b$             a$b       OK
-emacs         ax5       ^ab$                ab$       FAIL ab$
-emacs         ax5       ^ab\$$              ab$       OK
-emacs         ax5       ^ab\\$$             ab$       OK
 emacs         ax6       ^a[\]_$             a\_       FAIL Invalid regexp: "Unmatched [ or [^"
 emacs         ax6       ^a[\\]_$            a\_       OK
 emacs         ax6       ^a[\\\\]_$          a\_       OK
@@ -444,8 +404,6 @@ emacs         ax7       ^a[[:alpha:]]$      ab        OK
 emacs         ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 expect version: expect version 5.45.4
-expect        -         ^ab$                ab        OK
-expect        -         ^ab$                ab        OK
 expect        -         ^a.$                ab        OK
 expect        -         ^[a]b$              ab        OK
 expect        -         ^[^b]b$             ab        OK
@@ -517,15 +475,9 @@ expect        ax5       ^a\\?b$             a?b       FAIL
 expect        ax5       ^a^b$               a^b       FAIL
 expect        ax5       ^a\^b$              a^b       OK
 expect        ax5       ^a\\^b$             a^b       FAIL
-expect        ax5       ^ab$                ^ab       FAIL
-expect        ax5       \^ab$               ^ab       OK
-expect        ax5       \\^ab$              ^ab       FAIL
 expect        ax5       ^a$b$               a$b       FAIL
 expect        ax5       ^a\$b$              a$b       OK
 expect        ax5       ^a\\$b$             a$b       FAIL
-expect        ax5       ^ab$                ab$       FAIL
-expect        ax5       ^ab\$$              ab$       OK
-expect        ax5       ^ab\\$$             ab$       FAIL
 expect        ax6       ^a[\]_$             a\_       FAIL couldn't compile regular expression pattern: brackets [] not balanced
 expect        ax6       ^a[\\]_$            a\_       OK
 expect        ax6       ^a[\\\\]_$          a\_       OK
@@ -533,8 +485,6 @@ expect        ax7       ^a[[:alpha:]]$      ab        OK
 expect        ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 find version: find (GNU findutils) 4.7.0-git
-find          -         ^ab$                ab        OK
-find          -         ^ab$                ab        OK
 find          -         ^a.$                ab        OK
 find          -         ^[a]b$              ab        OK
 find          -         ^[^b]b$             ab        OK
@@ -606,15 +556,9 @@ find          ax5       ^a\\?b$             a?b       FAIL
 find          ax5       ^a^b$               a^b       FAIL
 find          ax5       ^a\^b$              a^b       OK
 find          ax5       ^a\\^b$             a^b       FAIL
-find          ax5       ^ab$                ^ab       FAIL
-find          ax5       \^ab$               ^ab       OK
-find          ax5       \\^ab$              ^ab       FAIL
 find          ax5       ^a$b$               a$b       FAIL
 find          ax5       ^a\$b$              a$b       OK
 find          ax5       ^a\\$b$             a$b       FAIL
-find          ax5       ^ab$                ab$       FAIL
-find          ax5       ^ab\$$              ab$       OK
-find          ax5       ^ab\\$$             ab$       FAIL
 find          ax6       ^a[\]_$             a\_       OK
 find          ax6       ^a[\\]_$            a\_       OK
 find          ax6       ^a[\\\\]_$          a\_       OK
@@ -622,8 +566,6 @@ find          ax7       ^a[[:alpha:]]$      ab        OK
 find          ax8       ^a[\t]b$            a<tab>b   FAIL
 ----------------------------------------------------------
 gawk version: GNU Awk 4.1.4
-gawk          -         ^ab$                ab        OK
-gawk          -         ^ab$                ab        OK
 gawk          -         ^a.$                ab        OK
 gawk          -         ^[a]b$              ab        OK
 gawk          -         ^[^b]b$             ab        OK
@@ -695,15 +637,9 @@ gawk          ax5       ^a\\?b$             a?b       FAIL a?b
 gawk          ax5       ^a^b$               a^b       FAIL a^b
 gawk          ax5       ^a\^b$              a^b       OK
 gawk          ax5       ^a\\^b$             a^b       FAIL a^b
-gawk          ax5       ^ab$                ^ab       FAIL ^ab
-gawk          ax5       \^ab$               ^ab       OK
-gawk          ax5       \\^ab$              ^ab       FAIL ^ab
 gawk          ax5       ^a$b$               a$b       FAIL a$b
 gawk          ax5       ^a\$b$              a$b       OK
 gawk          ax5       ^a\\$b$             a$b       FAIL a$b
-gawk          ax5       ^ab$                ab$       FAIL ab$
-gawk          ax5       ^ab\$$              ab$       OK
-gawk          ax5       ^ab\\$$             ab$       FAIL ab$
 gawk          ax6       ^a[\]_$             a\_       FAIL gawk: cmd. line:1: { sub(/^a[\]_$/, "x") ; print }
 gawk          ax6       ^a[\\]_$            a\_       OK
 gawk          ax6       ^a[\\\\]_$          a\_       OK
@@ -711,8 +647,6 @@ gawk          ax7       ^a[[:alpha:]]$      ab        OK
 gawk          ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 grep version: grep (GNU grep) 3.1
-grep          -         ^ab$                ab        OK
-grep          -         ^ab$                ab        OK
 grep          -         ^a.$                ab        OK
 grep          -         ^[a]b$              ab        OK
 grep          -         ^[^b]b$             ab        OK
@@ -784,15 +718,9 @@ grep          ax5       ^a\\?b$             a?b       FAIL
 grep          ax5       ^a^b$               a^b       OK
 grep          ax5       ^a\^b$              a^b       OK
 grep          ax5       ^a\\^b$             a^b       FAIL
-grep          ax5       ^ab$                ^ab       FAIL
-grep          ax5       \^ab$               ^ab       OK
-grep          ax5       \\^ab$              ^ab       FAIL
 grep          ax5       ^a$b$               a$b       OK
 grep          ax5       ^a\$b$              a$b       OK
 grep          ax5       ^a\\$b$             a$b       FAIL
-grep          ax5       ^ab$                ab$       FAIL
-grep          ax5       ^ab\$$              ab$       OK
-grep          ax5       ^ab\\$$             ab$       FAIL
 grep          ax6       ^a[\]_$             a\_       OK
 grep          ax6       ^a[\\]_$            a\_       OK
 grep          ax6       ^a[\\\\]_$          a\_       OK
@@ -800,8 +728,6 @@ grep          ax7       ^a[[:alpha:]]$      ab        OK
 grep          ax8       ^a[\t]b$            a<tab>b   FAIL
 ----------------------------------------------------------
 javascript version: node v8.10.0
-javascript    -         ^ab$                ab        OK
-javascript    -         ^ab$                ab        OK
 javascript    -         ^a.$                ab        OK
 javascript    -         ^[a]b$              ab        OK
 javascript    -         ^[^b]b$             ab        OK
@@ -873,15 +799,9 @@ javascript    ax5       ^a\\?b$             a?b       FAIL a?b
 javascript    ax5       ^a^b$               a^b       FAIL a^b
 javascript    ax5       ^a\^b$              a^b       OK
 javascript    ax5       ^a\\^b$             a^b       FAIL a^b
-javascript    ax5       ^ab$                ^ab       FAIL ^ab
-javascript    ax5       \^ab$               ^ab       OK
-javascript    ax5       \\^ab$              ^ab       FAIL ^ab
 javascript    ax5       ^a$b$               a$b       FAIL a$b
 javascript    ax5       ^a\$b$              a$b       OK
 javascript    ax5       ^a\\$b$             a$b       FAIL a$b
-javascript    ax5       ^ab$                ab$       FAIL ab$
-javascript    ax5       ^ab\$$              ab$       OK
-javascript    ax5       ^ab\\$$             ab$       FAIL ab$
 javascript    ax6       ^a[\]_$             a\_       FAIL [eval]:1
 javascript    ax6       ^a[\\]_$            a\_       OK
 javascript    ax6       ^a[\\\\]_$          a\_       OK
@@ -889,8 +809,6 @@ javascript    ax7       ^a[[:alpha:]]$      ab        FAIL ab
 javascript    ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 lex version: flex 2.6.4
-lex           -         ^ab$                ab        OK
-lex           -         ^ab$                ab        OK
 lex           -         ^a.$                ab        OK
 lex           -         ^[a]b$              ab        OK
 lex           -         ^[^b]b$             ab        OK
@@ -962,15 +880,9 @@ lex           ax5       ^a\\?b$             a?b       FAIL
 lex           ax5       ^a^b$               a^b       OK
 lex           ax5       ^a\^b$              a^b       OK
 lex           ax5       ^a\\^b$             a^b       FAIL
-lex           ax5       ^ab$                ^ab       FAIL
-lex           ax5       \^ab$               ^ab       OK
-lex           ax5       \\^ab$              ^ab       FAIL
 lex           ax5       ^a$b$               a$b       OK
 lex           ax5       ^a\$b$              a$b       OK
 lex           ax5       ^a\\$b$             a$b       FAIL
-lex           ax5       ^ab$                ab$       FAIL
-lex           ax5       ^ab\$$              ab$       OK
-lex           ax5       ^ab\\$$             ab$       FAIL
 lex           ax6       ^a[\]_$             a\_       FAIL tmp.lex.1.l:6: bad character class
 lex           ax6       ^a[\\]_$            a\_       OK
 lex           ax6       ^a[\\\\]_$          a\_       OK
@@ -978,8 +890,6 @@ lex           ax7       ^a[[:alpha:]]$      ab        OK
 lex           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 mawk version: mawk 1.3.3 Nov 1996
-mawk          -         ^ab$                ab        OK
-mawk          -         ^ab$                ab        OK
 mawk          -         ^a.$                ab        OK
 mawk          -         ^[a]b$              ab        OK
 mawk          -         ^[^b]b$             ab        OK
@@ -1051,15 +961,9 @@ mawk          ax5       ^a\\?b$             a?b       FAIL a?b
 mawk          ax5       ^a^b$               a^b       FAIL a^b
 mawk          ax5       ^a\^b$              a^b       OK
 mawk          ax5       ^a\\^b$             a^b       FAIL a^b
-mawk          ax5       ^ab$                ^ab       FAIL ^ab
-mawk          ax5       \^ab$               ^ab       OK
-mawk          ax5       \\^ab$              ^ab       FAIL ^ab
 mawk          ax5       ^a$b$               a$b       FAIL a$b
 mawk          ax5       ^a\$b$              a$b       OK
 mawk          ax5       ^a\\$b$             a$b       FAIL a$b
-mawk          ax5       ^ab$                ab$       FAIL ab$
-mawk          ax5       ^ab\$$              ab$       OK
-mawk          ax5       ^ab\\$$             ab$       FAIL ab$
 mawk          ax6       ^a[\]_$             a\_       FAIL mawk: line 1: regular expression compile failed (bad class -- [], [^] or [)
 mawk          ax6       ^a[\\]_$            a\_       OK
 mawk          ax6       ^a[\\\\]_$          a\_       OK
@@ -1067,8 +971,6 @@ mawk          ax7       ^a[[:alpha:]]$      ab        FAIL ab
 mawk          ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 mysql version: mysql  Ver 14.14 Distrib 5.7.29
-mysql         -         ^ab$                ab        OK
-mysql         -         ^ab$                ab        OK
 mysql         -         ^a.$                ab        OK
 mysql         -         ^[a]b$              ab        OK
 mysql         -         ^[^b]b$             ab        OK
@@ -1140,15 +1042,9 @@ mysql         ax5       ^a\\?b$             a?b       OK
 mysql         ax5       ^a^b$               a^b       FAIL 0
 mysql         ax5       ^a\^b$              a^b       FAIL 0
 mysql         ax5       ^a\\^b$             a^b       OK
-mysql         ax5       ^ab$                ^ab       FAIL 0
-mysql         ax5       \^ab$               ^ab       FAIL 0
-mysql         ax5       \\^ab$              ^ab       OK
 mysql         ax5       ^a$b$               a$b       FAIL 0
 mysql         ax5       ^a\$b$              a$b       FAIL 0
 mysql         ax5       ^a\\$b$             a$b       OK
-mysql         ax5       ^ab$                ab$       FAIL 0
-mysql         ax5       ^ab\$$              ab$       FAIL 0
-mysql         ax5       ^ab\\$$             ab$       OK
 mysql         ax6       ^a[\]_$             a\_       FAIL ERROR 1139 (42000) at line 1: Got error 'brackets ([ ]) not balanced' from regexp
 mysql         ax6       ^a[\\]_$            a\_       OK
 mysql         ax6       ^a[\\\\]_$          a\_       OK
@@ -1156,8 +1052,6 @@ mysql         ax7       ^a[[:alpha:]]$      ab        OK
 mysql         ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 perl version: perl v5.26.1
-perl          -         ^ab$                ab        OK
-perl          -         ^ab$                ab        OK
 perl          -         ^a.$                ab        OK
 perl          -         ^[a]b$              ab        OK
 perl          -         ^[^b]b$             ab        OK
@@ -1229,15 +1123,9 @@ perl          ax5       ^a\\?b$             a?b       FAIL a?b
 perl          ax5       ^a^b$               a^b       FAIL a^b
 perl          ax5       ^a\^b$              a^b       OK
 perl          ax5       ^a\\^b$             a^b       FAIL a^b
-perl          ax5       ^ab$                ^ab       FAIL ^ab
-perl          ax5       \^ab$               ^ab       OK
-perl          ax5       \\^ab$              ^ab       FAIL ^ab
 perl          ax5       ^a$b$               a$b       FAIL a$b
 perl          ax5       ^a\$b$              a$b       OK
 perl          ax5       ^a\\$b$             a$b       FAIL a$b
-perl          ax5       ^ab$                ab$       FAIL ab$
-perl          ax5       ^ab\$$              ab$       OK
-perl          ax5       ^ab\\$$             ab$       FAIL ab$
 perl          ax6       ^a[\]_$             a\_       FAIL Unmatched [ in regex; marked by <-- HERE in m/^a[ <-- HERE \]_$/ at -e line 1.
 perl          ax6       ^a[\\]_$            a\_       OK
 perl          ax6       ^a[\\\\]_$          a\_       OK
@@ -1245,8 +1133,6 @@ perl          ax7       ^a[[:alpha:]]$      ab        OK
 perl          ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 php version: PHP 7.2.24-0ubuntu0.18.04.4
-php           -         ^ab$                ab        OK
-php           -         ^ab$                ab        OK
 php           -         ^a.$                ab        OK
 php           -         ^[a]b$              ab        OK
 php           -         ^[^b]b$             ab        OK
@@ -1318,15 +1204,9 @@ php           ax5       ^a\\?b$             a?b       OK
 php           ax5       ^a^b$               a^b       FAIL a^b
 php           ax5       ^a\^b$              a^b       OK
 php           ax5       ^a\\^b$             a^b       OK
-php           ax5       ^ab$                ^ab       FAIL ^ab
-php           ax5       \^ab$               ^ab       OK
-php           ax5       \\^ab$              ^ab       OK
 php           ax5       ^a$b$               a$b       FAIL a$b
 php           ax5       ^a\$b$              a$b       OK
 php           ax5       ^a\\$b$             a$b       OK
-php           ax5       ^ab$                ab$       FAIL ab$
-php           ax5       ^ab\$$              ab$       OK
-php           ax5       ^ab\\$$             ab$       OK
 php           ax6       ^a[\]_$             a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 7 in Standard input code on line 1
 php           ax6       ^a[\\]_$            a\_       FAIL PHP Warning:  preg_replace(): Compilation failed: missing terminating ] for character class at offset 7 in Standard input code on line 1
 php           ax6       ^a[\\\\]_$          a\_       OK
@@ -1334,8 +1214,6 @@ php           ax7       ^a[[:alpha:]]$      ab        OK
 php           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 postgres version: psql (PostgreSQL) 10.12
-postgres      -         ^ab$                ab        OK
-postgres      -         ^ab$                ab        OK
 postgres      -         ^a.$                ab        OK
 postgres      -         ^[a]b$              ab        OK
 postgres      -         ^[^b]b$             ab        OK
@@ -1407,15 +1285,9 @@ postgres      ax5       ^a\\?b$             a?b       FAIL a?b
 postgres      ax5       ^a^b$               a^b       FAIL a^b
 postgres      ax5       ^a\^b$              a^b       OK
 postgres      ax5       ^a\\^b$             a^b       FAIL a^b
-postgres      ax5       ^ab$                ^ab       FAIL ^ab
-postgres      ax5       \^ab$               ^ab       OK
-postgres      ax5       \\^ab$              ^ab       FAIL ^ab
 postgres      ax5       ^a$b$               a$b       FAIL a$b
 postgres      ax5       ^a\$b$              a$b       OK
 postgres      ax5       ^a\\$b$             a$b       FAIL a$b
-postgres      ax5       ^ab$                ab$       FAIL ab$
-postgres      ax5       ^ab\$$              ab$       OK
-postgres      ax5       ^ab\\$$             ab$       FAIL ab$
 postgres      ax6       ^a[\]_$             a\_       FAIL ERROR:  invalid regular expression: brackets [] not balanced
 postgres      ax6       ^a[\\]_$            a\_       OK
 postgres      ax6       ^a[\\\\]_$          a\_       OK
@@ -1423,8 +1295,6 @@ postgres      ax7       ^a[[:alpha:]]$      ab        OK
 postgres      ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 procmail version: procmail v3.23pre 2001/09/13
-procmail      -         ^ab$                ab        OK
-procmail      -         ^ab$                ab        OK
 procmail      -         ^a.$                ab        OK
 procmail      -         ^[a]b$              ab        OK
 procmail      -         ^[^b]b$             ab        OK
@@ -1496,15 +1366,9 @@ procmail      ax5       ^a\\?b$             a?b       FAIL No match on "^a\\?b$"
 procmail      ax5       ^a^b$               a^b       FAIL No match on "^a^b$"
 procmail      ax5       ^a\^b$              a^b       OK
 procmail      ax5       ^a\\^b$             a^b       FAIL No match on "^a\\^b$"
-procmail      ax5       ^ab$                ^ab       FAIL No match on "^ab$"
-procmail      ax5       \^ab$               ^ab       FAIL No match on "\^ab$"
-procmail      ax5       \\^ab$              ^ab       OK
 procmail      ax5       ^a$b$               a$b       FAIL No match on "^a$b$"
 procmail      ax5       ^a\$b$              a$b       OK
 procmail      ax5       ^a\\$b$             a$b       FAIL No match on "^a\\$b$"
-procmail      ax5       ^ab$                ab$       FAIL No match on "^ab$"
-procmail      ax5       ^ab\$$              ab$       OK
-procmail      ax5       ^ab\\$$             ab$       FAIL No match on "^ab\\$$"
 procmail      ax6       ^a[\]_$             a\_       OK
 procmail      ax6       ^a[\\]_$            a\_       OK
 procmail      ax6       ^a[\\\\]_$          a\_       OK
@@ -1512,8 +1376,6 @@ procmail      ax7       ^a[[:alpha:]]$      ab        FAIL No match on "^a[[:alp
 procmail      ax8       ^a[\t]b$            a<tab>b   FAIL No match on "^a[\t]b$"
 ----------------------------------------------------------
 python version: Python 3.6.9
-python        -         ^ab$                ab        OK
-python        -         ^ab$                ab        OK
 python        -         ^a.$                ab        OK
 python        -         ^[a]b$              ab        OK
 python        -         ^[^b]b$             ab        OK
@@ -1585,15 +1447,9 @@ python        ax5       ^a\\?b$             a?b       FAIL a?b
 python        ax5       ^a^b$               a^b       FAIL a^b
 python        ax5       ^a\^b$              a^b       OK
 python        ax5       ^a\\^b$             a^b       FAIL a^b
-python        ax5       ^ab$                ^ab       FAIL ^ab
-python        ax5       \^ab$               ^ab       OK
-python        ax5       \\^ab$              ^ab       FAIL ^ab
 python        ax5       ^a$b$               a$b       FAIL a$b
 python        ax5       ^a\$b$              a$b       OK
 python        ax5       ^a\\$b$             a$b       FAIL a$b
-python        ax5       ^ab$                ab$       FAIL ab$
-python        ax5       ^ab\$$              ab$       OK
-python        ax5       ^ab\\$$             ab$       FAIL ab$
 python        ax6       ^a[\]_$             a\_       FAIL unterminated character set at position 2
 python        ax6       ^a[\\]_$            a\_       OK
 python        ax6       ^a[\\\\]_$          a\_       OK
@@ -1601,8 +1457,6 @@ python        ax7       ^a[[:alpha:]]$      ab        FAIL ab
 python        ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 sed version: sed (GNU sed) 4.4
-sed           -         ^ab$                ab        OK
-sed           -         ^ab$                ab        OK
 sed           -         ^a.$                ab        OK
 sed           -         ^[a]b$              ab        OK
 sed           -         ^[^b]b$             ab        OK
@@ -1674,15 +1528,9 @@ sed           ax5       ^a\\?b$             a?b       FAIL a?b
 sed           ax5       ^a^b$               a^b       OK
 sed           ax5       ^a\^b$              a^b       OK
 sed           ax5       ^a\\^b$             a^b       FAIL a^b
-sed           ax5       ^ab$                ^ab       FAIL ^ab
-sed           ax5       \^ab$               ^ab       OK
-sed           ax5       \\^ab$              ^ab       FAIL ^ab
 sed           ax5       ^a$b$               a$b       OK
 sed           ax5       ^a\$b$              a$b       OK
 sed           ax5       ^a\\$b$             a$b       FAIL a$b
-sed           ax5       ^ab$                ab$       FAIL ab$
-sed           ax5       ^ab\$$              ab$       OK
-sed           ax5       ^ab\\$$             ab$       FAIL ab$
 sed           ax6       ^a[\]_$             a\_       OK
 sed           ax6       ^a[\\]_$            a\_       OK
 sed           ax6       ^a[\\\\]_$          a\_       OK
@@ -1690,8 +1538,6 @@ sed           ax7       ^a[[:alpha:]]$      ab        OK
 sed           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 tcl version: tcl 8.6
-tcl           -         ^ab$                ab        OK
-tcl           -         ^ab$                ab        OK
 tcl           -         ^a.$                ab        OK
 tcl           -         ^[a]b$              ab        OK
 tcl           -         ^[^b]b$             ab        OK
@@ -1763,15 +1609,9 @@ tcl           ax5       ^a\\?b$             a?b       FAIL a?b
 tcl           ax5       ^a^b$               a^b       FAIL a^b
 tcl           ax5       ^a\^b$              a^b       OK
 tcl           ax5       ^a\\^b$             a^b       FAIL a^b
-tcl           ax5       ^ab$                ^ab       FAIL ^ab
-tcl           ax5       \^ab$               ^ab       OK
-tcl           ax5       \\^ab$              ^ab       FAIL ^ab
 tcl           ax5       ^a$b$               a$b       FAIL can't read "b": no such variable
 tcl           ax5       ^a\$b$              a$b       FAIL can't read "b": no such variable
 tcl           ax5       ^a\\$b$             a$b       FAIL can't read "b": no such variable
-tcl           ax5       ^ab$                ab$       FAIL ab$
-tcl           ax5       ^ab\$$              ab$       OK
-tcl           ax5       ^ab\\$$             ab$       FAIL ab$
 tcl           ax6       ^a[\]_$             a\_       FAIL couldn't compile regular expression pattern: brackets [] not balanced
 tcl           ax6       ^a[\\]_$            a\_       OK
 tcl           ax6       ^a[\\\\]_$          a\_       OK
@@ -1779,8 +1619,6 @@ tcl           ax7       ^a[[:alpha:]]$      ab        OK
 tcl           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 vim version: VIM - Vi IMproved 8.0 (2016 Sep 12)
-vim           -         ^ab$                ab        OK
-vim           -         ^ab$                ab        OK
 vim           -         ^a.$                ab        OK
 vim           -         ^[a]b$              ab        OK
 vim           -         ^[^b]b$             ab        OK
@@ -1852,15 +1690,9 @@ vim           ax5       ^a\\?b$             a?b       FAIL a?b
 vim           ax5       ^a^b$               a^b       OK
 vim           ax5       ^a\^b$              a^b       OK
 vim           ax5       ^a\\^b$             a^b       FAIL a^b
-vim           ax5       ^ab$                ^ab       FAIL ^ab
-vim           ax5       \^ab$               ^ab       OK
-vim           ax5       \\^ab$              ^ab       FAIL ^ab
 vim           ax5       ^a$b$               a$b       OK
 vim           ax5       ^a\$b$              a$b       OK
 vim           ax5       ^a\\$b$             a$b       FAIL a$b
-vim           ax5       ^ab$                ab$       FAIL ab$
-vim           ax5       ^ab\$$              ab$       OK
-vim           ax5       ^ab\\$$             ab$       FAIL ab$
 vim           ax6       ^a[\]_$             a\_       FAIL a\_
 vim           ax6       ^a[\\]_$            a\_       OK
 vim           ax6       ^a[\\\\]_$          a\_       OK
@@ -1868,8 +1700,6 @@ vim           ax7       ^a[[:alpha:]]$      ab        OK
 vim           ax8       ^a[\t]b$            a<tab>b   OK
 ----------------------------------------------------------
 vi version: nvi 1.81.6-13
-vi            -         ^ab$                ab        OK
-vi            -         ^ab$                ab        OK
 vi            -         ^a.$                ab        OK
 vi            -         ^[a]b$              ab        OK
 vi            -         ^[^b]b$             ab        OK
@@ -1941,15 +1771,9 @@ vi            ax5       ^a\\?b$             a?b       FAIL script, 2: No match f
 vi            ax5       ^a^b$               a^b       OK
 vi            ax5       ^a\^b$              a^b       OK
 vi            ax5       ^a\\^b$             a^b       FAIL script, 2: No match found
-vi            ax5       ^ab$                ^ab       FAIL script, 2: No match found
-vi            ax5       \^ab$               ^ab       OK
-vi            ax5       \\^ab$              ^ab       FAIL script, 2: No match found
 vi            ax5       ^a$b$               a$b       OK
 vi            ax5       ^a\$b$              a$b       OK
 vi            ax5       ^a\\$b$             a$b       FAIL script, 2: No match found
-vi            ax5       ^ab$                ab$       FAIL script, 2: No match found
-vi            ax5       ^ab\$$              ab$       OK
-vi            ax5       ^ab\\$$             ab$       FAIL script, 2: No match found
 vi            ax6       ^a[\]_$             a\_       OK
 vi            ax6       ^a[\\]_$            a\_       OK
 vi            ax6       ^a[\\\\]_$          a\_       OK
