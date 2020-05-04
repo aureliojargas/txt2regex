@@ -62,9 +62,7 @@ vim             replace
 # shellcheck disable=SC2016
 # txt2regex-id, regex, matches
 test_data='
-# Tests for metacharacters: ^ $ . [] ? * + {}
--           ^ab$              ab
--           ^ab$              ab
+# Tests for metacharacters: . [] ? * + {}
 -           ^a.$              ab
 -           ^[a]b$            ab
 -           ^[^b]b$           ab
@@ -142,19 +140,13 @@ ax5         ^a\\+b$           a+b
 ax5         ^a?b$             a?b
 ax5         ^a\?b$            a?b
 ax5         ^a\\?b$           a?b
-# Test ^ and $ being in the middle and at first/last position
+# Test ^ and $ being in the middle
 ax5         ^a^b$             a^b
 ax5         ^a\^b$            a^b
 ax5         ^a\\^b$           a^b
-ax5         ^ab$              ^ab
-ax5         \^ab$             ^ab
-ax5         \\^ab$            ^ab
 ax5         ^a$b$             a$b
 ax5         ^a\$b$            a$b
 ax5         ^a\\$b$           a$b
-ax5         ^ab$              ab$
-ax5         ^ab\$$            ab$
-ax5         ^ab\\$$           ab$
 
 # Test for ax_*[6] values: must escape \ inside [] to match it literally?
 # Avoid \b since it is special in most tools, use \_ instead
