@@ -81,7 +81,6 @@ $ txt2regex --all --history '241¤\'
  Regex python    : [\\]
  Regex sed       : [\]
  Regex tcl       : [\\]
- Regex vbscript  : [\\]
  Regex vi        : [\]
  Regex vim       : [\\]
 
@@ -117,7 +116,6 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex python    : \.\*\+\?\[]\{}\(\)\|\^\$\\
  Regex sed       : \.\*+?\[]{}()|^$\\
  Regex tcl       : \.\*\+\?\[]\{\}\(\)\|\^\$\\
- Regex vbscript  : \.\*\+\?\[]\{}\()\|^$\\
  Regex vi        : \.\*+?\[]{}()|^$\\
  Regex vim       : \.\*+?\[]{}()|^$\\
 
@@ -182,7 +180,6 @@ $ txt2regex --all --history '27¤:0'
  Regex python    : !!
  Regex sed       : [[:alpha:]]
  Regex tcl       : !!
- Regex vbscript  : [[:alpha:]]
  Regex vi        : [[:alpha:]]
  Regex vim       : [[:alpha:]]
 
@@ -218,7 +215,6 @@ $ txt2regex --all --history '26¤:5'
  Regex python    : [\t]
  Regex sed       : [\t]
  Regex tcl       : [\t]
- Regex vbscript  : [\t]
  Regex vi        : [<TAB>]
  Regex vim       : [\t]
 
