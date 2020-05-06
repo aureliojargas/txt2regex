@@ -100,7 +100,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex egrep     : \.\*\+\?\[]\{}\()\|\^\$\\
  Regex emacs     : \\.\\*\\+\\?\\[]{}()|^$\\\
  Regex expect    : \.\*\+\?\[]\{\}\(\)\|\^\$\\
- Regex find      : \.\*\+\?\[]{}()|^$\\
+ Regex find      : \.\*\+\?\[]\{}\()\|\^\$\\
  Regex gawk      : \.\*\+\?\[]{}\()\|\^\$\\
  Regex grep      : \.\*+?\[]{}()|^$\\
  Regex javascript: \.\*\+\?\[]\{}\()\|\^\$\\
@@ -163,7 +163,7 @@ $ txt2regex --all --history '27¤:0'
  Regex egrep     : [[:alpha:]]
  Regex emacs     : [[:alpha:]]
  Regex expect    : [[:alpha:]]
- Regex find      : !!
+ Regex find      : [[:alpha:]]
  Regex gawk      : [[:alpha:]]
  Regex grep      : [[:alpha:]]
  Regex javascript: !!
