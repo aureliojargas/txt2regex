@@ -81,7 +81,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
   procmail      +      ?             |      ()    procmail v3.23pre 2001/09/13
     python      +      ?     {}      |      ()    Python 3.6.9
        sed     \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
-       tcl      +      ?             |      ()    8.3
+       tcl      +      ?     {}      |      ()    tcl 8.6
         vi                 \{\}           \(\)    Nvi 1.79 (10/23/96)
        vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 5.8 (2001 May 31)
 
@@ -168,7 +168,7 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex procmail  : ^a+b!!.*
  Regex python    : ^a+b{5}.*
  Regex sed       : ^a\+b\{5\}.*
- Regex tcl       : ^a+b!!.*
+ Regex tcl       : ^a+b{5}.*
  Regex vi        : ^a\{1,\}b\{5\}.*
  Regex vim       : ^a\+b\{5}.*
 
@@ -286,7 +286,7 @@ $ txt2regex --make number2 --all
  Regex procmail  : [+-]?[0-9]+(\.[0-9]!!)?
  Regex python    : [+-]?[0-9]+(\.[0-9]{2})?
  Regex sed       : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
- Regex tcl       : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex tcl       : [+-]?[0-9]+(\.[0-9]{2})?
  Regex vi        : [+-]\{0,1\}[0-9]\{1,\}\(\.[0-9]\{2\}\)\{0,1\}
  Regex vim       : [+-]\=[0-9]\+\(\.[0-9]\{2}\)\=
 
