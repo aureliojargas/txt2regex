@@ -75,7 +75,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
        lex      +      ?     {}      |      ()    flex 2.6.4
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
-      perl      +      ?     {}      |      ()    v5.6.0 built for i386-linux
+      perl      +      ?     {}      |      ()    perl v5.26.1
        php      +      ?     {}      |      ()    4.0.6
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 7.1.2
   procmail      +      ?             |      ()    procmail v3.15.1 2001/01/08
