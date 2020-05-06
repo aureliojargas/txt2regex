@@ -76,7 +76,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
       perl      +      ?     {}      |      ()    perl v5.26.1
-       php      +      ?     {}      |      ()    4.0.6
+       php      +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 7.1.2
   procmail      +      ?             |      ()    procmail v3.15.1 2001/01/08
     python      +      ?     {}      |      ()    Python 2.1
@@ -281,7 +281,7 @@ $ txt2regex --make number2 --all
  Regex mawk      : [+-]?[0-9]+(\.[0-9]!!)?
  Regex mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex perl      : [+-]?[0-9]+(\.[0-9]{2})?
- Regex php       : [+-]?[0-9]+(\.[0-9]{2})?
+ Regex php       : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex postgres  : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex procmail  : [+-]?[0-9]+(\.[0-9]!!)?
  Regex python    : [+-]?[0-9]+(\.[0-9]{2})?
