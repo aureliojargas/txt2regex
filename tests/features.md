@@ -176,7 +176,7 @@ $ txt2regex --all --history '27¤:0'
  Regex procmail  : !!
  Regex python    : !!
  Regex sed       : [[:alpha:]]
- Regex tcl       : !!
+ Regex tcl       : [[:alpha:]]
  Regex vi        : [[:alpha:]]
  Regex vim       : [[:alpha:]]
 
