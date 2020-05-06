@@ -80,7 +80,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 10.12
   procmail      +      ?             |      ()    procmail v3.23pre 2001/09/13
     python      +      ?     {}      |      ()    Python 3.6.9
-       sed     \+     \?   \{\}     \|    \(\)    GNU sed version 3.02.80
+       sed     \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
        tcl      +      ?             |      ()    8.3
         vi                 \{\}           \(\)    Nvi 1.79 (10/23/96)
        vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 5.8 (2001 May 31)
@@ -97,7 +97,7 @@ Shows additional regex-related information about a specific program.
 ```console
 $ txt2regex --showinfo sed --nocolor
 
-   program : sed: GNU sed version 3.02.80
+   program : sed: sed (GNU sed) 4.4
      metas : . [] [^] * \+ \? \{\} \| \(\)
   esc meta : \
   need esc : \.*[
