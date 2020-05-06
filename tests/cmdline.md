@@ -71,7 +71,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
       find      +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
       gawk      +      ?     {}      |      ()    GNU Awk 4.1.4
       grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
-javascript      +      ?     {}      |      ()    netscape-4.77
+javascript      +      ?     {}      |      ()    node v8.10.0
        lex      +      ?     {}      |      ()
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
