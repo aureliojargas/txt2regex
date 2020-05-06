@@ -2,6 +2,7 @@ txt2regex changelog
 -------------------
 
 v0.9 beta (unreleased):
+  - Added CHICKEN Scheme regexes
   - Removed support for Lisp, OpenOffice.org, VBScript
   - Fixed to work properly in bash5 (tks Yanmarshus Bachtiar)
   - Fixed eval bug when running in bash3 or newer (tks Marcus Habermehl)

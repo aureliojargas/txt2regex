@@ -61,6 +61,7 @@ In some programs, it's required to escape the '\' character when using it inside
 ```console
 $ txt2regex --all --history '241¤\'
  Regex awk       : [\\]
+ Regex chicken   : [\\\\]
  Regex ed        : [\]
  Regex egrep     : [\]
  Regex emacs     : [\]
@@ -94,6 +95,7 @@ Every metacharacter should be escaped so it will match as a literal character.
 ```console
 $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex awk       : \.\*\+\?\[]{}\()\|^$\\
+ Regex chicken   : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\
  Regex ed        : \.\*+?\[]{}()|^$\\
  Regex egrep     : \.\*\+\?\[]\{}\(\)\|\^\$\\
  Regex emacs     : \.\*\+\?\[]{}()|^$\\
@@ -156,6 +158,7 @@ If the program does not support POSIX character classes, a `!!` string is shown 
 ```console
 $ txt2regex --all --history '27¤:0'
  Regex awk       : !!
+ Regex chicken   : [[:alpha:]]
  Regex ed        : [[:alpha:]]
  Regex egrep     : [[:alpha:]]
  Regex emacs     : !!
@@ -189,6 +192,7 @@ This is a reminder for the user that this string must be replaced by a literal t
 ```console
 $ txt2regex --all --history '26¤:5'
  Regex awk       : [\t]
+ Regex chicken   : [\t]
  Regex ed        : [<TAB>]
  Regex egrep     : [<TAB>]
  Regex emacs     : [<TAB>]
