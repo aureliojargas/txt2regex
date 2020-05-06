@@ -74,7 +74,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
 javascript      +      ?     {}      |      ()    node v8.10.0
        lex      +      ?     {}      |      ()    flex 2.6.4
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
-     mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
+     mysql      +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
       perl      +      ?     {}      |      ()    v5.6.0 built for i386-linux
        php      +      ?     {}      |      ()    4.0.6
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 7.1.2
