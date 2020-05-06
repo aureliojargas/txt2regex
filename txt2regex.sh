@@ -205,7 +205,7 @@ allversions=(
     'node v8.10.0'
     'flex 2.6.4'
     'mawk 1.3.3 Nov 1996'
-    'Ver 11.13 Distrib 3.23.36'  # mysql
+    'mysql  Ver 14.14 Distrib 5.7.29'
     'v5.6.0 built for i386-linux'  # perl
     '4.0.6'  # php
     'psql (PostgreSQL) 7.1.2'
