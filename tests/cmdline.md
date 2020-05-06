@@ -67,7 +67,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
         ed     \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
      egrep      +      ?     {}      |      ()    grep (GNU grep) 3.1
      emacs      +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
-    expect      +      ?             |      ()
+    expect      +      ?     {}      |      ()    expect version 5.45.4
       find      +      ?            \|    \(\)    GNU find version 4.1
       gawk      +      ?     {}      |      ()    GNU Awk 3.0.6
       grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 2.4.2
@@ -154,7 +154,7 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex ed        : ^a\+b\{5\}.*
  Regex egrep     : ^a+b{5}.*
  Regex emacs     : ^a+b\\{5\\}.*
- Regex expect    : ^a+b!!.*
+ Regex expect    : ^a+b{5}.*
  Regex find      : ^a+b!!.*
  Regex gawk      : ^a+b{5}.*
  Regex grep      : ^a\+b\{5\}.*
@@ -272,7 +272,7 @@ $ txt2regex --make number2 --all
  Regex ed        : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
  Regex egrep     : [+-]?[0-9]+(\.[0-9]{2})?
  Regex emacs     : [+-]?[0-9]+\\(\\.[0-9]\\{2\\}\\)?
- Regex expect    : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex expect    : [+-]?[0-9]+(\.[0-9]{2})?
  Regex find      : [+-]?[0-9]+\(\.[0-9]!!\)?
  Regex gawk      : [+-]?[0-9]+(\.[0-9]{2})?
  Regex grep      : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?

@@ -65,7 +65,7 @@ $ txt2regex --all --history '241¤\'
  Regex ed        : [\]
  Regex egrep     : [\]
  Regex emacs     : [\\\\]
- Regex expect    : [\]
+ Regex expect    : [\\]
  Regex find      : [\]
  Regex gawk      : [\\]
  Regex grep      : [\]
@@ -99,7 +99,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex ed        : \.\*+?\[]{}()|^$\\
  Regex egrep     : \.\*\+\?\[]\{}\()\|\^\$\\
  Regex emacs     : \\.\\*\\+\\?\\[]{}()|^$\\\
- Regex expect    : \.\*\+\?\[]{}\()\|^$\\
+ Regex expect    : \.\*\+\?\[]\{\}\(\)\|\^\$\\
  Regex find      : \.\*\+\?\[]{}()|^$\\
  Regex gawk      : \.\*\+\?\[]{}\()\|\^\$\\
  Regex grep      : \.\*+?\[]{}()|^$\\
@@ -196,7 +196,7 @@ $ txt2regex --all --history '26¤:5'
  Regex ed        : [<TAB>]
  Regex egrep     : [<TAB>]
  Regex emacs     : [\t]
- Regex expect    : [<TAB>]
+ Regex expect    : [\t]
  Regex find      : [<TAB>]
  Regex gawk      : [\t]
  Regex grep      : [<TAB>]
