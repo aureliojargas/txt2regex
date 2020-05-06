@@ -72,7 +72,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
       gawk      +      ?     {}      |      ()    GNU Awk 4.1.4
       grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
 javascript      +      ?     {}      |      ()    node v8.10.0
-       lex      +      ?     {}      |      ()
+       lex      +      ?     {}      |      ()    flex 2.6.4
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
      mysql      +      ?     {}      |      ()    Ver 11.13 Distrib 3.23.36
       perl      +      ?     {}      |      ()    v5.6.0 built for i386-linux
