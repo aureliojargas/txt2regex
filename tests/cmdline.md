@@ -69,7 +69,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
      emacs      +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
     expect      +      ?     {}      |      ()    expect version 5.45.4
       find      +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
-      gawk      +      ?     {}      |      ()    GNU Awk 3.0.6
+      gawk      +      ?     {}      |      ()    GNU Awk 4.1.4
       grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 2.4.2
 javascript      +      ?     {}      |      ()    netscape-4.77
        lex      +      ?     {}      |      ()
