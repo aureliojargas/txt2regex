@@ -70,7 +70,7 @@ $ txt2regex --all --history '241¤\'
  Regex gawk      : [\\]
  Regex grep      : [\]
  Regex javascript: [\\]
- Regex lex       : [\]
+ Regex lex       : [\\]
  Regex mawk      : [\\]
  Regex mysql     : [\\\\]
  Regex perl      : [\\]
@@ -104,7 +104,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex gawk      : \.\*\+\?\[]{}\()\|\^\$\\
  Regex grep      : \.\*+?\[]{}()|^$\\
  Regex javascript: \.\*\+\?\[]{}\(\)\|\^\$\\
- Regex lex       : \.\*\+\?\[]\{}\()\|^$\\
+ Regex lex       : \.\*\+\?\[]\{\}\(\)\|^$\\
  Regex mawk      : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
  Regex perl      : \.\*\+\?\[]{}\(\)\|\^\$\\
@@ -201,7 +201,7 @@ $ txt2regex --all --history '26¤:5'
  Regex gawk      : [\t]
  Regex grep      : [<TAB>]
  Regex javascript: [\t]
- Regex lex       : [<TAB>]
+ Regex lex       : [\t]
  Regex mawk      : [\t]
  Regex mysql     : [\t]
  Regex perl      : [\t]
