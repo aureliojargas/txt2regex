@@ -193,7 +193,7 @@ allprogs=(
 # To generate this array:
 # grep version: tests/regex-tester.txt | sort | sed "s/.* version: //;s/.*/'&'/"
 allversions=(
-    ''  # awk
+    'awk version 20121220'
     'CHICKEN 4.12.0'
     'GNU ed version 0.2'
     'egrep (GNU grep) 2.4.2'
@@ -552,7 +552,7 @@ S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
 #   grep -E   ' ax8 '      tests/regex-tester.txt  # 8
 #
 # Legend: ,=tested  space=pending         \.*[]{}()|+?^$
-ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[   (,|+?  ' '\' ',' '\t')
+ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
 ax_chicken=(   ''   '|'   '(' ')'   '\\' '\.*[,,,()|+?^$' '\' 'P' '\t')
 ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
 ax_egrep=(     ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' ',' 'P' ',' )
