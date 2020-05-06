@@ -200,7 +200,7 @@ allversions=(
     'GNU Emacs 25.2.2'
     'expect version 5.45.4'
     'find (GNU findutils) 4.7.0-git'
-    'GNU Awk 3.0.6'
+    'GNU Awk 4.1.4'
     'grep (GNU grep) 2.4.2'
     'netscape-4.77'  #javascript
     ''  # lex
