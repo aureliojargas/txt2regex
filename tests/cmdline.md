@@ -79,7 +79,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
        php      +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 10.12
   procmail      +      ?             |      ()    procmail v3.23pre 2001/09/13
-    python      +      ?     {}      |      ()    Python 2.1
+    python      +      ?     {}      |      ()    Python 3.6.9
        sed     \+     \?   \{\}     \|    \(\)    GNU sed version 3.02.80
        tcl      +      ?             |      ()    8.3
         vi                 \{\}           \(\)    Nvi 1.79 (10/23/96)
