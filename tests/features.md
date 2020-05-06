@@ -94,7 +94,7 @@ Every metacharacter should be escaped so it will match as a literal character.
 
 ```console
 $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
- Regex awk       : \.\*\+\?\[]{}\()\|^$\\
+ Regex awk       : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex chicken   : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\
  Regex ed        : \.\*+?\[]{}()|^$\\
  Regex egrep     : \.\*\+\?\[]\{}\(\)\|\^\$\\
@@ -157,7 +157,7 @@ If the program does not support POSIX character classes, a `!!` string is shown 
 
 ```console
 $ txt2regex --all --history '27¤:0'
- Regex awk       : !!
+ Regex awk       : [[:alpha:]]
  Regex chicken   : [[:alpha:]]
  Regex ed        : [[:alpha:]]
  Regex egrep     : [[:alpha:]]
