@@ -64,7 +64,7 @@ $ txt2regex --all --history '241¤\'
  Regex chicken   : [\\\\]
  Regex ed        : [\]
  Regex egrep     : [\]
- Regex emacs     : [\]
+ Regex emacs     : [\\\\]
  Regex expect    : [\]
  Regex find      : [\]
  Regex gawk      : [\\]
@@ -98,7 +98,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex chicken   : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\
  Regex ed        : \.\*+?\[]{}()|^$\\
  Regex egrep     : \.\*\+\?\[]\{}\()\|\^\$\\
- Regex emacs     : \.\*\+\?\[]{}()|^$\\
+ Regex emacs     : \\.\\*\\+\\?\\[]{}()|^$\\\
  Regex expect    : \.\*\+\?\[]{}\()\|^$\\
  Regex find      : \.\*\+\?\[]{}()|^$\\
  Regex gawk      : \.\*\+\?\[]{}\()\|\^\$\\
@@ -161,7 +161,7 @@ $ txt2regex --all --history '27¤:0'
  Regex chicken   : [[:alpha:]]
  Regex ed        : [[:alpha:]]
  Regex egrep     : [[:alpha:]]
- Regex emacs     : !!
+ Regex emacs     : [[:alpha:]]
  Regex expect    : [[:alpha:]]
  Regex find      : !!
  Regex gawk      : [[:alpha:]]
@@ -195,7 +195,7 @@ $ txt2regex --all --history '26¤:5'
  Regex chicken   : [\t]
  Regex ed        : [<TAB>]
  Regex egrep     : [<TAB>]
- Regex emacs     : [<TAB>]
+ Regex emacs     : [\t]
  Regex expect    : [<TAB>]
  Regex find      : [<TAB>]
  Regex gawk      : [\t]
