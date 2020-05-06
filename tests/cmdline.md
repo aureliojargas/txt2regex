@@ -66,7 +66,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
    chicken      +      ?     {}      |      ()    CHICKEN 4.12.0
         ed     \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
      egrep      +      ?     {}      |      ()    grep (GNU grep) 3.1
-     emacs      +      ?            \|    \(\)
+     emacs      +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
     expect      +      ?             |      ()
       find      +      ?            \|    \(\)    GNU find version 4.1
       gawk      +      ?     {}      |      ()    GNU Awk 3.0.6
@@ -153,7 +153,7 @@ $ txt2regex --history '124259¤a¤b¤5' --all
  Regex chicken   : ^a+b{5}.*
  Regex ed        : ^a\+b\{5\}.*
  Regex egrep     : ^a+b{5}.*
- Regex emacs     : ^a+b!!.*
+ Regex emacs     : ^a+b\\{5\\}.*
  Regex expect    : ^a+b!!.*
  Regex find      : ^a+b!!.*
  Regex gawk      : ^a+b{5}.*
@@ -178,12 +178,12 @@ $
 Stress test using all the available menu options:
 
 ```console
-$ txt2regex --history '111223445566778(9|9)3¤a¤bc¤de¤fg¤5¤:012345¤6¤:01234567¤7' --prog sed,vim,egrep,python,emacs
- Regex sed   : ^.a\?bc[de]\+[^fg]\{5\}[A-Za-z0-9_ \t]\{1,6\}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,\}\(.*\|.*\)*
- Regex vim   : ^.a\=bc[de]\+[^fg]\{5}[A-Za-z0-9_ \t]\{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,}\(.*\|.*\)*
- Regex egrep : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ <TAB>]{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]{7,}(.*|.*)*
- Regex python: ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ \t]{1,6}!!{7,}(.*|.*)*
- Regex emacs : ^.a?bc[de]+[^fg]!![A-Za-z0-9_ <TAB>]!!!!!!\(.*\|.*\)*
+$ txt2regex --history '111223445566778(9|9)3¤a¤bc¤de¤fg¤5¤:012345¤6¤:01234567¤7' --prog sed,vim,egrep,python,procmail
+ Regex sed     : ^.a\?bc[de]\+[^fg]\{5\}[A-Za-z0-9_ \t]\{1,6\}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,\}\(.*\|.*\)*
+ Regex vim     : ^.a\=bc[de]\+[^fg]\{5}[A-Za-z0-9_ \t]\{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]\{7,}\(.*\|.*\)*
+ Regex egrep   : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ <TAB>]{1,6}[[:alpha:][:lower:][:upper:][:digit:][:alnum:][:xdigit:][:blank:][:graph:]]{7,}(.*|.*)*
+ Regex python  : ^.a?bc[de]+[^fg]{5}[A-Za-z0-9_ \t]{1,6}!!{7,}(.*|.*)*
+ Regex procmail: ^.a?bc[de]+[^fg]!![A-Za-z0-9_ <TAB>]!!!!!!(.*|.*)*
 
 $
 ```
@@ -271,7 +271,7 @@ $ txt2regex --make number2 --all
  Regex chicken   : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex ed        : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
  Regex egrep     : [+-]?[0-9]+(\.[0-9]{2})?
- Regex emacs     : [+-]?[0-9]+\(\.[0-9]!!\)?
+ Regex emacs     : [+-]?[0-9]+\\(\\.[0-9]\\{2\\}\\)?
  Regex expect    : [+-]?[0-9]+(\.[0-9]!!)?
  Regex find      : [+-]?[0-9]+\(\.[0-9]!!\)?
  Regex gawk      : [+-]?[0-9]+(\.[0-9]{2})?
