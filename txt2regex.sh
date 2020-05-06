@@ -210,7 +210,7 @@ allversions=(
     'PHP 7.2.24-0ubuntu0.18.04.4'
     'psql (PostgreSQL) 10.12'
     'procmail v3.23pre 2001/09/13'
-    'Python 2.1'
+    'Python 3.6.9'
     'GNU sed version 3.02.80'
     '8.3'  # tcl
     'Nvi 1.79 (10/23/96)'
