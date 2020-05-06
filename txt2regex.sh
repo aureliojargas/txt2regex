@@ -165,9 +165,9 @@ progs=(python egrep grep sed vim)
 
 # To generate this array:
 # grep version: tests/regex-tester.txt | sort | cut -d ' ' -f 1
-# Remove manually: chicken
 allprogs=(
     awk
+    chicken
     ed
     egrep
     emacs
@@ -192,9 +192,9 @@ allprogs=(
 
 # To generate this array:
 # grep version: tests/regex-tester.txt | sort | sed "s/.* version: //;s/.*/'&'/"
-# Remove manually: chicken
 allversions=(
     ''  # awk
+    'CHICKEN 4.12.0'
     'GNU ed version 0.2'
     'egrep (GNU grep) 2.4.2'
     ''  # emacs
@@ -503,6 +503,7 @@ tit2_cmd=(
 #   make test-regex
 #   grep ' S2 .*OK$' tests/regex-tester.txt
 S2_awk=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
+S2_chicken=(   '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
 S2_egrep=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
 S2_emacs=(     '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
@@ -552,6 +553,7 @@ S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
 #
 # Legend: ,=tested  space=pending         \.*[]{}()|+?^$
 ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[   (,|+?  ' '\' ',' '\t')
+ax_chicken=(   ''   '|'   '(' ')'   '\\' '\.*[,,,()|+?^$' '\' 'P' '\t')
 ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
 ax_egrep=(     ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' ',' 'P' ',' )
 ax_emacs=(     ''  '\|'  '\(' '\)'  '\'  '\.*[      +?  ' ',' ',' ',' )

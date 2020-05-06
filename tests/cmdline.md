@@ -63,6 +63,7 @@ A handy table showing all the metacharacters for all the programs txt2regex know
 $ txt2regex --showmeta | sed 's/  *$//'
 
        awk      +      ?             |      ()
+   chicken      +      ?     {}      |      ()    CHICKEN 4.12.0
         ed     \+     \?   \{\}     \|    \(\)    GNU ed version 0.2
      egrep      +      ?     {}      |      ()    egrep (GNU grep) 2.4.2
      emacs      +      ?            \|    \(\)
@@ -149,6 +150,7 @@ Another alternative is using `--all` to show your regex in the syntax of every p
 ```console
 $ txt2regex --history '124259¤a¤b¤5' --all
  Regex awk       : ^a+b!!.*
+ Regex chicken   : ^a+b{5}.*
  Regex ed        : ^a\+b\{5\}.*
  Regex egrep     : ^a+b{5}.*
  Regex emacs     : ^a+b!!.*
@@ -266,6 +268,7 @@ $ txt2regex --make number2 --all
 ### number LEVEL 2: level 1 plus optional float point
 
  Regex awk       : [+-]?[0-9]+(\.[0-9]!!)?
+ Regex chicken   : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex ed        : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?
  Regex egrep     : [+-]?[0-9]+(\.[0-9]{2})?
  Regex emacs     : [+-]?[0-9]+\(\.[0-9]!!\)?
