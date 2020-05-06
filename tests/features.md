@@ -74,7 +74,7 @@ $ txt2regex --all --history '241¤\'
  Regex mawk      : [\\]
  Regex mysql     : [\\\\]
  Regex perl      : [\\]
- Regex php       : [\]
+ Regex php       : [\\\\]
  Regex postgres  : [\\\\]
  Regex procmail  : [\]
  Regex python    : [\\]
@@ -108,7 +108,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex mawk      : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
  Regex perl      : \.\*\+\?\[]\{}\(\)\|\^\$\\
- Regex php       : \.\*\+\?\[]\{}\()\|\^\$\\
+ Regex php       : \\.\\*\\+\\?\\[]\\{}\\(\\)\\|\\^\\$\\\
  Regex postgres  : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
  Regex procmail  : \.\*\+\?\[]{}\(\)\|^$\\
  Regex python    : \.\*\+\?\[]\{}\(\)\|\^\$\\
