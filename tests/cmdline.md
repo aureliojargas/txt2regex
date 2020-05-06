@@ -70,7 +70,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
     expect      +      ?     {}      |      ()    expect version 5.45.4
       find      +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
       gawk      +      ?     {}      |      ()    GNU Awk 4.1.4
-      grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 2.4.2
+      grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
 javascript      +      ?     {}      |      ()    netscape-4.77
        lex      +      ?     {}      |      ()
       mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
