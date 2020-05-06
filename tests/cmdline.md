@@ -78,7 +78,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
       perl      +      ?     {}      |      ()    perl v5.26.1
        php      +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
   postgres      +      ?     {}      |      ()    psql (PostgreSQL) 10.12
-  procmail      +      ?             |      ()    procmail v3.15.1 2001/01/08
+  procmail      +      ?             |      ()    procmail v3.23pre 2001/09/13
     python      +      ?     {}      |      ()    Python 2.1
        sed     \+     \?   \{\}     \|    \(\)    GNU sed version 3.02.80
        tcl      +      ?             |      ()    8.3
