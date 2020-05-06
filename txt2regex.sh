@@ -214,7 +214,7 @@ allversions=(
     'sed (GNU sed) 4.4'
     'tcl 8.6'
     'nvi 1.81.6-13'
-    'VIM - Vi IMproved 5.8 (2001 May 31)'
+    'VIM - Vi IMproved 8.0 (2016 Sep 12)'
 )
 
 label_names=(

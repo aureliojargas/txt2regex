@@ -83,7 +83,7 @@ javascript      +      ?     {}      |      ()    node v8.10.0
        sed     \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
        tcl      +      ?     {}      |      ()    tcl 8.6
         vi                 \{\}           \(\)    nvi 1.81.6-13
-       vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 5.8 (2001 May 31)
+       vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 8.0 (2016 Sep 12)
 
 NOTE: . [] [^] and * are the same on all programs.
 
