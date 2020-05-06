@@ -64,7 +64,7 @@ $ txt2regex --showmeta | sed 's/  *$//'
 
        awk      +      ?             |      ()    awk version 20121220
    chicken      +      ?     {}      |      ()    CHICKEN 4.12.0
-        ed     \+     \?   \{\}     \|    \(\)    GNU ed version 0.2
+        ed     \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
      egrep      +      ?     {}      |      ()    egrep (GNU grep) 2.4.2
      emacs      +      ?            \|    \(\)
     expect      +      ?             |      ()

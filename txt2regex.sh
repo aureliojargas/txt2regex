@@ -195,7 +195,7 @@ allprogs=(
 allversions=(
     'awk version 20121220'
     'CHICKEN 4.12.0'
-    'GNU ed version 0.2'
+    'GNU Ed 1.10'
     'egrep (GNU grep) 2.4.2'
     ''  # emacs
     ''  # expect
