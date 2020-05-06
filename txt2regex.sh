@@ -211,7 +211,7 @@ allversions=(
     'psql (PostgreSQL) 10.12'
     'procmail v3.23pre 2001/09/13'
     'Python 3.6.9'
-    'GNU sed version 3.02.80'
+    'sed (GNU sed) 4.4'
     '8.3'  # tcl
     'Nvi 1.79 (10/23/96)'
     'VIM - Vi IMproved 5.8 (2001 May 31)'
