@@ -201,7 +201,7 @@ allversions=(
     'expect version 5.45.4'
     'find (GNU findutils) 4.7.0-git'
     'GNU Awk 4.1.4'
-    'grep (GNU grep) 2.4.2'
+    'grep (GNU grep) 3.1'
     'netscape-4.77'  #javascript
     ''  # lex
     'mawk 1.3.3 Nov 1996'
