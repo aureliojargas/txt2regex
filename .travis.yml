@@ -7,3 +7,7 @@ addons:
 script:
   - make check
   - make test-bash
+  - make test-regex
+
+  # The repository must remain unchanged
+  - git diff-index --exit-code HEAD
