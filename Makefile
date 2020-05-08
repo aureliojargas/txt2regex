@@ -8,7 +8,7 @@ PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
 FILES = CHANGELOG.md COPYRIGHT Makefile man $(PODIR) \
-        README.japanese README.md $(SHSKEL) tests TODO
+        README.md $(SHSKEL) tests TODO
 
 DESTDIR =
 BINDIR = $(DESTDIR)/usr/bin
