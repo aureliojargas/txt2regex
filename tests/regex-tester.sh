@@ -421,7 +421,7 @@ test_program() {
             ;;
     esac
 
-    echo "$test_data" | grep -v '^#' | grep . | while read -r id regex string; do
+    printf '%s\n' "$test_data" | grep -v '^#' | grep . | while read -r id regex string; do
         printf '%-14s%-10s%-20s%-10s' "$program" "$id" "$regex" "$string"
 
         # Use a real tab character instead of the <tab> marker
@@ -579,10 +579,10 @@ main() {
 
     # Restrict the available programs to the user's choice
     test -n "$user_program" &&
-        program_data=$(echo "$program_data" | grep "^$user_program ")
+        program_data=$(printf '%s\n' "$program_data" | grep "^$user_program ")
 
     # Show version and test results for all the available programs
-    echo "$program_data" | grep . | while read -r program test_type; do
+    printf '%s\n' "$program_data" | grep . | while read -r program test_type; do
 
         test "$program" = "$skip" && continue
 
