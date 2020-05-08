@@ -636,7 +636,7 @@ escapeChars() {
             escaped_text="$escaped_text$this_char"
         fi
     done
-    echo "$escaped_text"
+    printf '%s\n' "$escaped_text"
 }
 
 getLargestItem() {
