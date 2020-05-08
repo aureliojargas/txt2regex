@@ -2,13 +2,13 @@ NAME = txt2regex
 VERSION = 0.9b
 BASHVERSIONS = 3.0 3.1 3.2 4.0 4.1 4.2 4.3 4.4 5.0
 
-SHSKEL = $(NAME).sh
+SCRIPT = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
 FILES = CHANGELOG.md COPYRIGHT Makefile man $(PODIR) \
-        README.md $(SHSKEL) tests TODO
+        README.md $(SCRIPT) tests TODO
 
 DESTDIR =
 BINDIR = $(DESTDIR)/usr/bin
@@ -25,10 +25,10 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 check: lint test
 
 fmt:
-	shfmt -w -i 4 -ci -sr $(SHSKEL) tests/regex-tester.sh
+	shfmt -w -i 4 -ci -sr $(SCRIPT) tests/regex-tester.sh
 
 lint:
-	shellcheck $(SHSKEL) tests/regex-tester.sh
+	shellcheck $(SCRIPT) tests/regex-tester.sh
 	shfmt -d -i 4 -ci -sr tests/regex-tester.sh
 
 test: clitest.sh
@@ -94,7 +94,7 @@ pot:
 		printf '"%s"\n' 'MIME-Version: 1.0\n'; \
 		printf '"%s"\n' 'Content-Type: text/plain; charset=UTF-8\n'; \
 		printf '"%s"\n' 'Content-Transfer-Encoding: 8bit\n'; \
-		bash --dump-po-strings $(SHSKEL); \
+		bash --dump-po-strings $(SCRIPT); \
 	) | msguniq --no-wrap --sort-by-file -o $(POTFILE); \
 	printf '%s was generated\n' $(POTFILE)
 
@@ -143,7 +143,7 @@ install-bin:
 	test -d $(BINDIR) || mkdir -p $(BINDIR); \
 	sed -e '/^TEXTDOMAINDIR=/s,=.*,=$(LOCALEDIR),' \
 		-e '/^VERSION=/s/=.*/=$(VERSION)/' \
-		$(SHSKEL) > $(BINDIR)/$(NAME) && \
+		$(SCRIPT) > $(BINDIR)/$(NAME) && \
 	chmod +x $(BINDIR)/$(NAME) && \
 	printf '\nProgram "%s" installed. Just run %s\n' \
 		$(NAME) $(BINDIR)/$(NAME)
