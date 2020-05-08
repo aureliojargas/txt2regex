@@ -7,7 +7,7 @@ DISTDIR = $(NAME)-$(VERSION)
 PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
-FILES = CHANGELOG.md COPYRIGHT Makefile man NEWS $(PODIR) \
+FILES = CHANGELOG.md COPYRIGHT Makefile man $(PODIR) \
         README.japanese README.md $(SHSKEL) tests TODO
 
 DESTDIR =

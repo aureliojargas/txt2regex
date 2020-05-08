@@ -51,6 +51,7 @@ The format is based on [Keep a Changelog].
 - Removed the old regex tester `test-suite/*`
 - Removed `tools/bashdump-rmdup.sh` since `msguniq` has the same
   functionality
+- Removed the NEWS file for not adding too much value over the changelog
 
 ### Changed
 
@@ -75,6 +76,7 @@ The format is based on [Keep a Changelog].
 - Simplified the man page contents
 - i18n: Improve some translatable strings to make them shorter and
   easier to translate
+- Moved the project hosting from SourceForge to GitHub
 - Converted this changelog to the [Keep a Changelog] format
 
 ### Fixed
@@ -185,10 +187,12 @@ The format is based on [Keep a Changelog].
 - Remove the usage of the `clear` and `stty` commands, because they are
   not Bash built-in commands (and txt2regex strives to be 100% Bash
   built-ins powered)
+- The project is now hosted at SourceForge
 - Added Polish translations provided by Chris Piechowicz
 
 ## [Version 0.2] released in 2001-04-24
 
+- Changed project name from txt2regexp to txt2regex
 - New option `--history` to "replay" from history data a regex
   previously composed in txt2regex
 - New option `--nocolor` to not use colors in the interface
