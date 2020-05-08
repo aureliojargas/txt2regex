@@ -1,5 +1,9 @@
 # Feature tests for txt2regex
 
+This is file is both documentation and a test file, showing how some txt2regex features work in practice, with the command line options required to trigger them and their expected result.
+
+The [clitest](https://github.com/aureliojargas/clitest) tool can identify and run all the commands listed here and check if their actual output matches the expected one. Just run `clitest tests/features.md`.
+
 ## Setup
 
 Make sure all the commands use the same Bash version and the same txt2regex file.
