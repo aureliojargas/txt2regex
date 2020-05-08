@@ -1,14 +1,13 @@
 txt2regex TODO:
 
-  - new programs: expr, oawk, nawk, MKS awk, flex, ruby, bash, java, html5, lua
-  - modernize php, javascript, postgres, perl
+  - new programs: expr, oawk, nawk, MKS awk, ruby, bash, java, html5, lua
   - add support for \<borders\>
   - support for user defined ranges as 0-5, a-f, etc
   - allow combinations as [A-Z0-9_.#]
   - more ready-to-use regexes! (ip, email, url)
   - ~/.txt2regexrc: remember programs, last histories, name REs
   - negated POSIX|special combination (Choice hack)
-  - describe some nice features as [][\^-]
+  - describe some nice features such as [][\^-]
   - empty | check, for things like ^| or (|)
   - how to capture blanks on Get* (via menu)?
 
