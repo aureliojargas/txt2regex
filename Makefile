@@ -1,6 +1,7 @@
 NAME = txt2regex
 VERSION = 0.9b
 BASHVERSIONS = 3.0 3.1 3.2 4.0 4.1 4.2 4.3 4.4 5.0
+REGEXTESTERIMAGE = aureliojargas/regex-tester:2020-05-09
 
 SCRIPT = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
@@ -43,19 +44,27 @@ test-bash: clitest.sh
 	done
 
 # Run regex tests for the supported programs, inside a Docker container
-test-regex: test-regex-build
-	docker run --rm -v "$$PWD":/code -w /code regex-tester \
+test-regex:
+	# Explicit pull to make sure all the log messages from the pulling
+	# process appear here, and not when executing the next "docker run",
+	# whose output goes directly to the .txt file.
+	docker image inspect $(REGEXTESTERIMAGE) >/dev/null 2>&1 || \
+	docker pull $(REGEXTESTERIMAGE)
+
+	# Test all programs except "vi"
+	docker run --rm -v "$$PWD":/code -w /code $(REGEXTESTERIMAGE) \
 		tests/regex-tester.sh --skip vi > tests/regex-tester.txt 2>&1
+
 	# vi: no stderr redirect to avoid "inappropriate ioctl for device"
 	# vi: docker run -t adds a trailing \r to every line :/
-	docker run --rm -v "$$PWD":/code -w /code -t regex-tester \
+	docker run --rm -v "$$PWD":/code -w /code -t $(REGEXTESTERIMAGE) \
 		tests/regex-tester.sh vi | tr -d '\r' >> tests/regex-tester.txt
 
-test-regex-shell: test-regex-build
-	docker run --rm -v "$$PWD":/code -w /code -it regex-tester
+test-regex-shell:
+	docker run --rm -v "$$PWD":/code -w /code -it $(REGEXTESTERIMAGE)
 
 test-regex-build:
-	docker build -t regex-tester tests/
+	docker build -t $(REGEXTESTERIMAGE) tests/
 
 clean:
 	rm -f clitest.sh $(NAME) txt2tags.py
