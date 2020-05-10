@@ -87,6 +87,8 @@ The format is based on [Keep a Changelog].
 - Fixed incorrect metacharacters for `?` and `+` showing up for `vi` in
   `--showmeta` and `--showinfo`
 - Fixed the escaping of the `}` character to be matched as a literal
+- Fixed the escaping of the `\` character to be matched as a literal,
+  for programs that use `\\` for escaping: before: `\\\`, now: `\\\\`
 - Fixed the escaping of the `\` character when inside a list `[]`
 - Fixed the handling of the `[` character when inside a list `[]`: it is
   not special at all and should not be handled

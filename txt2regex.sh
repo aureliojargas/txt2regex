@@ -637,8 +637,17 @@ escapeChars() {
         this_char=${text:$i:1}
 
         if charInText "$this_char" "$special_chars"; then
-            escaped_text="$escaped_text$escape_char$this_char"
+            if [ "$this_char$this_char" == "$escape_char" ]; then
+                # Special case: this_char=\ and escape_char=\\
+                # The normal escaping (see the next else) would make \\\
+                # (which is wrong). Here we ensure \\\\ is produced.
+                escaped_text="$escaped_text$escape_char$escape_char"
+            else
+                # normal escaping
+                escaped_text="$escaped_text$escape_char$this_char"
+            fi
         else
+            # no escaping
             escaped_text="$escaped_text$this_char"
         fi
     done
