@@ -312,9 +312,9 @@ test_perl() { # regex string
     printf '%s\n' "$2" | perl -pe "s/$1/x/"
 }
 
-# https://www.php.net/manual/en/function.ereg-replace.php
-# https://www.php.net/manual/en/function.preg-replace.php
 test_php() { # regex string
+    # Single quotes are not raw in PHP (\' and \\ are special)
+    # https://www.php.net/manual/en/language.types.string.php
     printf "<?php echo preg_replace('/%s/', 'x', '%s'); ?>" \
         "$1" "$(escape "$2")" |
         php
