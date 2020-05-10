@@ -99,10 +99,10 @@ Every metacharacter should be escaped so it will match as a literal character.
 ```console
 $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex awk       : \.\*\+\?\[]{}\(\)\|\^\$\\
- Regex chicken   : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\
+ Regex chicken   : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\\
  Regex ed        : \.\*+?\[]{}()|^$\\
  Regex egrep     : \.\*\+\?\[]\{}\()\|\^\$\\
- Regex emacs     : \\.\\*\\+\\?\\[]{}()|^$\\\
+ Regex emacs     : \\.\\*\\+\\?\\[]{}()|^$\\\\
  Regex expect    : \.\*\+\?\[]\{\}\(\)\|\^\$\\
  Regex find      : \.\*\+\?\[]\{}\()\|\^\$\\
  Regex gawk      : \.\*\+\?\[]{}\()\|\^\$\\
@@ -110,9 +110,9 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex javascript: \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex lex       : \.\*\+\?\[]\{\}\(\)\|^$\\
  Regex mawk      : \.\*\+\?\[]{}\(\)\|\^\$\\
- Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
+ Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\\
  Regex perl      : \.\*\+\?\[]\{}\(\)\|\^\$\\
- Regex php       : \\.\\*\\+\\?\\[]\\{}\\(\\)\\|\\^\\$\\\
+ Regex php       : \\.\\*\\+\\?\\[]\\{}\\(\\)\\|\\^\\$\\\\
  Regex postgres  : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex procmail  : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex python    : \.\*\+\?\[]\{}\(\)\|\^\$\\
