@@ -282,7 +282,7 @@ $ txt2regex --make number2 --all
  Regex mysql     : [+-]?[0-9]+(\\.[0-9]{2})?
  Regex perl      : [+-]?[0-9]+(\.[0-9]{2})?
  Regex php       : [+-]?[0-9]+(\\.[0-9]{2})?
- Regex postgres  : [+-]?[0-9]+(\\.[0-9]{2})?
+ Regex postgres  : [+-]?[0-9]+(\.[0-9]{2})?
  Regex procmail  : [+-]?[0-9]+(\.[0-9]!!)?
  Regex python    : [+-]?[0-9]+(\.[0-9]{2})?
  Regex sed       : [+-]\?[0-9]\+\(\.[0-9]\{2\}\)\?

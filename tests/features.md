@@ -79,7 +79,7 @@ $ txt2regex --all --history '241¤\'
  Regex mysql     : [\\\\]
  Regex perl      : [\\]
  Regex php       : [\\\\]
- Regex postgres  : [\\\\]
+ Regex postgres  : [\\]
  Regex procmail  : [\]
  Regex python    : [\\]
  Regex sed       : [\]
@@ -113,7 +113,7 @@ $ txt2regex --all --history '23¤.*+?[]{}()|^$\'
  Regex mysql     : \\.\\*\\+\\?\\[]{}\\()\\|\\^\\$\\\
  Regex perl      : \.\*\+\?\[]\{}\(\)\|\^\$\\
  Regex php       : \\.\\*\\+\\?\\[]\\{}\\(\\)\\|\\^\\$\\\
- Regex postgres  : \\.\\*\\+\\?\\[]{}\\(\\)\\|\\^\\$\\\
+ Regex postgres  : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex procmail  : \.\*\+\?\[]{}\(\)\|\^\$\\
  Regex python    : \.\*\+\?\[]\{}\(\)\|\^\$\\
  Regex sed       : \.\*+?\[]{}()|^$\\
