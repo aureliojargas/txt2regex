@@ -24,6 +24,17 @@ $ txt2regex --prog egrep --history '215¤a5!6'
 $
 ```
 
+## User input: Remove duplicated chars from [] — getCharList()
+
+When informing literal characters to be put inside a `[]` list, txt2regex will deduplicate those characters, because the repetition in this case is not meaningful (`[aabbcc]` is the same as `[abc]`).
+
+```console
+$ txt2regex --prog egrep --history '24¤aabbbcab'
+ Regex egrep: [abc]
+
+$
+```
+
 ## User input: Rearrange [] special elements — getCharList()
 
 When informing literal characters to be put inside a `[]` list, some special cases have to be handled:

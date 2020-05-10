@@ -621,6 +621,19 @@ charInText() {
     return 1
 }
 
+# Remove all duplicated chars from the $1 text
+uniqChars() {
+    local text="$1"
+    local text_uniq=''
+    local i
+
+    for ((i = 0; i < ${#text}; i++)); do
+        charInText "${text:$i:1}" "$text_uniq" ||
+            text_uniq="$text_uniq${text:$i:1}"
+    done
+    printf '%s\n' "$text_uniq"
+}
+
 # Escape each $1 in $2 using $3
 escapeChars() {
     local special_chars="$1"
@@ -987,7 +1000,6 @@ getChar() {
     F_ESCCHAR=1
 }
 
-#TODO 1st of all, take out repeated chars
 getCharList() {
     gotoxy $x_prompt2 $y_prompt
 
@@ -999,6 +1011,10 @@ getCharList() {
         doNextHistArg
         uin=$histarg
     fi
+
+    # dedup is safe because $uin contains only literal chars (no ranges)
+    uin="$(uniqChars "$uin")"
+
     uins="${uins}¤$uin"
 
     # putting not special chars in not special places: [][^-]
@@ -1009,6 +1025,7 @@ getCharList() {
     # if any $1, negated list
     [ -n "$1" ] && uin="^$uin"
 
+    # make it a list
     uin="[$uin]"
     F_ESCCHARLIST=1
 }
