@@ -551,6 +551,12 @@ S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
 #   grep -E   ' ax7 '      tests/regex-tester.txt  # 7
 #   grep -E   ' ax8 '      tests/regex-tester.txt  # 8
 #
+# In PHP, we're using \\ instead of \ as the escape metacharacter
+# because it works consistently, being it inside single or double
+# quotes. Using only \ would work in some cases, but not in others:
+#   The literal + is matched by: \+ \\+ [+] [\+] [\\+]
+#   The literal \ is matched by: \\\\ [\\\\]
+#
 # Legend: ,=tested  space=pending         \.*[]{}()|+?^$
 ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
 ax_chicken=(   ''   '|'   '(' ')'   '\\' '\.*[,,,()|+?^$' '\' 'P' '\t')
