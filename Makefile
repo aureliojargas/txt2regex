@@ -30,7 +30,7 @@ fmt:
 
 lint:
 	shellcheck $(SCRIPT) tests/regex-tester.sh
-	shfmt -d -i 4 -ci -sr tests/regex-tester.sh
+	shfmt -d -i 4 -ci -sr $(SCRIPT) tests/regex-tester.sh
 
 test: clitest.sh
 	sh clitest.sh --progress none README.md tests/*.md

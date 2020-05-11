@@ -6,9 +6,8 @@
 # License : GPL
 # Requires: bash >= 2.05
 #
-# shellcheck disable=SC1117,SC1003,SC2034
+# shellcheck disable=SC1117,SC2034
 #   SC1117 because it was obsoleted in shellcheck >0.5
-#   SC1003 because it gets crazy when defining arrays (i.e. ax_sed)
 #   SC2034 because it considers unused vars that I load with eval (ax_*)
 #
 # Please, read the README file.
@@ -497,48 +496,44 @@ tit2_cmd=(
     '!!'
 )
 
-# The list of quantifiers (to be used when STATUS=2)
-# The array index refers to the menu item in the "repetition" screen
+# S2_* arrays: The list of quantifiers (to be used when STATUS=2)
+# Every array will be named S2_<prog>: S2_awk, S2_ed, S2_egrep, ...
+# The array index refers to the menu item in the "repetition" screen.
 # To update this data:
 #   make test-regex
 #   grep ' S2 .*OK$' tests/regex-tester.txt
-S2_awk=(       '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_chicken=(   '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_ed=(        '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_egrep=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_emacs=(     '' ''  '?' '*'  '+'  '\\{@\\}' '\\{1,@\\}' '\\{@,\\}')
-S2_expect=(    '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_find=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_gawk=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_grep=(      '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_javascript=('' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_lex=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_mawk=(      '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_mysql=(     '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_perl=(      '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_php=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_postgres=(  '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_procmail=(  '' ''  '?' '*'  '+'  '!!'    '!!'      '!!'   )
-S2_python=(    '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_sed=(       '' '' '\?' '*' '\+' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_tcl=(       '' ''  '?' '*'  '+'  '{@}'   '{1,@}'   '{@,}' )
-S2_vi=(   '' '' '\{0,1\}' '*' '\{1,\}' '\{@\}' '\{1,@\}' '\{@,\}')
-S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
-
-# Content for all the following ax_* arrays:
-# [0] Unused
-# [1] Which is the metacharacter for alternatives?
-# [2,3] Which are the metacharacters for grouping?
-# [4] Which is the escape metacharacter?
-# [5] Which chars of \.*[]{}()|+?^$ need to be escaped to be matched as
-#     literals? Note that txt2regex has menus to insert all of those as
-#     metacharacters (except $), so in user input they will always be
-#     literal. For ^ and $, some tools consider them literal when not in
-#     their special start/end position (marked here as commas).
-# [6] To match '\' inside [], do you need to escape it? If yes, use '\'.
-# [7] Has support for [[:POSIX:]] character classes? If yes, use 'P'.
-# [8] Does \t inside [] match a tab? If yes, use '\t'.
 #
+while read -r prog_id data; do
+    # Set the S2_<prog> array for each line. Example:
+    # S2_egrep=('-' '-' '?' '*' '+' '{@}' '{1,@}' '{@,}')
+    read -r -a "S2_$prog_id" <<< "$data"
+done << 'EOD'
+awk           - -     ?      *      +       !!         !!          !!
+chicken       - -     ?      *      +       {@}       {1,@}       {@,}
+ed            - -    \?      *     \+      \{@\}     \{1,@\}     \{@,\}
+egrep         - -     ?      *      +       {@}       {1,@}       {@,}
+emacs         - -     ?      *      +     \\{@\\}   \\{1,@\\}   \\{@,\\}
+expect        - -     ?      *      +       {@}       {1,@}       {@,}
+find          - -     ?      *      +       {@}       {1,@}       {@,}
+gawk          - -     ?      *      +       {@}       {1,@}       {@,}
+grep          - -    \?      *     \+      \{@\}     \{1,@\}     \{@,\}
+javascript    - -     ?      *      +       {@}       {1,@}       {@,}
+lex           - -     ?      *      +       {@}       {1,@}       {@,}
+mawk          - -     ?      *      +       !!         !!          !!
+mysql         - -     ?      *      +       {@}       {1,@}       {@,}
+perl          - -     ?      *      +       {@}       {1,@}       {@,}
+php           - -     ?      *      +       {@}       {1,@}       {@,}
+postgres      - -     ?      *      +       {@}       {1,@}       {@,}
+procmail      - -     ?      *      +       !!         !!          !!
+python        - -     ?      *      +       {@}       {1,@}       {@,}
+sed           - -    \?      *     \+      \{@\}     \{1,@\}     \{@,\}
+tcl           - -     ?      *      +       {@}       {1,@}       {@,}
+vi            - -  \{0,1\}   *   \{1,\}    \{@\}     \{1,@\}     \{@,\}
+vim           - -    \=      *     \+      \{@}      \{1,@}      \{@,}
+EOD
+
+# ax_* arrays: Extra regex-related data for all the programs.
+# Every array will be named ax_<prog>: ax_awk, ax_ed, ax_egrep, ...
 # To check how this data is used in this source code, search for
 # something like 'ax_.*5'.
 #
@@ -557,29 +552,47 @@ S2_vim=(       '' '' '\=' '*' '\+' '\{@}'  '\{1,@}'  '\{@,}' )
 #   The literal + is matched by: \+ \\+ [+] [\+] [\\+]
 #   The literal \ is matched by: \\\\ [\\\\]
 #
-# Legend: ,=tested  space=pending         \.*[]{}()|+?^$
-ax_awk=(       ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
-ax_chicken=(   ''   '|'   '(' ')'   '\\' '\.*[,,,()|+?^$' '\' 'P' '\t')
-ax_ed=(        ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
-ax_egrep=(     ''   '|'   '(' ')'   '\'  '\.*[,{,(,|+?^$' ',' 'P' ',' )
-ax_emacs=(     '' '\\|' '\\(' '\\)' '\\' '\.*[,,,,,,+?,,' '\' 'P' '\t')
-ax_expect=(    ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?^$' '\' 'P' '\t')
-ax_find=(      ''   '|'   '(' ')'   '\'  '\.*[,{,(,|+?^$' ',' 'P' ',' )
-ax_gawk=(      ''   '|'   '(' ')'   '\'  '\.*[,,,(,|+?^$' '\' 'P' '\t')
-ax_grep=(      ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
-ax_javascript=(''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
-ax_lex=(       ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?,,' '\' 'P' '\t')
-ax_mawk=(      ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' ',' '\t')
-ax_mysql=(     ''   '|'   '(' ')'   '\\' '\.*[,,,(,|+?^$' '\' 'P' '\t')
-ax_perl=(      ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' '\' 'P' '\t')
-ax_php=(       ''   '|'   '(' ')'   '\\' '\.*[,{,()|+?^$' '\' 'P' '\t')
-ax_postgres=(  ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' '\' 'P' '\t')
-ax_procmail=(  ''   '|'   '(' ')'   '\'  '\.*[,,,()|+?^$' ',' ',' ',' )
-ax_python=(    ''   '|'   '(' ')'   '\'  '\.*[,{,()|+?^$' '\' ',' '\t')
-ax_sed=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' '\t')
-ax_tcl=(       ''   '|'   '(' ')'   '\'  '\.*[,{}()|+?^$' '\' 'P' '\t')
-ax_vi=(        ''  '!!'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' ',' 'P' ',' )
-ax_vim=(       ''  '\|'  '\(' '\)'  '\'  '\.*[,,,,,,,,,,' '\' 'P' '\t')
+while read -r prog_id data; do
+    # Set the ax_<prog> array for each line. Example:
+    # ax_awk=('' '|' '(' ')' '\' '\.*[,,,()|+?^$' '\' 'P' '\t')
+    read -r -a "ax_$prog_id" <<< "$data"
+done << 'EOD'
+awk           -     |     (     )    \    \.*[,,,()|+?^$    \    P    \t
+chicken       -     |     (     )    \\   \.*[,,,()|+?^$    \    P    \t
+ed            -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
+egrep         -     |     (     )    \    \.*[,{,(,|+?^$    ,    P    ,
+emacs         -   \\|   \\(   \\)    \\   \.*[,,,,,,+?,,    \    P    \t
+expect        -     |     (     )    \    \.*[,{}()|+?^$    \    P    \t
+find          -     |     (     )    \    \.*[,{,(,|+?^$    ,    P    ,
+gawk          -     |     (     )    \    \.*[,,,(,|+?^$    \    P    \t
+grep          -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
+javascript    -     |     (     )    \    \.*[,,,()|+?^$    \    ,    \t
+lex           -     |     (     )    \    \.*[,{}()|+?,,    \    P    \t
+mawk          -     |     (     )    \    \.*[,,,()|+?^$    \    ,    \t
+mysql         -     |     (     )    \\   \.*[,,,(,|+?^$    \    P    \t
+perl          -     |     (     )    \    \.*[,{,()|+?^$    \    P    \t
+php           -     |     (     )    \\   \.*[,{,()|+?^$    \    P    \t
+postgres      -     |     (     )    \    \.*[,,,()|+?^$    \    P    \t
+procmail      -     |     (     )    \    \.*[,,,()|+?^$    ,    ,    ,
+python        -     |     (     )    \    \.*[,{,()|+?^$    \    ,    \t
+sed           -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    \t
+tcl           -     |     (     )    \    \.*[,{}()|+?^$    \    P    \t
+vi            -    !!    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
+vim           -    \|    \(    \)    \    \.*[,,,,,,,,,,    \    P    \t
+EOD
+#                                         \.*[]{}()|+?^$    ,=false
+# [0] Unused
+# [1] Which is the metacharacter for alternatives?
+# [2,3] Which are the metacharacters for grouping?
+# [4] Which is the escape metacharacter?
+# [5] Which chars of \.*[]{}()|+?^$ need to be escaped to be matched as
+#     literals? Note that txt2regex has menus to insert all of those as
+#     metacharacters (except $), so in user input they will always be
+#     literal. For ^ and $, some tools consider them literal when not in
+#     their special start/end position (marked here as commas).
+# [6] To match '\' inside [], do you need to escape it? If yes, use '\'.
+# [7] Has support for [[:POSIX:]] character classes? If yes, use 'P'.
+# [8] Does \t inside [] match a tab? If yes, use '\t'.
 
 ColorOnOff() {
     # The colors: Normal, Prompt, Bold, Important
@@ -681,9 +694,9 @@ getMeta() { # var-name index
     local m="$1[$2]"
     m=${!m}
 
-    # Remove all non-metacharacters: @ ! , space
+    # Remove all non-metacharacters: @ ! , -
     # Those are used internally by txt2tags as markers
-    m=${m//[@!, ]/}
+    m=${m//[@!,-]/}
 
     # Remove when getting '?' or '+' for 'vi', since they are unsupported
     # and the current values are workarounds using '{}'
@@ -1165,6 +1178,7 @@ escChar() {
 escCharList() {
     local escape_metachar
 
+    # shellcheck disable=SC1003
     if [ "$(getMeta "ax_${progs[$1]}" 6)" == '\' ]; then
         escape_metachar=$(getMeta "ax_${progs[$1]}" 4)
         uin="${uin/\\/$escape_metachar$escape_metachar}"
@@ -1202,6 +1216,7 @@ showRegex() {
         case "$1" in
             ax | S2)
                 eval new_part="\${$1_${progs[$i]}[$REPLY]/@/$uin}"
+                [ "$new_part" == '-' ] && new_part=''
                 Regex[$i]="${Regex[$i]}$new_part"
                 [ "$new_part" == '!!' ] && has_not_supported=1
                 ;;
