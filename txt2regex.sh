@@ -554,33 +554,33 @@ EOD
 #
 while read -r prog_id data; do
     # Set the ax_<prog> array for each line. Example:
-    # ax_awk=('' '|' '(' ')' '\' '\.*[,,,()|+?^$' '\' 'P' '\t')
+    # ax_awk=('' '|' '(' ')' '\' '\.*[---()|+?^$' '\' 'P' '\t')
     read -r -a "ax_$prog_id" <<< "$data"
 done << 'EOD'
-awk           -     |     (     )    \    \.*[,,,()|+?^$    \    P    \t
-chicken       -     |     (     )    \\   \.*[,,,()|+?^$    \    P    \t
-ed            -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
-egrep         -     |     (     )    \    \.*[,{,(,|+?^$    ,    P    ,
-emacs         -   \\|   \\(   \\)    \\   \.*[,,,,,,+?,,    \    P    \t
-expect        -     |     (     )    \    \.*[,{}()|+?^$    \    P    \t
-find          -     |     (     )    \    \.*[,{,(,|+?^$    ,    P    ,
-gawk          -     |     (     )    \    \.*[,,,(,|+?^$    \    P    \t
-grep          -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
-javascript    -     |     (     )    \    \.*[,,,()|+?^$    \    ,    \t
-lex           -     |     (     )    \    \.*[,{}()|+?,,    \    P    \t
-mawk          -     |     (     )    \    \.*[,,,()|+?^$    \    ,    \t
-mysql         -     |     (     )    \\   \.*[,,,(,|+?^$    \    P    \t
-perl          -     |     (     )    \    \.*[,{,()|+?^$    \    P    \t
-php           -     |     (     )    \\   \.*[,{,()|+?^$    \    P    \t
-postgres      -     |     (     )    \    \.*[,,,()|+?^$    \    P    \t
-procmail      -     |     (     )    \    \.*[,,,()|+?^$    ,    ,    ,
-python        -     |     (     )    \    \.*[,{,()|+?^$    \    ,    \t
-sed           -    \|    \(    \)    \    \.*[,,,,,,,,,,    ,    P    \t
-tcl           -     |     (     )    \    \.*[,{}()|+?^$    \    P    \t
-vi            -    !!    \(    \)    \    \.*[,,,,,,,,,,    ,    P    ,
-vim           -    \|    \(    \)    \    \.*[,,,,,,,,,,    \    P    \t
+awk           -     |     (     )    \    \.*[---()|+?^$    \    P    \t
+chicken       -     |     (     )    \\   \.*[---()|+?^$    \    P    \t
+ed            -    \|    \(    \)    \    \.*[----------    -    P    -
+egrep         -     |     (     )    \    \.*[-{-(-|+?^$    -    P    -
+emacs         -   \\|   \\(   \\)    \\   \.*[------+?--    \    P    \t
+expect        -     |     (     )    \    \.*[-{}()|+?^$    \    P    \t
+find          -     |     (     )    \    \.*[-{-(-|+?^$    -    P    -
+gawk          -     |     (     )    \    \.*[---(-|+?^$    \    P    \t
+grep          -    \|    \(    \)    \    \.*[----------    -    P    -
+javascript    -     |     (     )    \    \.*[---()|+?^$    \    -    \t
+lex           -     |     (     )    \    \.*[-{}()|+?--    \    P    \t
+mawk          -     |     (     )    \    \.*[---()|+?^$    \    -    \t
+mysql         -     |     (     )    \\   \.*[---(-|+?^$    \    P    \t
+perl          -     |     (     )    \    \.*[-{-()|+?^$    \    P    \t
+php           -     |     (     )    \\   \.*[-{-()|+?^$    \    P    \t
+postgres      -     |     (     )    \    \.*[---()|+?^$    \    P    \t
+procmail      -     |     (     )    \    \.*[---()|+?^$    -    -    -
+python        -     |     (     )    \    \.*[-{-()|+?^$    \    -    \t
+sed           -    \|    \(    \)    \    \.*[----------    -    P    \t
+tcl           -     |     (     )    \    \.*[-{}()|+?^$    \    P    \t
+vi            -    !!    \(    \)    \    \.*[----------    -    P    -
+vim           -    \|    \(    \)    \    \.*[----------    \    P    \t
 EOD
-#                                         \.*[]{}()|+?^$    ,=false
+#                                         \.*[]{}()|+?^$    -=false
 # [0] Unused
 # [1] Which is the metacharacter for alternatives?
 # [2,3] Which are the metacharacters for grouping?
@@ -589,7 +589,7 @@ EOD
 #     literals? Note that txt2regex has menus to insert all of those as
 #     metacharacters (except $), so in user input they will always be
 #     literal. For ^ and $, some tools consider them literal when not in
-#     their special start/end position (marked here as commas).
+#     their special start/end position (marked here as -).
 # [6] To match '\' inside [], do you need to escape it? If yes, use '\'.
 # [7] Has support for [[:POSIX:]] character classes? If yes, use 'P'.
 # [8] Does \t inside [] match a tab? If yes, use '\t'.
@@ -694,9 +694,9 @@ getMeta() { # var-name index
     local m="$1[$2]"
     m=${!m}
 
-    # Remove all non-metacharacters: @ ! , -
+    # Remove all non-metacharacters: @ ! -
     # Those are used internally by txt2tags as markers
-    m=${m//[@!,-]/}
+    m=${m//[@!-]/}
 
     # Remove when getting '?' or '+' for 'vi', since they are unsupported
     # and the current values are workarounds using '{}'
@@ -762,7 +762,7 @@ ShowInfo() {
         "$prog: $ver"
         "$metas"
         "$escmeta"
-        "${needesc//[ ,]/}"
+        "${needesc//-/}"
         "$tabinlist"
         "$posix"
     )
@@ -1154,11 +1154,9 @@ getListTab() {
     uin="${uin/@/$x}"
 }
 
+# Set $uin to !! when POSIX character classes are not supported
 getHasPosix() {
-    # let's just unsupport the tested ones
-    local x="ax_${progs[$1]}[7]"
-
-    [ "${!x}" == ',' ] && uin='!!'
+    [ "$(getMeta "ax_${progs[$1]}" 7)" == 'P' ] || uin='!!'
 }
 
 # Escape possible metachars in user input so they will be matched literally
