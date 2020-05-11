@@ -159,7 +159,7 @@ GRP2=0
 
 # Here's the default list of programs shown.
 # Edit here or use --prog to overwrite it.
-progs=(python egrep grep sed vim)
+progs=(python egrep grep sed vim emacs)
 
 ### IMPORTANT DATA ###
 

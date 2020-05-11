@@ -64,7 +64,7 @@ The format is based on [Keep a Changelog].
 - JavaScript regexes: now using Node.js instead of Netscape
 - lex regexes: now using GNU flex
 - PHP regexes: switch from old `ereg` to `preg` (PCRE)
-- Changed the default programs: +egrep +grep -perl -php -postgres
+- Changed the default programs: +egrep +grep +emacs -perl -php -postgres
 - Remove repeated characters inside a list `[]` (if the user has typed
   `abbbca`, make it `[abc]`)
 - Now `--showmeta` also shows the version for each program
