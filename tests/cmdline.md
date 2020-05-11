@@ -130,6 +130,7 @@ $ txt2regex --history '124259¤a¤b¤5'
  Regex grep  : ^a\+b\{5\}.*
  Regex sed   : ^a\+b\{5\}.*
  Regex vim   : ^a\+b\{5}.*
+ Regex emacs : ^a+b\\{5\\}.*
 
 $
 ```
@@ -242,6 +243,7 @@ $ txt2regex --make date
  Regex grep  : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
  Regex sed   : [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}
  Regex vim   : [0-9]\{2}/[0-9]\{2}/[0-9]\{4}
+ Regex emacs : [0-9]\\{2\\}/[0-9]\\{2\\}/[0-9]\\{4\\}
 
 $
 ```
