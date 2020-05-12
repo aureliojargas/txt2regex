@@ -73,7 +73,7 @@ The format is based on [Keep a Changelog].
 - Converted everything (code, docs, translations) to UTF-8
 - Improved the source code quality (`shellcheck`) and formatting
   (`shfmt`)
-- Unset `$PATH` in the top of the script to make sure only Bash built-in
+- Unset `$PATH` in the top of the script to make sure only Bash builtin
   commands are used
 - Simplified the man page contents
 - i18n: Improve some translatable strings to make them shorter and
@@ -189,8 +189,8 @@ The format is based on [Keep a Changelog].
   terminals
 - Improve the final human sentence with more detailed data
 - Remove the usage of the `clear` and `stty` commands, because they are
-  not Bash built-in commands (and txt2regex strives to be 100% Bash
-  built-ins powered)
+  not Bash builtin commands (and txt2regex strives to be 100% Bash
+  builtins powered)
 - The project is now hosted at SourceForge
 - Added Polish translations provided by Chris Piechowicz
 
