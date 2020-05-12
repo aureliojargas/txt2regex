@@ -14,7 +14,7 @@ The following guidelines are reminders for the future me (the author), because I
 
 - Keep the code formatted (`make fmt`) and validated (`make lint`)
 
-- Do not use any system command, this is a Bash built-ins script
+- Do not use any system command, this is a Bash builtins script
 
 - Do not use any Bash feature that is not supported by the old minimal version txt2regex supports (see https://mywiki.wooledge.org/BashFAQ/061)
 
