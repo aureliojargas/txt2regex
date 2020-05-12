@@ -261,8 +261,10 @@ label_data=(
 #number3: perl: [+-]?[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?
 ### -- ###
 
-getItemIndex() { # array tool
-    local i=0 item="$1"
+getItemIndex() { # item, array_items
+    local item="$1"
+    local i=0
+
     shift
     while [ -n "$1" ]; do
         [ "$1" == "$item" ] && printf '%d\n' "$i" && return
@@ -273,6 +275,7 @@ getItemIndex() { # array tool
 
 validateProgramNames() {
     local name
+
     for name in "$@"; do
         [ -z "$(getItemIndex "$name" "${allprogs[@]}")" ] &&
             printError '%s: %s\n' $"unknown program" "$name"
@@ -614,8 +617,11 @@ ColorOnOff() {
     fi
 }
 
+# Emulate the 'seq N' command
 sek() {
-    local a=1 z=$1
+    local z="$1"
+    local a=1
+
     while [ "$a" -le "$z" ]; do
         printf '%d\n' "$a"
         a=$((a + 1))
@@ -655,8 +661,6 @@ escapeChars() {
 
     local escaped_text
     local i
-    local j
-    local must_escape
     local this_char
 
     for ((i = 0; i < ${#text}; i++)); do
@@ -681,12 +685,12 @@ escapeChars() {
 }
 
 getLargestItem() {
-    local mjr
+    local largest
     while [ -n "$1" ]; do
-        [ ${#1} -gt ${#mjr} ] && mjr="$1"
+        [ ${#1} -gt ${#largest} ] && largest="$1"
         shift
     done
-    printf '%s\n' "$mjr"
+    printf '%s\n' "$largest"
 }
 
 # Used to get values from the S2_* and ax_* metachar arrays
@@ -700,7 +704,7 @@ getMeta() { # var-name index
 
     # Remove when getting '?' or '+' for 'vi', since they are unsupported
     # and the current values are workarounds using '{}'
-    [ "$1" == S2_vi ] && { [ "$2" -eq 2 ] || [ "$2" -eq 4 ]; } && m=""
+    [ "$1" == S2_vi ] && { [ "$2" -eq 2 ] || [ "$2" -eq 4 ]; } && m=''
 
     printf '%s\n' "$m"
 }
@@ -725,9 +729,20 @@ ShowMeta() {
 }
 
 ShowInfo() {
-    local index ver posix=$"NO" tabinlist=$"NO" prog=$1
-    local j t1 t2 t3 t4 t5 t6 txtsize escmeta needesc metas
-    local -a data txt
+    local prog="$1"
+
+    local escmeta
+    local index
+    local i
+    local metas
+    local needesc
+    local posix=$"NO"
+    local tabinlist=$"NO"
+    local txtsize
+    local ver
+
+    local -a data
+    local -a txt
 
     # Getting data
     index=$(getItemIndex "$prog" "${allprogs[@]}")
@@ -790,6 +805,7 @@ fi
 
 # Screen size/positioning issues
 ScreenSize() {
+    # Note that those are all global variables
     x_regex=1
     y_regex=4
     x_hist=3
@@ -841,7 +857,14 @@ printTitleCmd() {
 
 TopTitle() {
     gotoxy 1 1
-    local i j showme txt color
+
+    local color
+    local cmd
+    local i
+    local j
+    local showme
+    local txt
+
     [ "$is_interactive" -eq 0 ] && return
 
     # 1st line: aplication commands
@@ -912,9 +935,11 @@ TopTitle() {
 }
 
 doMenu() {
+    local i
     local -a Menui
+
     eval "Menui=(\"\${$1[@]}\")"
-    menu_n=$((${#Menui[*]} - 1)) # ini
+    menu_n=$((${#Menui[*]} - 1)) # ini (global var)
 
     if [ "$is_interactive" -eq 1 ]; then
 
@@ -947,7 +972,9 @@ doMenu() {
 }
 
 Menu() {
-    local ok=0 name="$1"
+    local name="$1"
+    local ok=0
+
     while [ $ok -eq 0 ]; do
         doMenu "$name"
         case "$REPLY" in
@@ -1071,7 +1098,7 @@ getNumber() {
         uin=$histarg
     fi
 
-    # Extracting !numbers
+    # Remove !numbers
     uin="${uin//[^0-9]/}"
 
     # ee
@@ -1088,7 +1115,9 @@ getNumber() {
 }
 
 getPosix() {
-    local rpl psx=''
+    local psx
+    local rpl
+
     unset SUBHUMAN
 
     if [ "$is_interactive" -eq 1 ]; then
@@ -1110,7 +1139,9 @@ getPosix() {
 }
 
 getCombo() {
-    local rpl cmb=''
+    local cmb
+    local rpl
+
     unset SUBHUMAN
 
     if [ "$is_interactive" -eq 1 ]; then
@@ -1134,14 +1165,12 @@ getCombo() {
     uins="${uins}¤:${CHOICEREPLY// /}"
 }
 
-#TODO all
-getREady() {
+getREady() { #TODO
     unset SUBHUMAN
     uin=''
 }
 
 # convert [@] -> [\t] or [<TAB>] based on ax_*[8] value
-# TODO expand this to all "gettable" fields: @
 getListTab() {
     local x
 
@@ -1184,14 +1213,15 @@ escCharList() {
 }
 
 Reset() {
+    local p
+
+    # It's all global variables in this function
     gotoxy $x_regex $y_regex
     unset REPLIES uins HUMAN "Regex[*]"
     has_not_supported=0
     GRP1=0
     GRP2=0
-    local p
 
-    # global maxprogname
     maxprogname=$(getLargestItem "${progs[@]}") # global var
     for p in ${progs[*]}; do
         [ "$is_interactive" -eq 1 ] &&
@@ -1201,7 +1231,10 @@ Reset() {
 
 showRegex() {
     gotoxy $x_regex $y_regex
-    local i new_part save="$uin"
+
+    local i
+    local new_part
+    local save="$uin"
 
     # For each program
     for ((i = 0; i < ${#progs[@]}; i++)); do
@@ -1248,7 +1281,10 @@ showRegex() {
 
 # Just refresh the selected item on the screen
 ChoiceRefresh() {
-    local xy=$1 a=$2 stat=$3 opt=$4
+    local xy=$1
+    local a=$2
+    local stat=$3
+    local opt=$4
 
     # colorizing case status is ON
     [ "$stat" == '+' ] && stat="$cI$stat$cN"
@@ -1262,8 +1298,19 @@ Choice() {
     local choicereset=0
     [ "$1" == '--reset' ] && shift && choicereset=1
 
-    local alpha opts optxy numopts=$#
-    local lines cols line op alf rpl
+    local alf
+    local alpha
+    local cols
+    local i
+    local line
+    local lines
+    local numopts=$#
+    local op
+    local opt
+    local opts
+    local optxy
+    local rpl
+
     alpha=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 
     # Reading options and filling default status (off)
@@ -1342,7 +1389,8 @@ Choice() {
 
 # Non-interative, just return the answers
 ChoiceAuto() {
-    local i z
+    local i
+    local z
 
     unset CHOICEREPLY
     doNextHistArg
@@ -1355,7 +1403,9 @@ ChoiceAuto() {
 
 # Fills the stat array with the actual active programs ON
 statActiveProgs() {
-    local p i=0 ps=" ${progs[*]} "
+    local i
+    local p
+    local ps=" ${progs[*]} "
 
     # For each program
     for ((i = 0; i < ${#allprogs[@]}; i++)); do
