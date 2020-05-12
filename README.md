@@ -5,7 +5,7 @@
 - Author: [Aurelio Jargas](https://aurelio.net/about.html)
 - License: GPL
 - First release: 2001-02-23
-- Requires: Bash >= 2.05
+- Requires: Bash >= 3.0
 - Website: https://aurelio.net/projects/txt2regex/
 
 Txt2regex is a regular expression wizard that converts human sentences

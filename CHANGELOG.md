@@ -55,7 +55,7 @@ The format is based on [Keep a Changelog].
 
 ### Changed
 
-- Bumped minimal required Bash version from 2.04 to 2.05
+- Bumped minimal required Bash version from 2.04 to 3.0
 - Bumped the versions for all the supported programs
 - Validated and updated the regex data for all the supported programs,
   thanks to the new regex tester. Some programs now support new
