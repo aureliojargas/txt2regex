@@ -26,7 +26,7 @@ Just run it:
 
     bash txt2regex.sh
 
-Better yet, make it an executable file, so you can run it directly:
+Making it an executable file, you can run it directly:
 
     chmod +x txt2regex.sh
     ./txt2regex.sh
@@ -37,16 +37,18 @@ command to properly install it in your system:
     make install BINDIR=. LOCALEDIR=po
     ./txt2regex
 
-**Note 1:** Play with `BINDIR`, `LOCALEDIR` and `DESTDIR` variables to
-change the default install paths.
+> Play with `BINDIR`, `LOCALEDIR` and `DESTDIR` variables to change the
+default install paths.
 
 
 ## Regex tester to gather "real life" data
 
 Txt2regex needs to know regex-related information for each program it
-supports. For example: the list of metacharacters, how to escape a
-metacharacter to match it literally and the availability of POSIX
-character classes.
+supports. For example:
+
+- which metacharacters are supported?
+- how to escape a metacharacter to match it literally?
+- are POSIX character classes supported?
 
 Instead of relying in documentation to get that information, the
 [tests/regex-tester.sh](tests/regex-tester.sh) script calls the real
@@ -59,7 +61,7 @@ saved to this repository, in a readable and grepable plain text file:
 behavior can be easily detected.
 
 
-## The current tested versions
+## Tested versions
 
 ```console
 $ grep version: tests/regex-tester.txt | cut -d : -f 2-
@@ -89,85 +91,66 @@ $
 ```
 
 
-## Translations maintainers
+## Translators
 
-    ca             Catalan           Carles (ChAoS)
-    de_DE          German            Jan Parthey
-    en             English           Aurelio Jargas
-    es_ES          Spanish           Diego Moya
-    fr_FR          French            wwp
-    id_ID     Bahasa Indonesian      Muhamad Faizal
-    it_IT          Italian           Daniele Pizzolli
-    ja            Japanese           Hajime Dei
-    pl_PL          Polish            Chris Piechowicz
-    pt_BR    Brazilian Portuguese    Aurelio Jargas
-    ro_RO         Romanian           Robert Claudiu Gheorghe
-    tr             Turkish           erayalakese
+    ca       Catalan       Carles (ChAoS)
+    de_DE    German        Jan Parthey
+    es_ES    Spanish       Diego Moya
+    fr_FR    French        wwp
+    id_ID    Indonesian    Muhamad Faizal
+    it_IT    Italian       Daniele Pizzolli
+    ja       Japanese      Hajime Dei
+    pl_PL    Polish        Chris Piechowicz
+    pt_BR    Portuguese    Aurelio Jargas
+    ro_RO    Romanian      Robert Claudiu Gheorghe
+    tr       Turkish       erayalakese
 
-A nice way to contribute with the project, is to translate its
-messages to your own language. Just get the `po/txt2regex.pot`
-file and translate it, on the `msgstr` lines. In doubt, ask.
+To translate txt2regex to your language:
+
+- translate the [po/txt2regex.pot][potfile] file (in the `msgstr` lines)
+- save it as `po/XX.po` (where XX is the [two-letter code][iso639] for
+  your language)
+- submit this new `.po` file in a pull request
+
+Check the [current translations][pos] for reference.
+
+[potfile]: https://github.com/aureliojargas/txt2regex/blob/master/po/txt2regex.pot
+[iso639]: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+[pos]: https://github.com/aureliojargas/txt2regex/tree/master/po
 
 
 ## FAQ
 
-### Q: Why?
+### Why?
 
-A: To try to make simple regexes less painful for the beginners.
+- To try to make simple regexes less painful for the beginners.
+- To have a reliable source for regexes differences between programs.
+- To have coding fun :)
 
-A: To have a reliable source for regexes differences between programs.
+### What is that `<TAB>` that appears in the regex?
 
-A: To have coding fun &:)
+That `<TAB>` represents a literal tab character. When using the regex in
+the desired external program, remember to change that to a literal tab.
+This is required by programs that do not support using `\t` as a
+shortcut for the tab character.
 
-### Q: Why bash2?
+### Why my terminal size (lines/columns) is not detected?
 
-A: Basically, for me to learn the new bash2 concepts as arrays, i18n
-and advanced variable expansion. They rule!
+Txt2regex uses the environment variables `$LINES` and `$COLUMNS` to get
+the current terminal size. Make sure you have them exported, otherwise
+the default 80x25 size will be assumed.
 
-### Q: Why it's not detecting the correct number of lines or columns in my terminal?
+To check if the variables are exported, run:
 
-A: The program do use the Bash environment variables `$LINES` and
-`$COLUMNS` to get the actual screen size. Those **MUST** be exported
-variables, or you'll be stuck at the default 80x25 size. Try:
+```bash
+bash -c 'echo $COLUMNS $LINES'
+```
 
-    /bin/bash -c 'echo $COLUMNS $LINES'
+If no numbers are shown in the output, a quick fix is running:
 
-If you don't get the screen size, do:
+```bash
+export COLUMNS LINES
+```
 
-    echo export COLUMNS LINES >> ~/.bash_profile
-
-### Q: Why my bash version is not recognized correctly?
-
-A: The program uses the `$BASH_VERSION`
-environment variable, that is available in all Bash versions,
-to detect your current version.
-
-If some alien has possessed your machine and your environment
-don't have this variable, try to set it by hand. Check with
-
-    echo $BASH_VERSION
-
-If this variable is ok, but `bash --version` returns another
-version, check if your Bash is really `/bin/bash`:
-
-    which bash
-
-If it's not `/bin/bash`, you **MUST** change the first line
-of the script to your Bash's actual path. For example, if you
-have the `bash` binary in your `$HOME`, inside the `bin`
-directory, just change the first line of the program to:
-
-    #!/home/YOU/bin/bash
-
-As a last resort, you can always call it with Bash:
-
-    bash ./txt2regex.sh
-
-### Q: What is that `<TAB>` that appears when I choose TAB on the "special combination" menu?
-
-A: Inside lists `[]`, the `<TAB>` string is a visual representation of
-a literal tab character, for programs that don't support `[\t]`.
-
---
-
-The End.
+As a permanent fix, add the previous `export` command to a Bash
+configuration file, such as `~/.bashrc`.
