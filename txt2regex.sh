@@ -220,11 +220,9 @@ label_names=(
     date
     date2
     date3
-
     hour
     hour2
     hour3
-
     number
     number2
     number3
@@ -233,11 +231,9 @@ label_descriptions=(
     'date LEVEL 1: mm/dd/yyyy: matches from 00/00/0000 to 99/99/9999'
     'date LEVEL 2: mm/dd/yyyy: matches from 00/00/1000 to 19/39/2999'
     'date LEVEL 3: mm/dd/yyyy: matches from 00/00/1000 to 12/31/2999'
-
     'hour LEVEL 1: hh:mm: matches from 00:00 to 99:99'
     'hour LEVEL 2: hh:mm: matches from 00:00 to 29:59'
     'hour LEVEL 3: hh:mm: matches from 00:00 to 23:59'
-
     'number LEVEL 1: integer, positive and negative'
     'number LEVEL 2: level 1 plus optional float point'
     'number LEVEL 3: level 2 plus optional commas, like: 34,412,069.90'
