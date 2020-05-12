@@ -1,10 +1,10 @@
 #!/bin/bash
-# txt2regex.sh - Regular Expressions "wizard", all in bash2 builtins
+# txt2regex.sh - Regular Expressions "wizard" made with Bash builtins
 #
 # Website : https://aurelio.net/projects/txt2regex/
 # Author  : Aurelio Jargas (verde@aurelio.net)
 # License : GPL
-# Requires: bash >= 2.05
+# Requires: bash >= 3.0
 #
 # shellcheck disable=SC1117,SC2034
 #   SC1117 because it was obsoleted in shellcheck >0.5
@@ -96,11 +96,11 @@ printError() {
 }
 
 case "$BASH_VERSION" in
-    2.0[5-9]* | 2.[1-9]* | [3-9].*)
+    [3-9].*)
         : # do nothing
         ;;
     *)
-        printError 'Bash version >=2.05 required, but you have %s\n' "$BASH_VERSION"
+        printError 'Bash version >=3.0 required, but you have %s\n' "$BASH_VERSION"
         ;;
 esac
 
