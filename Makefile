@@ -35,7 +35,8 @@ lint:
 test: clitest.sh
 	sh clitest.sh --progress none README.md tests/*.md
 
-# Run the tests in multiple Bash versions (each Docker image is ~10MB)
+# Run the tests in multiple Bash versions, using the official Docker
+# image https://hub.docker.com/_/bash (each image is ~10MB)
 test-bash: clitest.sh
 	@for v in $(BASHVERSIONS); do \
 		printf '\nTesting in Bash version %s\n' $$v; \
