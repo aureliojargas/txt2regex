@@ -71,7 +71,7 @@ $
 
 ## User input: Escape \ when inside [] — escCharList()
 
-In some programs, it's required to escape the '\' character when using it inside `[]` lists, making it `\\` or even `\\\\`.
+In some programs, it's required to escape the `\` character when using it inside `[]` lists, making it `\\` or even `\\\\`.
 
 ```console
 $ txt2regex --all --history '241¤\'
