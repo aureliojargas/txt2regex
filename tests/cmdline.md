@@ -62,28 +62,28 @@ A handy table showing all the metacharacters for all the programs txt2regex know
 ```console
 $ txt2regex --showmeta | sed 's/  *$//'
 
-       awk      +      ?             |      ()    awk version 20121220
-   chicken      +      ?     {}      |      ()    CHICKEN 4.12.0
-        ed     \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
-     egrep      +      ?     {}      |      ()    grep (GNU grep) 3.1
-     emacs      +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
-    expect      +      ?     {}      |      ()    expect version 5.45.4
-      find      +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
-      gawk      +      ?     {}      |      ()    GNU Awk 4.1.4
-      grep     \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
+awk             +      ?             |      ()    awk version 20121220
+chicken         +      ?     {}      |      ()    CHICKEN 4.12.0
+ed             \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
+egrep           +      ?     {}      |      ()    grep (GNU grep) 3.1
+emacs           +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
+expect          +      ?     {}      |      ()    expect version 5.45.4
+find            +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
+gawk            +      ?     {}      |      ()    GNU Awk 4.1.4
+grep           \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
 javascript      +      ?     {}      |      ()    node v8.10.0
-       lex      +      ?     {}      |      ()    flex 2.6.4
-      mawk      +      ?             |      ()    mawk 1.3.3 Nov 1996
-     mysql      +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
-      perl      +      ?     {}      |      ()    perl v5.26.1
-       php      +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
-  postgres      +      ?     {}      |      ()    psql (PostgreSQL) 10.12
-  procmail      +      ?             |      ()    procmail v3.23pre 2001/09/13
-    python      +      ?     {}      |      ()    Python 3.6.9
-       sed     \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
-       tcl      +      ?     {}      |      ()    tcl 8.6
-        vi                 \{\}           \(\)    nvi 1.81.6-13
-       vim     \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 8.0 (2016 Sep 12)
+lex             +      ?     {}      |      ()    flex 2.6.4
+mawk            +      ?             |      ()    mawk 1.3.3 Nov 1996
+mysql           +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
+perl            +      ?     {}      |      ()    perl v5.26.1
+php             +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
+postgres        +      ?     {}      |      ()    psql (PostgreSQL) 10.12
+procmail        +      ?             |      ()    procmail v3.23pre 2001/09/13
+python          +      ?     {}      |      ()    Python 3.6.9
+sed            \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
+tcl             +      ?     {}      |      ()    tcl 8.6
+vi                         \{\}           \(\)    nvi 1.81.6-13
+vim            \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 8.0 (2016 Sep 12)
 
 NOTE: . [] [^] and * are the same on all programs.
 
