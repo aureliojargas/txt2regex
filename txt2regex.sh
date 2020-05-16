@@ -713,7 +713,7 @@ ShowMeta() {
         g1=$(getMeta "ax_$prog" 2)
         g2=$(getMeta "ax_$prog" 3)
 
-        printf "\n%${#progsize}s" "$prog"      # name
+        printf "\n%-${#progsize}s" "$prog"     # name
         printf '%7s' "$(getMeta "S2_$prog" 4)" # +
         printf '%7s' "$(getMeta "S2_$prog" 2)" # ?
         printf '%7s' "$(getMeta "S2_$prog" 5)" # {}
