@@ -60,7 +60,7 @@ The original code always shows version zero. The real version is set only when u
 A handy table showing all the metacharacters for all the programs txt2regex knows about. Nice for comparisons or for a quick memory refresh.
 
 ```console
-$ txt2regex --showmeta | sed 's/  *$//'
+$ txt2regex --showmeta
 
 awk             +      ?             |      ()    awk version 20121220
 chicken         +      ?     {}      |      ()    CHICKEN 4.12.0
