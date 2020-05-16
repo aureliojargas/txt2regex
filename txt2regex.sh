@@ -695,7 +695,7 @@ getMeta() { # var-name index
     m=${!m}
 
     # Remove all non-metacharacters: @ ! -
-    # Those are used internally by txt2tags as markers
+    # Those are used only internally as markers
     m=${m//[@!-]/}
 
     # Remove when getting '?' or '+' for 'vi', since they are unsupported
