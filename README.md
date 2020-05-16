@@ -10,16 +10,21 @@
 
 Txt2regex is a regular expression wizard that converts human sentences
 to regexes. In a simple interactive console interface, the user answer
-questions and the program builds the regexes for more than 20 programs
-like grep, Vim, Emacs, JavaScript, PHP, Python, PostgreSQL. It is a
-Shell Script 100% written with Bash builtin commands. No compilation or
-extra commands are needed, just download it and run.
+questions and the program builds the regexes for more than 20 flavors
+like grep, Vim, Emacs, JavaScript, PHP, Python, PostgreSQL.
 
-See [tests/cmdline.md](tests/cmdline.md) for a complete list of all the
+Txt2regex is a one-file shell script made 100% with Bash builtin
+commands. The only requirement is Bash itself, since no grep, find, sed
+or any other system commands are used.
+
+See [tests/cmdline.md](tests/cmdline.md) for a list of all the
 available command line options and examples on using them.
 
+See [tests/features.md](tests/features.md) for some of the special
+features txt2regex has to handle user input and compose proper regexes.
 
-## Install and run
+
+## Running
 
 Txt2regex is a stand-alone Bash script, it doesn't need to be installed.
 Just run it:
@@ -31,24 +36,54 @@ Making it an executable file, you can run it directly:
     chmod +x txt2regex.sh
     ./txt2regex.sh
 
-If you want it in another language besides English, use the `make`
-command to properly install it in your system:
+If you want it in [another language][pos] besides English:
 
     make install BINDIR=. LOCALEDIR=po
-    ./txt2regex
+    LANG=es_ES ./txt2regex
 
-> Play with `BINDIR`, `LOCALEDIR` and `DESTDIR` variables to change the
-default install paths.
+
+## Supported flavors
+
+```console
+$ bash txt2regex.sh --showmeta
+
+awk             +      ?             |      ()    awk version 20121220
+chicken         +      ?     {}      |      ()    CHICKEN 4.12.0
+ed             \+     \?   \{\}     \|    \(\)    GNU Ed 1.10
+egrep           +      ?     {}      |      ()    grep (GNU grep) 3.1
+emacs           +      ? \\{\\}    \\|  \\(\\)    GNU Emacs 25.2.2
+expect          +      ?     {}      |      ()    expect version 5.45.4
+find            +      ?     {}      |      ()    find (GNU findutils) 4.7.0-git
+gawk            +      ?     {}      |      ()    GNU Awk 4.1.4
+grep           \+     \?   \{\}     \|    \(\)    grep (GNU grep) 3.1
+javascript      +      ?     {}      |      ()    node v8.10.0
+lex             +      ?     {}      |      ()    flex 2.6.4
+mawk            +      ?             |      ()    mawk 1.3.3 Nov 1996
+mysql           +      ?     {}      |      ()    mysql  Ver 14.14 Distrib 5.7.29
+perl            +      ?     {}      |      ()    perl v5.26.1
+php             +      ?     {}      |      ()    PHP 7.2.24-0ubuntu0.18.04.4
+postgres        +      ?     {}      |      ()    psql (PostgreSQL) 10.12
+procmail        +      ?             |      ()    procmail v3.23pre 2001/09/13
+python          +      ?     {}      |      ()    Python 3.6.9
+sed            \+     \?   \{\}     \|    \(\)    sed (GNU sed) 4.4
+tcl             +      ?     {}      |      ()    tcl 8.6
+vi                         \{\}           \(\)    nvi 1.81.6-13
+vim            \+     \=    \{}     \|    \(\)    VIM - Vi IMproved 8.0 (2016 Sep 12)
+
+NOTE: . [] [^] and * are the same on all programs.
+
+$
+```
 
 
 ## Regex tester to gather "real life" data
 
-Txt2regex needs to know regex-related information for each program it
+Txt2regex needs to know regex-related information for each flavor it
 supports. For example:
 
-- which metacharacters are supported?
-- how to escape a metacharacter to match it literally?
-- are POSIX character classes supported?
+- Which metacharacters are supported?
+- How to escape a metacharacter to match it literally?
+- Are POSIX character classes supported?
 
 Instead of relying in documentation to get that information, the
 [tests/regex-tester.sh](tests/regex-tester.sh) script calls the real
@@ -61,34 +96,17 @@ saved to this repository, in a readable and grepable plain text file:
 behavior can be easily detected.
 
 
-## Tested versions
+## Testing
 
-```console
-$ grep version: tests/regex-tester.txt | cut -d : -f 2-
- awk version 20121220
- CHICKEN 4.12.0
- GNU Ed 1.10
- grep (GNU grep) 3.1
- GNU Emacs 25.2.2
- expect version 5.45.4
- find (GNU findutils) 4.7.0-git
- GNU Awk 4.1.4
- grep (GNU grep) 3.1
- node v8.10.0
- flex 2.6.4
- mawk 1.3.3 Nov 1996
- mysql  Ver 14.14 Distrib 5.7.29
- perl v5.26.1
- PHP 7.2.24-0ubuntu0.18.04.4
- psql (PostgreSQL) 10.12
- procmail v3.23pre 2001/09/13
- Python 3.6.9
- sed (GNU sed) 4.4
- tcl 8.6
- VIM - Vi IMproved 8.0 (2016 Sep 12)
- nvi 1.81.6-13
-$
-```
+- `make test` — to run all the tests in the current Bash version on your
+  machine.
+
+- `make test-bash` — to run all the tests in all the released Bash
+  versions since 3.0 (requires Docker).
+
+- `make test-regex` — to run the regex tester (requires Docker).
+
+Check the [Makefile](Makefile) for the details on what gets executed.
 
 
 ## Translators
