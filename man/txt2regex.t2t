@@ -67,9 +67,7 @@ to have a text-only output (no control characters).
 Print a metacharacters table featuring all the programs.
 
 : **-V**, **--version**
-Print the program version and quit. Note that the GitHub code always
-shows version zero. The real version is set only when using
-**make install**.
+Print the program version and quit.
 
 : **--whitebg**
 Adjust colors for white background terminals.

@@ -67,9 +67,7 @@ Print a metacharacters table featuring all the programs.
 
 .TP
 \fB\-V\fR, \fB\-\-version\fR
-Print the program version and quit. Note that the GitHub code always
-shows version zero. The real version is set only when using
-\fBmake install\fR.
+Print the program version and quit.
 
 .TP
 \fB\-\-whitebg\fR

@@ -165,7 +165,6 @@ install-mo: mo
 install-bin:
 	test -d $(BINDIR) || mkdir -p $(BINDIR); \
 	sed -e '/^TEXTDOMAINDIR=/s,=.*,=$(LOCALEDIR),' \
-		-e '/^VERSION=/s/=.*/=$(VERSION)/' \
 		$(SCRIPT) > $(BINDIR)/$(NAME) && \
 	chmod +x $(BINDIR)/$(NAME) && \
 	printf '\nProgram "%s" installed. Just run %s\n' \
