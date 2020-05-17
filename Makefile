@@ -16,7 +16,7 @@ BINDIR = $(DESTDIR)/usr/bin
 LOCALEDIR = $(DESTDIR)/usr/share/locale
 MANDIR = $(DESTDIR)/usr/share/man/man1
 
-.PHONY: check check-po clean doc fmt install install-bin \
+.PHONY: check check-po check-tgz clean doc fmt install install-bin \
         install-mo lint mo po pot test test-bash test-regex \
         test-regex-build test-regex-shell tgz
 
@@ -138,6 +138,19 @@ tgz: clean check doc
 	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
 	rm -rf $(DISTDIR) && \
 	printf '\nSuccessfully created %s\n' $(DISTDIR).tgz
+
+# Compare the tgz file listing with the repository file listing
+# 1st column: Maybe some important file is not in the tgz?
+# 2nd column: Maybe some untracked file got into the tgz?
+check-tgz:
+	@git ls-files | \
+		sort > git-files && \
+	tar tzf $(DISTDIR).tgz | \
+		grep -v '/$$' | \
+		cut -d / -f 2- | \
+		sort > tgz-files && \
+	comm git-files tgz-files; \
+	rm -f git-files tgz-files
 
 install: install-mo install-bin
 
