@@ -338,7 +338,7 @@ while [ $# -gt 0 ]; do
             progs=("${allprogs[@]}")
             ;;
         -V | --version)
-            printf 'txt2regex v%s\n' "$VERSION"
+            printf 'txt2regex %s\n' "$VERSION"
             exit 0
             ;;
         -h | --help)
