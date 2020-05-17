@@ -47,9 +47,9 @@ $
 
 ```console
 $ txt2regex --version
-txt2regex v0
+txt2regex 0
 $ txt2regex -V
-txt2regex v0
+txt2regex 0
 $
 ```
 
