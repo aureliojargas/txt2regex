@@ -74,8 +74,8 @@ clean:
 	rm -f tmp.lex.*.{l,run,yy.c}
 
 doc: txt2tags.py
-	@python ./txt2tags.py -t man  man/txt2regex.t2t
-	@python ./txt2tags.py -t html man/txt2regex.t2t
+	python ./txt2tags.py -t man  man/txt2regex.t2t
+	python ./txt2tags.py -t html man/txt2regex.t2t
 
 clitest.sh:
 	curl -s -L -o $@ \
