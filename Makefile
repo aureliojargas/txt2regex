@@ -5,6 +5,7 @@ REGEXTESTERIMAGE = aureliojargas/regex-tester:2020-05-09
 
 SCRIPT = $(NAME).sh
 DISTDIR = $(NAME)-$(VERSION)
+TARBALL = $(DISTDIR).tgz
 PODIR = po
 POTFILE = $(PODIR)/$(NAME).pot
 
@@ -135,9 +136,9 @@ check-po:
 tgz: clean check doc
 	mkdir -p $(DISTDIR) && \
 	cp -a $(FILES) $(DISTDIR) && \
-	tar cvzf $(DISTDIR).tgz $(DISTDIR) && \
+	tar cvzf $(TARBALL) $(DISTDIR) && \
 	rm -rf $(DISTDIR) && \
-	printf '\nSuccessfully created %s\n' $(DISTDIR).tgz
+	printf '\nSuccessfully created %s\n' $(TARBALL)
 
 # Compare the tgz file listing with the repository file listing
 # 1st column: Maybe some important file is not in the tgz?
@@ -145,7 +146,7 @@ tgz: clean check doc
 check-tgz:
 	@git ls-files | \
 		sort > git-files && \
-	tar tzf $(DISTDIR).tgz | \
+	tar tzf $(TARBALL) | \
 		grep -v '/$$' | \
 		cut -d / -f 2- | \
 		sort > tgz-files && \
