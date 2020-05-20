@@ -141,8 +141,9 @@ Check the [current translations][pos] for reference.
 
 ### Why?
 
-- To try to make simple regexes less painful for the beginners.
-- To have a reliable source for regexes differences between programs.
+- To try to make simple regexes less painful for beginners.
+- To have a reliable source for the specific regex syntax and rules from
+  different flavors.
 - To have coding fun :)
 
 ### What is that `<TAB>` that appears in the regex?
