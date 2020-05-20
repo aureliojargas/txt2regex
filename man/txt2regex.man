@@ -1,4 +1,4 @@
-.TH "TXT2REGEX" 1 "March, 29th - 2020" ""
+.TH "TXT2REGEX" 1 "May 21, 2020" ""
 
 .SH NAME
 .P
