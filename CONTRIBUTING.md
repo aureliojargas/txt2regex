@@ -75,6 +75,7 @@ All tests must always be successful. The CI will refuse changes that break tests
   - Rerun the tests, just in case: `make check`
   - Commit
   - Tag this commit with the version number
+  - Example: https://github.com/aureliojargas/txt2regex/commit/be3e0fa
 
 - Publish the release: `git push && git push --tags`
 
@@ -82,6 +83,7 @@ All tests must always be successful. The CI will refuse changes that break tests
   - Update the version number in `txt2regex.sh` and `Makefile`
     - Use `version+1` and add the `b` suffix (for beta)
   - Create a new "unreleased" entry in the changelog
+  - Example: https://github.com/aureliojargas/txt2regex/commit/193c011
 
 ## History rewrite
 
