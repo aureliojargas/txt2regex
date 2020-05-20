@@ -1,5 +1,5 @@
 NAME = txt2regex
-VERSION = 0.9
+VERSION = 0.10b
 BASHVERSIONS = 3.0 3.1 3.2 4.0 4.1 4.2 4.3 4.4 5.0
 REGEXTESTERIMAGE = aureliojargas/regex-tester:2020-05-09
 

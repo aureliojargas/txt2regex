@@ -86,7 +86,7 @@ export PATH=
 
 TEXTDOMAIN=txt2regex
 TEXTDOMAINDIR=po
-VERSION=0.9
+VERSION=0.10b
 
 printError() {
     printf '%s: ' $"ERROR"
