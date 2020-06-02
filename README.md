@@ -1,21 +1,27 @@
-## txt2regex — The console regular expression wizard
+## txt2regex — Regular expression wizard for the command line
 
-![](https://aurelio.net/projects/txt2regex/img/screenshot.png)
+![](https://aurelio.net/projects/txt2regex/img/demo.gif)
 
 - Author: [Aurelio Jargas](https://aurelio.net/about.html)
-- License: GPL
-- First release: 2001-02-23
+- License: GPLv2
+- First release: 2001-02-23 ([all releases](https://github.com/aureliojargas/txt2regex/releases))
 - Requires: Bash >= 3.0
 - Website: https://aurelio.net/projects/txt2regex/
 
-Txt2regex is a regular expression wizard that converts human sentences
-to regexes. In a simple interactive console interface, the user answer
-questions and the program builds the regexes for more than 20 flavors
-like grep, Vim, Emacs, JavaScript, PHP, Python, PostgreSQL.
+Txt2regex is a regular expression wizard for the command line.
+
+Users with little or no knowledge of regular expressions can quickly
+create hairy regexes by answering questions in a simple text-based
+interactive interface.
+
+Txt2regex is aware of the particular notation and caveats of many
+different regular expression flavors, generating valid regexes for more
+than 20 targets, including grep, sed, Vim, Emacs, JavaScript, Python,
+PHP, PostgreSQL.
 
 Txt2regex is a one-file shell script made 100% with Bash builtin
 commands. The only requirement is Bash itself, since no grep, find, sed
-or any other system commands are used.
+or any other system command is used.
 
 See [tests/cmdline.md](tests/cmdline.md) for a list of all the
 available command line options and examples on using them.
