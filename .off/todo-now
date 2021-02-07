@@ -1,0 +1,10 @@
+readme pro tests/ ?
+- propaganda clitest
+- comandos pra rodar os testes
+
+cat TODO
+- programas novos (linguages de programacao é low hanging fruit: Go, Ruby, Rust?)
+
+uma lista com somente um ^ vai ficar [^]. isso é ok? botar no testador?
+
+rename --prog to --flavor or --target (v1.0, breaking change)
