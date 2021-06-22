@@ -1,0 +1,25 @@
+# https://docs.github.com/en/actions/reference
+
+name: Check
+on: push
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo snap install shfmt
+      - run: make lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make test
+      - run: make test-bash
+      - run: make test-regex
+
+      - name: The repository must remain unchanged after the checks
+        run: |
+          git diff
+          git diff-index --exit-code HEAD
