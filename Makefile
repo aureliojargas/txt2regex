@@ -22,7 +22,7 @@ MANDIR = $(DESTDIR)/usr/share/man/man1
 check: lint test
 
 debug: clitest.sh
-	sh clitest.sh tests/bug.md
+	bash clitest.sh tests/bug.md
 
 fmt:
 	shfmt -w -i 4 -ci -sr $(SCRIPT) tests/regex-tester.sh
