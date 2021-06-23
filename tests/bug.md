@@ -1,13 +1,12 @@
 ```console
-$ txt2regex() { bash ./txt2regex.sh "$@"; }
+$ set -o
 $ set +e
 $ set +o pipefail
-$ seq 20 | head
-$ yes | head
-$ set +o pipefail; txt2regex --foo | head -n 3 | sed '3 s/:.*//'
---foo: invalid option
-
-usage
+$ set -o
+$ seq 20 | head -n 1
+1
+$ yes | head -n 1
+y
 $
 ```
 
