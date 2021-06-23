@@ -10,7 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           set -o | grep -e pipefail -e errexit
-          yes | fail
+          yes | head -n 1
+          make clitest.sh
           bash clitest.sh tests/bug.md
           make debug
         shell: bash --noprofile --norc {0}
