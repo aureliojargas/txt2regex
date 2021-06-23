@@ -5,7 +5,7 @@ $
 
 
 ```console
-$ txt2regex --foo | head -n 3 | sed '3 s/:.*//'
+$ set +o pipefail; txt2regex --foo | head -n 3 | sed '3 s/:.*//'
 --foo: invalid option
 
 usage
