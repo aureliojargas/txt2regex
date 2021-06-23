@@ -8,5 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: make debug
+      - run: |
+          set -o | grep -e pipefail -e errexit
+          yes | fail
+          bash clitest.sh tests/bug.md
+          make debug
         shell: bash --noprofile --norc {0}
