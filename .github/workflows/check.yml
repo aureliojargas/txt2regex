@@ -12,4 +12,5 @@ jobs:
           set -o | grep -e pipefail -e errexit
           trap
           yes | head -n 1
-        shell: bash --noprofile --norc -e {0}
+        #shell: bash --noprofile --norc -e {0}
+        shell: env --default-signal=PIPE bash --noprofile --norc -e {0}
