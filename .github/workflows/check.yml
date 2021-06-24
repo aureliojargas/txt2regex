@@ -8,13 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
+
+      - name: GitHub Actions runner ignores SIGPIPE
+        run: |
           set -o | grep -e pipefail -e errexit
           trap
           yes | head -n 1
-          echo ------
+        shell: bash --noprofile --norc -e -x {0}
+
+      - name: Using Python to run commands, SIGPIPE is not ignored
+        run: |
           python3 -c 'from subprocess import run; run(["trap; yes | head -n 1"], shell=True)'
-        shell: bash --noprofile --norc -e {0}
+        shell: bash --noprofile --norc -e -x {0}
 
         # Not supported in Ubuntu 20.04
         #shell: env --default-signal=PIPE bash --noprofile --norc -e {0}
