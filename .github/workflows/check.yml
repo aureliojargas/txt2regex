@@ -4,11 +4,20 @@ name: Check
 on: push
 jobs:
 
+  clitest:
+    container:
+      image: aureliojargas/clitest
+      volumes:
+        - /home/runner/work/txt2regex/txt2regex:/mnt
+    steps:
+      - run: --help
+
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: pwd
+      # /home/runner/work/txt2regex/txt2regex
 
       - name: GitHub Actions runner ignores SIGPIPE
         run: |
