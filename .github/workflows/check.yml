@@ -13,7 +13,7 @@ jobs:
           trap
           yes | head -n 1
           echo ------
-          python3 -c 'import subprocess; subprocess.run(["yes | head -n 1"], shell=True)'
+          python3 -c 'from subprocess import run; run(["trap; yes | head -n 1"], shell=True)'
         shell: bash --noprofile --norc -e {0}
 
         # Not supported in Ubuntu 20.04
