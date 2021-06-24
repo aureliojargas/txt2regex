@@ -11,7 +11,7 @@ jobs:
       volumes:
         - /home/runner/work/txt2regex/txt2regex:/mnt
     steps:
-      - run: --help
+      - run: clitest --help
 
   test:
     runs-on: ubuntu-latest
