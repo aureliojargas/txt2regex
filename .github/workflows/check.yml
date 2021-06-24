@@ -19,10 +19,14 @@ jobs:
       - name: Using Python to run commands, SIGPIPE is not ignored
         run: python3 -c 'import subprocess as s; s.run(["trap; yes | head -n 1"], shell=True)'
 
-      - name: Using Python as the shell to run shell commands
+      - name: Using Python as the shell to run shell commands - 1
         run: |
-          trap
-          yes | head -n 1
+          cmd = "trap; yes | head -n 1"
+          import subprocess as s; s.run([cmd], shell=True)
+        shell: python
+
+      - name: Using Python as the shell to run shell commands - 2
+        run: "trap; yes | head -n 1"
         shell: |
           python3 -c 'import subprocess as s; with open("{0}") as f: s.run([f.read()], shell=True)'
 
