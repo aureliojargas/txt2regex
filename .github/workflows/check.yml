@@ -5,6 +5,7 @@ on: push
 jobs:
 
   clitest:
+    runs-on: ubuntu-latest
     container:
       image: aureliojargas/clitest
       volumes:
