@@ -12,5 +12,9 @@ jobs:
           set -o | grep -e pipefail -e errexit
           trap
           yes | head -n 1
-        #shell: bash --noprofile --norc -e {0}
-        shell: env --default-signal=PIPE bash --noprofile --norc -e {0}
+          echo ------
+          python3 -c 'import subprocess; subprocess.run(["yes | head -n 1"], shell=True)'
+        shell: bash --noprofile --norc -e {0}
+
+        # Not supported in Ubuntu 20.04
+        #shell: env --default-signal=PIPE bash --noprofile --norc -e {0}
