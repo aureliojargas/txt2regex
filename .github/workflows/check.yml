@@ -12,6 +12,7 @@ jobs:
         - /home/runner/work/txt2regex/txt2regex:/mnt
     steps:
       - run: clitest --help
+      - run: clitest --progress none README.md tests/*.md
 
   test:
     runs-on: ubuntu-latest
