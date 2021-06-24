@@ -13,7 +13,8 @@ jobs:
     steps:
       - run: clitest --help
       - run: |
-          cd /mnt; clitest --progress none README.md tests/*.md
+          cd /mnt; ls -la; mount
+          clitest --progress none README.md tests/*.md
 
   test:
     runs-on: ubuntu-latest
