@@ -17,9 +17,14 @@ jobs:
         shell: bash --noprofile --norc -e -x {0}
 
       - name: Using Python to run commands, SIGPIPE is not ignored
+        run: python3 -c 'import subprocess as s; s.run(["trap; yes | head -n 1"], shell=True)'
+
+      - name: Using Python as the shell to run shell commands
         run: |
-          python3 -c 'from subprocess import run; run(["trap; yes | head -n 1"], shell=True)'
-        shell: bash --noprofile --norc -e -x {0}
+          trap
+          yes | head -n 1
+        shell: |
+          python3 -c 'import subprocess as s; with open("{0}") as f: s.run([f.read()], shell=True)'
 
         # Not supported in Ubuntu 20.04
         #shell: env --default-signal=PIPE bash --noprofile --norc -e {0}
