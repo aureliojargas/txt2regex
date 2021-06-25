@@ -8,12 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: aureliojargas/clitest
-      volumes:
-        - /home/runner/work/txt2regex/txt2regex:/mnt
+#      volumes:
+#        - /home/runner/work/txt2regex/txt2regex:/mnt
     steps:
       - run: clitest --help
       - run: |
           cd /mnt; ls -la; mount
+          find /github
           clitest --progress none README.md tests/*.md
 
   test:
