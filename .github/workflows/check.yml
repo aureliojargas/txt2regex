@@ -13,9 +13,10 @@ jobs:
     steps:
       - run: clitest --help
       - run: |
-          cd /mnt; ls -la; mount
-          find /github
-          clitest --progress none README.md tests/*.md
+          #cd /mnt; ls -la; mount
+          find /__w
+          find /github/home
+          #clitest --progress none README.md tests/*.md
 
   test:
     runs-on: ubuntu-latest
