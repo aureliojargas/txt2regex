@@ -11,11 +11,13 @@ jobs:
 #      volumes:
 #        - /home/runner/work/txt2regex/txt2regex:/mnt
     steps:
+      - uses: actions/checkout@v2
       - run: clitest --help
       - run: |
           #cd /mnt; ls -la; mount
-          find /__w
-          find /github/home
+          pwd; ls
+          #find /__w
+          #find /github/home
           #clitest --progress none README.md tests/*.md
 
   test:
