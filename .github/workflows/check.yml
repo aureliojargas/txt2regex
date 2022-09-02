@@ -7,17 +7,19 @@ on:
 jobs:
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - run: sudo snap install shfmt
       - run: make lint
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - run: make test
+      # See https://github.com/aureliojargas/txt2regex/pull/9 on why we're
+      # using env in the next command
+      - run: env --default-signal=PIPE make test
       - run: make test-bash
       - run: make test-regex
 
