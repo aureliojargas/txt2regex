@@ -444,6 +444,7 @@ posix_re=(
 )
 
 # Title (line 1)
+# shellcheck disable=SC2256
 tit1_txt=(
     $"quit"
     $"reset"
@@ -761,6 +762,7 @@ ShowInfo() {
     )"
 
     # Populating cool i18n arrays
+    # shellcheck disable=SC2256
     txt=(
         $"program"
         $"metas"
