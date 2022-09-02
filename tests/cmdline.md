@@ -381,7 +381,7 @@ $
 ## Invalid option
 
 ```console
-$ txt2regex --foo > usage; head -n 3 usage | sed '3 s/:.*//'; rm usage
+$ txt2regex --foo | head -n 3 | sed '3 s/:.*//'
 --foo: invalid option
 
 usage
