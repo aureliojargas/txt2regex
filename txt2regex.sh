@@ -1236,10 +1236,10 @@ showRegex() {
 
     # For each program
     for ((i = 0; i < ${#progs[@]}; i++)); do
-        [ "$F_ESCCHAR" == 1 ] && escChar $i
-        [ "$F_ESCCHARLIST" == 1 ] && escCharList $i
-        [ "$F_GETTAB" == 1 ] && getListTab $i
-        [ "$F_POSIX" == 1 ] && getHasPosix $i
+        [ "$F_ESCCHAR" == 1 ] && escChar "$i"
+        [ "$F_ESCCHARLIST" == 1 ] && escCharList "$i"
+        [ "$F_GETTAB" == 1 ] && getListTab "$i"
+        [ "$F_POSIX" == 1 ] && getHasPosix "$i"
 
         # Check status
         case "$1" in
