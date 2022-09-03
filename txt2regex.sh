@@ -1221,7 +1221,7 @@ Reset() {
     GRP2=0
 
     maxprogname=$(getLargestItem "${progs[@]}") # global var
-    for p in ${progs[*]}; do
+    for p in "${progs[@]}"; do
         [ "$is_interactive" -eq 1 ] &&
             printf " Regex %-${#maxprogname}s: %s\n" "$p" "$_eol"
     done
