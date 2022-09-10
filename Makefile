@@ -32,12 +32,14 @@ test: clitest.sh
 	sh clitest.sh --progress none README.md tests/*.md
 
 # Run the tests in multiple Bash versions, using the official Docker
-# image https://hub.docker.com/_/bash (each image is ~10MB)
+# image https://hub.docker.com/_/bash (each image is ~10MB).
+# Early exit the loop in the first error, otherwise only the last loop
+# iteration would count as the exit state for this target.
 test-bash: clitest.sh
 	@for v in $(BASHVERSIONS); do \
 		printf '\nTesting in Bash version %s\n' $$v; \
 		docker run --rm -v $$PWD:/code -w /code bash:$$v \
-			sh clitest.sh --progress none tests/*.md; \
+			sh clitest.sh --progress none tests/*.md || exit 1; \
 	done
 
 # Run regex tests for the supported programs, inside a Docker container
