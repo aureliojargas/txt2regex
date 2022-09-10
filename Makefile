@@ -64,10 +64,9 @@ test-regex-build:
 	docker build -t $(REGEXTESTERIMAGE) tests/
 
 clean:
-	rm -f clitest.sh $(NAME) txt2tags.py
-	rm -f messages.mo $(PODIR)/{messages,*.mo,*.tmp,*~}
+	rm -f $(NAME) clitest.sh txt2tags.py messages.mo tmp.lex.*
+	rm -f $(PODIR)/messages $(PODIR)/*.mo $(PODIR)/*.tmp $(PODIR)/*~
 	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
-	rm -f tmp.lex.*.{l,run,yy.c}
 
 doc: txt2tags.py
 	python ./txt2tags.py -t man  man/txt2regex.t2t
