@@ -23,8 +23,14 @@ Txt2regex is a one-file shell script made 100% with Bash builtin
 commands. The only requirement is Bash itself, since no grep, find, sed
 or any other system command is used.
 
+
+## Command line options
+
 See [tests/cmdline.md](tests/cmdline.md) for a list of all the
 available command line options and examples on using them.
+
+
+## Features
 
 See [tests/features.md](tests/features.md) for some of the special
 features txt2regex has to handle user input and compose proper regexes.
