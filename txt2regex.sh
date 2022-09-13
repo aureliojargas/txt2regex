@@ -1206,7 +1206,11 @@ escCharList() {
     # shellcheck disable=SC1003
     if [ "$(getMeta "ax_${progs[$1]}" 6)" == '\' ]; then
         escape_metachar=$(getMeta "ax_${progs[$1]}" 4)
-        uin="${uin/\\/$escape_metachar$escape_metachar}"
+        if [[ ${BASH_VERSINFO[0]} -lt 5 ]]; then
+            uin="${uin/\\/$escape_metachar$escape_metachar}"
+        else
+            uin="${uin/\\/"$escape_metachar$escape_metachar"}"
+        fi
     fi
 }
 
