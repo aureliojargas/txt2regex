@@ -53,8 +53,6 @@ txt2regex 0.10b
 $
 ```
 
-The original code always shows version zero. The real version is set only when using `make install`.
-
 ## Option --showmeta
 
 A handy table showing all the metacharacters for all the programs txt2regex knows about. Nice for comparisons or for a quick memory refresh.
