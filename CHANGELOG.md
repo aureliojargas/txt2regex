@@ -18,10 +18,30 @@ The format is based on [Keep a Changelog].
 [Version 0.2]: https://github.com/aureliojargas/txt2regex/releases/tag/v0.2
 [Version 0.1]: https://github.com/aureliojargas/txt2regex/releases/tag/v0.1
 
+[#12]: https://github.com/aureliojargas/txt2regex/pull/12
+[#9]: https://github.com/aureliojargas/txt2regex/pull/9
 [#7]: https://github.com/aureliojargas/txt2regex/pull/7
 [#6]: https://github.com/aureliojargas/txt2regex/pull/6
 [#5]: https://github.com/aureliojargas/txt2regex/pull/5
 [#3]: https://github.com/aureliojargas/txt2regex/pull/3
+
+[307ae9a]: https://github.com/aureliojargas/txt2regex/commit/307ae9a
+
+
+## [Unreleased]
+
+### Added
+
+- CI: Now also run the tests for Bash version 5.1 [307ae9a]
+ 
+### Changed
+
+- CI: Moved from Travis CI to GitHub Actions [#9]
+ 
+### Fixed
+
+- Fixed to work properly in Bash 5.2 (thanks Nick Rosbrook) [#12]
+
 
 ## [Version 0.9] released in 2020-05-21
 
