@@ -44,7 +44,7 @@ All tests must always be successful. The CI will refuse changes that break tests
 
 - Make sure all the tests are passing: `make test`
 
-- Make sure it's working in all Bash versions: `make test-bash`
+- Make sure it's working in all the supported Bash versions: `make test-bash`
 
 - When touching the regex tester, run it (`make test-regex`) and check the `regex-tester.txt` contents for changes
 
