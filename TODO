@@ -17,7 +17,6 @@ User requests:
   - interface to feed the programs with the RegEx (Chris Piechowicz @ .au)
   - on the fly regex test (zentara @ .com)
   - add other versions of the same program (julioB @ .edu)
-  - easy way for people contribute on program's regexes rules (julioB @ .edu)
   - escape special chars when **applying** the regex (julioB @ .edu)
 
 Extra TODO:
