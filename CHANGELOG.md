@@ -26,6 +26,27 @@ The format is based on [Keep a Changelog].
 [#3]: https://github.com/aureliojargas/txt2regex/pull/3
 
 [307ae9a]: https://github.com/aureliojargas/txt2regex/commit/307ae9a
+[d0c6254]: https://github.com/aureliojargas/txt2regex/commit/d0c6254
+[bee846a]: https://github.com/aureliojargas/txt2regex/commit/bee846a
+[dbcd055]: https://github.com/aureliojargas/txt2regex/commit/dbcd055
+[f1d80c9]: https://github.com/aureliojargas/txt2regex/commit/f1d80c9
+[0a7127a]: https://github.com/aureliojargas/txt2regex/commit/0a7127a
+[1660d83]: https://github.com/aureliojargas/txt2regex/commit/1660d83
+[61abe24]: https://github.com/aureliojargas/txt2regex/commit/61abe24
+[3a3fd24]: https://github.com/aureliojargas/txt2regex/commit/3a3fd24
+[8e1f6ea]: https://github.com/aureliojargas/txt2regex/commit/8e1f6ea
+[4b98e2b]: https://github.com/aureliojargas/txt2regex/commit/4b98e2b
+[f5d0125]: https://github.com/aureliojargas/txt2regex/commit/f5d0125
+[d7850d2]: https://github.com/aureliojargas/txt2regex/commit/d7850d2
+[f323926]: https://github.com/aureliojargas/txt2regex/commit/f323926
+[190906c]: https://github.com/aureliojargas/txt2regex/commit/190906c
+[2768584]: https://github.com/aureliojargas/txt2regex/commit/2768584
+[4b41298]: https://github.com/aureliojargas/txt2regex/commit/4b41298
+[7a1b0cb]: https://github.com/aureliojargas/txt2regex/commit/7a1b0cb
+[674d7bb]: https://github.com/aureliojargas/txt2regex/commit/674d7bb
+[bee220c]: https://github.com/aureliojargas/txt2regex/commit/bee220c
+[a3f7fef]: https://github.com/aureliojargas/txt2regex/commit/a3f7fef
+[c084ed8]: https://github.com/aureliojargas/txt2regex/commit/c084ed8
 
 
 ## [Unreleased]
@@ -33,11 +54,11 @@ The format is based on [Keep a Changelog].
 ### Added
 
 - CI: Now also run the tests for Bash version 5.1 [307ae9a]
- 
+
 ### Changed
 
 - CI: Moved from Travis CI to GitHub Actions [#9]
- 
+
 ### Fixed
 
 - Fixed to work properly in Bash 5.2 (thanks Nick Rosbrook) [#12]
@@ -48,6 +69,7 @@ The format is based on [Keep a Changelog].
 ### Added
 
 - Added CHICKEN Scheme regexes (thanks Mario Domenech Goulart)
+  [dbcd055], [f1d80c9]
 - New tests for all the command line options (`tests/cmdline.md`)
 - New tests for txt2regex features (`tests/features.md`) [#5]
 - New regex tester that runs the supported programs in a Docker
@@ -63,6 +85,7 @@ The format is based on [Keep a Changelog].
   `install-bin`, `install-mo`, `lint`, `test`, `test-bash`,
   `test-regex`, `test-regex-build`, `test-regex-shell`
 - Added short options `-h` (for `--help`) and `-V` (for `--version`)
+  [0a7127a], [1660d83]
 
 ### Removed
 
@@ -76,27 +99,27 @@ The format is based on [Keep a Changelog].
 
 ### Changed
 
-- Bumped minimal required Bash version from 2.04 to 3.0
-- Bumped the versions for all the supported programs
+- Bumped minimal required Bash version from 2.04 to 3.0 [d0c6254]
+- Bumped the versions for all the supported programs [#7]
 - Validated and updated the regex data for all the supported programs,
   thanks to the new regex tester. Some programs now support new
   metacharacters, while others got updates on the escaping rules and
   POSIX character classes support [#7]
-- JavaScript regexes: now using Node.js instead of Netscape
-- lex regexes: now using GNU flex
-- PHP regexes: switch from old `ereg` to `preg` (PCRE)
+- JavaScript regexes: now using Node.js instead of Netscape [61abe24]
+- lex regexes: now using GNU flex [3a3fd24]
+- PHP regexes: switch from old `ereg` to `preg` (PCRE) [8e1f6ea]
 - Changed the default programs: +egrep +grep +emacs -perl -php -postgres
 - Remove repeated characters inside a list `[]` (if the user has typed
-  `abbbca`, make it `[abc]`)
-- Now `--showmeta` also shows the version for each program
+  `abbbca`, make it `[abc]`) [4b98e2b]
+- Now `--showmeta` also shows the version for each program [d7850d2]
 - Now the "!! not supported" legend only appears when there are
-  unsupported metacharacters in the current regex
+  unsupported metacharacters in the current regex [f323926]
 - Converted everything (code, docs, translations) to UTF-8
 - Improved the source code quality (`shellcheck`) and formatting
   (`shfmt`)
 - Unset `$PATH` in the top of the script to make sure only Bash builtin
-  commands are used
-- Simplified the man page contents
+  commands are used [bee846a]
+- Simplified the man page contents [f5d0125]
 - i18n: Improve some translatable strings to make them shorter and
   easier to translate
 - Moved the project hosting from SourceForge to GitHub
@@ -104,22 +127,24 @@ The format is based on [Keep a Changelog].
 
 ### Fixed
 
-- Fixed to work properly in bash5 (thanks Yanmarshus Bachtiar)
+- Fixed to work properly in bash5 (thanks Yanmarshus Bachtiar) [190906c]
 - Fixed `eval` bug when running in bash3 or newer (thanks Marcus
-  Habermehl)
+  Habermehl) [2768584]
 - Fixed incorrect metacharacters for `?` and `+` showing up for `vi` in
-  `--showmeta` and `--showinfo`
+  `--showmeta` and `--showinfo` [c084ed8]
 - Fixed the escaping of the `}` character to be matched as a literal
 - Fixed the escaping of the `\` character to be matched as a literal,
   for programs that use `\\` for escaping: before: `\\\`, now: `\\\\`
+  [4b41298]
 - Fixed the escaping of the `\` character when inside a list `[]`
+  [a3f7fef]
 - Fixed the handling of the `[` character when inside a list `[]`: it is
-  not special at all and should not be handled
+  not special at all and should not be handled [7a1b0cb]
 - Fixed the handling of the `^` character when inside a list `[]`: only
-  move it to the end when it is in the first position
+  move it to the end when it is in the first position [674d7bb]
 - Fixed the handling of the `-` character when inside a list `[]`: do
   not move it to the end when it is in the first position, since it is
-  not special there
+  not special there [bee220c]
 
 ### Translations
 
