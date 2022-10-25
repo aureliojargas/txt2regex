@@ -1,0 +1,15 @@
+// https://aka.ms/devcontainer.json
+{
+    "name": "txt2regex dev",
+    "image": "ghcr.io/aureliojargas/devcontainer",
+    //
+    // https://aka.ms/vscode-remote/containers/non-root
+    "remoteUser": "vscode",
+    //
+    // https://github.com/devcontainers/features/tree/main/src
+    "features": {
+        "github-cli": "latest",
+        // Some Makefile commands are run inside a Docker container
+        "docker-in-docker": "latest"
+    }
+}
