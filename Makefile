@@ -71,8 +71,8 @@ clean:
 	rm -rf $(PODIR)/??/ $(PODIR)/??_??/
 
 doc: txt2tags.py
-	python ./txt2tags.py -t man  man/txt2regex.t2t
-	python ./txt2tags.py -t html man/txt2regex.t2t
+	python3 ./txt2tags.py -t man  man/txt2regex.t2t
+	python3 ./txt2tags.py -t html man/txt2regex.t2t
 
 clitest.sh:
 	curl -s -L -o $@ \
